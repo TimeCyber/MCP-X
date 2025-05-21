@@ -124,8 +124,8 @@ pip install yt-dlp
 See [BUILD.md](BUILD.md) for more details.
 
 ## Connect With Us 🌐
-- 💬 Join our [Discord](https://discord.com/invite/qceMERf4y2)
-- 🐦 Follow us on [Twitter/X](https://x.com/MCP-X_ai_agent)
+- 💬 Join our [Home](https://mcp-x.com/)
+- 🐦 Follow us on [RedNote]()
 - ⭐ Star us on GitHub
 - 🐛 Report issues on our [Issue Tracker](https://github.com/TimeCyber/MCP-X/issues)
 
