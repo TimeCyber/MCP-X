@@ -1,0 +1,13 @@
+node_modules
+.github
+.vscode
+.gitignore
+.dockerignore
+.env
+.env.example
+.env.local
+.env.production
+.env.test
+release
+dist
+dist-electron

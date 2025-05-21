@@ -1,0 +1,17 @@
+diff --git a/node_modules/@codemirror/state/dist/index.js b/node_modules/@codemirror/state/dist/index.js
+index 749fa15..7e609f4 100644
+--- a/node_modules/@codemirror/state/dist/index.js
++++ b/node_modules/@codemirror/state/dist/index.js
+@@ -1990,9 +1990,9 @@ function flatten(extension, compartments, newCompartments) {
+         }
+         else {
+             let content = ext.extension;
+-            if (!content)
+-                throw new Error(`Unrecognized extension value in extension set (${ext}). This sometimes happens because multiple instances of @codemirror/state are loaded, breaking instanceof checks.`);
+-            inner(content, prec);
++            if (content)
++                inner(content, prec);
++                // throw new Error(`Unrecognized extension value in extension set (${ext}). This sometimes happens because multiple instances of @codemirror/state are loaded, breaking instanceof checks.`);
+         }
+     }
+     inner(extension, Prec_.default);

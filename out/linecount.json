@@ -1,0 +1,5478 @@
+{
+    "extension": "linecount",
+    "version": "0.1.7",
+    "workspace": "d:\\mcpx-client\\MCPX-0.0.1",
+    "linecount": [
+        {
+            "version": "0.1.7",
+            "counttime": "2025-05-20 11:14:13",
+            "filesum": 880,
+            "codesum": 3648,
+            "commentsum": 220,
+            "blanksum": 614,
+            "filelist": [
+                {
+                    "blank": 0,
+                    "code": 13,
+                    "comment": 0,
+                    "filename": ".dockerignore"
+                },
+                {
+                    "blank": 0,
+                    "code": 3,
+                    "comment": 0,
+                    "filename": ".env.example"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": ".github\\dependabot.yml"
+                },
+                {
+                    "blank": 3,
+                    "code": 8,
+                    "comment": 0,
+                    "filename": ".github\\ISSUE_TEMPLATE\\bug_report.md"
+                },
+                {
+                    "blank": 2,
+                    "code": 8,
+                    "comment": 0,
+                    "filename": ".github\\ISSUE_TEMPLATE\\help_wanted.md"
+                },
+                {
+                    "blank": 4,
+                    "code": 8,
+                    "comment": 0,
+                    "filename": ".github\\PULL_REQUEST_TEMPLATE.md"
+                },
+                {
+                    "blank": 7,
+                    "code": 36,
+                    "comment": 0,
+                    "filename": ".github\\workflows\\build.yml"
+                },
+                {
+                    "blank": 13,
+                    "code": 75,
+                    "comment": 34,
+                    "filename": ".github\\workflows\\release.yml"
+                },
+                {
+                    "blank": 6,
+                    "code": 35,
+                    "comment": 0,
+                    "filename": ".gitignore"
+                },
+                {
+                    "blank": 634,
+                    "code": 756,
+                    "comment": 1,
+                    "filename": "bin\\node\\win-x64\\CHANGELOG.md"
+                },
+                {
+                    "blank": 2,
+                    "code": 10,
+                    "comment": 0,
+                    "filename": "bin\\node\\win-x64\\corepack"
+                },
+                {
+                    "blank": 0,
+                    "code": 7,
+                    "comment": 0,
+                    "filename": "bin\\node\\win-x64\\corepack.cmd"
+                },
+                {
+                    "blank": 5,
+                    "code": 47,
+                    "comment": 1,
+                    "filename": "bin\\node\\win-x64\\install_tools.bat"
+                },
+                {
+                    "blank": 105,
+                    "code": 363,
+                    "comment": 2,
+                    "filename": "bin\\node\\win-x64\\LICENSE"
+                },
+                {
+                    "blank": 6,
+                    "code": 18,
+                    "comment": 0,
+                    "filename": "bin\\node\\win-x64\\nodevars.bat"
+                },
+                {
+                    "blank": 10,
+                    "code": 41,
+                    "comment": 1,
+                    "filename": "bin\\node\\win-x64\\npm"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "bin\\node\\win-x64\\npm.cmd"
+                },
+                {
+                    "blank": 10,
+                    "code": 41,
+                    "comment": 1,
+                    "filename": "bin\\node\\win-x64\\npx"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "bin\\node\\win-x64\\npx.cmd"
+                },
+                {
+                    "blank": 33,
+                    "code": 95,
+                    "comment": 12,
+                    "filename": "bin\\node\\win-x64\\README.md"
+                },
+                {
+                    "filename": "bin\\python\\win-x64\\_asyncio.pyd",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin\\python\\win-x64\\_bz2.pyd",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin\\python\\win-x64\\_ctypes.pyd",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin\\python\\win-x64\\_decimal.pyd",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin\\python\\win-x64\\_elementtree.pyd",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin\\python\\win-x64\\_hashlib.pyd",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin\\python\\win-x64\\_lzma.pyd",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin\\python\\win-x64\\_msi.pyd",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin\\python\\win-x64\\_multiprocessing.pyd",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin\\python\\win-x64\\_overlapped.pyd",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin\\python\\win-x64\\_queue.pyd",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin\\python\\win-x64\\_socket.pyd",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin\\python\\win-x64\\_sqlite3.pyd",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin\\python\\win-x64\\_ssl.pyd",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin\\python\\win-x64\\_uuid.pyd",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin\\python\\win-x64\\_wmi.pyd",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin\\python\\win-x64\\_zoneinfo.pyd",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin\\python\\win-x64\\libffi-8.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin\\python\\win-x64\\libssl-3.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 10,
+                    "code": 40,
+                    "comment": 1,
+                    "filename": "bin\\python\\win-x64\\LICENSE.txt"
+                },
+                {
+                    "filename": "bin\\python\\win-x64\\pyexpat.pyd",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin\\python\\win-x64\\python.cat",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin\\python\\win-x64\\python.exe",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin\\python\\win-x64\\python3.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 1,
+                    "code": 4,
+                    "comment": 0,
+                    "filename": "bin\\python\\win-x64\\python312._pth"
+                },
+                {
+                    "filename": "bin\\python\\win-x64\\pythonw.exe",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin\\python\\win-x64\\select.pyd",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin\\python\\win-x64\\vcruntime140.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin\\python\\win-x64\\vcruntime140_1.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin\\python\\win-x64\\winsound.pyd",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "bin\\uv\\win-x64\\uvx.exe",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 27,
+                    "code": 76,
+                    "comment": 0,
+                    "filename": "BUILD.md"
+                },
+                {
+                    "filename": "build\\icon.icns",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "build\\icon.ico",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "build\\icon.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 1,
+                    "filename": "dist-electron\\main\\cerebras_langchain-CJSI2gj9.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist-electron\\main\\cerebras_langchain-CJSI2gj9.js.map"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 1,
+                    "filename": "dist-electron\\main\\cohere_langchain-ClQc1OAS.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist-electron\\main\\cohere_langchain-ClQc1OAS.js.map"
+                },
+                {
+                    "blank": 0,
+                    "code": 105,
+                    "comment": 2,
+                    "filename": "dist-electron\\main\\fileFromPath-G8mRmxb9.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist-electron\\main\\fileFromPath-G8mRmxb9.js.map"
+                },
+                {
+                    "blank": 0,
+                    "code": 77,
+                    "comment": 7,
+                    "filename": "dist-electron\\main\\fireworks-D7_kycOq.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist-electron\\main\\fireworks-D7_kycOq.js.map"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 1,
+                    "filename": "dist-electron\\main\\google-vertexai-web_langchain-BZcg4tiO.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist-electron\\main\\google-vertexai-web_langchain-BZcg4tiO.js.map"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 1,
+                    "filename": "dist-electron\\main\\google-vertexai_langchain-CIz-ns3S.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist-electron\\main\\google-vertexai_langchain-CIz-ns3S.js.map"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 1,
+                    "filename": "dist-electron\\main\\groq_langchain-asv400mB.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist-electron\\main\\groq_langchain-asv400mB.js.map"
+                },
+                {
+                    "blank": 0,
+                    "code": 11,
+                    "comment": 1,
+                    "filename": "dist-electron\\main\\index.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist-electron\\main\\index.js.map"
+                },
+                {
+                    "blank": 0,
+                    "code": 62,
+                    "comment": 7,
+                    "filename": "dist-electron\\main\\togetherai-1aeB9foB.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist-electron\\main\\togetherai-1aeB9foB.js.map"
+                },
+                {
+                    "blank": 0,
+                    "code": 118,
+                    "comment": 6,
+                    "filename": "dist-electron\\preload\\index.mjs"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\_basePickBy-CNMOCiZP.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\_baseUniq-BWwzYJva.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\abap-BYtCyiS_.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\abnf-BTiMWLcH.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\actionscript-eNmJCoi8.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\ada-CGqkKEpg.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\agda-FYETX8GG.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 1,
+                    "filename": "dist\\assets\\al-CPtNSgU5.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\antlr4-DA_y3F3U.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\apacheconf-323w0rzb.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\apex-C5o5ce58.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\apl-CwLhv4Iz.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\applescript-DCeGdM6D.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 1,
+                    "filename": "dist\\assets\\aql-ENacpdVF.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\arc-DO4mfupa.js"
+                },
+                {
+                    "blank": 3,
+                    "code": 33,
+                    "comment": 0,
+                    "filename": "dist\\assets\\architectureDiagram-UYN6MBPD-Kaa_umfX.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\arduino-BEa0iVkK.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\arff-DFrpl0iW.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\asciidoc-Qbl9weK2.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\asm6502-B8MonRpR.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\asmatmel-DlQIzXhq.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\aspnet-CwGlPruZ.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\autohotkey-Cl_mme56.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\autoit-BQLkyh-D.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\avisynth-DSh0I-6E.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 1,
+                    "filename": "dist\\assets\\avro-idl-CdhJqkAC.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\bash-B-fHZQO9.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\bash-CefCgV5_.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\basic-C1l2rFoe.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\basic-DBS9NaGG.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\batch-lPEEgguY.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\bbcode-D698uUlW.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\bicep-Wkd1m6wJ.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\birb-Cvf3ntcf.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\bison-DnYGNoY-.js"
+                },
+                {
+                    "blank": 15,
+                    "code": 94,
+                    "comment": 12,
+                    "filename": "dist\\assets\\blockDiagram-ZHA2E4KO-BiMdVsQG.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\bnf-RxnwaAYR.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\brainfuck-CEY8Wvb0.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\brightscript-C1zrr-cC.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\bro-BMF_42hJ.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\browser-ponyfill-BdAN5n_B.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\bsl-Cu2Oppmt.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\c-BVfYRpfp.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\c-kgVuzdLE.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 10,
+                    "comment": 0,
+                    "filename": "dist\\assets\\c4Diagram-6F5ED5ID-BSfgNTzz.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\cfscript-DXV3Z7-u.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\chaiscript-ovtvSvP8.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\channel-BvA2Jy55.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\chunk-5HRBRIJM-D6bCpgZa.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\chunk-ASOPGD6M-BGZjTVkM.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\chunk-KFBOBJHC-Cy3E9BYT.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 6,
+                    "comment": 0,
+                    "filename": "dist\\assets\\chunk-T2TOU4HS-DqoE7sUX.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\chunk-TMUBEWPD-ACAjx8s8.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\cil-7vM5O2tD.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\classDiagram-LNE6IOMH-DTGYckDU.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\classDiagram-v2-MQ7JQ4JX-DTGYckDU.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\clike-B5tY_8Hg.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\clike-FacDK9Bi.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\clojure-CaC7UZ6L.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\clone-Dgtyva91.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\cmake-CyYOdHhw.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\cobol-B1vE9sze.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\coffeescript-DkxukatS.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\concurnas-CLk1h22d.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\coq-mJcD72v1.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 2,
+                    "comment": 7,
+                    "filename": "dist\\assets\\core-CmECMkJ7.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\cpp-CNm371b0.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\cpp-PR_WB-PF.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\crystal-DOhRnMIS.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\csharp-Cd5Udg29.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\csharp-DkaKlg4r.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\cshtml-DKrtv144.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\csp-DDaMyHm8.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\css-CF9HHZb0.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\css-extras-C3v53KDE.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\css-ovYgSjad.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\csv-BUFHqS_q.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\cypher-Dnbuy6qB.js"
+                },
+                {
+                    "blank": 9,
+                    "code": 59,
+                    "comment": 10,
+                    "filename": "dist\\assets\\cytoscape.esm-Cp5tPnx1.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 1,
+                    "filename": "dist\\assets\\d-BV7TVsCp.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 4,
+                    "comment": 0,
+                    "filename": "dist\\assets\\dagre-4EVJKHTY-n6zw6c3Z.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\dart-Cl3827KB.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\dataweave-_7vn6qvK.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\dax-DIOF6QpL.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\dhall-BRLYTnKt.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 24,
+                    "comment": 0,
+                    "filename": "dist\\assets\\diagram-QW4FP2JN-CFTgGOAm.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 3,
+                    "comment": 0,
+                    "filename": "dist\\assets\\diff-BwjB3qNj.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\django-hlHyPJoO.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\dns-zone-file-C2USwxuI.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\docker-CeUzsjpd.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\dot-Cw6aA5ie.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\ebnf-CDWDnrW8.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\editorconfig-B2T70TzA.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\eiffel-GBTraLsW.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\ejs-4hSAilEM.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\elixir-DPMf1WTn.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\elm-YSFpThF1.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\erb-CQbcoW3q.js"
+                },
+                {
+                    "blank": 6,
+                    "code": 45,
+                    "comment": 1,
+                    "filename": "dist\\assets\\erDiagram-6RL3IURR-DONEKNeA.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\erlang-CX4-APJk.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\etlua-DzDVq5KI.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\excel-formula-CHODH5VA.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\factor-DN-e1I4R.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\false-rKFpVX11.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 1,
+                    "filename": "dist\\assets\\firestore-security-rules-C0tu0fZD.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\flow-B5AmqtlU.js"
+                },
+                {
+                    "blank": 19,
+                    "code": 130,
+                    "comment": 12,
+                    "filename": "dist\\assets\\flowDiagram-7ASYPVHJ-CbwR5ZvW.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\fortran-B6_ZWfXg.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\fsharp-DDfbn48k.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\ftl-CXDYx35M.js"
+                },
+                {
+                    "blank": 54,
+                    "code": 194,
+                    "comment": 9,
+                    "filename": "dist\\assets\\ganttDiagram-NTVNEXSI-B8SOefrG.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\gap-afmw9gNI.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\gcode-DTO63oy1.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\gdscript-It5iddQL.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\gedcom-4q5znDeB.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\gherkin-DHdPt1h3.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\git-ChhLqakl.js"
+                },
+                {
+                    "blank": 1,
+                    "code": 40,
+                    "comment": 6,
+                    "filename": "dist\\assets\\gitGraph-YCYPL57B-B2FrJCOq.js"
+                },
+                {
+                    "blank": 3,
+                    "code": 62,
+                    "comment": 0,
+                    "filename": "dist\\assets\\gitGraphDiagram-NRZ2UAAF-DWSlxitR.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\glsl-DPLoxNrc.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\gml-DMUsY9U9.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\gn-DLzPh4eu.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\go-DbhEYlOo.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\go-module-8OSoZKJi.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\graph-BcmOONm9.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\graphql-Bs7q3jLo.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\groovy-CMeHzQA9.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\haml-BD4_IK3i.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\handlebars-BkxJ9hHp.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\haskell-DEYGsxjW.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\haskell-Ds42Eazu.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\haxe-B7MEQ4Ot.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\hcl-DstrQ1ve.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\hlsl-B-Lo_fZ0.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\hoon-DO3pJ-0I.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\hpkp-hkPbamnu.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\hsts-CpjTn7y6.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 1,
+                    "filename": "dist\\assets\\http-CrNKWeBb.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\ichigojam-DTfOE73p.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\icon-BkB-yLp0.js"
+                },
+                {
+                    "filename": "dist\\assets\\icon256-C_HtRjaD.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\icu-message-format-XrygCt5S.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\idris-BXa9XEwy.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\iecst-CLWUee7d.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 1,
+                    "filename": "dist\\assets\\ignore-DMp4Dm0z.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 1,
+                    "filename": "dist\\assets\\index-B8avKKBU.css"
+                },
+                {
+                    "blank": 0,
+                    "code": 2,
+                    "comment": 0,
+                    "filename": "dist\\assets\\infoDiagram-A4XQUW5V-C3Aglh5w.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\inform7-D8TRxl0M.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\ini-BD5JD2Ow.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\init-Gi6I4Gst.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\io-BEaBG6ak.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\j-Cv8J92xC.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\java-BxMbkJZ_.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\java-DI2J_vZm.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\javadoc-CiP5bP22.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\javadoclike-DRzTNrt9.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\javadoclike-myFApC35.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\javascript-BLhgbs1g.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\javascript-D8vYUPHd.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\javastacktrace-CNZkiXXw.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\jexl-D3cOMb_v.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\jolie-B3NhSGy0.js"
+                },
+                {
+                    "blank": 15,
+                    "code": 124,
+                    "comment": 0,
+                    "filename": "dist\\assets\\journeyDiagram-G5WM74LC-CPiP8L6T.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\jq-CfjEFbHS.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\js-extras-CP3QjVtT.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\js-templates-CrCba_BJ.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\jsdoc-BlK8it5k.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\json-BESjz4hO.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\json-Bs1PzboA.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\json5-CoGnbEwQ.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\jsonp-1a1o0SUJ.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\jsstacktrace-CPsf_Bwj.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\jsx-CVQq1cRb.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\jsx-CWP8P1mH.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\julia-ChnyVXbn.js"
+                },
+                {
+                    "blank": 4,
+                    "code": 84,
+                    "comment": 0,
+                    "filename": "dist\\assets\\kanban-definition-QRCXZQQD-BJ4kn7qz.js"
+                },
+                {
+                    "filename": "dist\\assets\\KaTeX_AMS-Regular-BQhdFMY1.woff2",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "dist\\assets\\KaTeX_AMS-Regular-DMm9YOAa.woff",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "dist\\assets\\KaTeX_AMS-Regular-DRggAlZN.ttf",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "dist\\assets\\KaTeX_Caligraphic-Bold-ATXxdsX0.ttf",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "dist\\assets\\KaTeX_Caligraphic-Bold-BEiXGLvX.woff",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "dist\\assets\\KaTeX_Caligraphic-Bold-Dq_IR9rO.woff2",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "dist\\assets\\KaTeX_Caligraphic-Regular-CTRA-rTL.woff",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "dist\\assets\\KaTeX_Caligraphic-Regular-Di6jR-x-.woff2",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "dist\\assets\\KaTeX_Caligraphic-Regular-wX97UBjC.ttf",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "dist\\assets\\KaTeX_Fraktur-Bold-BdnERNNW.ttf",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "dist\\assets\\KaTeX_Fraktur-Bold-BsDP51OF.woff",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "dist\\assets\\KaTeX_Fraktur-Bold-CL6g_b3V.woff2",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "dist\\assets\\KaTeX_Fraktur-Regular-CB_wures.ttf",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "dist\\assets\\KaTeX_Fraktur-Regular-CTYiF6lA.woff2",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "dist\\assets\\KaTeX_Fraktur-Regular-Dxdc4cR9.woff",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "dist\\assets\\KaTeX_Main-Bold-Cx986IdX.woff2",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "dist\\assets\\KaTeX_Main-Bold-Jm3AIy58.woff",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "dist\\assets\\KaTeX_Main-Bold-waoOVXN0.ttf",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "dist\\assets\\KaTeX_Main-BoldItalic-DxDJ3AOS.woff2",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "dist\\assets\\KaTeX_Main-BoldItalic-DzxPMmG6.ttf",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "dist\\assets\\KaTeX_Main-BoldItalic-SpSLRI95.woff",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "dist\\assets\\KaTeX_Main-Italic-3WenGoN9.ttf",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "dist\\assets\\KaTeX_Main-Italic-BMLOBm91.woff",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "dist\\assets\\KaTeX_Main-Italic-NWA7e6Wa.woff2",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "dist\\assets\\KaTeX_Main-Regular-B22Nviop.woff2",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "dist\\assets\\KaTeX_Main-Regular-Dr94JaBh.woff",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "dist\\assets\\KaTeX_Main-Regular-ypZvNtVU.ttf",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "dist\\assets\\KaTeX_Math-BoldItalic-B3XSjfu4.ttf",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "dist\\assets\\KaTeX_Math-BoldItalic-CZnvNsCZ.woff2",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "dist\\assets\\KaTeX_Math-BoldItalic-iY-2wyZ7.woff",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "dist\\assets\\KaTeX_Math-Italic-DA0__PXp.woff",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "dist\\assets\\KaTeX_Math-Italic-flOr_0UB.ttf",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "dist\\assets\\KaTeX_Math-Italic-t53AETM-.woff2",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "dist\\assets\\KaTeX_SansSerif-Bold-CFMepnvq.ttf",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "dist\\assets\\KaTeX_SansSerif-Bold-D1sUS0GD.woff2",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "dist\\assets\\KaTeX_SansSerif-Bold-DbIhKOiC.woff",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "dist\\assets\\KaTeX_SansSerif-Italic-C3H0VqGB.woff2",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "dist\\assets\\KaTeX_SansSerif-Italic-DN2j7dab.woff",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "dist\\assets\\KaTeX_SansSerif-Italic-YYjJ1zSn.ttf",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "dist\\assets\\KaTeX_SansSerif-Regular-BNo7hRIc.ttf",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "dist\\assets\\KaTeX_SansSerif-Regular-CS6fqUqJ.woff",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "dist\\assets\\KaTeX_SansSerif-Regular-DDBCnlJ7.woff2",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "dist\\assets\\KaTeX_Script-Regular-C5JkGWo-.ttf",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "dist\\assets\\KaTeX_Script-Regular-D3wIWfF6.woff2",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "dist\\assets\\KaTeX_Script-Regular-D5yQViql.woff",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "dist\\assets\\KaTeX_Size1-Regular-C195tn64.woff",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "dist\\assets\\KaTeX_Size1-Regular-Dbsnue_I.ttf",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "dist\\assets\\KaTeX_Size1-Regular-mCD8mA8B.woff2",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "dist\\assets\\KaTeX_Size2-Regular-B7gKUWhC.ttf",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "dist\\assets\\KaTeX_Size2-Regular-Dy4dx90m.woff2",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "dist\\assets\\KaTeX_Size2-Regular-oD1tc_U0.woff",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "dist\\assets\\KaTeX_Size3-Regular-CTq5MqoE.woff",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "dist\\assets\\KaTeX_Size3-Regular-DgpXs0kz.ttf",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "dist\\assets\\KaTeX_Size4-Regular-BF-4gkZK.woff",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "dist\\assets\\KaTeX_Size4-Regular-Dl5lxZxV.woff2",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "dist\\assets\\KaTeX_Size4-Regular-DWFBv043.ttf",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "dist\\assets\\KaTeX_Typewriter-Regular-C0xS9mPB.woff",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "dist\\assets\\KaTeX_Typewriter-Regular-CO6r4hn1.woff2",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "dist\\assets\\KaTeX_Typewriter-Regular-D3Ib7_Hf.ttf",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\keepalived-C-Hf_K1I.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\keyman-D1c7F-l3.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 1,
+                    "filename": "dist\\assets\\kotlin-KPvIeYPX.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\kumir-BL1FrkUk.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\kusto-BsAdUFuN.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\latex-BWA2YVQ7.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\latte-DIQXfbAH.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\layout-VP6_nDBx.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 1,
+                    "filename": "dist\\assets\\less-BmnsUjQW.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\lilypond-CT2eufpg.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\linear-D7dl7a2e.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\liquid-umjldRe8.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\lisp-zSUHjKlt.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 1,
+                    "filename": "dist\\assets\\livescript-D4zpNuiy.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\llvm-lVXH8M71.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\log-O3SEIeu_.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\lolcode-DE2d93AF.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\lua-B9XXEHB8.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\lua-DER4jxlW.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 1,
+                    "filename": "dist\\assets\\magma-oYo7zROw.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\makefile-CDzvQLEl.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\markdown-D1Hjd5_w.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\markup-BONeskWm.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\markup-DvjwbQxn.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\markup-templating-BxAVv-bL.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\markup-templating-IRPMYjBJ.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\matlab-DgbEyAbO.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\maxscript-T_o-KcvL.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\mel-CR0MxJLN.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\mermaid-LMsno8_c.js"
+                },
+                {
+                    "blank": 8,
+                    "code": 30,
+                    "comment": 58,
+                    "filename": "dist\\assets\\mindmap-definition-GWI6TPTV-Beqk-_P_.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\mizar-akGYCKC7.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\mongodb-BVz68t4k.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\monkey-CiW5di1g.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\moonscript-Ceksxj5O.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\n1ql-ii-u4M_u.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\n4js-t307snyk.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\nand2tetris-hdl-BKeW2PSb.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\naniscript-ORMnp_pB.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\nasm-LOuRCUhw.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\neon-CxBPH58k.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\nevod-DBUVYDR0.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\nginx-C8-Y7ArI.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\nim-BhWXHOXD.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\nix-BGuAA_gl.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\nsis-uGN2vwLN.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\objectivec-BdIl4U_y.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\ocaml-BNe4tFHR.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\opencl-yD3nltjU.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\openqasm-BaBBHG7s.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\ordinal-Cboi1Yqb.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\oz-51Jsz3l2.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\parigp-B9EdF3ts.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\parser-DWwfu9H2.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\pascal-Dl6RmanV.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\pascaligo-CW1IBXrk.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\pcaxis-DboY2ss9.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 1,
+                    "filename": "dist\\assets\\peoplecode-q13frhQk.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\perl-iGbXXQH3.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\php-Be1xe2t9.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\php-DWsP2mkx.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\php-extras-BCvDC7iX.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\phpdoc-DvJ0X_5Q.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 29,
+                    "comment": 1,
+                    "filename": "dist\\assets\\pieDiagram-YF2LJOPJ-LdTTOkiS.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\plsql-CNz9gJbC.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\powerquery-DGWXH3sU.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\powershell-WAXn96YU.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\processing-C8844tje.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\prolog-DRxCjCY4.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\promql-BrxFV9dJ.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\properties-B7HNoAwT.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\protobuf-BIgpVSJB.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\psl-Cljx_f4j.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\pug-aT0lUK7R.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\puppet-BOPBHztd.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 1,
+                    "filename": "dist\\assets\\pure-4djlzele.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\purebasic-CNZbWXkc.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\purescript-B53TMWQu.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\python-BpFy3QW9.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\q-Dwn89yxL.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\qml-CdSVeWDd.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\qore-DwIylTOR.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\qsharp-DeJbk5wV.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 6,
+                    "comment": 0,
+                    "filename": "dist\\assets\\quadrantDiagram-OS5C2QUG-Beaxofa5.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\r-noHQzQut.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\racket-Cc9INNrp.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\reason-GB8P16P_.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\regex-fSVWAz0k.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\rego-Ax107TOg.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\renpy-e3etbNCB.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 6,
+                    "comment": 0,
+                    "filename": "dist\\assets\\requirementDiagram-MIRIMTAZ-DQ3S8j3t.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\rest-BhSveuE4.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\rip-CnONVPwK.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\roboconf-C9WRGsOp.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\robotframework-SpWxPqc_.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\ruby-CffwrWht.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\ruby-DYsn9XfW.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 1,
+                    "filename": "dist\\assets\\rust-CR4UV3Yz.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 8,
+                    "comment": 0,
+                    "filename": "dist\\assets\\sankeyDiagram-Y46BX6SQ-hPRXd7Me.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 1,
+                    "filename": "dist\\assets\\sas-BTvEquyu.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\sass-CMDpRFV_.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\scala-9FnjtZ8w.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\scheme-5GyC0a5F.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\scheme-Cscf027c.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\scss-x4QefAs_.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 6,
+                    "comment": 0,
+                    "filename": "dist\\assets\\sequenceDiagram-G6AWOVSC-BeS6AttZ.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\shell-session-DmArTm-5.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\smali-ZJsr2SvD.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\smalltalk-CDgPsjk1.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\smarty-BuMnJSnu.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\sml-BWbC0SmU.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\solidity-OYA0RMrg.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\solution-file-BKatsksX.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\soy-BhotnMNg.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\sparql-BAJAPUam.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\splunk-spl-DGVKFTpX.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\sqf-BtWbfZiu.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\sql-C128wiuZ.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\sql-CJATM1Qp.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\squirrel-CbWYTY06.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\stan-bxv3NW7O.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\stateDiagram-MAYHULR4--ASVM0LX.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\stateDiagram-v2-4JROLMXI-EUEl1PT2.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\stylus-DRDhsh8K.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\swift-CiZxAsHI.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 2,
+                    "comment": 0,
+                    "filename": "dist\\assets\\systemd-C-zXkOOc.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\t4-cs-D5ZQcqli.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\t4-templating-B5EzSFYT.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\t4-templating-BMY3LQev.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\t4-vb-Byh2VKiz.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\tap-BG-MCggs.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\tcl-BklxN8Ec.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\textile-YaawZvuu.js"
+                },
+                {
+                    "blank": 2,
+                    "code": 59,
+                    "comment": 0,
+                    "filename": "dist\\assets\\timeline-definition-U7ZMHBDA-CJMyLjwa.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\toml-f80oZM7R.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\tremor-DzkRqzlQ.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\tsx-BDDoMpft.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\tt2-BJl5OM9h.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\turtle-Ro1R6Je7.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\turtle-u66OZY0w.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\twig-B51GbAFK.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\typescript-B0kfC3M4.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\typescript-CVO-8GEc.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\typoscript-IwaIgL0e.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 1,
+                    "filename": "dist\\assets\\unrealscript-DOHOVS-K.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\uorazor-IC2yIIpp.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 1,
+                    "filename": "dist\\assets\\uri-BRnPFtq5.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\v-t6k-TjBV.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 1,
+                    "filename": "dist\\assets\\vala-CnAYULXf.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\vbnet-3MnpYX8r.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\vbnet-BhrUc4aD.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\velocity-DVwI2AsK.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 1,
+                    "filename": "dist\\assets\\verilog-CcMureu2.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\vhdl-BtGa0Srm.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\vim-BP9a9Ew1.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\visual-basic-C6e1Nz_C.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 1,
+                    "filename": "dist\\assets\\warpscript-UaE-JKDJ.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\wasm-CmDL7lOK.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 1,
+                    "filename": "dist\\assets\\web-idl-RP07Gl-G.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 1,
+                    "filename": "dist\\assets\\wiki-CazDhYZn.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\wolfram-C5U7yBu9.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 1,
+                    "filename": "dist\\assets\\wren-DJ4Qpm4C.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\xeora-CmC5AsWN.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\xml-doc-BLvHwyjU.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\xojo-BgNJA9Rk.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\xquery-CgbJGMJf.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 7,
+                    "comment": 0,
+                    "filename": "dist\\assets\\xychartDiagram-6QU3TZC5-CO0FCMNM.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\yaml-K6S4Nm3B.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\yaml-pHjxJgpq.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\yang-BwvrRVrR.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\assets\\zig-B789KJSk.js"
+                },
+                {
+                    "filename": "dist\\icon.ico",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "dist\\icon.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 4,
+                    "comment": 0,
+                    "filename": "dist\\image\\Alert.svg"
+                },
+                {
+                    "blank": 0,
+                    "code": 6,
+                    "comment": 0,
+                    "filename": "dist\\image\\Copy.svg"
+                },
+                {
+                    "blank": 0,
+                    "code": 5,
+                    "comment": 0,
+                    "filename": "dist\\image\\Hide.svg"
+                },
+                {
+                    "blank": 0,
+                    "code": 15,
+                    "comment": 0,
+                    "filename": "dist\\image\\model_anthropic.svg"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\image\\model_bedrock.svg"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist\\image\\model_gemini.svg"
+                },
+                {
+                    "blank": 5,
+                    "code": 35,
+                    "comment": 0,
+                    "filename": "dist\\image\\model_mistral-ai.svg"
+                },
+                {
+                    "blank": 0,
+                    "code": 9,
+                    "comment": 0,
+                    "filename": "dist\\image\\model_ollama.svg"
+                },
+                {
+                    "blank": 0,
+                    "code": 9,
+                    "comment": 0,
+                    "filename": "dist\\image\\model_openai.svg"
+                },
+                {
+                    "blank": 0,
+                    "code": 9,
+                    "comment": 0,
+                    "filename": "dist\\image\\model_openai_compatible.svg"
+                },
+                {
+                    "blank": 0,
+                    "code": 11,
+                    "comment": 0,
+                    "filename": "dist\\image\\reload.svg"
+                },
+                {
+                    "blank": 0,
+                    "code": 4,
+                    "comment": 0,
+                    "filename": "dist\\image\\Show.svg"
+                },
+                {
+                    "blank": 0,
+                    "code": 17,
+                    "comment": 0,
+                    "filename": "dist\\index.html"
+                },
+                {
+                    "blank": 0,
+                    "code": 9,
+                    "comment": 0,
+                    "filename": "dist\\linux\\mcpx-ai.desktop"
+                },
+                {
+                    "blank": 0,
+                    "code": 244,
+                    "comment": 0,
+                    "filename": "dist\\locales\\en\\translation.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 237,
+                    "comment": 0,
+                    "filename": "dist\\locales\\es\\translation.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 268,
+                    "comment": 0,
+                    "filename": "dist\\locales\\zh-CN\\translation.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 243,
+                    "comment": 0,
+                    "filename": "dist\\locales\\zh-TW\\translation.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 7,
+                    "comment": 0,
+                    "filename": "dist\\vite.svg"
+                },
+                {
+                    "blank": 0,
+                    "code": 25,
+                    "comment": 0,
+                    "filename": "dist\\vite_bak.svg"
+                },
+                {
+                    "blank": 1,
+                    "code": 6,
+                    "comment": 12,
+                    "filename": "docker\\win-build\\Dockerfile"
+                },
+                {
+                    "filename": "docs\\DIVE_Screenshot_0.7.4.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 1,
+                    "code": 6,
+                    "comment": 0,
+                    "filename": "drizzle.config.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 14,
+                    "comment": 1,
+                    "filename": "drizzle\\0000_tidy_skin.sql"
+                },
+                {
+                    "blank": 0,
+                    "code": 108,
+                    "comment": 0,
+                    "filename": "drizzle\\meta\\0000_snapshot.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 13,
+                    "comment": 0,
+                    "filename": "drizzle\\meta\\_journal.json"
+                },
+                {
+                    "blank": 7,
+                    "code": 147,
+                    "comment": 0,
+                    "filename": "electron-builder.json"
+                },
+                {
+                    "blank": 1,
+                    "code": 4,
+                    "comment": 0,
+                    "filename": "electron\\config\\index.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 13,
+                    "comment": 0,
+                    "filename": "electron\\config\\keymap.ts"
+                },
+                {
+                    "blank": 1,
+                    "code": 7,
+                    "comment": 15,
+                    "filename": "electron\\electron-env.d.ts"
+                },
+                {
+                    "blank": 6,
+                    "code": 48,
+                    "comment": 0,
+                    "filename": "electron\\main\\constant.ts"
+                },
+                {
+                    "blank": 36,
+                    "code": 168,
+                    "comment": 30,
+                    "filename": "electron\\main\\index.ts"
+                },
+                {
+                    "blank": 5,
+                    "code": 18,
+                    "comment": 0,
+                    "filename": "electron\\main\\ipc\\env.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 28,
+                    "comment": 6,
+                    "filename": "electron\\main\\ipc\\index.ts"
+                },
+                {
+                    "blank": 13,
+                    "code": 128,
+                    "comment": 4,
+                    "filename": "electron\\main\\ipc\\llm.ts"
+                },
+                {
+                    "blank": 4,
+                    "code": 19,
+                    "comment": 0,
+                    "filename": "electron\\main\\ipc\\menu.ts"
+                },
+                {
+                    "blank": 12,
+                    "code": 53,
+                    "comment": 0,
+                    "filename": "electron\\main\\ipc\\system.ts"
+                },
+                {
+                    "blank": 9,
+                    "code": 38,
+                    "comment": 0,
+                    "filename": "electron\\main\\ipc\\util.ts"
+                },
+                {
+                    "blank": 13,
+                    "code": 59,
+                    "comment": 0,
+                    "filename": "electron\\main\\platform\\appimage.ts"
+                },
+                {
+                    "blank": 5,
+                    "code": 35,
+                    "comment": 2,
+                    "filename": "electron\\main\\protocol.ts"
+                },
+                {
+                    "blank": 11,
+                    "code": 60,
+                    "comment": 23,
+                    "filename": "electron\\main\\proxy.ts"
+                },
+                {
+                    "blank": 19,
+                    "code": 83,
+                    "comment": 9,
+                    "filename": "electron\\main\\service.ts"
+                },
+                {
+                    "blank": 2,
+                    "code": 7,
+                    "comment": 0,
+                    "filename": "electron\\main\\state.ts"
+                },
+                {
+                    "blank": 1,
+                    "code": 8,
+                    "comment": 0,
+                    "filename": "electron\\main\\store.ts"
+                },
+                {
+                    "blank": 8,
+                    "code": 39,
+                    "comment": 0,
+                    "filename": "electron\\main\\tray.ts"
+                },
+                {
+                    "blank": 10,
+                    "code": 61,
+                    "comment": 10,
+                    "filename": "electron\\main\\update.ts"
+                },
+                {
+                    "blank": 14,
+                    "code": 90,
+                    "comment": 3,
+                    "filename": "electron\\main\\util.ts"
+                },
+                {
+                    "blank": 15,
+                    "code": 117,
+                    "comment": 14,
+                    "filename": "electron\\preload\\index.ts"
+                },
+                {
+                    "blank": 1,
+                    "code": 27,
+                    "comment": 0,
+                    "filename": "eslint.config.js"
+                },
+                {
+                    "filename": "icon.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "icon256.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 13,
+                    "comment": 3,
+                    "filename": "index.html"
+                },
+                {
+                    "blank": 4,
+                    "code": 17,
+                    "comment": 0,
+                    "filename": "LICENSE"
+                },
+                {
+                    "blank": 315,
+                    "code": 25886,
+                    "comment": 0,
+                    "filename": "package-lock.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 171,
+                    "comment": 0,
+                    "filename": "package.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 17,
+                    "comment": 1,
+                    "filename": "patches\\@codemirror+state+6.5.2.patch"
+                },
+                {
+                    "blank": 0,
+                    "code": 10,
+                    "comment": 11,
+                    "filename": "patches\\@modelcontextprotocol+sdk+1.4.1.patch"
+                },
+                {
+                    "blank": 0,
+                    "code": 12,
+                    "comment": 0,
+                    "filename": "patches\\JSV+4.0.2.patch"
+                },
+                {
+                    "blank": 40,
+                    "code": 218,
+                    "comment": 58,
+                    "filename": "prebuilt\\scripts\\echo.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 917,
+                    "comment": 0,
+                    "filename": "prebuilt\\scripts\\package-lock.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 17,
+                    "comment": 0,
+                    "filename": "prebuilt\\scripts\\package.json"
+                },
+                {
+                    "filename": "public\\icon.ico",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "public\\icon.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 4,
+                    "comment": 0,
+                    "filename": "public\\image\\Alert.svg"
+                },
+                {
+                    "blank": 0,
+                    "code": 6,
+                    "comment": 0,
+                    "filename": "public\\image\\Copy.svg"
+                },
+                {
+                    "blank": 0,
+                    "code": 5,
+                    "comment": 0,
+                    "filename": "public\\image\\Hide.svg"
+                },
+                {
+                    "blank": 0,
+                    "code": 15,
+                    "comment": 0,
+                    "filename": "public\\image\\model_anthropic.svg"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "public\\image\\model_bedrock.svg"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "public\\image\\model_gemini.svg"
+                },
+                {
+                    "blank": 5,
+                    "code": 35,
+                    "comment": 0,
+                    "filename": "public\\image\\model_mistral-ai.svg"
+                },
+                {
+                    "blank": 0,
+                    "code": 9,
+                    "comment": 0,
+                    "filename": "public\\image\\model_ollama.svg"
+                },
+                {
+                    "blank": 0,
+                    "code": 9,
+                    "comment": 0,
+                    "filename": "public\\image\\model_openai.svg"
+                },
+                {
+                    "blank": 0,
+                    "code": 9,
+                    "comment": 0,
+                    "filename": "public\\image\\model_openai_compatible.svg"
+                },
+                {
+                    "blank": 0,
+                    "code": 11,
+                    "comment": 0,
+                    "filename": "public\\image\\reload.svg"
+                },
+                {
+                    "blank": 0,
+                    "code": 4,
+                    "comment": 0,
+                    "filename": "public\\image\\Show.svg"
+                },
+                {
+                    "blank": 0,
+                    "code": 9,
+                    "comment": 0,
+                    "filename": "public\\linux\\mcpx-ai.desktop"
+                },
+                {
+                    "blank": 0,
+                    "code": 244,
+                    "comment": 0,
+                    "filename": "public\\locales\\en\\translation.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 237,
+                    "comment": 0,
+                    "filename": "public\\locales\\es\\translation.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 268,
+                    "comment": 0,
+                    "filename": "public\\locales\\zh-CN\\translation.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 243,
+                    "comment": 0,
+                    "filename": "public\\locales\\zh-TW\\translation.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 7,
+                    "comment": 0,
+                    "filename": "public\\vite.svg"
+                },
+                {
+                    "blank": 0,
+                    "code": 25,
+                    "comment": 0,
+                    "filename": "public\\vite_bak.svg"
+                },
+                {
+                    "blank": 16,
+                    "code": 42,
+                    "comment": 10,
+                    "filename": "README.md"
+                },
+                {
+                    "blank": 28,
+                    "code": 197,
+                    "comment": 0,
+                    "filename": "release\\0.0.1\\builder-debug.yml"
+                },
+                {
+                    "blank": 0,
+                    "code": 120,
+                    "comment": 1,
+                    "filename": "release\\0.0.1\\builder-effective-config.yaml"
+                },
+                {
+                    "blank": 0,
+                    "code": 8,
+                    "comment": 0,
+                    "filename": "release\\0.0.1\\latest.yml"
+                },
+                {
+                    "filename": "release\\0.0.1\\MCP-X-0.0.1-win-x64.exe.blockmap",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "release\\0.0.1\\win-unpacked\\chrome_100_percent.pak",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "release\\0.0.1\\win-unpacked\\chrome_200_percent.pak",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "release\\0.0.1\\win-unpacked\\libEGL.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 3,
+                    "code": 18,
+                    "comment": 0,
+                    "filename": "release\\0.0.1\\win-unpacked\\LICENSE.electron.txt"
+                },
+                {
+                    "filename": "release\\0.0.1\\win-unpacked\\locales\\af.pak",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "release\\0.0.1\\win-unpacked\\locales\\am.pak",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "release\\0.0.1\\win-unpacked\\locales\\ar.pak",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "release\\0.0.1\\win-unpacked\\locales\\bg.pak",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "release\\0.0.1\\win-unpacked\\locales\\ca.pak",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "release\\0.0.1\\win-unpacked\\locales\\cs.pak",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "release\\0.0.1\\win-unpacked\\locales\\da.pak",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "release\\0.0.1\\win-unpacked\\locales\\de.pak",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "release\\0.0.1\\win-unpacked\\locales\\en-GB.pak",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "release\\0.0.1\\win-unpacked\\locales\\en-US.pak",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "release\\0.0.1\\win-unpacked\\locales\\es-419.pak",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "release\\0.0.1\\win-unpacked\\locales\\es.pak",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "release\\0.0.1\\win-unpacked\\locales\\et.pak",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "release\\0.0.1\\win-unpacked\\locales\\fa.pak",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "release\\0.0.1\\win-unpacked\\locales\\fi.pak",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "release\\0.0.1\\win-unpacked\\locales\\fil.pak",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "release\\0.0.1\\win-unpacked\\locales\\fr.pak",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "release\\0.0.1\\win-unpacked\\locales\\he.pak",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "release\\0.0.1\\win-unpacked\\locales\\hr.pak",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "release\\0.0.1\\win-unpacked\\locales\\hu.pak",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "release\\0.0.1\\win-unpacked\\locales\\id.pak",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "release\\0.0.1\\win-unpacked\\locales\\it.pak",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "release\\0.0.1\\win-unpacked\\locales\\ja.pak",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "release\\0.0.1\\win-unpacked\\locales\\ko.pak",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "release\\0.0.1\\win-unpacked\\locales\\lt.pak",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "release\\0.0.1\\win-unpacked\\locales\\lv.pak",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "release\\0.0.1\\win-unpacked\\locales\\ms.pak",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "release\\0.0.1\\win-unpacked\\locales\\nb.pak",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "release\\0.0.1\\win-unpacked\\locales\\nl.pak",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "release\\0.0.1\\win-unpacked\\locales\\pl.pak",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "release\\0.0.1\\win-unpacked\\locales\\pt-BR.pak",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "release\\0.0.1\\win-unpacked\\locales\\pt-PT.pak",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "release\\0.0.1\\win-unpacked\\locales\\ro.pak",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "release\\0.0.1\\win-unpacked\\locales\\ru.pak",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "release\\0.0.1\\win-unpacked\\locales\\sk.pak",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "release\\0.0.1\\win-unpacked\\locales\\sl.pak",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "release\\0.0.1\\win-unpacked\\locales\\sr.pak",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "release\\0.0.1\\win-unpacked\\locales\\sv.pak",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "release\\0.0.1\\win-unpacked\\locales\\sw.pak",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "release\\0.0.1\\win-unpacked\\locales\\tr.pak",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "release\\0.0.1\\win-unpacked\\locales\\uk.pak",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "release\\0.0.1\\win-unpacked\\locales\\ur.pak",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "release\\0.0.1\\win-unpacked\\locales\\vi.pak",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "release\\0.0.1\\win-unpacked\\locales\\zh-CN.pak",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "release\\0.0.1\\win-unpacked\\locales\\zh-TW.pak",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 4,
+                    "comment": 0,
+                    "filename": "release\\0.0.1\\win-unpacked\\resources\\app-update.yml"
+                },
+                {
+                    "blank": 0,
+                    "code": 14,
+                    "comment": 1,
+                    "filename": "release\\0.0.1\\win-unpacked\\resources\\drizzle\\0000_tidy_skin.sql"
+                },
+                {
+                    "blank": 0,
+                    "code": 108,
+                    "comment": 0,
+                    "filename": "release\\0.0.1\\win-unpacked\\resources\\drizzle\\meta\\0000_snapshot.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 13,
+                    "comment": 0,
+                    "filename": "release\\0.0.1\\win-unpacked\\resources\\drizzle\\meta\\_journal.json"
+                },
+                {
+                    "filename": "release\\0.0.1\\win-unpacked\\resources\\elevate.exe",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 4,
+                    "comment": 0,
+                    "filename": "release\\0.0.1\\win-unpacked\\resources\\image\\Alert.svg"
+                },
+                {
+                    "blank": 0,
+                    "code": 6,
+                    "comment": 0,
+                    "filename": "release\\0.0.1\\win-unpacked\\resources\\image\\Copy.svg"
+                },
+                {
+                    "blank": 0,
+                    "code": 5,
+                    "comment": 0,
+                    "filename": "release\\0.0.1\\win-unpacked\\resources\\image\\Hide.svg"
+                },
+                {
+                    "blank": 0,
+                    "code": 15,
+                    "comment": 0,
+                    "filename": "release\\0.0.1\\win-unpacked\\resources\\image\\model_anthropic.svg"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "release\\0.0.1\\win-unpacked\\resources\\image\\model_bedrock.svg"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "release\\0.0.1\\win-unpacked\\resources\\image\\model_gemini.svg"
+                },
+                {
+                    "blank": 5,
+                    "code": 35,
+                    "comment": 0,
+                    "filename": "release\\0.0.1\\win-unpacked\\resources\\image\\model_mistral-ai.svg"
+                },
+                {
+                    "blank": 0,
+                    "code": 9,
+                    "comment": 0,
+                    "filename": "release\\0.0.1\\win-unpacked\\resources\\image\\model_ollama.svg"
+                },
+                {
+                    "blank": 0,
+                    "code": 9,
+                    "comment": 0,
+                    "filename": "release\\0.0.1\\win-unpacked\\resources\\image\\model_openai.svg"
+                },
+                {
+                    "blank": 0,
+                    "code": 9,
+                    "comment": 0,
+                    "filename": "release\\0.0.1\\win-unpacked\\resources\\image\\model_openai_compatible.svg"
+                },
+                {
+                    "blank": 0,
+                    "code": 11,
+                    "comment": 0,
+                    "filename": "release\\0.0.1\\win-unpacked\\resources\\image\\reload.svg"
+                },
+                {
+                    "blank": 0,
+                    "code": 4,
+                    "comment": 0,
+                    "filename": "release\\0.0.1\\win-unpacked\\resources\\image\\Show.svg"
+                },
+                {
+                    "blank": 0,
+                    "code": 244,
+                    "comment": 0,
+                    "filename": "release\\0.0.1\\win-unpacked\\resources\\locales\\en\\translation.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 237,
+                    "comment": 0,
+                    "filename": "release\\0.0.1\\win-unpacked\\resources\\locales\\es\\translation.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 268,
+                    "comment": 0,
+                    "filename": "release\\0.0.1\\win-unpacked\\resources\\locales\\zh-CN\\translation.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 243,
+                    "comment": 0,
+                    "filename": "release\\0.0.1\\win-unpacked\\resources\\locales\\zh-TW\\translation.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "release\\0.0.1\\win-unpacked\\resources\\node\\npm.cmd"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "release\\0.0.1\\win-unpacked\\resources\\node\\npx.cmd"
+                },
+                {
+                    "blank": 40,
+                    "code": 218,
+                    "comment": 58,
+                    "filename": "release\\0.0.1\\win-unpacked\\resources\\prebuilt\\scripts\\echo.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 917,
+                    "comment": 0,
+                    "filename": "release\\0.0.1\\win-unpacked\\resources\\prebuilt\\scripts\\package-lock.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 17,
+                    "comment": 0,
+                    "filename": "release\\0.0.1\\win-unpacked\\resources\\prebuilt\\scripts\\package.json"
+                },
+                {
+                    "filename": "release\\0.0.1\\win-unpacked\\resources\\python\\_asyncio.pyd",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "release\\0.0.1\\win-unpacked\\resources\\python\\_bz2.pyd",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "release\\0.0.1\\win-unpacked\\resources\\python\\_ctypes.pyd",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "release\\0.0.1\\win-unpacked\\resources\\python\\_decimal.pyd",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "release\\0.0.1\\win-unpacked\\resources\\python\\_elementtree.pyd",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "release\\0.0.1\\win-unpacked\\resources\\python\\_hashlib.pyd",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "release\\0.0.1\\win-unpacked\\resources\\python\\_lzma.pyd",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "release\\0.0.1\\win-unpacked\\resources\\python\\_msi.pyd",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "release\\0.0.1\\win-unpacked\\resources\\python\\_multiprocessing.pyd",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "release\\0.0.1\\win-unpacked\\resources\\python\\_overlapped.pyd",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "release\\0.0.1\\win-unpacked\\resources\\python\\_queue.pyd",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "release\\0.0.1\\win-unpacked\\resources\\python\\_socket.pyd",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "release\\0.0.1\\win-unpacked\\resources\\python\\_sqlite3.pyd",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "release\\0.0.1\\win-unpacked\\resources\\python\\_ssl.pyd",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "release\\0.0.1\\win-unpacked\\resources\\python\\_uuid.pyd",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "release\\0.0.1\\win-unpacked\\resources\\python\\_wmi.pyd",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "release\\0.0.1\\win-unpacked\\resources\\python\\_zoneinfo.pyd",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "release\\0.0.1\\win-unpacked\\resources\\python\\libffi-8.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "release\\0.0.1\\win-unpacked\\resources\\python\\libssl-3.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 10,
+                    "code": 40,
+                    "comment": 1,
+                    "filename": "release\\0.0.1\\win-unpacked\\resources\\python\\LICENSE.txt"
+                },
+                {
+                    "filename": "release\\0.0.1\\win-unpacked\\resources\\python\\pyexpat.pyd",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "release\\0.0.1\\win-unpacked\\resources\\python\\python.cat",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "release\\0.0.1\\win-unpacked\\resources\\python\\python.exe",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "release\\0.0.1\\win-unpacked\\resources\\python\\python3.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 1,
+                    "code": 4,
+                    "comment": 0,
+                    "filename": "release\\0.0.1\\win-unpacked\\resources\\python\\python312._pth"
+                },
+                {
+                    "filename": "release\\0.0.1\\win-unpacked\\resources\\python\\pythonw.exe",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "release\\0.0.1\\win-unpacked\\resources\\python\\select.pyd",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "release\\0.0.1\\win-unpacked\\resources\\python\\vcruntime140.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "release\\0.0.1\\win-unpacked\\resources\\python\\vcruntime140_1.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "release\\0.0.1\\win-unpacked\\resources\\python\\winsound.pyd",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "release\\0.0.1\\win-unpacked\\resources\\uv\\uvx.exe",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "release\\0.0.1\\win-unpacked\\snapshot_blob.bin",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "release\\0.0.1\\win-unpacked\\v8_context_snapshot.bin",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "release\\0.0.1\\win-unpacked\\vk_swiftshader_icd.json"
+                },
+                {
+                    "filename": "release\\0.0.1\\win-unpacked\\vulkan-1.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 10,
+                    "comment": 0,
+                    "filename": "resources\\mac\\entitlements.mac.inherit.plist"
+                },
+                {
+                    "blank": 0,
+                    "code": 32,
+                    "comment": 0,
+                    "filename": "resources\\mac\\entitlements.mac.plist"
+                },
+                {
+                    "blank": 3,
+                    "code": 9,
+                    "comment": 1,
+                    "filename": "scripts\\docker\\build-win.sh"
+                },
+                {
+                    "blank": 13,
+                    "code": 75,
+                    "comment": 1,
+                    "filename": "scripts\\download-node.ts"
+                },
+                {
+                    "blank": 12,
+                    "code": 57,
+                    "comment": 6,
+                    "filename": "scripts\\download-python.ts"
+                },
+                {
+                    "blank": 17,
+                    "code": 105,
+                    "comment": 2,
+                    "filename": "scripts\\download-uv.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 12,
+                    "comment": 1,
+                    "filename": "scripts\\install-deps.sh"
+                },
+                {
+                    "blank": 4,
+                    "code": 18,
+                    "comment": 0,
+                    "filename": "scripts\\notarizer.js"
+                },
+                {
+                    "blank": 5,
+                    "code": 50,
+                    "comment": 2,
+                    "filename": "services\\__tests__\\__mocks__\\mcpSdkMocks.ts"
+                },
+                {
+                    "blank": 5,
+                    "code": 50,
+                    "comment": 2,
+                    "filename": "services\\__tests__\\__mocks__\\mcpSdkMocks.ts"
+                },
+                {
+                    "blank": 1,
+                    "code": 12,
+                    "comment": 0,
+                    "filename": "services\\__tests__\\__mocks__\\utilsMocks.ts"
+                },
+                {
+                    "blank": 1,
+                    "code": 12,
+                    "comment": 0,
+                    "filename": "services\\__tests__\\__mocks__\\utilsMocks.ts"
+                },
+                {
+                    "blank": 6,
+                    "code": 58,
+                    "comment": 0,
+                    "filename": "services\\__tests__\\client.test.ts"
+                },
+                {
+                    "blank": 6,
+                    "code": 58,
+                    "comment": 0,
+                    "filename": "services\\__tests__\\client.test.ts"
+                },
+                {
+                    "blank": 6,
+                    "code": 22,
+                    "comment": 2,
+                    "filename": "services\\__tests__\\connectServer.test.ts"
+                },
+                {
+                    "blank": 6,
+                    "code": 22,
+                    "comment": 2,
+                    "filename": "services\\__tests__\\connectServer.test.ts"
+                },
+                {
+                    "blank": 38,
+                    "code": 247,
+                    "comment": 6,
+                    "filename": "services\\__tests__\\database\\index.test.ts"
+                },
+                {
+                    "blank": 38,
+                    "code": 247,
+                    "comment": 6,
+                    "filename": "services\\__tests__\\database\\index.test.ts"
+                },
+                {
+                    "blank": 71,
+                    "code": 316,
+                    "comment": 19,
+                    "filename": "services\\__tests__\\mcpServer\\index.test.ts"
+                },
+                {
+                    "blank": 71,
+                    "code": 316,
+                    "comment": 19,
+                    "filename": "services\\__tests__\\mcpServer\\index.test.ts"
+                },
+                {
+                    "blank": 37,
+                    "code": 233,
+                    "comment": 1,
+                    "filename": "services\\__tests__\\model\\index.test.ts"
+                },
+                {
+                    "blank": 37,
+                    "code": 233,
+                    "comment": 1,
+                    "filename": "services\\__tests__\\model\\index.test.ts"
+                },
+                {
+                    "blank": 35,
+                    "code": 186,
+                    "comment": 2,
+                    "filename": "services\\__tests__\\processQuery.test.ts"
+                },
+                {
+                    "blank": 35,
+                    "code": 186,
+                    "comment": 2,
+                    "filename": "services\\__tests__\\processQuery.test.ts"
+                },
+                {
+                    "blank": 34,
+                    "code": 112,
+                    "comment": 4,
+                    "filename": "services\\__tests__\\prompt\\index.test.ts"
+                },
+                {
+                    "blank": 34,
+                    "code": 112,
+                    "comment": 4,
+                    "filename": "services\\__tests__\\prompt\\index.test.ts"
+                },
+                {
+                    "blank": 11,
+                    "code": 47,
+                    "comment": 0,
+                    "filename": "services\\__tests__\\utils\\fileHandler.test.ts"
+                },
+                {
+                    "blank": 11,
+                    "code": 47,
+                    "comment": 0,
+                    "filename": "services\\__tests__\\utils\\fileHandler.test.ts"
+                },
+                {
+                    "blank": 11,
+                    "code": 38,
+                    "comment": 1,
+                    "filename": "services\\__tests__\\utils\\image.test.ts"
+                },
+                {
+                    "blank": 11,
+                    "code": 38,
+                    "comment": 1,
+                    "filename": "services\\__tests__\\utils\\image.test.ts"
+                },
+                {
+                    "blank": 16,
+                    "code": 49,
+                    "comment": 1,
+                    "filename": "services\\__tests__\\utils\\modelHandler.test.ts"
+                },
+                {
+                    "blank": 16,
+                    "code": 49,
+                    "comment": 1,
+                    "filename": "services\\__tests__\\utils\\modelHandler.test.ts"
+                },
+                {
+                    "blank": 17,
+                    "code": 138,
+                    "comment": 3,
+                    "filename": "services\\__tests__\\utils\\processHistory.test.ts"
+                },
+                {
+                    "blank": 17,
+                    "code": 138,
+                    "comment": 3,
+                    "filename": "services\\__tests__\\utils\\processHistory.test.ts"
+                },
+                {
+                    "blank": 21,
+                    "code": 98,
+                    "comment": 0,
+                    "filename": "services\\__tests__\\utils\\toolHandler.test.ts"
+                },
+                {
+                    "blank": 21,
+                    "code": 98,
+                    "comment": 0,
+                    "filename": "services\\__tests__\\utils\\toolHandler.test.ts"
+                },
+                {
+                    "blank": 29,
+                    "code": 243,
+                    "comment": 15,
+                    "filename": "services\\client.ts"
+                },
+                {
+                    "blank": 18,
+                    "code": 85,
+                    "comment": 39,
+                    "filename": "services\\connectServer.ts"
+                },
+                {
+                    "blank": 18,
+                    "code": 85,
+                    "comment": 39,
+                    "filename": "services\\connectServer.ts"
+                },
+                {
+                    "blank": 61,
+                    "code": 390,
+                    "comment": 16,
+                    "filename": "services\\database\\index.ts"
+                },
+                {
+                    "blank": 61,
+                    "code": 390,
+                    "comment": 16,
+                    "filename": "services\\database\\index.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 19,
+                    "comment": 1,
+                    "filename": "services\\database\\schema.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 19,
+                    "comment": 1,
+                    "filename": "services\\database\\schema.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 3,
+                    "comment": 0,
+                    "filename": "services\\index.ts"
+                },
+                {
+                    "blank": 11,
+                    "code": 43,
+                    "comment": 3,
+                    "filename": "services\\main.ts"
+                },
+                {
+                    "blank": 44,
+                    "code": 298,
+                    "comment": 40,
+                    "filename": "services\\mcpServer\\index.ts"
+                },
+                {
+                    "blank": 5,
+                    "code": 26,
+                    "comment": 4,
+                    "filename": "services\\mcpServer\\interface.ts"
+                },
+                {
+                    "blank": 21,
+                    "code": 167,
+                    "comment": 15,
+                    "filename": "services\\models\\index.ts"
+                },
+                {
+                    "blank": 2,
+                    "code": 52,
+                    "comment": 23,
+                    "filename": "services\\models\\interface.ts"
+                },
+                {
+                    "blank": 59,
+                    "code": 399,
+                    "comment": 41,
+                    "filename": "services\\processQuery.ts"
+                },
+                {
+                    "blank": 8,
+                    "code": 47,
+                    "comment": 2,
+                    "filename": "services\\prompt\\index.ts"
+                },
+                {
+                    "blank": 14,
+                    "code": 93,
+                    "comment": 0,
+                    "filename": "services\\prompt\\system.ts"
+                },
+                {
+                    "blank": 9,
+                    "code": 31,
+                    "comment": 7,
+                    "filename": "services\\routes\\_index.ts"
+                },
+                {
+                    "blank": 9,
+                    "code": 31,
+                    "comment": 7,
+                    "filename": "services\\routes\\_index.ts"
+                },
+                {
+                    "blank": 9,
+                    "code": 81,
+                    "comment": 0,
+                    "filename": "services\\routes\\chat.ts"
+                },
+                {
+                    "blank": 24,
+                    "code": 242,
+                    "comment": 9,
+                    "filename": "services\\routes\\compatible.ts"
+                },
+                {
+                    "blank": 24,
+                    "code": 242,
+                    "comment": 9,
+                    "filename": "services\\routes\\compatible.ts"
+                },
+                {
+                    "blank": 20,
+                    "code": 145,
+                    "comment": 6,
+                    "filename": "services\\routes\\config.ts"
+                },
+                {
+                    "blank": 4,
+                    "code": 14,
+                    "comment": 0,
+                    "filename": "services\\routes\\index.ts"
+                },
+                {
+                    "blank": 4,
+                    "code": 14,
+                    "comment": 0,
+                    "filename": "services\\routes\\index.ts"
+                },
+                {
+                    "blank": 28,
+                    "code": 223,
+                    "comment": 2,
+                    "filename": "services\\routes\\modelVerify.ts"
+                },
+                {
+                    "blank": 28,
+                    "code": 223,
+                    "comment": 2,
+                    "filename": "services\\routes\\modelVerify.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "services\\routes\\tools.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "services\\routes\\tools.ts"
+                },
+                {
+                    "blank": 5,
+                    "code": 24,
+                    "comment": 0,
+                    "filename": "services\\syscmd\\index.ts"
+                },
+                {
+                    "blank": 5,
+                    "code": 24,
+                    "comment": 0,
+                    "filename": "services\\syscmd\\index.ts"
+                },
+                {
+                    "blank": 12,
+                    "code": 69,
+                    "comment": 14,
+                    "filename": "services\\utils\\fileHandler.ts"
+                },
+                {
+                    "blank": 12,
+                    "code": 69,
+                    "comment": 14,
+                    "filename": "services\\utils\\fileHandler.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 30,
+                    "comment": 10,
+                    "filename": "services\\utils\\image.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 30,
+                    "comment": 10,
+                    "filename": "services\\utils\\image.ts"
+                },
+                {
+                    "blank": 9,
+                    "code": 48,
+                    "comment": 6,
+                    "filename": "services\\utils\\logger.ts"
+                },
+                {
+                    "blank": 9,
+                    "code": 48,
+                    "comment": 6,
+                    "filename": "services\\utils\\logger.ts"
+                },
+                {
+                    "blank": 8,
+                    "code": 44,
+                    "comment": 11,
+                    "filename": "services\\utils\\modelHandler.ts"
+                },
+                {
+                    "blank": 8,
+                    "code": 44,
+                    "comment": 11,
+                    "filename": "services\\utils\\modelHandler.ts"
+                },
+                {
+                    "blank": 4,
+                    "code": 55,
+                    "comment": 1,
+                    "filename": "services\\utils\\processHistory.ts"
+                },
+                {
+                    "blank": 4,
+                    "code": 55,
+                    "comment": 1,
+                    "filename": "services\\utils\\processHistory.ts"
+                },
+                {
+                    "blank": 31,
+                    "code": 133,
+                    "comment": 31,
+                    "filename": "services\\utils\\toolHandler.ts"
+                },
+                {
+                    "blank": 31,
+                    "code": 133,
+                    "comment": 31,
+                    "filename": "services\\utils\\toolHandler.ts"
+                },
+                {
+                    "blank": 12,
+                    "code": 104,
+                    "comment": 9,
+                    "filename": "services\\utils\\types.ts"
+                },
+                {
+                    "blank": 12,
+                    "code": 104,
+                    "comment": 9,
+                    "filename": "services\\utils\\types.ts"
+                },
+                {
+                    "blank": 50,
+                    "code": 335,
+                    "comment": 16,
+                    "filename": "services\\webServer.ts"
+                },
+                {
+                    "blank": 50,
+                    "code": 335,
+                    "comment": 16,
+                    "filename": "services\\webServer.ts"
+                },
+                {
+                    "blank": 7,
+                    "code": 50,
+                    "comment": 3,
+                    "filename": "src\\App.tsx"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "src\\assets\\react.svg"
+                },
+                {
+                    "blank": 1,
+                    "code": 4,
+                    "comment": 0,
+                    "filename": "src\\atoms\\chatState.ts"
+                },
+                {
+                    "blank": 2,
+                    "code": 6,
+                    "comment": 0,
+                    "filename": "src\\atoms\\codeStreaming.ts"
+                },
+                {
+                    "blank": 53,
+                    "code": 341,
+                    "comment": 14,
+                    "filename": "src\\atoms\\configState.ts"
+                },
+                {
+                    "blank": 1,
+                    "code": 2,
+                    "comment": 0,
+                    "filename": "src\\atoms\\globalState.ts"
+                },
+                {
+                    "blank": 4,
+                    "code": 21,
+                    "comment": 0,
+                    "filename": "src\\atoms\\historyState.ts"
+                },
+                {
+                    "blank": 45,
+                    "code": 221,
+                    "comment": 2,
+                    "filename": "src\\atoms\\hotkeyState.ts"
+                },
+                {
+                    "blank": 7,
+                    "code": 279,
+                    "comment": 0,
+                    "filename": "src\\atoms\\interfaceState.ts"
+                },
+                {
+                    "blank": 15,
+                    "code": 89,
+                    "comment": 0,
+                    "filename": "src\\atoms\\layerState.ts"
+                },
+                {
+                    "blank": 2,
+                    "code": 6,
+                    "comment": 0,
+                    "filename": "src\\atoms\\modalState.ts"
+                },
+                {
+                    "blank": 4,
+                    "code": 22,
+                    "comment": 0,
+                    "filename": "src\\atoms\\sidebarState.ts"
+                },
+                {
+                    "blank": 5,
+                    "code": 18,
+                    "comment": 0,
+                    "filename": "src\\atoms\\themeState.ts"
+                },
+                {
+                    "blank": 6,
+                    "code": 29,
+                    "comment": 0,
+                    "filename": "src\\atoms\\toastState.ts"
+                },
+                {
+                    "blank": 5,
+                    "code": 26,
+                    "comment": 0,
+                    "filename": "src\\atoms\\toolState.ts"
+                },
+                {
+                    "blank": 7,
+                    "code": 47,
+                    "comment": 0,
+                    "filename": "src\\components\\CheckBox.tsx"
+                },
+                {
+                    "blank": 6,
+                    "code": 77,
+                    "comment": 0,
+                    "filename": "src\\components\\CustomInstructions.tsx"
+                },
+                {
+                    "blank": 6,
+                    "code": 82,
+                    "comment": 0,
+                    "filename": "src\\components\\DropDown.tsx"
+                },
+                {
+                    "blank": 4,
+                    "code": 28,
+                    "comment": 0,
+                    "filename": "src\\components\\GlobalToast.tsx"
+                },
+                {
+                    "blank": 5,
+                    "code": 53,
+                    "comment": 0,
+                    "filename": "src\\components\\Header.tsx"
+                },
+                {
+                    "blank": 23,
+                    "code": 229,
+                    "comment": 0,
+                    "filename": "src\\components\\HistorySidebar.tsx"
+                },
+                {
+                    "blank": 5,
+                    "code": 38,
+                    "comment": 3,
+                    "filename": "src\\components\\InfoTooltip.tsx"
+                },
+                {
+                    "blank": 17,
+                    "code": 143,
+                    "comment": 9,
+                    "filename": "src\\components\\Modal\\KeymapModal.tsx"
+                },
+                {
+                    "blank": 8,
+                    "code": 104,
+                    "comment": 0,
+                    "filename": "src\\components\\ModelSelect.tsx"
+                },
+                {
+                    "blank": 12,
+                    "code": 122,
+                    "comment": 0,
+                    "filename": "src\\components\\PopupConfirm.tsx"
+                },
+                {
+                    "blank": 4,
+                    "code": 33,
+                    "comment": 0,
+                    "filename": "src\\components\\PopupWindow.tsx"
+                },
+                {
+                    "blank": 15,
+                    "code": 129,
+                    "comment": 0,
+                    "filename": "src\\components\\ProxySettingsForm.tsx"
+                },
+                {
+                    "blank": 6,
+                    "code": 97,
+                    "comment": 1,
+                    "filename": "src\\components\\Select.tsx"
+                },
+                {
+                    "blank": 1,
+                    "code": 23,
+                    "comment": 0,
+                    "filename": "src\\components\\Switch.tsx"
+                },
+                {
+                    "blank": 5,
+                    "code": 64,
+                    "comment": 0,
+                    "filename": "src\\components\\ThemeSwitch.tsx"
+                },
+                {
+                    "blank": 6,
+                    "code": 43,
+                    "comment": 0,
+                    "filename": "src\\components\\Toast.tsx"
+                },
+                {
+                    "blank": 3,
+                    "code": 33,
+                    "comment": 0,
+                    "filename": "src\\components\\Tooltip.tsx"
+                },
+                {
+                    "blank": 8,
+                    "code": 73,
+                    "comment": 0,
+                    "filename": "src\\components\\UpdateButton.tsx"
+                },
+                {
+                    "blank": 5,
+                    "code": 21,
+                    "comment": 0,
+                    "filename": "src\\components\\WrappedInput.tsx"
+                },
+                {
+                    "blank": 5,
+                    "code": 21,
+                    "comment": 0,
+                    "filename": "src\\components\\WrappedTextarea.tsx"
+                },
+                {
+                    "blank": 0,
+                    "code": 7,
+                    "comment": 0,
+                    "filename": "src\\constants.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 15,
+                    "comment": 2,
+                    "filename": "src\\electron.d.ts"
+                },
+                {
+                    "blank": 13,
+                    "code": 84,
+                    "comment": 0,
+                    "filename": "src\\helper\\config.ts"
+                },
+                {
+                    "blank": 6,
+                    "code": 26,
+                    "comment": 0,
+                    "filename": "src\\hooks\\useDebounce.ts"
+                },
+                {
+                    "blank": 1,
+                    "code": 10,
+                    "comment": 0,
+                    "filename": "src\\hooks\\useHotkeyEvent.ts"
+                },
+                {
+                    "blank": 15,
+                    "code": 76,
+                    "comment": 0,
+                    "filename": "src\\hooks\\useLayer.ts"
+                },
+                {
+                    "blank": 7,
+                    "code": 27,
+                    "comment": 0,
+                    "filename": "src\\hooks\\useThrottle.ts"
+                },
+                {
+                    "blank": 11,
+                    "code": 52,
+                    "comment": 0,
+                    "filename": "src\\hooks\\useUpdateProgress.ts"
+                },
+                {
+                    "blank": 2,
+                    "code": 19,
+                    "comment": 0,
+                    "filename": "src\\i18n.ts"
+                },
+                {
+                    "blank": 6,
+                    "code": 50,
+                    "comment": 0,
+                    "filename": "src\\index.css"
+                },
+                {
+                    "blank": 6,
+                    "code": 30,
+                    "comment": 1,
+                    "filename": "src\\main.tsx"
+                },
+                {
+                    "blank": 1,
+                    "code": 29,
+                    "comment": 0,
+                    "filename": "src\\router.tsx"
+                },
+                {
+                    "blank": 30,
+                    "code": 269,
+                    "comment": 14,
+                    "filename": "src\\styles\\_variables.scss"
+                },
+                {
+                    "blank": 14,
+                    "code": 87,
+                    "comment": 0,
+                    "filename": "src\\styles\\components\\_CheckBox.scss"
+                },
+                {
+                    "blank": 3,
+                    "code": 13,
+                    "comment": 0,
+                    "filename": "src\\styles\\components\\_DropDown.scss"
+                },
+                {
+                    "blank": 16,
+                    "code": 78,
+                    "comment": 0,
+                    "filename": "src\\styles\\components\\_Header.scss"
+                },
+                {
+                    "blank": 49,
+                    "code": 254,
+                    "comment": 0,
+                    "filename": "src\\styles\\components\\_HistorySidebar.scss"
+                },
+                {
+                    "blank": 9,
+                    "code": 82,
+                    "comment": 1,
+                    "filename": "src\\styles\\components\\_InfoTooltip.scss"
+                },
+                {
+                    "blank": 10,
+                    "code": 55,
+                    "comment": 0,
+                    "filename": "src\\styles\\components\\_Keymap.scss"
+                },
+                {
+                    "blank": 46,
+                    "code": 256,
+                    "comment": 0,
+                    "filename": "src\\styles\\components\\_ModelConfig.scss"
+                },
+                {
+                    "blank": 20,
+                    "code": 91,
+                    "comment": 4,
+                    "filename": "src\\styles\\components\\_ModelSelect.scss"
+                },
+                {
+                    "blank": 19,
+                    "code": 122,
+                    "comment": 0,
+                    "filename": "src\\styles\\components\\_PopupConfirm.scss"
+                },
+                {
+                    "blank": 7,
+                    "code": 38,
+                    "comment": 0,
+                    "filename": "src\\styles\\components\\_PopupWindow.scss"
+                },
+                {
+                    "blank": 12,
+                    "code": 62,
+                    "comment": 0,
+                    "filename": "src\\styles\\components\\_Select.scss"
+                },
+                {
+                    "blank": 6,
+                    "code": 43,
+                    "comment": 0,
+                    "filename": "src\\styles\\components\\_Sidebar.scss"
+                },
+                {
+                    "blank": 10,
+                    "code": 67,
+                    "comment": 0,
+                    "filename": "src\\styles\\components\\_Switch.scss"
+                },
+                {
+                    "blank": 4,
+                    "code": 28,
+                    "comment": 0,
+                    "filename": "src\\styles\\components\\_ThemeSwitch.scss"
+                },
+                {
+                    "blank": 11,
+                    "code": 66,
+                    "comment": 0,
+                    "filename": "src\\styles\\components\\_Toast.scss"
+                },
+                {
+                    "blank": 9,
+                    "code": 83,
+                    "comment": 1,
+                    "filename": "src\\styles\\components\\_Tooltip.scss"
+                },
+                {
+                    "blank": 8,
+                    "code": 64,
+                    "comment": 0,
+                    "filename": "src\\styles\\index.scss"
+                },
+                {
+                    "blank": 195,
+                    "code": 1102,
+                    "comment": 2,
+                    "filename": "src\\styles\\overlay\\_Model.scss"
+                },
+                {
+                    "blank": 6,
+                    "code": 35,
+                    "comment": 0,
+                    "filename": "src\\styles\\overlay\\_Overlay.scss"
+                },
+                {
+                    "blank": 10,
+                    "code": 48,
+                    "comment": 0,
+                    "filename": "src\\styles\\overlay\\_System.scss"
+                },
+                {
+                    "blank": 175,
+                    "code": 910,
+                    "comment": 0,
+                    "filename": "src\\styles\\overlay\\_Tools.scss"
+                },
+                {
+                    "blank": 137,
+                    "code": 855,
+                    "comment": 0,
+                    "filename": "src\\styles\\pages\\_Chat.scss"
+                },
+                {
+                    "blank": 43,
+                    "code": 290,
+                    "comment": 1,
+                    "filename": "src\\styles\\pages\\_Setup.scss"
+                },
+                {
+                    "blank": 78,
+                    "code": 509,
+                    "comment": 0,
+                    "filename": "src\\styles\\pages\\_Welcome.scss"
+                },
+                {
+                    "blank": 20,
+                    "code": 138,
+                    "comment": 2,
+                    "filename": "src\\styles\\proxy-settings.css"
+                },
+                {
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0,
+                    "filename": "src\\styles\\setup-styles.css"
+                },
+                {
+                    "blank": 20,
+                    "code": 145,
+                    "comment": 5,
+                    "filename": "src\\styles\\system-proxy.css"
+                },
+                {
+                    "blank": 10,
+                    "code": 35,
+                    "comment": 1,
+                    "filename": "src\\updater.tsx"
+                },
+                {
+                    "blank": 7,
+                    "code": 34,
+                    "comment": 0,
+                    "filename": "src\\util.ts"
+                },
+                {
+                    "blank": 67,
+                    "code": 471,
+                    "comment": 3,
+                    "filename": "src\\views\\Chat\\ChatInput.tsx"
+                },
+                {
+                    "blank": 11,
+                    "code": 80,
+                    "comment": 0,
+                    "filename": "src\\views\\Chat\\ChatMessages.tsx"
+                },
+                {
+                    "blank": 15,
+                    "code": 172,
+                    "comment": 0,
+                    "filename": "src\\views\\Chat\\CodeModal.tsx"
+                },
+                {
+                    "blank": 5,
+                    "code": 19,
+                    "comment": 0,
+                    "filename": "src\\views\\Chat\\CodePreview.tsx"
+                },
+                {
+                    "blank": 6,
+                    "code": 50,
+                    "comment": 1,
+                    "filename": "src\\views\\Chat\\FilePreview.tsx"
+                },
+                {
+                    "blank": 61,
+                    "code": 370,
+                    "comment": 0,
+                    "filename": "src\\views\\Chat\\index.tsx"
+                },
+                {
+                    "blank": 23,
+                    "code": 330,
+                    "comment": 2,
+                    "filename": "src\\views\\Chat\\Message.tsx"
+                },
+                {
+                    "blank": 3,
+                    "code": 15,
+                    "comment": 0,
+                    "filename": "src\\views\\Chat\\preview\\html.tsx"
+                },
+                {
+                    "blank": 4,
+                    "code": 60,
+                    "comment": 0,
+                    "filename": "src\\views\\Chat\\preview\\mermaid.tsx"
+                },
+                {
+                    "blank": 14,
+                    "code": 96,
+                    "comment": 0,
+                    "filename": "src\\views\\Chat\\ToolPanel.tsx"
+                },
+                {
+                    "blank": 3,
+                    "code": 32,
+                    "comment": 0,
+                    "filename": "src\\views\\Layout.tsx"
+                },
+                {
+                    "blank": 4,
+                    "code": 41,
+                    "comment": 0,
+                    "filename": "src\\views\\Overlay\\index.tsx"
+                },
+                {
+                    "blank": 3,
+                    "code": 10,
+                    "comment": 0,
+                    "filename": "src\\views\\Overlay\\Model\\index.tsx"
+                },
+                {
+                    "blank": 43,
+                    "code": 438,
+                    "comment": 28,
+                    "filename": "src\\views\\Overlay\\Model\\KeyPopup.tsx"
+                },
+                {
+                    "blank": 30,
+                    "code": 396,
+                    "comment": 4,
+                    "filename": "src\\views\\Overlay\\Model\\KeyPopupEdit.tsx"
+                },
+                {
+                    "blank": 21,
+                    "code": 423,
+                    "comment": 5,
+                    "filename": "src\\views\\Overlay\\Model\\Layout.tsx"
+                },
+                {
+                    "blank": 19,
+                    "code": 188,
+                    "comment": 7,
+                    "filename": "src\\views\\Overlay\\Model\\ModelsProvider.tsx"
+                },
+                {
+                    "blank": 20,
+                    "code": 117,
+                    "comment": 0,
+                    "filename": "src\\views\\Overlay\\Model\\ModelVerify.tsx"
+                },
+                {
+                    "blank": 9,
+                    "code": 188,
+                    "comment": 0,
+                    "filename": "src\\views\\Overlay\\Model\\ParameterPopup.tsx"
+                },
+                {
+                    "blank": 9,
+                    "code": 110,
+                    "comment": 0,
+                    "filename": "src\\views\\Overlay\\Model\\Popup\\AdvancedSetting.tsx"
+                },
+                {
+                    "blank": 8,
+                    "code": 103,
+                    "comment": 2,
+                    "filename": "src\\views\\Overlay\\Model\\Popup\\CustomId.tsx"
+                },
+                {
+                    "blank": 36,
+                    "code": 589,
+                    "comment": 23,
+                    "filename": "src\\views\\Overlay\\Model\\Popup\\index.tsx"
+                },
+                {
+                    "blank": 37,
+                    "code": 317,
+                    "comment": 24,
+                    "filename": "src\\views\\Overlay\\System.tsx"
+                },
+                {
+                    "blank": 100,
+                    "code": 1269,
+                    "comment": 30,
+                    "filename": "src\\views\\Overlay\\Tools.tsx"
+                },
+                {
+                    "blank": 8,
+                    "code": 98,
+                    "comment": 0,
+                    "filename": "src\\views\\Setup\\index.tsx"
+                },
+                {
+                    "blank": 32,
+                    "code": 388,
+                    "comment": 8,
+                    "filename": "src\\views\\Setup\\ModelConfigForm.tsx"
+                },
+                {
+                    "blank": 52,
+                    "code": 422,
+                    "comment": 4,
+                    "filename": "src\\views\\Welcome.tsx"
+                },
+                {
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0,
+                    "filename": "src\\vite-env.d.ts"
+                },
+                {
+                    "blank": 2,
+                    "code": 23,
+                    "comment": 2,
+                    "filename": "tsconfig.app.json"
+                },
+                {
+                    "blank": 2,
+                    "code": 23,
+                    "comment": 2,
+                    "filename": "tsconfig.app.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 7,
+                    "comment": 0,
+                    "filename": "tsconfig.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 7,
+                    "comment": 0,
+                    "filename": "tsconfig.json"
+                },
+                {
+                    "blank": 2,
+                    "code": 20,
+                    "comment": 2,
+                    "filename": "tsconfig.node.json"
+                },
+                {
+                    "blank": 2,
+                    "code": 20,
+                    "comment": 2,
+                    "filename": "tsconfig.node.json"
+                },
+                {
+                    "blank": 14,
+                    "code": 71,
+                    "comment": 2,
+                    "filename": "vite.config.electron.ts"
+                },
+                {
+                    "blank": 14,
+                    "code": 71,
+                    "comment": 2,
+                    "filename": "vite.config.electron.ts"
+                },
+                {
+                    "blank": 1,
+                    "code": 23,
+                    "comment": 0,
+                    "filename": "vite.config.service.ts"
+                },
+                {
+                    "blank": 1,
+                    "code": 23,
+                    "comment": 0,
+                    "filename": "vite.config.service.ts"
+                },
+                {
+                    "blank": 1,
+                    "code": 24,
+                    "comment": 1,
+                    "filename": "vite.config.ts"
+                },
+                {
+                    "blank": 1,
+                    "code": 24,
+                    "comment": 1,
+                    "filename": "vite.config.ts"
+                },
+                {
+                    "blank": 1,
+                    "code": 8,
+                    "comment": 0,
+                    "filename": "vitest.config.ts"
+                },
+                {
+                    "blank": 1,
+                    "code": 8,
+                    "comment": 0,
+                    "filename": "vitest.config.ts"
+                }
+            ]
+        }
+    ]
+}

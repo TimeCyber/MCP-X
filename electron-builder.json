@@ -1,0 +1,154 @@
+{
+  "$schema": "https://raw.githubusercontent.com/electron-userland/electron-builder/master/packages/app-builder-lib/scheme.json",
+  "appId": "ai.timecyber.mcpx",
+  "productName": "MCP-X",
+  "copyright": "Copyright © 2025 TimeCyber",
+  "asar": true,
+  "artifactName": "${productName}-${version}-${os}-${arch}.${ext}",
+  "publish": [
+    {
+      "provider": "github",
+      "owner": "TimeCyber",
+      "repo": "MCP-X"
+    }
+  ],
+  "asarUnpack": [
+    "**/node_modules/sharp/**/*",
+    "**/node_modules/@img/**/*",
+    "**/*.node"
+  ],
+  "directories": {
+    "output": "release/${version}"
+  },
+  "files": [
+    "dist-electron",
+    "dist",
+    "drizzle/**/*",
+    "prebuilt/**/*"
+  ],
+  "afterSign": "./scripts/notarizer.js",
+  "mac": {
+    "target": [
+      {
+        "target": "dmg",
+        "arch": ["arm64", "x64"]
+      },
+      {
+        "target": "zip",
+        "arch": ["arm64", "x64"]
+      }
+    ],
+    "hardenedRuntime": true,
+    "gatekeeperAssess": false,
+    "entitlements": "resources/mac/entitlements.mac.plist",
+    "entitlementsInherit": "resources/mac/entitlements.mac.plist",
+    "darkModeSupport": true,
+    "extendInfo": {
+      "NSMicrophoneUsageDescription": "Microphone access may be used by MCPX plugins, such as Jitsi video conferencing.",
+      "NSCameraUsageDescription": "Camera access may be used by MCPX plugins, such as Jitsi video conferencing.",
+      "NSFocusStatusUsageDescription": "Focus status is used by MCPX to determine whether to send notifications or not.",
+      "LSFileQuarantineEnabled": true,
+      "NSAppleEventsUsageDescription": "need this permission to execute some functions",
+      "com.apple.security.cs.allow-jit": true,
+      "com.apple.security.cs.allow-unsigned-executable-memory": true,
+      "com.apple.security.cs.allow-dyld-environment-variables": true,
+      "com.apple.security.temporary-exception.files.absolute-path.read-write": true,
+      "com.apple.security.temporary-exception.files.home-relative-path.read-write": true
+    },
+    "signIgnore": [
+      "node_modules/sharp"
+    ],
+    "extraResources": [
+      {
+        "from": "bin/node/darwin-${arch}/",
+        "to": "bin/node/",
+        "filter": ["**/*"]
+      },
+      {
+        "from": "bin/uv/darwin-${arch}/",
+        "to": "bin/uv/",
+        "filter": [
+          "uv",
+          "uvx"
+        ]
+      },
+      {
+        "from": "bin/python/darwin-${arch}/",
+        "to": "python/",
+        "filter": ["**/*"]
+      }
+    ]
+  },
+  "win": {
+    "target": [
+      {
+        "target": "nsis",
+        "arch": [
+          "x64"
+        ]
+      }
+    ],
+    "extraResources": [
+      {
+        "from": "bin/node/win-x64/",
+        "to": "node/",
+        "filter": [
+          "node.exe",
+          "npx.cmd",
+          "npm.cmd",
+          "node_modules/**/*"
+        ]
+      },
+      {
+        "from": "bin/uv/win-x64/",
+        "to": "uv/",
+        "filter": [
+          "uv.exe",
+          "uvx.exe"
+        ]
+      },
+      {
+        "from": "bin/python/win-x64/",
+        "to": "python/",
+        "filter": ["**/*"]
+      }
+    ]
+  },
+  "linux": {
+    "target": ["AppImage"],
+    "asarUnpack": ["**/*.node"],
+    "executableName": "mcpx"
+  },
+  "nsis": {
+    "oneClick": false,
+    "perMachine": false,
+    "allowToChangeInstallationDirectory": true,
+    "deleteAppDataOnUninstall": true
+  },
+  "extraResources": [
+    {
+      "from": "prebuilt",
+      "to": "prebuilt",
+      "filter": ["**/*"]
+    },
+    {
+      "from": "drizzle",
+      "to": "drizzle",
+      "filter": ["**/*"]
+    },
+    {
+      "from": "public/locales",
+      "to": "locales",
+      "filter": ["**/*"]
+    },
+    {
+      "from": "public/image",
+      "to": "image",
+      "filter": ["**/*"]
+    }
+  ],
+  "dmg": {
+    "writeUpdateInfo": false,
+    "title": "MCPX-${version}"
+  }
+}

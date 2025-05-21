@@ -1,0 +1,115 @@
+@use "../_variables" as *;
+
+$select-button-width: 475px;
+
+.sidebar-visible {
+  .model-select {
+    left: $sidebar-width + 5px;
+    //menu left side: 125px
+    //menu right side: 36px
+    //gap: 16px
+    //sidebar gap: 5px
+    width: calc(100% - 36px - 16px - 5px - $page-h-padding - $sidebar-width);
+
+    @media (max-width: $breakpoint-m) {
+      left: calc(125px + 16px + $page-h-padding);
+      width: calc(100% - 125px - 36px - 16px * 2 - $page-h-padding * 2);
+    }
+  }
+}
+
+.model-select {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  width: calc(100% - 125px - 36px - 16px * 2 - $page-h-padding * 2);
+  height: 40px;
+  position: absolute;
+  left: calc(125px + 16px + $page-h-padding);
+  transition: left $transition-normal ease, width $transition-normal ease;
+
+  .select-button {
+    width: 100%;
+    max-width: $select-button-width;
+    height: 100%;
+    border-radius: 6px;
+
+    &.disabled {
+      pointer-events: none;
+      background: var(--bg-op-dark-ultraweak);
+    }
+  }
+
+  .model-select-add-btn {
+    width: 40px;
+    height: 40px;
+    padding: 8px;
+    border-radius: 12px;
+    background-color: transparent;
+    border: 2px solid var(--border-weak);
+
+    &:hover {
+      box-shadow: none !important;
+      border-color: var(--border-weak);
+      background: var(--bg-op-dark-ultraweak);
+    }
+
+    svg {
+      fill: var(--stroke-op-dark-extremestrong);
+    }
+  }
+}
+
+.model-select-content {
+  min-width: $select-button-width;
+
+  @include scrollbar;
+
+  .left-slot,
+  .label {
+    width: 100%;
+  }
+}
+
+.model-select-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+
+  .model-select-label-content {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex: 1;
+  }
+
+  img {
+    width: 22px;
+    height: 22px;
+  }
+
+  svg {
+    width: 16px;
+    height: 16px;
+    fill: var(--stroke-op-dark-extremestrong);
+  }
+
+  .model-select-label-text {
+    flex: 1;
+    max-width: calc($select-button-width - 55px);
+    white-space: normal;
+
+    @include line-clamp(1);
+    word-break: break-all !important;
+  }
+
+  .model-select-label-icon {
+    filter: var(--filter-dark);
+
+    &.no-filter {
+      filter: none;
+    }
+  }
+}

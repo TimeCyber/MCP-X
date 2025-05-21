@@ -1,0 +1,121 @@
+name: Release Build
+
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  release:
+    permissions:
+      contents: write
+    strategy:
+      matrix:
+        include:
+          - os: windows-latest
+            platform: windows
+            arch: x64
+          - os: macos-latest
+            platform: darwin
+            arch: x64
+          - os: macos-latest
+            platform: darwin
+            arch: arm64
+          - os: ubuntu-latest
+            platform: linux
+            arch: x64
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install the Apple certificate and provisioning profile
+        if: matrix.platform == 'darwin'
+        env:
+          BUILD_CERTIFICATE_BASE64: ${{ secrets.BUILD_CERTIFICATE_BASE64 }}
+          P12_PASSWORD: ${{ secrets.P12_PASSWORD }}
+          KEYCHAIN_PASSWORD: ${{ secrets.KEYCHAIN_PASSWORD }}
+        run: |
+          # create variables
+          CERTIFICATE_PATH=$RUNNER_TEMP/build_certificate.p12
+          KEYCHAIN_PATH=$RUNNER_TEMP/app-signing.keychain-db
+
+          # import certificate from secrets
+          echo -n "$BUILD_CERTIFICATE_BASE64" | base64 --decode -o $CERTIFICATE_PATH
+
+          # create temporary keychain
+          security create-keychain -p "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
+          security set-keychain-settings -lut 21600 $KEYCHAIN_PATH
+          security unlock-keychain -p "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
+
+          # import certificate to keychain
+          security import $CERTIFICATE_PATH -P "$P12_PASSWORD" -A -t cert -f pkcs12 -k $KEYCHAIN_PATH
+          security set-key-partition-list -S apple-tool:,apple: -k "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
+          security list-keychain -d user -s $KEYCHAIN_PATH
+
+      - name: Get version from package.json
+        id: get_version
+        shell: bash
+        run: |
+          VERSION=$(node -p "require('./package.json').version")
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+          echo "Version from package.json: $VERSION"
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Download Prebuilt binary
+        if: matrix.platform == 'windows'
+        run: npm run download:windows-bin
+
+      - name: Create release directory
+        run: mkdir -p output
+
+      - name: Build Windows
+        if: matrix.platform == 'windows'
+        shell: bash
+        run: |
+          npm run package:windows-installers
+          ls -al release/${{ env.VERSION }}
+          echo "Moving exe file to output directory"
+          mv release/${{ env.VERSION }}/*.exe output/
+          mv release/${{ env.VERSION }}/latest.yml output/
+
+      - name: Build macOS
+        if: matrix.platform == 'darwin'
+        env:
+          APPLEID: ${{ secrets.APPLEID }}
+          APPLEIDPASS: ${{ secrets.APPLEIDPASS }}
+          APPLETEAMID: ${{ secrets.APPLETEAMID }}
+        run: |
+          if [ "${{ matrix.arch }}" = "arm64" ]; then
+            npm run package:darwin-dmg:arm64
+          else
+            npm run package:darwin-dmg:x64
+          fi
+          ls -al release/${{ env.VERSION }}
+          echo "Moving dmg file to output directory"
+          mv release/${{ env.VERSION }}/*.dmg output/
+
+      - name: Build Linux
+        if: matrix.platform == 'linux'
+        run: |
+          npm run package:linux
+          ls -al release/${{ env.VERSION }}
+          echo "Moving AppImage and tar.gz files to output directory"
+          mv release/${{ env.VERSION }}/*.{AppImage,tar.gz} output/
+          mv release/${{ env.VERSION }}/latest-linux.yml output/
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: output/*
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

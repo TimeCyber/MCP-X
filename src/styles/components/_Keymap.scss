@@ -1,0 +1,65 @@
+.keymap-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 8px 0;
+  max-height: 70vh;
+  overflow-y: auto;
+  flex: 1;
+
+  .keymap-row {
+    display: flex;
+    gap: 24px;
+
+    &.single-item-row .keymap-item {
+      max-width: calc(50% - 12px);
+    }
+
+    .keymap-item {
+      flex: 1;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      padding: 8px;
+      border-radius: 6px;
+
+      &:hover {
+        background: var(--bg-op-dark-extremeweak);
+      }
+
+      .keymap-event {
+        font-size: 14px;
+        text-align: justify;
+      }
+
+      .keymap-shortcut {
+        .kbd {
+          display: inline-block;
+          padding: 3px 6px;
+          font-size: 12px;
+          background-color: var(--bg-op-dark-ultraweak);
+          border-radius: 4px;
+          box-shadow: 0 1px 0 var(--border-weak);
+          white-space: nowrap;
+        }
+      }
+    }
+  }
+}
+
+.keymap-container {
+  min-width: 720px;
+
+  .popup-confirm-content {
+    background-color: var(--bg-medium);
+  }
+
+  .popup-confirm-footer, .popup-confirm-header {
+    background-color: var(--bg-ultraweak);
+  }
+
+  h3 {
+    margin: 0;
+  }
+}

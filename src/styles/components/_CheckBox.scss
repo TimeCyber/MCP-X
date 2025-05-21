@@ -1,0 +1,101 @@
+@use "../_variables" as *;
+
+.checkbox-content {
+  display: inline-block;
+  line-height: 0;
+
+  &:not(.disabled):hover .box {
+    border-color:var(--stroke-dark-weak);
+
+    &::before {
+      content: "";
+      display: block;
+      background-color: var(--bg-inverted-op-dark-mediumweak);
+      border-radius: 50%;
+      opacity: 1;
+      cursor: pointer;
+      z-index: -1;
+      position: absolute;
+      top: -9px;
+      left: -9px;
+      right: -9px;
+      bottom: -9px;
+    }
+  }
+
+  &.disabled {
+    .touch-area {
+      background-color: transparent;
+      opacity: 30%;
+    }
+    label {
+      cursor: default;
+    }
+  }
+
+  label {
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+    line-height: normal;
+  }
+
+  .touch-area {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+  }
+
+  input[type="checkbox"] {
+    display: none;
+
+    &:checked ~ .box{
+      background: var(--bg-pri-green);
+      border: 2px solid var(--bg-pri-green);;
+    }
+  }
+
+  .box {
+    height: 22px;
+    width: 22px;
+    border: 2px solid var(--stroke-dark-weak);
+    border-radius: 4px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 0;
+
+    svg {
+      color: var(--stroke-light-extremestrong);
+      width: 22px;
+      height: 22px;
+    }
+  }
+}
+
+.s {
+  label {
+    gap: 8px;
+  }
+
+  .touch-area {
+    height: 16px;
+    width: 16px;
+  }
+
+  .box {
+    height: 16px;
+    width: 16px;
+    border-radius: 2px;
+    svg {
+      width: 16px;
+      height: 16px;
+    }
+  }
+}

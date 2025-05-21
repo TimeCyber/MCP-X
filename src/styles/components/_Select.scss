@@ -1,0 +1,74 @@
+@use "../_variables" as *;
+
+.select-button{
+  position: relative;
+  background: var(--bg);
+  color: var(--text-medium);
+  font-size: 15px;
+  border: 2px solid var(--border-weak);
+  border-radius: 6px;
+  height: 36px;
+  padding: 0 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between !important;
+  gap: 6px;
+  white-space: nowrap;
+  user-select: none;
+  cursor: pointer;
+  outline: none;
+  text-decoration: none;
+  transition: background-color 0.3s, color 0.3s;
+
+  &:not(:disabled):hover {
+    box-shadow: none !important;
+    border-color: var(--border-weak);
+    background: var(--bg-op-dark-ultraweak);
+  }
+
+  &:disabled {
+    box-shadow: none !important;
+    cursor: default;
+    opacity: 0.5;
+  }
+
+  &[data-state=open] .arrow{
+    transform: rotateX(180deg);
+  }
+
+  &.error{
+    outline: 1px solid var(--stroke-neg-medium);
+  }
+}
+
+.right-slot{
+  color: var(--text-pri-green);
+
+  svg{
+    color: var(--text-pri-green);
+  }
+}
+
+.fill{
+  width: 100%;
+}
+
+.dropdown-container-wrapper{
+  min-width: 250px;
+  max-width: 300px;
+  @include list-style;
+
+  .info{
+    font-size: 13px;
+    margin-top: 6px;
+  }
+
+  &.fill{
+    width: var(--radix-popper-anchor-width);
+    max-width: unset;
+  }
+
+  &.full-width{
+    width: 35px;
+  }
+}

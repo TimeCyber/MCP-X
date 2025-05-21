@@ -1,0 +1,892 @@
+===============================================================================
+EXTENSION NAME : linecount
+EXTENSION VERSION : 0.1.7
+-------------------------------------------------------------------------------
+count time : 2025-05-20 11:14:13
+count workspace : d:\mcpx-client\MCPX-0.0.1
+total files : 880
+total code lines : 3648
+total comment lines : 220
+total blank lines : 614
+
+.dockerignore, code is 13, comment is 0, blank is 0.
+.env.example, code is 3, comment is 0, blank is 0.
+.github\dependabot.yml, code is 1, comment is 0, blank is 0.
+.github\ISSUE_TEMPLATE\bug_report.md, code is 8, comment is 0, blank is 3.
+.github\ISSUE_TEMPLATE\help_wanted.md, code is 8, comment is 0, blank is 2.
+.github\PULL_REQUEST_TEMPLATE.md, code is 8, comment is 0, blank is 4.
+.github\workflows\build.yml, code is 36, comment is 0, blank is 7.
+.github\workflows\release.yml, code is 75, comment is 34, blank is 13.
+.gitignore, code is 35, comment is 0, blank is 6.
+bin\node\win-x64\CHANGELOG.md, code is 756, comment is 1, blank is 634.
+bin\node\win-x64\corepack, code is 10, comment is 0, blank is 2.
+bin\node\win-x64\corepack.cmd, code is 7, comment is 0, blank is 0.
+bin\node\win-x64\install_tools.bat, code is 47, comment is 1, blank is 5.
+bin\node\win-x64\LICENSE, code is 363, comment is 2, blank is 105.
+bin\node\win-x64\nodevars.bat, code is 18, comment is 0, blank is 6.
+bin\node\win-x64\npm, code is 41, comment is 1, blank is 10.
+bin\node\win-x64\npm.cmd, code is 1, comment is 0, blank is 0.
+bin\node\win-x64\npx, code is 41, comment is 1, blank is 10.
+bin\node\win-x64\npx.cmd, code is 1, comment is 0, blank is 0.
+bin\node\win-x64\README.md, code is 95, comment is 12, blank is 33.
+bin\python\win-x64\_asyncio.pyd, it is a binary file.
+bin\python\win-x64\_bz2.pyd, it is a binary file.
+bin\python\win-x64\_ctypes.pyd, it is a binary file.
+bin\python\win-x64\_decimal.pyd, it is a binary file.
+bin\python\win-x64\_elementtree.pyd, it is a binary file.
+bin\python\win-x64\_hashlib.pyd, it is a binary file.
+bin\python\win-x64\_lzma.pyd, it is a binary file.
+bin\python\win-x64\_msi.pyd, it is a binary file.
+bin\python\win-x64\_multiprocessing.pyd, it is a binary file.
+bin\python\win-x64\_overlapped.pyd, it is a binary file.
+bin\python\win-x64\_queue.pyd, it is a binary file.
+bin\python\win-x64\_socket.pyd, it is a binary file.
+bin\python\win-x64\_sqlite3.pyd, it is a binary file.
+bin\python\win-x64\_ssl.pyd, it is a binary file.
+bin\python\win-x64\_uuid.pyd, it is a binary file.
+bin\python\win-x64\_wmi.pyd, it is a binary file.
+bin\python\win-x64\_zoneinfo.pyd, it is a binary file.
+bin\python\win-x64\libffi-8.dll, it is a binary file.
+bin\python\win-x64\libssl-3.dll, it is a binary file.
+bin\python\win-x64\LICENSE.txt, code is 40, comment is 1, blank is 10.
+bin\python\win-x64\pyexpat.pyd, it is a binary file.
+bin\python\win-x64\python.cat, it is a binary file.
+bin\python\win-x64\python.exe, it is a binary file.
+bin\python\win-x64\python3.dll, it is a binary file.
+bin\python\win-x64\python312._pth, code is 4, comment is 0, blank is 1.
+bin\python\win-x64\pythonw.exe, it is a binary file.
+bin\python\win-x64\select.pyd, it is a binary file.
+bin\python\win-x64\vcruntime140.dll, it is a binary file.
+bin\python\win-x64\vcruntime140_1.dll, it is a binary file.
+bin\python\win-x64\winsound.pyd, it is a binary file.
+bin\uv\win-x64\uvx.exe, it is a binary file.
+BUILD.md, code is 76, comment is 0, blank is 27.
+build\icon.icns, it is a binary file.
+build\icon.ico, it is a binary file.
+build\icon.png, it is a binary file.
+dist-electron\main\cerebras_langchain-CJSI2gj9.js, code is 1, comment is 1, blank is 0.
+dist-electron\main\cerebras_langchain-CJSI2gj9.js.map, code is 1, comment is 0, blank is 0.
+dist-electron\main\cohere_langchain-ClQc1OAS.js, code is 1, comment is 1, blank is 0.
+dist-electron\main\cohere_langchain-ClQc1OAS.js.map, code is 1, comment is 0, blank is 0.
+dist-electron\main\fileFromPath-G8mRmxb9.js, code is 105, comment is 2, blank is 0.
+dist-electron\main\fileFromPath-G8mRmxb9.js.map, code is 1, comment is 0, blank is 0.
+dist-electron\main\fireworks-D7_kycOq.js, code is 77, comment is 7, blank is 0.
+dist-electron\main\fireworks-D7_kycOq.js.map, code is 1, comment is 0, blank is 0.
+dist-electron\main\google-vertexai-web_langchain-BZcg4tiO.js, code is 1, comment is 1, blank is 0.
+dist-electron\main\google-vertexai-web_langchain-BZcg4tiO.js.map, code is 1, comment is 0, blank is 0.
+dist-electron\main\google-vertexai_langchain-CIz-ns3S.js, code is 1, comment is 1, blank is 0.
+dist-electron\main\google-vertexai_langchain-CIz-ns3S.js.map, code is 1, comment is 0, blank is 0.
+dist-electron\main\groq_langchain-asv400mB.js, code is 1, comment is 1, blank is 0.
+dist-electron\main\groq_langchain-asv400mB.js.map, code is 1, comment is 0, blank is 0.
+dist-electron\main\index.js, code is 11, comment is 1, blank is 0.
+dist-electron\main\index.js.map, code is 1, comment is 0, blank is 0.
+dist-electron\main\togetherai-1aeB9foB.js, code is 62, comment is 7, blank is 0.
+dist-electron\main\togetherai-1aeB9foB.js.map, code is 1, comment is 0, blank is 0.
+dist-electron\preload\index.mjs, code is 118, comment is 6, blank is 0.
+dist\assets\_basePickBy-CNMOCiZP.js, code is 1, comment is 0, blank is 0.
+dist\assets\_baseUniq-BWwzYJva.js, code is 1, comment is 0, blank is 0.
+dist\assets\abap-BYtCyiS_.js, code is 1, comment is 0, blank is 0.
+dist\assets\abnf-BTiMWLcH.js, code is 1, comment is 0, blank is 0.
+dist\assets\actionscript-eNmJCoi8.js, code is 1, comment is 0, blank is 0.
+dist\assets\ada-CGqkKEpg.js, code is 1, comment is 0, blank is 0.
+dist\assets\agda-FYETX8GG.js, code is 1, comment is 0, blank is 0.
+dist\assets\al-CPtNSgU5.js, code is 1, comment is 1, blank is 0.
+dist\assets\antlr4-DA_y3F3U.js, code is 1, comment is 0, blank is 0.
+dist\assets\apacheconf-323w0rzb.js, code is 1, comment is 0, blank is 0.
+dist\assets\apex-C5o5ce58.js, code is 1, comment is 0, blank is 0.
+dist\assets\apl-CwLhv4Iz.js, code is 1, comment is 0, blank is 0.
+dist\assets\applescript-DCeGdM6D.js, code is 1, comment is 0, blank is 0.
+dist\assets\aql-ENacpdVF.js, code is 1, comment is 1, blank is 0.
+dist\assets\arc-DO4mfupa.js, code is 1, comment is 0, blank is 0.
+dist\assets\architectureDiagram-UYN6MBPD-Kaa_umfX.js, code is 33, comment is 0, blank is 3.
+dist\assets\arduino-BEa0iVkK.js, code is 1, comment is 0, blank is 0.
+dist\assets\arff-DFrpl0iW.js, code is 1, comment is 0, blank is 0.
+dist\assets\asciidoc-Qbl9weK2.js, code is 1, comment is 0, blank is 0.
+dist\assets\asm6502-B8MonRpR.js, code is 1, comment is 0, blank is 0.
+dist\assets\asmatmel-DlQIzXhq.js, code is 1, comment is 0, blank is 0.
+dist\assets\aspnet-CwGlPruZ.js, code is 1, comment is 0, blank is 0.
+dist\assets\autohotkey-Cl_mme56.js, code is 1, comment is 0, blank is 0.
+dist\assets\autoit-BQLkyh-D.js, code is 1, comment is 0, blank is 0.
+dist\assets\avisynth-DSh0I-6E.js, code is 1, comment is 0, blank is 0.
+dist\assets\avro-idl-CdhJqkAC.js, code is 1, comment is 1, blank is 0.
+dist\assets\bash-B-fHZQO9.js, code is 1, comment is 0, blank is 0.
+dist\assets\bash-CefCgV5_.js, code is 1, comment is 0, blank is 0.
+dist\assets\basic-C1l2rFoe.js, code is 1, comment is 0, blank is 0.
+dist\assets\basic-DBS9NaGG.js, code is 1, comment is 0, blank is 0.
+dist\assets\batch-lPEEgguY.js, code is 1, comment is 0, blank is 0.
+dist\assets\bbcode-D698uUlW.js, code is 1, comment is 0, blank is 0.
+dist\assets\bicep-Wkd1m6wJ.js, code is 1, comment is 0, blank is 0.
+dist\assets\birb-Cvf3ntcf.js, code is 1, comment is 0, blank is 0.
+dist\assets\bison-DnYGNoY-.js, code is 1, comment is 0, blank is 0.
+dist\assets\blockDiagram-ZHA2E4KO-BiMdVsQG.js, code is 94, comment is 12, blank is 15.
+dist\assets\bnf-RxnwaAYR.js, code is 1, comment is 0, blank is 0.
+dist\assets\brainfuck-CEY8Wvb0.js, code is 1, comment is 0, blank is 0.
+dist\assets\brightscript-C1zrr-cC.js, code is 1, comment is 0, blank is 0.
+dist\assets\bro-BMF_42hJ.js, code is 1, comment is 0, blank is 0.
+dist\assets\browser-ponyfill-BdAN5n_B.js, code is 1, comment is 0, blank is 0.
+dist\assets\bsl-Cu2Oppmt.js, code is 1, comment is 0, blank is 0.
+dist\assets\c-BVfYRpfp.js, code is 1, comment is 0, blank is 0.
+dist\assets\c-kgVuzdLE.js, code is 1, comment is 0, blank is 0.
+dist\assets\c4Diagram-6F5ED5ID-BSfgNTzz.js, code is 10, comment is 0, blank is 0.
+dist\assets\cfscript-DXV3Z7-u.js, code is 1, comment is 0, blank is 0.
+dist\assets\chaiscript-ovtvSvP8.js, code is 1, comment is 0, blank is 0.
+dist\assets\channel-BvA2Jy55.js, code is 1, comment is 0, blank is 0.
+dist\assets\chunk-5HRBRIJM-D6bCpgZa.js, code is 1, comment is 0, blank is 0.
+dist\assets\chunk-ASOPGD6M-BGZjTVkM.js, code is 1, comment is 0, blank is 0.
+dist\assets\chunk-KFBOBJHC-Cy3E9BYT.js, code is 1, comment is 0, blank is 0.
+dist\assets\chunk-T2TOU4HS-DqoE7sUX.js, code is 6, comment is 0, blank is 0.
+dist\assets\chunk-TMUBEWPD-ACAjx8s8.js, code is 1, comment is 0, blank is 0.
+dist\assets\cil-7vM5O2tD.js, code is 1, comment is 0, blank is 0.
+dist\assets\classDiagram-LNE6IOMH-DTGYckDU.js, code is 1, comment is 0, blank is 0.
+dist\assets\classDiagram-v2-MQ7JQ4JX-DTGYckDU.js, code is 1, comment is 0, blank is 0.
+dist\assets\clike-B5tY_8Hg.js, code is 1, comment is 0, blank is 0.
+dist\assets\clike-FacDK9Bi.js, code is 1, comment is 0, blank is 0.
+dist\assets\clojure-CaC7UZ6L.js, code is 1, comment is 0, blank is 0.
+dist\assets\clone-Dgtyva91.js, code is 1, comment is 0, blank is 0.
+dist\assets\cmake-CyYOdHhw.js, code is 1, comment is 0, blank is 0.
+dist\assets\cobol-B1vE9sze.js, code is 1, comment is 0, blank is 0.
+dist\assets\coffeescript-DkxukatS.js, code is 1, comment is 0, blank is 0.
+dist\assets\concurnas-CLk1h22d.js, code is 1, comment is 0, blank is 0.
+dist\assets\coq-mJcD72v1.js, code is 1, comment is 0, blank is 0.
+dist\assets\core-CmECMkJ7.js, code is 2, comment is 7, blank is 0.
+dist\assets\cpp-CNm371b0.js, code is 1, comment is 0, blank is 0.
+dist\assets\cpp-PR_WB-PF.js, code is 1, comment is 0, blank is 0.
+dist\assets\crystal-DOhRnMIS.js, code is 1, comment is 0, blank is 0.
+dist\assets\csharp-Cd5Udg29.js, code is 1, comment is 0, blank is 0.
+dist\assets\csharp-DkaKlg4r.js, code is 1, comment is 0, blank is 0.
+dist\assets\cshtml-DKrtv144.js, code is 1, comment is 0, blank is 0.
+dist\assets\csp-DDaMyHm8.js, code is 1, comment is 0, blank is 0.
+dist\assets\css-CF9HHZb0.js, code is 1, comment is 0, blank is 0.
+dist\assets\css-extras-C3v53KDE.js, code is 1, comment is 0, blank is 0.
+dist\assets\css-ovYgSjad.js, code is 1, comment is 0, blank is 0.
+dist\assets\csv-BUFHqS_q.js, code is 1, comment is 0, blank is 0.
+dist\assets\cypher-Dnbuy6qB.js, code is 1, comment is 0, blank is 0.
+dist\assets\cytoscape.esm-Cp5tPnx1.js, code is 59, comment is 10, blank is 9.
+dist\assets\d-BV7TVsCp.js, code is 1, comment is 1, blank is 0.
+dist\assets\dagre-4EVJKHTY-n6zw6c3Z.js, code is 4, comment is 0, blank is 0.
+dist\assets\dart-Cl3827KB.js, code is 1, comment is 0, blank is 0.
+dist\assets\dataweave-_7vn6qvK.js, code is 1, comment is 0, blank is 0.
+dist\assets\dax-DIOF6QpL.js, code is 1, comment is 0, blank is 0.
+dist\assets\dhall-BRLYTnKt.js, code is 1, comment is 0, blank is 0.
+dist\assets\diagram-QW4FP2JN-CFTgGOAm.js, code is 24, comment is 0, blank is 0.
+dist\assets\diff-BwjB3qNj.js, code is 3, comment is 0, blank is 0.
+dist\assets\django-hlHyPJoO.js, code is 1, comment is 0, blank is 0.
+dist\assets\dns-zone-file-C2USwxuI.js, code is 1, comment is 0, blank is 0.
+dist\assets\docker-CeUzsjpd.js, code is 1, comment is 0, blank is 0.
+dist\assets\dot-Cw6aA5ie.js, code is 1, comment is 0, blank is 0.
+dist\assets\ebnf-CDWDnrW8.js, code is 1, comment is 0, blank is 0.
+dist\assets\editorconfig-B2T70TzA.js, code is 1, comment is 0, blank is 0.
+dist\assets\eiffel-GBTraLsW.js, code is 1, comment is 0, blank is 0.
+dist\assets\ejs-4hSAilEM.js, code is 1, comment is 0, blank is 0.
+dist\assets\elixir-DPMf1WTn.js, code is 1, comment is 0, blank is 0.
+dist\assets\elm-YSFpThF1.js, code is 1, comment is 0, blank is 0.
+dist\assets\erb-CQbcoW3q.js, code is 1, comment is 0, blank is 0.
+dist\assets\erDiagram-6RL3IURR-DONEKNeA.js, code is 45, comment is 1, blank is 6.
+dist\assets\erlang-CX4-APJk.js, code is 1, comment is 0, blank is 0.
+dist\assets\etlua-DzDVq5KI.js, code is 1, comment is 0, blank is 0.
+dist\assets\excel-formula-CHODH5VA.js, code is 1, comment is 0, blank is 0.
+dist\assets\factor-DN-e1I4R.js, code is 1, comment is 0, blank is 0.
+dist\assets\false-rKFpVX11.js, code is 1, comment is 0, blank is 0.
+dist\assets\firestore-security-rules-C0tu0fZD.js, code is 1, comment is 1, blank is 0.
+dist\assets\flow-B5AmqtlU.js, code is 1, comment is 0, blank is 0.
+dist\assets\flowDiagram-7ASYPVHJ-CbwR5ZvW.js, code is 130, comment is 12, blank is 19.
+dist\assets\fortran-B6_ZWfXg.js, code is 1, comment is 0, blank is 0.
+dist\assets\fsharp-DDfbn48k.js, code is 1, comment is 0, blank is 0.
+dist\assets\ftl-CXDYx35M.js, code is 1, comment is 0, blank is 0.
+dist\assets\ganttDiagram-NTVNEXSI-B8SOefrG.js, code is 194, comment is 9, blank is 54.
+dist\assets\gap-afmw9gNI.js, code is 1, comment is 0, blank is 0.
+dist\assets\gcode-DTO63oy1.js, code is 1, comment is 0, blank is 0.
+dist\assets\gdscript-It5iddQL.js, code is 1, comment is 0, blank is 0.
+dist\assets\gedcom-4q5znDeB.js, code is 1, comment is 0, blank is 0.
+dist\assets\gherkin-DHdPt1h3.js, code is 1, comment is 0, blank is 0.
+dist\assets\git-ChhLqakl.js, code is 1, comment is 0, blank is 0.
+dist\assets\gitGraph-YCYPL57B-B2FrJCOq.js, code is 40, comment is 6, blank is 1.
+dist\assets\gitGraphDiagram-NRZ2UAAF-DWSlxitR.js, code is 62, comment is 0, blank is 3.
+dist\assets\glsl-DPLoxNrc.js, code is 1, comment is 0, blank is 0.
+dist\assets\gml-DMUsY9U9.js, code is 1, comment is 0, blank is 0.
+dist\assets\gn-DLzPh4eu.js, code is 1, comment is 0, blank is 0.
+dist\assets\go-DbhEYlOo.js, code is 1, comment is 0, blank is 0.
+dist\assets\go-module-8OSoZKJi.js, code is 1, comment is 0, blank is 0.
+dist\assets\graph-BcmOONm9.js, code is 1, comment is 0, blank is 0.
+dist\assets\graphql-Bs7q3jLo.js, code is 1, comment is 0, blank is 0.
+dist\assets\groovy-CMeHzQA9.js, code is 1, comment is 0, blank is 0.
+dist\assets\haml-BD4_IK3i.js, code is 1, comment is 0, blank is 0.
+dist\assets\handlebars-BkxJ9hHp.js, code is 1, comment is 0, blank is 0.
+dist\assets\haskell-DEYGsxjW.js, code is 1, comment is 0, blank is 0.
+dist\assets\haskell-Ds42Eazu.js, code is 1, comment is 0, blank is 0.
+dist\assets\haxe-B7MEQ4Ot.js, code is 1, comment is 0, blank is 0.
+dist\assets\hcl-DstrQ1ve.js, code is 1, comment is 0, blank is 0.
+dist\assets\hlsl-B-Lo_fZ0.js, code is 1, comment is 0, blank is 0.
+dist\assets\hoon-DO3pJ-0I.js, code is 1, comment is 0, blank is 0.
+dist\assets\hpkp-hkPbamnu.js, code is 1, comment is 0, blank is 0.
+dist\assets\hsts-CpjTn7y6.js, code is 1, comment is 0, blank is 0.
+dist\assets\http-CrNKWeBb.js, code is 1, comment is 1, blank is 0.
+dist\assets\ichigojam-DTfOE73p.js, code is 1, comment is 0, blank is 0.
+dist\assets\icon-BkB-yLp0.js, code is 1, comment is 0, blank is 0.
+dist\assets\icon256-C_HtRjaD.png, it is a binary file.
+dist\assets\icu-message-format-XrygCt5S.js, code is 1, comment is 0, blank is 0.
+dist\assets\idris-BXa9XEwy.js, code is 1, comment is 0, blank is 0.
+dist\assets\iecst-CLWUee7d.js, code is 1, comment is 0, blank is 0.
+dist\assets\ignore-DMp4Dm0z.js, code is 1, comment is 1, blank is 0.
+dist\assets\index-B8avKKBU.css, code is 1, comment is 1, blank is 0.
+dist\assets\infoDiagram-A4XQUW5V-C3Aglh5w.js, code is 2, comment is 0, blank is 0.
+dist\assets\inform7-D8TRxl0M.js, code is 1, comment is 0, blank is 0.
+dist\assets\ini-BD5JD2Ow.js, code is 1, comment is 0, blank is 0.
+dist\assets\init-Gi6I4Gst.js, code is 1, comment is 0, blank is 0.
+dist\assets\io-BEaBG6ak.js, code is 1, comment is 0, blank is 0.
+dist\assets\j-Cv8J92xC.js, code is 1, comment is 0, blank is 0.
+dist\assets\java-BxMbkJZ_.js, code is 1, comment is 0, blank is 0.
+dist\assets\java-DI2J_vZm.js, code is 1, comment is 0, blank is 0.
+dist\assets\javadoc-CiP5bP22.js, code is 1, comment is 0, blank is 0.
+dist\assets\javadoclike-DRzTNrt9.js, code is 1, comment is 0, blank is 0.
+dist\assets\javadoclike-myFApC35.js, code is 1, comment is 0, blank is 0.
+dist\assets\javascript-BLhgbs1g.js, code is 1, comment is 0, blank is 0.
+dist\assets\javascript-D8vYUPHd.js, code is 1, comment is 0, blank is 0.
+dist\assets\javastacktrace-CNZkiXXw.js, code is 1, comment is 0, blank is 0.
+dist\assets\jexl-D3cOMb_v.js, code is 1, comment is 0, blank is 0.
+dist\assets\jolie-B3NhSGy0.js, code is 1, comment is 0, blank is 0.
+dist\assets\journeyDiagram-G5WM74LC-CPiP8L6T.js, code is 124, comment is 0, blank is 15.
+dist\assets\jq-CfjEFbHS.js, code is 1, comment is 0, blank is 0.
+dist\assets\js-extras-CP3QjVtT.js, code is 1, comment is 0, blank is 0.
+dist\assets\js-templates-CrCba_BJ.js, code is 1, comment is 0, blank is 0.
+dist\assets\jsdoc-BlK8it5k.js, code is 1, comment is 0, blank is 0.
+dist\assets\json-BESjz4hO.js, code is 1, comment is 0, blank is 0.
+dist\assets\json-Bs1PzboA.js, code is 1, comment is 0, blank is 0.
+dist\assets\json5-CoGnbEwQ.js, code is 1, comment is 0, blank is 0.
+dist\assets\jsonp-1a1o0SUJ.js, code is 1, comment is 0, blank is 0.
+dist\assets\jsstacktrace-CPsf_Bwj.js, code is 1, comment is 0, blank is 0.
+dist\assets\jsx-CVQq1cRb.js, code is 1, comment is 0, blank is 0.
+dist\assets\jsx-CWP8P1mH.js, code is 1, comment is 0, blank is 0.
+dist\assets\julia-ChnyVXbn.js, code is 1, comment is 0, blank is 0.
+dist\assets\kanban-definition-QRCXZQQD-BJ4kn7qz.js, code is 84, comment is 0, blank is 4.
+dist\assets\KaTeX_AMS-Regular-BQhdFMY1.woff2, it is a binary file.
+dist\assets\KaTeX_AMS-Regular-DMm9YOAa.woff, it is a binary file.
+dist\assets\KaTeX_AMS-Regular-DRggAlZN.ttf, it is a binary file.
+dist\assets\KaTeX_Caligraphic-Bold-ATXxdsX0.ttf, it is a binary file.
+dist\assets\KaTeX_Caligraphic-Bold-BEiXGLvX.woff, it is a binary file.
+dist\assets\KaTeX_Caligraphic-Bold-Dq_IR9rO.woff2, it is a binary file.
+dist\assets\KaTeX_Caligraphic-Regular-CTRA-rTL.woff, it is a binary file.
+dist\assets\KaTeX_Caligraphic-Regular-Di6jR-x-.woff2, it is a binary file.
+dist\assets\KaTeX_Caligraphic-Regular-wX97UBjC.ttf, it is a binary file.
+dist\assets\KaTeX_Fraktur-Bold-BdnERNNW.ttf, it is a binary file.
+dist\assets\KaTeX_Fraktur-Bold-BsDP51OF.woff, it is a binary file.
+dist\assets\KaTeX_Fraktur-Bold-CL6g_b3V.woff2, it is a binary file.
+dist\assets\KaTeX_Fraktur-Regular-CB_wures.ttf, it is a binary file.
+dist\assets\KaTeX_Fraktur-Regular-CTYiF6lA.woff2, it is a binary file.
+dist\assets\KaTeX_Fraktur-Regular-Dxdc4cR9.woff, it is a binary file.
+dist\assets\KaTeX_Main-Bold-Cx986IdX.woff2, it is a binary file.
+dist\assets\KaTeX_Main-Bold-Jm3AIy58.woff, it is a binary file.
+dist\assets\KaTeX_Main-Bold-waoOVXN0.ttf, it is a binary file.
+dist\assets\KaTeX_Main-BoldItalic-DxDJ3AOS.woff2, it is a binary file.
+dist\assets\KaTeX_Main-BoldItalic-DzxPMmG6.ttf, it is a binary file.
+dist\assets\KaTeX_Main-BoldItalic-SpSLRI95.woff, it is a binary file.
+dist\assets\KaTeX_Main-Italic-3WenGoN9.ttf, it is a binary file.
+dist\assets\KaTeX_Main-Italic-BMLOBm91.woff, it is a binary file.
+dist\assets\KaTeX_Main-Italic-NWA7e6Wa.woff2, it is a binary file.
+dist\assets\KaTeX_Main-Regular-B22Nviop.woff2, it is a binary file.
+dist\assets\KaTeX_Main-Regular-Dr94JaBh.woff, it is a binary file.
+dist\assets\KaTeX_Main-Regular-ypZvNtVU.ttf, it is a binary file.
+dist\assets\KaTeX_Math-BoldItalic-B3XSjfu4.ttf, it is a binary file.
+dist\assets\KaTeX_Math-BoldItalic-CZnvNsCZ.woff2, it is a binary file.
+dist\assets\KaTeX_Math-BoldItalic-iY-2wyZ7.woff, it is a binary file.
+dist\assets\KaTeX_Math-Italic-DA0__PXp.woff, it is a binary file.
+dist\assets\KaTeX_Math-Italic-flOr_0UB.ttf, it is a binary file.
+dist\assets\KaTeX_Math-Italic-t53AETM-.woff2, it is a binary file.
+dist\assets\KaTeX_SansSerif-Bold-CFMepnvq.ttf, it is a binary file.
+dist\assets\KaTeX_SansSerif-Bold-D1sUS0GD.woff2, it is a binary file.
+dist\assets\KaTeX_SansSerif-Bold-DbIhKOiC.woff, it is a binary file.
+dist\assets\KaTeX_SansSerif-Italic-C3H0VqGB.woff2, it is a binary file.
+dist\assets\KaTeX_SansSerif-Italic-DN2j7dab.woff, it is a binary file.
+dist\assets\KaTeX_SansSerif-Italic-YYjJ1zSn.ttf, it is a binary file.
+dist\assets\KaTeX_SansSerif-Regular-BNo7hRIc.ttf, it is a binary file.
+dist\assets\KaTeX_SansSerif-Regular-CS6fqUqJ.woff, it is a binary file.
+dist\assets\KaTeX_SansSerif-Regular-DDBCnlJ7.woff2, it is a binary file.
+dist\assets\KaTeX_Script-Regular-C5JkGWo-.ttf, it is a binary file.
+dist\assets\KaTeX_Script-Regular-D3wIWfF6.woff2, it is a binary file.
+dist\assets\KaTeX_Script-Regular-D5yQViql.woff, it is a binary file.
+dist\assets\KaTeX_Size1-Regular-C195tn64.woff, it is a binary file.
+dist\assets\KaTeX_Size1-Regular-Dbsnue_I.ttf, it is a binary file.
+dist\assets\KaTeX_Size1-Regular-mCD8mA8B.woff2, it is a binary file.
+dist\assets\KaTeX_Size2-Regular-B7gKUWhC.ttf, it is a binary file.
+dist\assets\KaTeX_Size2-Regular-Dy4dx90m.woff2, it is a binary file.
+dist\assets\KaTeX_Size2-Regular-oD1tc_U0.woff, it is a binary file.
+dist\assets\KaTeX_Size3-Regular-CTq5MqoE.woff, it is a binary file.
+dist\assets\KaTeX_Size3-Regular-DgpXs0kz.ttf, it is a binary file.
+dist\assets\KaTeX_Size4-Regular-BF-4gkZK.woff, it is a binary file.
+dist\assets\KaTeX_Size4-Regular-Dl5lxZxV.woff2, it is a binary file.
+dist\assets\KaTeX_Size4-Regular-DWFBv043.ttf, it is a binary file.
+dist\assets\KaTeX_Typewriter-Regular-C0xS9mPB.woff, it is a binary file.
+dist\assets\KaTeX_Typewriter-Regular-CO6r4hn1.woff2, it is a binary file.
+dist\assets\KaTeX_Typewriter-Regular-D3Ib7_Hf.ttf, it is a binary file.
+dist\assets\keepalived-C-Hf_K1I.js, code is 1, comment is 0, blank is 0.
+dist\assets\keyman-D1c7F-l3.js, code is 1, comment is 0, blank is 0.
+dist\assets\kotlin-KPvIeYPX.js, code is 1, comment is 1, blank is 0.
+dist\assets\kumir-BL1FrkUk.js, code is 1, comment is 0, blank is 0.
+dist\assets\kusto-BsAdUFuN.js, code is 1, comment is 0, blank is 0.
+dist\assets\latex-BWA2YVQ7.js, code is 1, comment is 0, blank is 0.
+dist\assets\latte-DIQXfbAH.js, code is 1, comment is 0, blank is 0.
+dist\assets\layout-VP6_nDBx.js, code is 1, comment is 0, blank is 0.
+dist\assets\less-BmnsUjQW.js, code is 1, comment is 1, blank is 0.
+dist\assets\lilypond-CT2eufpg.js, code is 1, comment is 0, blank is 0.
+dist\assets\linear-D7dl7a2e.js, code is 1, comment is 0, blank is 0.
+dist\assets\liquid-umjldRe8.js, code is 1, comment is 0, blank is 0.
+dist\assets\lisp-zSUHjKlt.js, code is 1, comment is 0, blank is 0.
+dist\assets\livescript-D4zpNuiy.js, code is 1, comment is 1, blank is 0.
+dist\assets\llvm-lVXH8M71.js, code is 1, comment is 0, blank is 0.
+dist\assets\log-O3SEIeu_.js, code is 1, comment is 0, blank is 0.
+dist\assets\lolcode-DE2d93AF.js, code is 1, comment is 0, blank is 0.
+dist\assets\lua-B9XXEHB8.js, code is 1, comment is 0, blank is 0.
+dist\assets\lua-DER4jxlW.js, code is 1, comment is 0, blank is 0.
+dist\assets\magma-oYo7zROw.js, code is 1, comment is 1, blank is 0.
+dist\assets\makefile-CDzvQLEl.js, code is 1, comment is 0, blank is 0.
+dist\assets\markdown-D1Hjd5_w.js, code is 1, comment is 0, blank is 0.
+dist\assets\markup-BONeskWm.js, code is 1, comment is 0, blank is 0.
+dist\assets\markup-DvjwbQxn.js, code is 1, comment is 0, blank is 0.
+dist\assets\markup-templating-BxAVv-bL.js, code is 1, comment is 0, blank is 0.
+dist\assets\markup-templating-IRPMYjBJ.js, code is 1, comment is 0, blank is 0.
+dist\assets\matlab-DgbEyAbO.js, code is 1, comment is 0, blank is 0.
+dist\assets\maxscript-T_o-KcvL.js, code is 1, comment is 0, blank is 0.
+dist\assets\mel-CR0MxJLN.js, code is 1, comment is 0, blank is 0.
+dist\assets\mermaid-LMsno8_c.js, code is 1, comment is 0, blank is 0.
+dist\assets\mindmap-definition-GWI6TPTV-Beqk-_P_.js, code is 30, comment is 58, blank is 8.
+dist\assets\mizar-akGYCKC7.js, code is 1, comment is 0, blank is 0.
+dist\assets\mongodb-BVz68t4k.js, code is 1, comment is 0, blank is 0.
+dist\assets\monkey-CiW5di1g.js, code is 1, comment is 0, blank is 0.
+dist\assets\moonscript-Ceksxj5O.js, code is 1, comment is 0, blank is 0.
+dist\assets\n1ql-ii-u4M_u.js, code is 1, comment is 0, blank is 0.
+dist\assets\n4js-t307snyk.js, code is 1, comment is 0, blank is 0.
+dist\assets\nand2tetris-hdl-BKeW2PSb.js, code is 1, comment is 0, blank is 0.
+dist\assets\naniscript-ORMnp_pB.js, code is 1, comment is 0, blank is 0.
+dist\assets\nasm-LOuRCUhw.js, code is 1, comment is 0, blank is 0.
+dist\assets\neon-CxBPH58k.js, code is 1, comment is 0, blank is 0.
+dist\assets\nevod-DBUVYDR0.js, code is 1, comment is 0, blank is 0.
+dist\assets\nginx-C8-Y7ArI.js, code is 1, comment is 0, blank is 0.
+dist\assets\nim-BhWXHOXD.js, code is 1, comment is 0, blank is 0.
+dist\assets\nix-BGuAA_gl.js, code is 1, comment is 0, blank is 0.
+dist\assets\nsis-uGN2vwLN.js, code is 1, comment is 0, blank is 0.
+dist\assets\objectivec-BdIl4U_y.js, code is 1, comment is 0, blank is 0.
+dist\assets\ocaml-BNe4tFHR.js, code is 1, comment is 0, blank is 0.
+dist\assets\opencl-yD3nltjU.js, code is 1, comment is 0, blank is 0.
+dist\assets\openqasm-BaBBHG7s.js, code is 1, comment is 0, blank is 0.
+dist\assets\ordinal-Cboi1Yqb.js, code is 1, comment is 0, blank is 0.
+dist\assets\oz-51Jsz3l2.js, code is 1, comment is 0, blank is 0.
+dist\assets\parigp-B9EdF3ts.js, code is 1, comment is 0, blank is 0.
+dist\assets\parser-DWwfu9H2.js, code is 1, comment is 0, blank is 0.
+dist\assets\pascal-Dl6RmanV.js, code is 1, comment is 0, blank is 0.
+dist\assets\pascaligo-CW1IBXrk.js, code is 1, comment is 0, blank is 0.
+dist\assets\pcaxis-DboY2ss9.js, code is 1, comment is 0, blank is 0.
+dist\assets\peoplecode-q13frhQk.js, code is 1, comment is 1, blank is 0.
+dist\assets\perl-iGbXXQH3.js, code is 1, comment is 0, blank is 0.
+dist\assets\php-Be1xe2t9.js, code is 1, comment is 0, blank is 0.
+dist\assets\php-DWsP2mkx.js, code is 1, comment is 0, blank is 0.
+dist\assets\php-extras-BCvDC7iX.js, code is 1, comment is 0, blank is 0.
+dist\assets\phpdoc-DvJ0X_5Q.js, code is 1, comment is 0, blank is 0.
+dist\assets\pieDiagram-YF2LJOPJ-LdTTOkiS.js, code is 29, comment is 1, blank is 0.
+dist\assets\plsql-CNz9gJbC.js, code is 1, comment is 0, blank is 0.
+dist\assets\powerquery-DGWXH3sU.js, code is 1, comment is 0, blank is 0.
+dist\assets\powershell-WAXn96YU.js, code is 1, comment is 0, blank is 0.
+dist\assets\processing-C8844tje.js, code is 1, comment is 0, blank is 0.
+dist\assets\prolog-DRxCjCY4.js, code is 1, comment is 0, blank is 0.
+dist\assets\promql-BrxFV9dJ.js, code is 1, comment is 0, blank is 0.
+dist\assets\properties-B7HNoAwT.js, code is 1, comment is 0, blank is 0.
+dist\assets\protobuf-BIgpVSJB.js, code is 1, comment is 0, blank is 0.
+dist\assets\psl-Cljx_f4j.js, code is 1, comment is 0, blank is 0.
+dist\assets\pug-aT0lUK7R.js, code is 1, comment is 0, blank is 0.
+dist\assets\puppet-BOPBHztd.js, code is 1, comment is 0, blank is 0.
+dist\assets\pure-4djlzele.js, code is 1, comment is 1, blank is 0.
+dist\assets\purebasic-CNZbWXkc.js, code is 1, comment is 0, blank is 0.
+dist\assets\purescript-B53TMWQu.js, code is 1, comment is 0, blank is 0.
+dist\assets\python-BpFy3QW9.js, code is 1, comment is 0, blank is 0.
+dist\assets\q-Dwn89yxL.js, code is 1, comment is 0, blank is 0.
+dist\assets\qml-CdSVeWDd.js, code is 1, comment is 0, blank is 0.
+dist\assets\qore-DwIylTOR.js, code is 1, comment is 0, blank is 0.
+dist\assets\qsharp-DeJbk5wV.js, code is 1, comment is 0, blank is 0.
+dist\assets\quadrantDiagram-OS5C2QUG-Beaxofa5.js, code is 6, comment is 0, blank is 0.
+dist\assets\r-noHQzQut.js, code is 1, comment is 0, blank is 0.
+dist\assets\racket-Cc9INNrp.js, code is 1, comment is 0, blank is 0.
+dist\assets\reason-GB8P16P_.js, code is 1, comment is 0, blank is 0.
+dist\assets\regex-fSVWAz0k.js, code is 1, comment is 0, blank is 0.
+dist\assets\rego-Ax107TOg.js, code is 1, comment is 0, blank is 0.
+dist\assets\renpy-e3etbNCB.js, code is 1, comment is 0, blank is 0.
+dist\assets\requirementDiagram-MIRIMTAZ-DQ3S8j3t.js, code is 6, comment is 0, blank is 0.
+dist\assets\rest-BhSveuE4.js, code is 1, comment is 0, blank is 0.
+dist\assets\rip-CnONVPwK.js, code is 1, comment is 0, blank is 0.
+dist\assets\roboconf-C9WRGsOp.js, code is 1, comment is 0, blank is 0.
+dist\assets\robotframework-SpWxPqc_.js, code is 1, comment is 0, blank is 0.
+dist\assets\ruby-CffwrWht.js, code is 1, comment is 0, blank is 0.
+dist\assets\ruby-DYsn9XfW.js, code is 1, comment is 0, blank is 0.
+dist\assets\rust-CR4UV3Yz.js, code is 1, comment is 1, blank is 0.
+dist\assets\sankeyDiagram-Y46BX6SQ-hPRXd7Me.js, code is 8, comment is 0, blank is 0.
+dist\assets\sas-BTvEquyu.js, code is 1, comment is 1, blank is 0.
+dist\assets\sass-CMDpRFV_.js, code is 1, comment is 0, blank is 0.
+dist\assets\scala-9FnjtZ8w.js, code is 1, comment is 0, blank is 0.
+dist\assets\scheme-5GyC0a5F.js, code is 1, comment is 0, blank is 0.
+dist\assets\scheme-Cscf027c.js, code is 1, comment is 0, blank is 0.
+dist\assets\scss-x4QefAs_.js, code is 1, comment is 0, blank is 0.
+dist\assets\sequenceDiagram-G6AWOVSC-BeS6AttZ.js, code is 6, comment is 0, blank is 0.
+dist\assets\shell-session-DmArTm-5.js, code is 1, comment is 0, blank is 0.
+dist\assets\smali-ZJsr2SvD.js, code is 1, comment is 0, blank is 0.
+dist\assets\smalltalk-CDgPsjk1.js, code is 1, comment is 0, blank is 0.
+dist\assets\smarty-BuMnJSnu.js, code is 1, comment is 0, blank is 0.
+dist\assets\sml-BWbC0SmU.js, code is 1, comment is 0, blank is 0.
+dist\assets\solidity-OYA0RMrg.js, code is 1, comment is 0, blank is 0.
+dist\assets\solution-file-BKatsksX.js, code is 1, comment is 0, blank is 0.
+dist\assets\soy-BhotnMNg.js, code is 1, comment is 0, blank is 0.
+dist\assets\sparql-BAJAPUam.js, code is 1, comment is 0, blank is 0.
+dist\assets\splunk-spl-DGVKFTpX.js, code is 1, comment is 0, blank is 0.
+dist\assets\sqf-BtWbfZiu.js, code is 1, comment is 0, blank is 0.
+dist\assets\sql-C128wiuZ.js, code is 1, comment is 0, blank is 0.
+dist\assets\sql-CJATM1Qp.js, code is 1, comment is 0, blank is 0.
+dist\assets\squirrel-CbWYTY06.js, code is 1, comment is 0, blank is 0.
+dist\assets\stan-bxv3NW7O.js, code is 1, comment is 0, blank is 0.
+dist\assets\stateDiagram-MAYHULR4--ASVM0LX.js, code is 1, comment is 0, blank is 0.
+dist\assets\stateDiagram-v2-4JROLMXI-EUEl1PT2.js, code is 1, comment is 0, blank is 0.
+dist\assets\stylus-DRDhsh8K.js, code is 1, comment is 0, blank is 0.
+dist\assets\swift-CiZxAsHI.js, code is 1, comment is 0, blank is 0.
+dist\assets\systemd-C-zXkOOc.js, code is 2, comment is 0, blank is 0.
+dist\assets\t4-cs-D5ZQcqli.js, code is 1, comment is 0, blank is 0.
+dist\assets\t4-templating-B5EzSFYT.js, code is 1, comment is 0, blank is 0.
+dist\assets\t4-templating-BMY3LQev.js, code is 1, comment is 0, blank is 0.
+dist\assets\t4-vb-Byh2VKiz.js, code is 1, comment is 0, blank is 0.
+dist\assets\tap-BG-MCggs.js, code is 1, comment is 0, blank is 0.
+dist\assets\tcl-BklxN8Ec.js, code is 1, comment is 0, blank is 0.
+dist\assets\textile-YaawZvuu.js, code is 1, comment is 0, blank is 0.
+dist\assets\timeline-definition-U7ZMHBDA-CJMyLjwa.js, code is 59, comment is 0, blank is 2.
+dist\assets\toml-f80oZM7R.js, code is 1, comment is 0, blank is 0.
+dist\assets\tremor-DzkRqzlQ.js, code is 1, comment is 0, blank is 0.
+dist\assets\tsx-BDDoMpft.js, code is 1, comment is 0, blank is 0.
+dist\assets\tt2-BJl5OM9h.js, code is 1, comment is 0, blank is 0.
+dist\assets\turtle-Ro1R6Je7.js, code is 1, comment is 0, blank is 0.
+dist\assets\turtle-u66OZY0w.js, code is 1, comment is 0, blank is 0.
+dist\assets\twig-B51GbAFK.js, code is 1, comment is 0, blank is 0.
+dist\assets\typescript-B0kfC3M4.js, code is 1, comment is 0, blank is 0.
+dist\assets\typescript-CVO-8GEc.js, code is 1, comment is 0, blank is 0.
+dist\assets\typoscript-IwaIgL0e.js, code is 1, comment is 0, blank is 0.
+dist\assets\unrealscript-DOHOVS-K.js, code is 1, comment is 1, blank is 0.
+dist\assets\uorazor-IC2yIIpp.js, code is 1, comment is 0, blank is 0.
+dist\assets\uri-BRnPFtq5.js, code is 1, comment is 1, blank is 0.
+dist\assets\v-t6k-TjBV.js, code is 1, comment is 0, blank is 0.
+dist\assets\vala-CnAYULXf.js, code is 1, comment is 1, blank is 0.
+dist\assets\vbnet-3MnpYX8r.js, code is 1, comment is 0, blank is 0.
+dist\assets\vbnet-BhrUc4aD.js, code is 1, comment is 0, blank is 0.
+dist\assets\velocity-DVwI2AsK.js, code is 1, comment is 0, blank is 0.
+dist\assets\verilog-CcMureu2.js, code is 1, comment is 1, blank is 0.
+dist\assets\vhdl-BtGa0Srm.js, code is 1, comment is 0, blank is 0.
+dist\assets\vim-BP9a9Ew1.js, code is 1, comment is 0, blank is 0.
+dist\assets\visual-basic-C6e1Nz_C.js, code is 1, comment is 0, blank is 0.
+dist\assets\warpscript-UaE-JKDJ.js, code is 1, comment is 1, blank is 0.
+dist\assets\wasm-CmDL7lOK.js, code is 1, comment is 0, blank is 0.
+dist\assets\web-idl-RP07Gl-G.js, code is 1, comment is 1, blank is 0.
+dist\assets\wiki-CazDhYZn.js, code is 1, comment is 1, blank is 0.
+dist\assets\wolfram-C5U7yBu9.js, code is 1, comment is 0, blank is 0.
+dist\assets\wren-DJ4Qpm4C.js, code is 1, comment is 1, blank is 0.
+dist\assets\xeora-CmC5AsWN.js, code is 1, comment is 0, blank is 0.
+dist\assets\xml-doc-BLvHwyjU.js, code is 1, comment is 0, blank is 0.
+dist\assets\xojo-BgNJA9Rk.js, code is 1, comment is 0, blank is 0.
+dist\assets\xquery-CgbJGMJf.js, code is 1, comment is 0, blank is 0.
+dist\assets\xychartDiagram-6QU3TZC5-CO0FCMNM.js, code is 7, comment is 0, blank is 0.
+dist\assets\yaml-K6S4Nm3B.js, code is 1, comment is 0, blank is 0.
+dist\assets\yaml-pHjxJgpq.js, code is 1, comment is 0, blank is 0.
+dist\assets\yang-BwvrRVrR.js, code is 1, comment is 0, blank is 0.
+dist\assets\zig-B789KJSk.js, code is 1, comment is 0, blank is 0.
+dist\icon.ico, it is a binary file.
+dist\icon.png, it is a binary file.
+dist\image\Alert.svg, code is 4, comment is 0, blank is 0.
+dist\image\Copy.svg, code is 6, comment is 0, blank is 0.
+dist\image\Hide.svg, code is 5, comment is 0, blank is 0.
+dist\image\model_anthropic.svg, code is 15, comment is 0, blank is 0.
+dist\image\model_bedrock.svg, code is 1, comment is 0, blank is 0.
+dist\image\model_gemini.svg, code is 1, comment is 0, blank is 0.
+dist\image\model_mistral-ai.svg, code is 35, comment is 0, blank is 5.
+dist\image\model_ollama.svg, code is 9, comment is 0, blank is 0.
+dist\image\model_openai.svg, code is 9, comment is 0, blank is 0.
+dist\image\model_openai_compatible.svg, code is 9, comment is 0, blank is 0.
+dist\image\reload.svg, code is 11, comment is 0, blank is 0.
+dist\image\Show.svg, code is 4, comment is 0, blank is 0.
+dist\index.html, code is 17, comment is 0, blank is 0.
+dist\linux\mcpx-ai.desktop, code is 9, comment is 0, blank is 0.
+dist\locales\en\translation.json, code is 244, comment is 0, blank is 0.
+dist\locales\es\translation.json, code is 237, comment is 0, blank is 0.
+dist\locales\zh-CN\translation.json, code is 268, comment is 0, blank is 0.
+dist\locales\zh-TW\translation.json, code is 243, comment is 0, blank is 0.
+dist\vite.svg, code is 7, comment is 0, blank is 0.
+dist\vite_bak.svg, code is 25, comment is 0, blank is 0.
+docker\win-build\Dockerfile, code is 6, comment is 12, blank is 1.
+docs\DIVE_Screenshot_0.7.4.jpg, it is a binary file.
+drizzle.config.ts, code is 6, comment is 0, blank is 1.
+drizzle\0000_tidy_skin.sql, code is 14, comment is 1, blank is 0.
+drizzle\meta\0000_snapshot.json, code is 108, comment is 0, blank is 0.
+drizzle\meta\_journal.json, code is 13, comment is 0, blank is 0.
+electron-builder.json, code is 147, comment is 0, blank is 7.
+electron\config\index.ts, code is 4, comment is 0, blank is 1.
+electron\config\keymap.ts, code is 13, comment is 0, blank is 0.
+electron\electron-env.d.ts, code is 7, comment is 15, blank is 1.
+electron\main\constant.ts, code is 48, comment is 0, blank is 6.
+electron\main\index.ts, code is 168, comment is 30, blank is 36.
+electron\main\ipc\env.ts, code is 18, comment is 0, blank is 5.
+electron\main\ipc\index.ts, code is 28, comment is 6, blank is 3.
+electron\main\ipc\llm.ts, code is 128, comment is 4, blank is 13.
+electron\main\ipc\menu.ts, code is 19, comment is 0, blank is 4.
+electron\main\ipc\system.ts, code is 53, comment is 0, blank is 12.
+electron\main\ipc\util.ts, code is 38, comment is 0, blank is 9.
+electron\main\platform\appimage.ts, code is 59, comment is 0, blank is 13.
+electron\main\protocol.ts, code is 35, comment is 2, blank is 5.
+electron\main\proxy.ts, code is 60, comment is 23, blank is 11.
+electron\main\service.ts, code is 83, comment is 9, blank is 19.
+electron\main\state.ts, code is 7, comment is 0, blank is 2.
+electron\main\store.ts, code is 8, comment is 0, blank is 1.
+electron\main\tray.ts, code is 39, comment is 0, blank is 8.
+electron\main\update.ts, code is 61, comment is 10, blank is 10.
+electron\main\util.ts, code is 90, comment is 3, blank is 14.
+electron\preload\index.ts, code is 117, comment is 14, blank is 15.
+eslint.config.js, code is 27, comment is 0, blank is 1.
+icon.png, it is a binary file.
+icon256.png, it is a binary file.
+index.html, code is 13, comment is 3, blank is 0.
+LICENSE, code is 17, comment is 0, blank is 4.
+package-lock.json, code is 25886, comment is 0, blank is 315.
+package.json, code is 171, comment is 0, blank is 0.
+patches\@codemirror+state+6.5.2.patch, code is 17, comment is 1, blank is 0.
+patches\@modelcontextprotocol+sdk+1.4.1.patch, code is 10, comment is 11, blank is 0.
+patches\JSV+4.0.2.patch, code is 12, comment is 0, blank is 0.
+prebuilt\scripts\echo.js, code is 218, comment is 58, blank is 40.
+prebuilt\scripts\package-lock.json, code is 917, comment is 0, blank is 0.
+prebuilt\scripts\package.json, code is 17, comment is 0, blank is 0.
+public\icon.ico, it is a binary file.
+public\icon.png, it is a binary file.
+public\image\Alert.svg, code is 4, comment is 0, blank is 0.
+public\image\Copy.svg, code is 6, comment is 0, blank is 0.
+public\image\Hide.svg, code is 5, comment is 0, blank is 0.
+public\image\model_anthropic.svg, code is 15, comment is 0, blank is 0.
+public\image\model_bedrock.svg, code is 1, comment is 0, blank is 0.
+public\image\model_gemini.svg, code is 1, comment is 0, blank is 0.
+public\image\model_mistral-ai.svg, code is 35, comment is 0, blank is 5.
+public\image\model_ollama.svg, code is 9, comment is 0, blank is 0.
+public\image\model_openai.svg, code is 9, comment is 0, blank is 0.
+public\image\model_openai_compatible.svg, code is 9, comment is 0, blank is 0.
+public\image\reload.svg, code is 11, comment is 0, blank is 0.
+public\image\Show.svg, code is 4, comment is 0, blank is 0.
+public\linux\mcpx-ai.desktop, code is 9, comment is 0, blank is 0.
+public\locales\en\translation.json, code is 244, comment is 0, blank is 0.
+public\locales\es\translation.json, code is 237, comment is 0, blank is 0.
+public\locales\zh-CN\translation.json, code is 268, comment is 0, blank is 0.
+public\locales\zh-TW\translation.json, code is 243, comment is 0, blank is 0.
+public\vite.svg, code is 7, comment is 0, blank is 0.
+public\vite_bak.svg, code is 25, comment is 0, blank is 0.
+README.md, code is 42, comment is 10, blank is 16.
+release\0.0.1\builder-debug.yml, code is 197, comment is 0, blank is 28.
+release\0.0.1\builder-effective-config.yaml, code is 120, comment is 1, blank is 0.
+release\0.0.1\latest.yml, code is 8, comment is 0, blank is 0.
+release\0.0.1\MCP-X-0.0.1-win-x64.exe.blockmap, it is a binary file.
+release\0.0.1\win-unpacked\chrome_100_percent.pak, it is a binary file.
+release\0.0.1\win-unpacked\chrome_200_percent.pak, it is a binary file.
+release\0.0.1\win-unpacked\libEGL.dll, it is a binary file.
+release\0.0.1\win-unpacked\LICENSE.electron.txt, code is 18, comment is 0, blank is 3.
+release\0.0.1\win-unpacked\locales\af.pak, it is a binary file.
+release\0.0.1\win-unpacked\locales\am.pak, it is a binary file.
+release\0.0.1\win-unpacked\locales\ar.pak, it is a binary file.
+release\0.0.1\win-unpacked\locales\bg.pak, it is a binary file.
+release\0.0.1\win-unpacked\locales\ca.pak, it is a binary file.
+release\0.0.1\win-unpacked\locales\cs.pak, it is a binary file.
+release\0.0.1\win-unpacked\locales\da.pak, it is a binary file.
+release\0.0.1\win-unpacked\locales\de.pak, it is a binary file.
+release\0.0.1\win-unpacked\locales\en-GB.pak, it is a binary file.
+release\0.0.1\win-unpacked\locales\en-US.pak, it is a binary file.
+release\0.0.1\win-unpacked\locales\es-419.pak, it is a binary file.
+release\0.0.1\win-unpacked\locales\es.pak, it is a binary file.
+release\0.0.1\win-unpacked\locales\et.pak, it is a binary file.
+release\0.0.1\win-unpacked\locales\fa.pak, it is a binary file.
+release\0.0.1\win-unpacked\locales\fi.pak, it is a binary file.
+release\0.0.1\win-unpacked\locales\fil.pak, it is a binary file.
+release\0.0.1\win-unpacked\locales\fr.pak, it is a binary file.
+release\0.0.1\win-unpacked\locales\he.pak, it is a binary file.
+release\0.0.1\win-unpacked\locales\hr.pak, it is a binary file.
+release\0.0.1\win-unpacked\locales\hu.pak, it is a binary file.
+release\0.0.1\win-unpacked\locales\id.pak, it is a binary file.
+release\0.0.1\win-unpacked\locales\it.pak, it is a binary file.
+release\0.0.1\win-unpacked\locales\ja.pak, it is a binary file.
+release\0.0.1\win-unpacked\locales\ko.pak, it is a binary file.
+release\0.0.1\win-unpacked\locales\lt.pak, it is a binary file.
+release\0.0.1\win-unpacked\locales\lv.pak, it is a binary file.
+release\0.0.1\win-unpacked\locales\ms.pak, it is a binary file.
+release\0.0.1\win-unpacked\locales\nb.pak, it is a binary file.
+release\0.0.1\win-unpacked\locales\nl.pak, it is a binary file.
+release\0.0.1\win-unpacked\locales\pl.pak, it is a binary file.
+release\0.0.1\win-unpacked\locales\pt-BR.pak, it is a binary file.
+release\0.0.1\win-unpacked\locales\pt-PT.pak, it is a binary file.
+release\0.0.1\win-unpacked\locales\ro.pak, it is a binary file.
+release\0.0.1\win-unpacked\locales\ru.pak, it is a binary file.
+release\0.0.1\win-unpacked\locales\sk.pak, it is a binary file.
+release\0.0.1\win-unpacked\locales\sl.pak, it is a binary file.
+release\0.0.1\win-unpacked\locales\sr.pak, it is a binary file.
+release\0.0.1\win-unpacked\locales\sv.pak, it is a binary file.
+release\0.0.1\win-unpacked\locales\sw.pak, it is a binary file.
+release\0.0.1\win-unpacked\locales\tr.pak, it is a binary file.
+release\0.0.1\win-unpacked\locales\uk.pak, it is a binary file.
+release\0.0.1\win-unpacked\locales\ur.pak, it is a binary file.
+release\0.0.1\win-unpacked\locales\vi.pak, it is a binary file.
+release\0.0.1\win-unpacked\locales\zh-CN.pak, it is a binary file.
+release\0.0.1\win-unpacked\locales\zh-TW.pak, it is a binary file.
+release\0.0.1\win-unpacked\resources\app-update.yml, code is 4, comment is 0, blank is 0.
+release\0.0.1\win-unpacked\resources\drizzle\0000_tidy_skin.sql, code is 14, comment is 1, blank is 0.
+release\0.0.1\win-unpacked\resources\drizzle\meta\0000_snapshot.json, code is 108, comment is 0, blank is 0.
+release\0.0.1\win-unpacked\resources\drizzle\meta\_journal.json, code is 13, comment is 0, blank is 0.
+release\0.0.1\win-unpacked\resources\elevate.exe, it is a binary file.
+release\0.0.1\win-unpacked\resources\image\Alert.svg, code is 4, comment is 0, blank is 0.
+release\0.0.1\win-unpacked\resources\image\Copy.svg, code is 6, comment is 0, blank is 0.
+release\0.0.1\win-unpacked\resources\image\Hide.svg, code is 5, comment is 0, blank is 0.
+release\0.0.1\win-unpacked\resources\image\model_anthropic.svg, code is 15, comment is 0, blank is 0.
+release\0.0.1\win-unpacked\resources\image\model_bedrock.svg, code is 1, comment is 0, blank is 0.
+release\0.0.1\win-unpacked\resources\image\model_gemini.svg, code is 1, comment is 0, blank is 0.
+release\0.0.1\win-unpacked\resources\image\model_mistral-ai.svg, code is 35, comment is 0, blank is 5.
+release\0.0.1\win-unpacked\resources\image\model_ollama.svg, code is 9, comment is 0, blank is 0.
+release\0.0.1\win-unpacked\resources\image\model_openai.svg, code is 9, comment is 0, blank is 0.
+release\0.0.1\win-unpacked\resources\image\model_openai_compatible.svg, code is 9, comment is 0, blank is 0.
+release\0.0.1\win-unpacked\resources\image\reload.svg, code is 11, comment is 0, blank is 0.
+release\0.0.1\win-unpacked\resources\image\Show.svg, code is 4, comment is 0, blank is 0.
+release\0.0.1\win-unpacked\resources\locales\en\translation.json, code is 244, comment is 0, blank is 0.
+release\0.0.1\win-unpacked\resources\locales\es\translation.json, code is 237, comment is 0, blank is 0.
+release\0.0.1\win-unpacked\resources\locales\zh-CN\translation.json, code is 268, comment is 0, blank is 0.
+release\0.0.1\win-unpacked\resources\locales\zh-TW\translation.json, code is 243, comment is 0, blank is 0.
+release\0.0.1\win-unpacked\resources\node\npm.cmd, code is 1, comment is 0, blank is 0.
+release\0.0.1\win-unpacked\resources\node\npx.cmd, code is 1, comment is 0, blank is 0.
+release\0.0.1\win-unpacked\resources\prebuilt\scripts\echo.js, code is 218, comment is 58, blank is 40.
+release\0.0.1\win-unpacked\resources\prebuilt\scripts\package-lock.json, code is 917, comment is 0, blank is 0.
+release\0.0.1\win-unpacked\resources\prebuilt\scripts\package.json, code is 17, comment is 0, blank is 0.
+release\0.0.1\win-unpacked\resources\python\_asyncio.pyd, it is a binary file.
+release\0.0.1\win-unpacked\resources\python\_bz2.pyd, it is a binary file.
+release\0.0.1\win-unpacked\resources\python\_ctypes.pyd, it is a binary file.
+release\0.0.1\win-unpacked\resources\python\_decimal.pyd, it is a binary file.
+release\0.0.1\win-unpacked\resources\python\_elementtree.pyd, it is a binary file.
+release\0.0.1\win-unpacked\resources\python\_hashlib.pyd, it is a binary file.
+release\0.0.1\win-unpacked\resources\python\_lzma.pyd, it is a binary file.
+release\0.0.1\win-unpacked\resources\python\_msi.pyd, it is a binary file.
+release\0.0.1\win-unpacked\resources\python\_multiprocessing.pyd, it is a binary file.
+release\0.0.1\win-unpacked\resources\python\_overlapped.pyd, it is a binary file.
+release\0.0.1\win-unpacked\resources\python\_queue.pyd, it is a binary file.
+release\0.0.1\win-unpacked\resources\python\_socket.pyd, it is a binary file.
+release\0.0.1\win-unpacked\resources\python\_sqlite3.pyd, it is a binary file.
+release\0.0.1\win-unpacked\resources\python\_ssl.pyd, it is a binary file.
+release\0.0.1\win-unpacked\resources\python\_uuid.pyd, it is a binary file.
+release\0.0.1\win-unpacked\resources\python\_wmi.pyd, it is a binary file.
+release\0.0.1\win-unpacked\resources\python\_zoneinfo.pyd, it is a binary file.
+release\0.0.1\win-unpacked\resources\python\libffi-8.dll, it is a binary file.
+release\0.0.1\win-unpacked\resources\python\libssl-3.dll, it is a binary file.
+release\0.0.1\win-unpacked\resources\python\LICENSE.txt, code is 40, comment is 1, blank is 10.
+release\0.0.1\win-unpacked\resources\python\pyexpat.pyd, it is a binary file.
+release\0.0.1\win-unpacked\resources\python\python.cat, it is a binary file.
+release\0.0.1\win-unpacked\resources\python\python.exe, it is a binary file.
+release\0.0.1\win-unpacked\resources\python\python3.dll, it is a binary file.
+release\0.0.1\win-unpacked\resources\python\python312._pth, code is 4, comment is 0, blank is 1.
+release\0.0.1\win-unpacked\resources\python\pythonw.exe, it is a binary file.
+release\0.0.1\win-unpacked\resources\python\select.pyd, it is a binary file.
+release\0.0.1\win-unpacked\resources\python\vcruntime140.dll, it is a binary file.
+release\0.0.1\win-unpacked\resources\python\vcruntime140_1.dll, it is a binary file.
+release\0.0.1\win-unpacked\resources\python\winsound.pyd, it is a binary file.
+release\0.0.1\win-unpacked\resources\uv\uvx.exe, it is a binary file.
+release\0.0.1\win-unpacked\snapshot_blob.bin, it is a binary file.
+release\0.0.1\win-unpacked\v8_context_snapshot.bin, it is a binary file.
+release\0.0.1\win-unpacked\vk_swiftshader_icd.json, code is 1, comment is 0, blank is 0.
+release\0.0.1\win-unpacked\vulkan-1.dll, it is a binary file.
+resources\mac\entitlements.mac.inherit.plist, code is 10, comment is 0, blank is 0.
+resources\mac\entitlements.mac.plist, code is 32, comment is 0, blank is 0.
+scripts\docker\build-win.sh, code is 9, comment is 1, blank is 3.
+scripts\download-node.ts, code is 75, comment is 1, blank is 13.
+scripts\download-python.ts, code is 57, comment is 6, blank is 12.
+scripts\download-uv.ts, code is 105, comment is 2, blank is 17.
+scripts\install-deps.sh, code is 12, comment is 1, blank is 3.
+scripts\notarizer.js, code is 18, comment is 0, blank is 4.
+services\__tests__\__mocks__\mcpSdkMocks.ts, code is 50, comment is 2, blank is 5.
+services\__tests__\__mocks__\mcpSdkMocks.ts, code is 50, comment is 2, blank is 5.
+services\__tests__\__mocks__\utilsMocks.ts, code is 12, comment is 0, blank is 1.
+services\__tests__\__mocks__\utilsMocks.ts, code is 12, comment is 0, blank is 1.
+services\__tests__\client.test.ts, code is 58, comment is 0, blank is 6.
+services\__tests__\client.test.ts, code is 58, comment is 0, blank is 6.
+services\__tests__\connectServer.test.ts, code is 22, comment is 2, blank is 6.
+services\__tests__\connectServer.test.ts, code is 22, comment is 2, blank is 6.
+services\__tests__\database\index.test.ts, code is 247, comment is 6, blank is 38.
+services\__tests__\database\index.test.ts, code is 247, comment is 6, blank is 38.
+services\__tests__\mcpServer\index.test.ts, code is 316, comment is 19, blank is 71.
+services\__tests__\mcpServer\index.test.ts, code is 316, comment is 19, blank is 71.
+services\__tests__\model\index.test.ts, code is 233, comment is 1, blank is 37.
+services\__tests__\model\index.test.ts, code is 233, comment is 1, blank is 37.
+services\__tests__\processQuery.test.ts, code is 186, comment is 2, blank is 35.
+services\__tests__\processQuery.test.ts, code is 186, comment is 2, blank is 35.
+services\__tests__\prompt\index.test.ts, code is 112, comment is 4, blank is 34.
+services\__tests__\prompt\index.test.ts, code is 112, comment is 4, blank is 34.
+services\__tests__\utils\fileHandler.test.ts, code is 47, comment is 0, blank is 11.
+services\__tests__\utils\fileHandler.test.ts, code is 47, comment is 0, blank is 11.
+services\__tests__\utils\image.test.ts, code is 38, comment is 1, blank is 11.
+services\__tests__\utils\image.test.ts, code is 38, comment is 1, blank is 11.
+services\__tests__\utils\modelHandler.test.ts, code is 49, comment is 1, blank is 16.
+services\__tests__\utils\modelHandler.test.ts, code is 49, comment is 1, blank is 16.
+services\__tests__\utils\processHistory.test.ts, code is 138, comment is 3, blank is 17.
+services\__tests__\utils\processHistory.test.ts, code is 138, comment is 3, blank is 17.
+services\__tests__\utils\toolHandler.test.ts, code is 98, comment is 0, blank is 21.
+services\__tests__\utils\toolHandler.test.ts, code is 98, comment is 0, blank is 21.
+services\client.ts, code is 243, comment is 15, blank is 29.
+services\connectServer.ts, code is 85, comment is 39, blank is 18.
+services\connectServer.ts, code is 85, comment is 39, blank is 18.
+services\database\index.ts, code is 390, comment is 16, blank is 61.
+services\database\index.ts, code is 390, comment is 16, blank is 61.
+services\database\schema.ts, code is 19, comment is 1, blank is 3.
+services\database\schema.ts, code is 19, comment is 1, blank is 3.
+services\index.ts, code is 3, comment is 0, blank is 0.
+services\main.ts, code is 43, comment is 3, blank is 11.
+services\mcpServer\index.ts, code is 298, comment is 40, blank is 44.
+services\mcpServer\interface.ts, code is 26, comment is 4, blank is 5.
+services\models\index.ts, code is 167, comment is 15, blank is 21.
+services\models\interface.ts, code is 52, comment is 23, blank is 2.
+services\processQuery.ts, code is 399, comment is 41, blank is 59.
+services\prompt\index.ts, code is 47, comment is 2, blank is 8.
+services\prompt\system.ts, code is 93, comment is 0, blank is 14.
+services\routes\_index.ts, code is 31, comment is 7, blank is 9.
+services\routes\_index.ts, code is 31, comment is 7, blank is 9.
+services\routes\chat.ts, code is 81, comment is 0, blank is 9.
+services\routes\compatible.ts, code is 242, comment is 9, blank is 24.
+services\routes\compatible.ts, code is 242, comment is 9, blank is 24.
+services\routes\config.ts, code is 145, comment is 6, blank is 20.
+services\routes\index.ts, code is 14, comment is 0, blank is 4.
+services\routes\index.ts, code is 14, comment is 0, blank is 4.
+services\routes\modelVerify.ts, code is 223, comment is 2, blank is 28.
+services\routes\modelVerify.ts, code is 223, comment is 2, blank is 28.
+services\routes\tools.ts, code is 20, comment is 0, blank is 3.
+services\routes\tools.ts, code is 20, comment is 0, blank is 3.
+services\syscmd\index.ts, code is 24, comment is 0, blank is 5.
+services\syscmd\index.ts, code is 24, comment is 0, blank is 5.
+services\utils\fileHandler.ts, code is 69, comment is 14, blank is 12.
+services\utils\fileHandler.ts, code is 69, comment is 14, blank is 12.
+services\utils\image.ts, code is 30, comment is 10, blank is 3.
+services\utils\image.ts, code is 30, comment is 10, blank is 3.
+services\utils\logger.ts, code is 48, comment is 6, blank is 9.
+services\utils\logger.ts, code is 48, comment is 6, blank is 9.
+services\utils\modelHandler.ts, code is 44, comment is 11, blank is 8.
+services\utils\modelHandler.ts, code is 44, comment is 11, blank is 8.
+services\utils\processHistory.ts, code is 55, comment is 1, blank is 4.
+services\utils\processHistory.ts, code is 55, comment is 1, blank is 4.
+services\utils\toolHandler.ts, code is 133, comment is 31, blank is 31.
+services\utils\toolHandler.ts, code is 133, comment is 31, blank is 31.
+services\utils\types.ts, code is 104, comment is 9, blank is 12.
+services\utils\types.ts, code is 104, comment is 9, blank is 12.
+services\webServer.ts, code is 335, comment is 16, blank is 50.
+services\webServer.ts, code is 335, comment is 16, blank is 50.
+src\App.tsx, code is 50, comment is 3, blank is 7.
+src\assets\react.svg, code is 1, comment is 0, blank is 0.
+src\atoms\chatState.ts, code is 4, comment is 0, blank is 1.
+src\atoms\codeStreaming.ts, code is 6, comment is 0, blank is 2.
+src\atoms\configState.ts, code is 341, comment is 14, blank is 53.
+src\atoms\globalState.ts, code is 2, comment is 0, blank is 1.
+src\atoms\historyState.ts, code is 21, comment is 0, blank is 4.
+src\atoms\hotkeyState.ts, code is 221, comment is 2, blank is 45.
+src\atoms\interfaceState.ts, code is 279, comment is 0, blank is 7.
+src\atoms\layerState.ts, code is 89, comment is 0, blank is 15.
+src\atoms\modalState.ts, code is 6, comment is 0, blank is 2.
+src\atoms\sidebarState.ts, code is 22, comment is 0, blank is 4.
+src\atoms\themeState.ts, code is 18, comment is 0, blank is 5.
+src\atoms\toastState.ts, code is 29, comment is 0, blank is 6.
+src\atoms\toolState.ts, code is 26, comment is 0, blank is 5.
+src\components\CheckBox.tsx, code is 47, comment is 0, blank is 7.
+src\components\CustomInstructions.tsx, code is 77, comment is 0, blank is 6.
+src\components\DropDown.tsx, code is 82, comment is 0, blank is 6.
+src\components\GlobalToast.tsx, code is 28, comment is 0, blank is 4.
+src\components\Header.tsx, code is 53, comment is 0, blank is 5.
+src\components\HistorySidebar.tsx, code is 229, comment is 0, blank is 23.
+src\components\InfoTooltip.tsx, code is 38, comment is 3, blank is 5.
+src\components\Modal\KeymapModal.tsx, code is 143, comment is 9, blank is 17.
+src\components\ModelSelect.tsx, code is 104, comment is 0, blank is 8.
+src\components\PopupConfirm.tsx, code is 122, comment is 0, blank is 12.
+src\components\PopupWindow.tsx, code is 33, comment is 0, blank is 4.
+src\components\ProxySettingsForm.tsx, code is 129, comment is 0, blank is 15.
+src\components\Select.tsx, code is 97, comment is 1, blank is 6.
+src\components\Switch.tsx, code is 23, comment is 0, blank is 1.
+src\components\ThemeSwitch.tsx, code is 64, comment is 0, blank is 5.
+src\components\Toast.tsx, code is 43, comment is 0, blank is 6.
+src\components\Tooltip.tsx, code is 33, comment is 0, blank is 3.
+src\components\UpdateButton.tsx, code is 73, comment is 0, blank is 8.
+src\components\WrappedInput.tsx, code is 21, comment is 0, blank is 5.
+src\components\WrappedTextarea.tsx, code is 21, comment is 0, blank is 5.
+src\constants.ts, code is 7, comment is 0, blank is 0.
+src\electron.d.ts, code is 15, comment is 2, blank is 3.
+src\helper\config.ts, code is 84, comment is 0, blank is 13.
+src\hooks\useDebounce.ts, code is 26, comment is 0, blank is 6.
+src\hooks\useHotkeyEvent.ts, code is 10, comment is 0, blank is 1.
+src\hooks\useLayer.ts, code is 76, comment is 0, blank is 15.
+src\hooks\useThrottle.ts, code is 27, comment is 0, blank is 7.
+src\hooks\useUpdateProgress.ts, code is 52, comment is 0, blank is 11.
+src\i18n.ts, code is 19, comment is 0, blank is 2.
+src\index.css, code is 50, comment is 0, blank is 6.
+src\main.tsx, code is 30, comment is 1, blank is 6.
+src\router.tsx, code is 29, comment is 0, blank is 1.
+src\styles\_variables.scss, code is 269, comment is 14, blank is 30.
+src\styles\components\_CheckBox.scss, code is 87, comment is 0, blank is 14.
+src\styles\components\_DropDown.scss, code is 13, comment is 0, blank is 3.
+src\styles\components\_Header.scss, code is 78, comment is 0, blank is 16.
+src\styles\components\_HistorySidebar.scss, code is 254, comment is 0, blank is 49.
+src\styles\components\_InfoTooltip.scss, code is 82, comment is 1, blank is 9.
+src\styles\components\_Keymap.scss, code is 55, comment is 0, blank is 10.
+src\styles\components\_ModelConfig.scss, code is 256, comment is 0, blank is 46.
+src\styles\components\_ModelSelect.scss, code is 91, comment is 4, blank is 20.
+src\styles\components\_PopupConfirm.scss, code is 122, comment is 0, blank is 19.
+src\styles\components\_PopupWindow.scss, code is 38, comment is 0, blank is 7.
+src\styles\components\_Select.scss, code is 62, comment is 0, blank is 12.
+src\styles\components\_Sidebar.scss, code is 43, comment is 0, blank is 6.
+src\styles\components\_Switch.scss, code is 67, comment is 0, blank is 10.
+src\styles\components\_ThemeSwitch.scss, code is 28, comment is 0, blank is 4.
+src\styles\components\_Toast.scss, code is 66, comment is 0, blank is 11.
+src\styles\components\_Tooltip.scss, code is 83, comment is 1, blank is 9.
+src\styles\index.scss, code is 64, comment is 0, blank is 8.
+src\styles\overlay\_Model.scss, code is 1102, comment is 2, blank is 195.
+src\styles\overlay\_Overlay.scss, code is 35, comment is 0, blank is 6.
+src\styles\overlay\_System.scss, code is 48, comment is 0, blank is 10.
+src\styles\overlay\_Tools.scss, code is 910, comment is 0, blank is 175.
+src\styles\pages\_Chat.scss, code is 855, comment is 0, blank is 137.
+src\styles\pages\_Setup.scss, code is 290, comment is 1, blank is 43.
+src\styles\pages\_Welcome.scss, code is 509, comment is 0, blank is 78.
+src\styles\proxy-settings.css, code is 138, comment is 2, blank is 20.
+src\styles\setup-styles.css, code is 0, comment is 0, blank is 0.
+src\styles\system-proxy.css, code is 145, comment is 5, blank is 20.
+src\updater.tsx, code is 35, comment is 1, blank is 10.
+src\util.ts, code is 34, comment is 0, blank is 7.
+src\views\Chat\ChatInput.tsx, code is 471, comment is 3, blank is 67.
+src\views\Chat\ChatMessages.tsx, code is 80, comment is 0, blank is 11.
+src\views\Chat\CodeModal.tsx, code is 172, comment is 0, blank is 15.
+src\views\Chat\CodePreview.tsx, code is 19, comment is 0, blank is 5.
+src\views\Chat\FilePreview.tsx, code is 50, comment is 1, blank is 6.
+src\views\Chat\index.tsx, code is 370, comment is 0, blank is 61.
+src\views\Chat\Message.tsx, code is 330, comment is 2, blank is 23.
+src\views\Chat\preview\html.tsx, code is 15, comment is 0, blank is 3.
+src\views\Chat\preview\mermaid.tsx, code is 60, comment is 0, blank is 4.
+src\views\Chat\ToolPanel.tsx, code is 96, comment is 0, blank is 14.
+src\views\Layout.tsx, code is 32, comment is 0, blank is 3.
+src\views\Overlay\index.tsx, code is 41, comment is 0, blank is 4.
+src\views\Overlay\Model\index.tsx, code is 10, comment is 0, blank is 3.
+src\views\Overlay\Model\KeyPopup.tsx, code is 438, comment is 28, blank is 43.
+src\views\Overlay\Model\KeyPopupEdit.tsx, code is 396, comment is 4, blank is 30.
+src\views\Overlay\Model\Layout.tsx, code is 423, comment is 5, blank is 21.
+src\views\Overlay\Model\ModelsProvider.tsx, code is 188, comment is 7, blank is 19.
+src\views\Overlay\Model\ModelVerify.tsx, code is 117, comment is 0, blank is 20.
+src\views\Overlay\Model\ParameterPopup.tsx, code is 188, comment is 0, blank is 9.
+src\views\Overlay\Model\Popup\AdvancedSetting.tsx, code is 110, comment is 0, blank is 9.
+src\views\Overlay\Model\Popup\CustomId.tsx, code is 103, comment is 2, blank is 8.
+src\views\Overlay\Model\Popup\index.tsx, code is 589, comment is 23, blank is 36.
+src\views\Overlay\System.tsx, code is 317, comment is 24, blank is 37.
+src\views\Overlay\Tools.tsx, code is 1269, comment is 30, blank is 100.
+src\views\Setup\index.tsx, code is 98, comment is 0, blank is 8.
+src\views\Setup\ModelConfigForm.tsx, code is 388, comment is 8, blank is 32.
+src\views\Welcome.tsx, code is 422, comment is 4, blank is 52.
+src\vite-env.d.ts, code is 0, comment is 0, blank is 0.
+tsconfig.app.json, code is 23, comment is 2, blank is 2.
+tsconfig.app.json, code is 23, comment is 2, blank is 2.
+tsconfig.json, code is 7, comment is 0, blank is 0.
+tsconfig.json, code is 7, comment is 0, blank is 0.
+tsconfig.node.json, code is 20, comment is 2, blank is 2.
+tsconfig.node.json, code is 20, comment is 2, blank is 2.
+vite.config.electron.ts, code is 71, comment is 2, blank is 14.
+vite.config.electron.ts, code is 71, comment is 2, blank is 14.
+vite.config.service.ts, code is 23, comment is 0, blank is 1.
+vite.config.service.ts, code is 23, comment is 0, blank is 1.
+vite.config.ts, code is 24, comment is 1, blank is 1.
+vite.config.ts, code is 24, comment is 1, blank is 1.
+vitest.config.ts, code is 8, comment is 0, blank is 1.
+vitest.config.ts, code is 8, comment is 0, blank is 1.
+===============================================================================

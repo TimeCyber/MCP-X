@@ -1,0 +1,170 @@
+/* 系统设置页面代理样式 */
+.system-section-title {
+    margin-top: 38px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.06);
+    padding-bottom: 12px;
+    position: relative;
+  }
+  
+  .system-section-title::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 100px;
+    height: 2px;
+    background: linear-gradient(90deg, #ff6b00 0%, #ff9248 100%);
+    border-radius: 2px;
+  }
+  
+  .system-section-title h2 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #333333;
+    margin: 0;
+    display: flex;
+    align-items: center;
+  }
+  
+  .system-section-title h2::before {
+    content: '';
+    display: inline-block;
+    width: 4px;
+    height: 20px;
+    background: linear-gradient(to bottom, #ff6b00, #ff9248);
+    margin-right: 12px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(255, 107, 0, 0.2);
+  }
+  
+  .system-list-input-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  
+  .system-input {
+    width: 300px;
+    padding: 12px 16px;
+    border-radius: 10px;
+    border: 1px solid #e0e0e0;
+    background-color: #ffffff;
+    color: #333333;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
+  }
+  
+  .system-input:focus {
+    outline: none;
+    border-color: #ff6b00;
+    box-shadow: 0 0 0 3px rgba(255, 107, 0, 0.1);
+    transform: translateY(-1px);
+  }
+  
+  .system-input::placeholder {
+    color: #bbbbbb;
+  }
+  
+  .save-proxy-button {
+    background: linear-gradient(135deg, #ff6b00 0%, #ff8a30 100%);
+    color: white;
+    border: none;
+    padding: 12px 32px;
+    border-radius: 10px;
+    font-weight: 500;
+    font-size: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(255, 107, 0, 0.2);
+    margin-top: 28px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .save-proxy-button::before {
+    content: '✓';
+    margin-right: 8px;
+    font-weight: bold;
+  }
+  
+  .save-proxy-button:hover {
+    background: linear-gradient(135deg, #ff7a15 0%, #ff9540 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(255, 107, 0, 0.25);
+  }
+  
+  .save-proxy-button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(255, 107, 0, 0.2);
+  }
+  
+  /* 代理类型选择控件样式优化 */
+  .system-list-section {
+    margin-bottom: 16px;
+    transition: all 0.3s ease;
+    padding: 12px;
+    border-radius: 10px;
+  }
+  
+  .system-list-section:hover {
+    background-color: rgba(255, 107, 0, 0.05);
+  }
+  
+  .system-list-section input[type="radio"] {
+    margin-right: 10px;
+    accent-color: #ff6b00;
+  }
+  
+  .system-list-content {
+    font-weight: 500;
+    color: #444444;
+  }
+  
+  /* 为自定义代理添加动画效果 */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .custom-proxy-fields {
+    animation: fadeIn 0.3s ease-out;
+    background-color: rgba(255, 107, 0, 0.03);
+    padding: 18px;
+    border-radius: 12px;
+    border-left: 3px solid #ff6b00;
+    margin-top: 16px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+  }
+  
+  /* 添加响应式设计 */
+  @media (max-width: 768px) {
+    .system-input {
+      width: 100%;
+    }
+    
+    .system-list-input-container {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+  
+  /* 添加标签样式 */
+  .proxy-label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 14px;
+    color: #666;
+    font-weight: 500;
+  }

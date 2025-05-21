@@ -1,0 +1,160 @@
+ /* 代理设置表单样式 */
+.setup-page {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    overflow-y: auto;
+    position: relative;
+  }
+  
+  .setup-container {
+    background-color: var(--bg-card, #ffffff);
+    max-width: 900px;
+    width: 100%;
+    border-radius: 16px;
+    padding: 32px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    position: relative;
+  }
+  
+  .setup-container h1 {
+    margin-top: 0;
+    font-size: 28px;
+    margin-bottom: 8px;
+    color: var(--text, #000000);
+  }
+  
+  .setup-container .subtitle {
+    color: var(--text-secondary, #666666);
+    margin-bottom: 32px;
+    font-size: 16px;
+  }
+  
+  .back-btn {
+    background: transparent !important;
+    border: none !important;
+    display: flex;
+    align-items: center;
+    color: var(--text-secondary, #666666);
+    padding: 8px 16px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    cursor: pointer;
+  }
+  
+  .back-btn:hover {
+    background-color: var(--bg-hover, #f5f5f5) !important;
+    color: var(--text, #000000);
+  }
+  
+  .back-btn svg {
+    margin-right: 8px;
+    fill: currentColor;
+  }
+  
+  .setup-tabs {
+    display: flex;
+    border-bottom: 1px solid var(--border-color, #eeeeee);
+    margin-bottom: 24px;
+  }
+  
+  .tab-btn {
+    background: transparent !important;
+    border: none !important;
+    padding: 12px 24px !important;
+    margin-right: 8px;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text-secondary, #666666);
+    cursor: pointer;
+    position: relative;
+    transition: all 0.2s ease;
+    border-radius: 8px 8px 0 0;
+  }
+  
+  .tab-btn:hover {
+    color: var(--text, #000000);
+    background-color: rgba(0, 0, 0, 0.03) !important;
+  }
+  
+  .tab-btn.active {
+    color: var(--primary-color, #1677ff);
+    font-weight: 600;
+  }
+  
+  .tab-btn.active::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: var(--primary-color, #1677ff);
+    border-radius: 3px 3px 0 0;
+  }
+  
+  /* 代理设置表单样式 */
+  .proxy-settings-form {
+    margin-top: 20px;
+  }
+  
+  .proxy-settings-form .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .proxy-settings-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: var(--text, #000000);
+  }
+  
+  .proxy-settings-form .form-select,
+  .proxy-settings-form .form-input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color, #dddddd);
+    background-color: var(--bg-input, #ffffff);
+    color: var(--text, #000000);
+    font-size: 14px;
+    transition: border-color 0.2s ease;
+  }
+  
+  .proxy-settings-form .form-select:focus,
+  .proxy-settings-form .form-input:focus {
+    outline: none;
+    border-color: var(--primary-color, #1677ff);
+    box-shadow: 0 0 0 2px rgba(22, 119, 255, 0.1);
+  }
+  
+  .proxy-settings-form .form-actions {
+    margin-top: 32px;
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .proxy-settings-form .primary-button {
+    background-color: var(--primary-color, #1677ff);
+    color: green;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  
+  .proxy-settings-form .primary-button:hover {
+    background-color: var(--primary-color-dark, #0958d9);
+  }
+  
+  .proxy-loading {
+    padding: 20px;
+    text-align: center;
+    color: var(--text-secondary, #666666);
+  }

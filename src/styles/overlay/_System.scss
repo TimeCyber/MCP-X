@@ -1,0 +1,58 @@
+@use "../variables" as *;
+
+.system-container {
+  width: 100%;
+  max-width: 800px;
+  min-height: calc(100vh - 85px);
+  display: flex;
+  flex-direction: column;
+
+  h1 {
+    margin: 0;
+    font-size: 28px;
+  }
+
+  .system-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 34px;
+    position: relative;
+  }
+
+
+  .system-content {
+    margin-bottom: 16px;
+    border-radius: 8px;
+    overflow: hidden;
+    background: var(--bg-medium);
+    box-shadow: 0 2px 6px var(--shadow-modal-light);
+
+    .system-list-section {
+      padding: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .system-list-content {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+
+        img, svg {
+          width: 24px;
+          height: 24px;
+          opacity: 0.7;
+        }
+
+        svg {
+          fill: var(--stroke-op-dark-extremestrong);
+        }
+
+        .system-list-name {
+          font-weight: 500;
+        }
+      }
+    }
+  }
+}
