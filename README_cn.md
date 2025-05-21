@@ -7,8 +7,6 @@
 ![GitHub language count](https://img.shields.io/github/languages/count/TimeCyber/MCP-X)
 ![GitHub top language](https://img.shields.io/github/languages/top/TimeCyber/MCP-X)
 ![GitHub last commit](https://img.shields.io/github/last-commit/TimeCyber/MCP-X?color=red)
-[![Discord](https://img.shields.io/badge/Discord-MCP-X-blue?logo=discord&logoColor=white)](https://discord.com/invite/qceMERf4y2)
-[![Twitter Follow](https://img.shields.io/twitter/follow/MCP-X_ai_agent?style=social)](https://twitter.com/MCP-X_ai_agent)
 
 MCP-X 是一个开源的 MCP Client 桌面应用，能够无缝集成所有支持 function calling 能力的大模型（LLMs）。✨
 
