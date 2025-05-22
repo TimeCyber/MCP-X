@@ -5,6 +5,11 @@ import { useTranslation } from "react-i18next"
 import { rawKeymapAtom } from "../../atoms/hotkeyState"
 import { useAtom, useAtomValue } from "jotai"
 
+declare global {
+  interface Window {
+    PLATFORM?: string;
+  }
+}
 
 const KeymapModal = () => {
   const { t } = useTranslation()
