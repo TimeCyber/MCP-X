@@ -67,7 +67,7 @@ export const updateConfigWithProviderAtom = atom(
     const { provider, data } = params
     const config = get(configAtom)
     config.configs[provider] = data
-    set(configAtom, {...config})
+    set(configAtom, { ...config })
   }
 )
 
@@ -94,7 +94,7 @@ export const enabledConfigsAtom = atom<ModelConfigMap>(
       .reduce((acc, key) => {
         const config = configDict[key]
         const verifiedConfig = allVerifiedList[config.apiKey || config.baseURL as string]
-        if(config.active
+        if (config.active
           && config.model
           && (!verifiedConfig || !verifiedConfig[config.model as string] || verifiedConfig[config.model as string].success || verifiedConfig[config.model as string] === "ignore")
         ) {
@@ -106,7 +106,7 @@ export const enabledConfigsAtom = atom<ModelConfigMap>(
   }
 )
 
-export const enabledModelsIdsAtom = atom<{key: string, name: string, provider: string}[]>(
+export const enabledModelsIdsAtom = atom<{ key: string, name: string, provider: string }[]>(
   (get) => {
     const enabledConfigs = get(enabledConfigsAtom)
     return Object.keys(enabledConfigs).map((key) => ({
@@ -149,10 +149,10 @@ export const currentModelSupportToolsAtom = atom<boolean>(
     // Can only check for tool support when the model is verified,
     // if the model is not verified, consider it as support tools
     return !verifiedConfig
-            || !activeConfig
-            || !verifiedConfig[activeConfig.model as string]
-            || verifiedConfig[activeConfig.model as string].supportTools
-            || verifiedConfig[activeConfig.model as string] === "ignore"
+      || !activeConfig
+      || !verifiedConfig[activeConfig.model as string]
+      || verifiedConfig[activeConfig.model as string].supportTools
+      || verifiedConfig[activeConfig.model as string] === "ignore"
   }
 )
 
@@ -180,12 +180,12 @@ export const saveFirstConfigAtom = atom(
     const { data: config, provider } = params
     const modelProvider = transformModelProvider(provider)
     config.active = true
-    const configuration: any = {...config} as Partial<Pick<ModelConfig, "configuration">> & Omit<ModelConfig, "configuration">
+    const configuration: any = { ...config } as Partial<Pick<ModelConfig, "configuration">> & Omit<ModelConfig, "configuration">
 
     if (config.modelProvider === "bedrock") {
       config.apiKey = (config as any).accessKeyId || (config as any).credentials.accessKeyId
       if (!((config as any).credentials)) {
-        ;(config as any).credentials = {
+        ; (config as any).credentials = {
           accessKeyId: (config as any).accessKeyId,
           secretAccessKey: (config as any).secretAccessKey,
           sessionToken: (config as any).sessionToken,
@@ -290,7 +290,7 @@ export const writeRawConfigAtom = atom(
 )
 
 export async function prepareModelConfig(config: InterfaceModelConfig, provider: InterfaceProvider): Promise<InterfaceModelConfig> {
-  const _config = {...config}
+  const _config = { ...config }
 
   // 获取代理设置
   let proxyType = "none"
@@ -305,6 +305,11 @@ export async function prepareModelConfig(config: InterfaceModelConfig, provider:
 
   if ((proxyType === "custom" || proxyType === "system") && provider === "openai" && !_config.baseURL) {
     (_config as any).baseURL = "https://openai.mcp-x.com/v1";
+  }
+
+
+  if ((proxyType === "custom" || proxyType === "system") && provider === "anthropic" && !_config.baseURL) {
+    (_config as any).baseURL = "https://anthropic.mcp-x.com";
   }
 
   if ((proxyType === "custom" || proxyType === "system") && provider === "google_genai" && !_config.baseURL) {
@@ -334,22 +339,22 @@ export async function prepareModelConfig(config: InterfaceModelConfig, provider:
 
 export async function verifyModelWithConfig(config: InterfaceModelConfig, signal?: AbortSignal) {
   const modelProvider = transformModelProvider(config.modelProvider)
-  const configuration = {...config} as Partial<Pick<ModelConfig, "configuration">> & Omit<ModelConfig, "configuration">
+  const configuration = { ...config } as Partial<Pick<ModelConfig, "configuration">> & Omit<ModelConfig, "configuration">
   delete configuration.configuration
 
   const _formData = await prepareModelConfig(config, config.modelProvider)
 
-    // if (config.modelProvider === "openai") {
-    //   configuration.baseURL = "https://openai.mcp-x.com/v1";
-    // } else if (config.modelProvider === "google_genai") {
-    //   configuration.baseURL = "https://googleapi.mcp-x.com";
-    //   configuration.model = "gemini-2.0-flash";
-    // }
+  // if (config.modelProvider === "openai") {
+  //   configuration.baseURL = "https://openai.mcp-x.com/v1";
+  // } else if (config.modelProvider === "google_genai") {
+  //   configuration.baseURL = "https://googleapi.mcp-x.com";
+  //   configuration.model = "gemini-2.0-flash";
+  // }
 
   if (modelProvider === "bedrock") {
     _formData.apiKey = (_formData as any).accessKeyId || (_formData as any).credentials.accessKeyId
     if (!((_formData as any).credentials)) {
-      ;(_formData as any).credentials = {
+      ; (_formData as any).credentials = {
         accessKeyId: (_formData as any).accessKeyId,
         secretAccessKey: (_formData as any).secretAccessKey,
         sessionToken: (_formData as any).sessionToken,
@@ -386,10 +391,10 @@ export const writeEmptyConfigAtom = atom(
     await fetchWithProxy("/api/config/model/replaceAll", {
       method: "POST",
       headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(config),
-      }
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(config),
+    }
     )
 
     set(configAtom, config)
@@ -397,7 +402,7 @@ export const writeEmptyConfigAtom = atom(
 )
 
 function cleanUpModelConfig(config: any) {
-  const _config = {...config}
+  const _config = { ...config }
   delete _config.configuration.active
   delete _config.configuration.checked
   delete _config.configuration.modelProvider

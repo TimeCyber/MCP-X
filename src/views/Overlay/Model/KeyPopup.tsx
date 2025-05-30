@@ -47,7 +47,7 @@ const KeyPopup = ({
   const [provider, setProvider] = useState<InterfaceProvider>(PROVIDERS[0])
   const [fields, setFields] = useState<Record<string, FieldDefinition>>(defaultInterface[provider])
 
-  const [formData, setFormData] = useState<InterfaceModelConfig>({active: true} as InterfaceModelConfig)
+  const [formData, setFormData] = useState<InterfaceModelConfig>({ active: true } as InterfaceModelConfig)
   const [errors, setErrors] = useState<Record<string, string>>({})
   const [customModelId, setCustomModelId] = useState<string>("")
   const [verifyError, setVerifyError] = useState<string>("")
@@ -74,7 +74,7 @@ const KeyPopup = ({
   const handleProviderChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const newProvider = e.target.value as InterfaceProvider
     setProvider(newProvider)
-    setFormData({active: true} as InterfaceModelConfig)
+    setFormData({ active: true } as InterfaceModelConfig)
     setFields(defaultInterface[newProvider])
     setErrors({})
     setVerifyError("")
@@ -92,7 +92,7 @@ const KeyPopup = ({
       }
     })
 
-    if(fields["customModelId"]?.required && !customModelId) {
+    if (fields["customModelId"]?.required && !customModelId) {
       newErrors["customModelId"] = t("setup.required")
     }
 
@@ -107,7 +107,7 @@ const KeyPopup = ({
     try {
       if (data.success) {
         onSuccess(customModelId)
-      }else{
+      } else {
         // 检查错误信息是否包含“费用”、“余额”、“quota”等
         const msg = (data.connectingResult || '').toString();
         if (/429|quota|费用|余额|insufficient/i.test(msg)) {
@@ -156,14 +156,18 @@ const KeyPopup = ({
     if ((proxyType === "custom" || proxyType === "system") && provider === "openai" && !__formData.baseURL) {
       __formData.baseURL = "https://openai.mcp-x.com/v1";
     }
-  
+
+    if ((proxyType === "custom" || proxyType === "system") && provider === "anthropic" && !__formData.baseURL) {
+      __formData.baseURL = "https://anthropic.mcp-x.com";
+    }
+
     if ((proxyType === "custom" || proxyType === "system") && provider === "google_genai" && !__formData.baseURL) {
       __formData.baseURL = "https://googleapi.mcp-x.com";
       __formData.model = "gemini-2.0-flash";
     }
 
     let existingIndex = -1
-    if(multiModelConfigList && multiModelConfigList.length > 0){
+    if (multiModelConfigList && multiModelConfigList.length > 0) {
       if (__formData.baseURL) {
         if (__formData.apiKey) {
           existingIndex = multiModelConfigList.findIndex(config =>
@@ -182,7 +186,7 @@ const KeyPopup = ({
       }
     }
 
-    if(existingIndex !== -1){
+    if (existingIndex !== -1) {
       setCurrentIndex(existingIndex)
       onSuccess()
       return
@@ -203,12 +207,12 @@ const KeyPopup = ({
       isVerifying.current = true
 
       //if custom model id is required, still need to check if the key is valid
-      if(!customModelId || fields["customModelId"]?.required) {
+      if (!customModelId || fields["customModelId"]?.required) {
         const listOptions = await fetchListOptions(multiModelConfig, fields)
 
         //if custom model id is required, it doesn't need to check if listOptions is empty
         //because fetchListOptions in pre step will throw error if the key is invalid
-        if (!listOptions?.length && !fields["customModelId"]?.required){
+        if (!listOptions?.length && !fields["customModelId"]?.required) {
           const newErrors: Record<string, string> = {}
           newErrors["apiKey"] = t("models.apiKeyError")
           setErrors(newErrors)
@@ -216,7 +220,7 @@ const KeyPopup = ({
         }
       }
 
-      if(customModelId) {
+      if (customModelId) {
         // save custom model list to local storage
         const customModelList = localStorage.getItem("customModelList")
         const allCustomModelList = customModelList ? JSON.parse(customModelList) : {}
@@ -240,7 +244,7 @@ const KeyPopup = ({
   }
 
   const handleClose = () => {
-    if(isVerifying.current){
+    if (isVerifying.current) {
       showToast({
         message: t("models.verifyingAbort"),
         type: "error"
@@ -262,7 +266,7 @@ const KeyPopup = ({
     // 检查是否已经记住了用户的选择
     const savedChoices = localStorage.getItem(API_CONFIRM_KEY)
     const choices = savedChoices ? JSON.parse(savedChoices) : {}
-    
+
     // 如果用户已经做出选择，则直接按照选择执行
     if (choices[url] === true) {
       handleChange('baseURL', baseUrl)
@@ -273,23 +277,23 @@ const KeyPopup = ({
       handleChange('baseURL', baseUrl)
       return
     }
-    
+
     // 显示确认对话框
     setCurrentModelUrl(url)
     setCurrentModelBaseUrl(baseUrl)
     setShowConfirmDialog(true)
   }
-  
+
   // 处理用户的确认结果
   const handleConfirmResult = (confirmed: boolean, remember: boolean) => {
     // 填入baseURL
     handleChange('baseURL', currentModelBaseUrl)
-    
+
     // 如果确认访问，则打开网站
     if (confirmed) {
       openModelWebsite(currentModelUrl)
     }
-    
+
     // 如果用户选择记住选择，保存到localStorage
     if (remember) {
       const savedChoices = localStorage.getItem(API_CONFIRM_KEY)
@@ -297,7 +301,7 @@ const KeyPopup = ({
       choices[currentModelUrl] = confirmed
       localStorage.setItem(API_CONFIRM_KEY, JSON.stringify(choices))
     }
-    
+
     // 关闭确认对话框
     setShowConfirmDialog(false)
   }
@@ -311,7 +315,7 @@ const KeyPopup = ({
   // 处理申请API Key按钮点击
   const handleRequestApiKey = () => {
     let url = getApiRequestUrl(provider);
-    
+
     // 对于openai_compatible模式，弹出对话框选择不同的服务商
     if (provider === 'openai_compatible') {
       const choices = {
@@ -320,7 +324,7 @@ const KeyPopup = ({
         'zhipu': 'https://open.bigmodel.cn',
         'moonshot': 'https://platform.moonshot.cn/console/api-keys'
       };
-      
+
       // 检查baseURL，如果已填写，根据baseURL智能选择对应的服务商
       const baseUrl = formData.baseURL as string;
       if (baseUrl) {
@@ -333,7 +337,7 @@ const KeyPopup = ({
         url = choices.deepseek;
       }
     }
-    
+
     if (url) {
       openModelWebsite(url);
     }
@@ -368,27 +372,27 @@ const KeyPopup = ({
           </select>
           {provider === 'openai_compatible' && (
             <div className="quick-url-buttons">
-              <button 
-                type="button" 
-                className="quick-url-btn" 
+              <button
+                type="button"
+                className="quick-url-btn"
                 onClick={() => {
                   confirmOpenModelWebsite('https://api.deepseek.com/v1', 'https://platform.deepseek.com/api_keys')
                 }}
               >
                 深度求索 Deepseek
               </button>
-              <button 
-                type="button" 
-                className="quick-url-btn" 
+              <button
+                type="button"
+                className="quick-url-btn"
                 onClick={() => {
                   confirmOpenModelWebsite('https://dashscope.aliyuncs.com/compatible-mode/v1', 'https://bailian.console.aliyun.com/?tab=model#/api-key')
                 }}
               >
                 通义千问 Qwen
               </button>
-              <button 
-                type="button" 
-                className="quick-url-btn" 
+              <button
+                type="button"
+                className="quick-url-btn"
                 onClick={() => {
                   confirmOpenModelWebsite('https://api.moonshot.cn/v1', 'https://platform.moonshot.cn/console/api-keys')
                 }}
@@ -411,7 +415,7 @@ const KeyPopup = ({
                       ></CheckBox>
                       {`${field.label}${t("models.optional")}`}
                     </div>
-                  : field.label}
+                    : field.label}
                   {field.required && <span className="required">*</span>}
                 </>
                 <div className="models-key-field-description">{field.description}</div>
@@ -428,14 +432,14 @@ const KeyPopup = ({
                     />
                     {/* 在API Key输入框旁边添加申请链接按钮 */}
                     {key === 'apiKey' && (
-                      <button 
+                      <button
                         type="button"
                         className="api-request-btn"
                         onClick={handleRequestApiKey}
                         title={t('models.requestApiKey')}
                       >
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                          <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
+                          <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z" />
                         </svg>
                       </button>
                     )}
@@ -452,7 +456,7 @@ const KeyPopup = ({
               {`Custom Model ID`}
               {fields["customModelId"]?.required ?
                 <span className="required">*</span>
-              : t("models.optional")}
+                : t("models.optional")}
             </>
           </label>
           <input
@@ -469,16 +473,16 @@ const KeyPopup = ({
             <div onClick={() => handleCopiedError(verifyError)} className="error-message">
               {verifyError}
               <svg xmlns="http://www.w3.org/2000/svg" width="18px" height="18px" viewBox="0 0 22 22" fill="transparent">
-                <path d="M13 20H2V6H10.2498L13 8.80032V20Z" fill="transparent" stroke="currentColor" strokeWidth="2" strokeMiterlimit="10" strokeLinejoin="round"/>
-                <path d="M13 9H10V6L13 9Z" fill="currentColor" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                <path d="M9 3.5V2H17.2498L20 4.80032V16H16" fill="transparent" stroke="currentColor" strokeWidth="2" strokeMiterlimit="10" strokeLinejoin="round"/>
-                <path d="M20 5H17V2L20 5Z" fill="currentColor" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M13 20H2V6H10.2498L13 8.80032V20Z" fill="transparent" stroke="currentColor" strokeWidth="2" strokeMiterlimit="10" strokeLinejoin="round" />
+                <path d="M13 9H10V6L13 9Z" fill="currentColor" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M9 3.5V2H17.2498L20 4.80032V16H16" fill="transparent" stroke="currentColor" strokeWidth="2" strokeMiterlimit="10" strokeLinejoin="round" />
+                <path d="M20 5H17V2L20 5Z" fill="currentColor" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </div>
           </Tooltip>
         )}
       </div>
-      
+
       {/* API申请确认对话框 */}
       {showConfirmDialog && (
         <div className="api-confirm-dialog">
@@ -486,7 +490,7 @@ const KeyPopup = ({
           <div className="api-confirm-content">
             <div className="api-confirm-title">{t('models.apiConfirmTitle')}</div>
             <div className="api-confirm-message">{t('models.apiConfirmMessage')}</div>
-            
+
             <div className="api-confirm-remember">
               <CheckBox
                 id="remember-choice"
@@ -495,16 +499,16 @@ const KeyPopup = ({
               />
               <label htmlFor="remember-choice">{t('models.rememberChoice')}</label>
             </div>
-            
+
             <div className="api-confirm-buttons">
-              <button 
-                className="api-confirm-cancel" 
+              <button
+                className="api-confirm-cancel"
                 onClick={() => handleConfirmResult(false, rememberChoice)}
               >
                 {t('common.cancel')}
               </button>
-              <button 
-                className="api-confirm-ok" 
+              <button
+                className="api-confirm-ok"
                 onClick={() => handleConfirmResult(true, rememberChoice)}
               >
                 {t('common.confirm')}
