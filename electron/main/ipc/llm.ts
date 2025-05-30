@@ -60,11 +60,49 @@ export function ipcLlmHandler(win: BrowserWindow) {
 
 
   ipcMain.handle("llm:anthropicModelList", async (_, apiKey: string, baseURL: string) => {
+    console.log("开始执行anthropicModelList函数, apiKey长度:", apiKey?.length || 0)
     try {
-      const client = new Anthropic({ apiKey, baseURL })
+      // 获取系统代理信息
+      console.log("尝试获取系统代理信息")
+      let proxyUrl = null
+      try {
+        const proxyInfo = await session.defaultSession.resolveProxy("https://api.anthropic.com")
+        console.log("原始代理信息:", proxyInfo)
+        if (proxyInfo.startsWith("PROXY ")) {
+          proxyUrl = "http://" + proxyInfo.substring(6).trim()
+          console.log("使用代理访问Anthropic API:", proxyUrl)
+        } else {
+          console.log("无代理或直接连接:", proxyInfo)
+        }
+      } catch (err) {
+        console.error("获取代理设置失败:", err)
+      }
+
+      console.log("准备创建Anthropic客户端, 代理状态:", proxyUrl ? "使用代理" : "不使用代理")
+      // 创建带有代理配置的客户端配置
+      const configuration: any = {
+        apiKey,
+        baseURL
+      }
+      
+      if (proxyUrl) {
+        console.log("尝试配置代理到Anthropic客户端")
+        try {
+          configuration.httpAgent = new HttpsProxyAgent(proxyUrl)
+          console.log("成功创建代理代理")
+        } catch (err) {
+          console.error("创建代理代理失败:", err)
+        }
+      }
+      
+      console.log("创建Anthropic客户端")
+      const client = new Anthropic(configuration)
+      console.log("调用Anthropic API获取模型列表")
       const models = await client.models.list()
+      console.log("成功获取模型列表, 数量:", models.data.length)
       return { results: models.data.map((model) => model.id), error: null }
     } catch (error) {
+      console.error("Anthropic API请求失败，完整错误:", error)
       return { results: [], error: (error as Error).message }
     }
   })
