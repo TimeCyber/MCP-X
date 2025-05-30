@@ -1,5 +1,7 @@
 # MCP-X Agent 🤿 🤖
 
+[English](README.md) | [中文](README_zh.md)
+
 ![GitHub stars](https://img.shields.io/github/stars/TimeCyber/MCP-X?style=social)
 ![GitHub forks](https://img.shields.io/github/forks/TimeCyber/MCP-X?style=social)
 ![GitHub watchers](https://img.shields.io/github/watchers/TimeCyber/MCP-X?style=social)
@@ -103,6 +105,6 @@ Linux 用户：🐧
 
 ## 联系我们 🌐
 - 💬 官方网站 [MCP-X](https://mcp-x.com/)
-- 🐦 关注我们的 [小红书]()
+- 🐦 关注我们的 [小红书](https://www.xiaohongshu.com/user/profile/6833b89f000000000e0137ca)
 - ⭐ GitHub 点 Star
 - 🐛 在 [Issue Tracker](https://github.com/TimeCyber/MCP-X/issues) 提交问题 
