@@ -1,4 +1,4 @@
-import { AIMessage, HumanMessage, SystemMessage } from "@langchain/core/messages";
+import { AIMessage, HumanMessage, SystemMessage, MessageContentComplex } from "@langchain/core/messages";
 import { randomUUID } from "crypto";
 import express from "express";
 import { initChatModel } from "langchain/chat_models/universal";
@@ -33,6 +33,108 @@ interface ChatCompletionResponse {
     completion_tokens: number;
     total_tokens: number;
   };
+}
+
+// 多模态内容类型定义
+interface TextContent {
+  type: "text";
+  text: string;
+}
+
+interface ImageContent {
+  type: "image_url";
+  image_url: {
+    url: string;
+    detail?: string;
+  };
+}
+
+type MultiModalContent = TextContent | ImageContent;
+
+// 验证消息格式的函数
+function validateMessage(msg: any): boolean {
+  if (!msg.role || typeof msg.role !== "string") {
+    return false;
+  }
+  
+  if (!msg.content) {
+    return false;
+  }
+  
+  // 支持字符串和数组两种格式
+  if (typeof msg.content === "string") {
+    return true;
+  }
+  
+  if (Array.isArray(msg.content)) {
+    // 验证多模态内容数组
+    return msg.content.every((item: any) => {
+      if (item.type === "text") {
+        return typeof item.text === "string";
+      } else if (item.type === "image_url") {
+        return item.image_url && typeof item.image_url.url === "string";
+      }
+      return false;
+    });
+  }
+  
+  return false;
+}
+
+// 将多模态内容转换为内部格式
+function parseMultiModalContent(content: string | MultiModalContent[]): { text: string; images: string[] } {
+  if (typeof content === "string") {
+    return { text: content, images: [] };
+  }
+  
+  let text = "";
+  const images: string[] = [];
+  
+  for (const item of content) {
+    if (item.type === "text") {
+      text += item.text;
+    } else if (item.type === "image_url") {
+      images.push(item.image_url.url);
+    }
+  }
+  
+  return { text: text.trim(), images };
+}
+
+// 创建多模态消息对象
+function createMultiModalMessage(role: string, content: string | MultiModalContent[]) {
+  if (typeof content === "string") {
+    // 简单文本消息
+    if (role === "system") {
+      return new SystemMessage(content);
+    } else if (role === "assistant") {
+      return new AIMessage(content);
+    } else {
+      return new HumanMessage(content);
+    }
+  } else {
+    // 多模态内容
+    const messageContent: MessageContentComplex[] = content.map(item => {
+      if (item.type === "text") {
+        return { type: "text", text: item.text };
+      } else if (item.type === "image_url") {
+        return {
+          type: "image_url",
+          image_url: {
+            url: item.image_url.url,
+            detail: item.image_url.detail || "auto"
+          }
+        };
+      }
+      return { type: "text", text: "" };
+    });
+    
+    if (role === "assistant") {
+      return new AIMessage({ content: messageContent });
+    } else {
+      return new HumanMessage({ content: messageContent });
+    }
+  }
 }
 
 export function compatibleRouter() {
@@ -73,7 +175,7 @@ export function compatibleRouter() {
     }
   });
 
-  // compatible chat
+  // 兼容聊天完成 API - 现在支持多模态内容
   //@ts-ignore
   router.post("/chat/completions", async (req, res) => {
     try {
@@ -99,19 +201,18 @@ export function compatibleRouter() {
         });
       }
 
-      const isValidMessage = messages.every(
-        (msg) => msg.role && typeof msg.role === "string" && msg.content && typeof msg.content === "string"
-      );
+      // 更新的消息验证逻辑 - 支持多模态内容
+      const isValidMessage = messages.every(validateMessage);
 
       if (!isValidMessage) {
         return res.status(400).json({
           success: false,
           message:
-            "Invalid message format. Each message must have 'role' and 'content' fields as string. Image URLs and other non-text content are not supported now.",
+            "Invalid message format. Each message must have 'role' and 'content' fields. Content can be a string or an array of text/image_url objects.",
         });
       }
 
-      // check model settings
+      // 检查模型设置
       const modelSettings = modelManager.currentModelSettings;
       if (!modelSettings) {
         return res.status(500).json({
@@ -120,20 +221,16 @@ export function compatibleRouter() {
         });
       }
 
-      // create history
+      // 创建历史记录 - 支持多模态内容
       let hasSystemMessage = false;
       let history = messages.slice(0, -1).map((msg) => {
         if (msg.role === "system") {
           hasSystemMessage = true;
-          return new SystemMessage(msg.content);
-        } else if (msg.role === "assistant") {
-          return new AIMessage(msg.content);
-        } else {
-          return new HumanMessage(msg.content);
         }
+        return createMultiModalMessage(msg.role, msg.content);
       });
 
-      // add system prompt if not exist, make sure LLM can run
+      // 如果没有系统消息，添加默认系统提示
       if (!hasSystemMessage) {
         const systemPrompt = promptManager.getPrompt("system");
         if (systemPrompt) {
@@ -141,7 +238,15 @@ export function compatibleRouter() {
         }
       }
 
-      const input = messages[messages.length - 1]?.content;
+      // 处理最后一条消息（用户输入）
+      const lastMessage = messages[messages.length - 1];
+      const { text, images } = parseMultiModalContent(lastMessage.content);
+      
+      // 构建输入对象 - 支持图片
+      const input = images.length > 0 ? { text, images } : text;
+      
+      logger.debug(`[chat/completions] Input processed: text="${text}", images=${images.length}`);
+
       const availableTools = tool_choice === "auto" ? mcpServerManager.getAvailableTools() : [];
 
       const modelName = modelSettings.model;
@@ -153,14 +258,14 @@ export function compatibleRouter() {
 
       const chatId = randomUUID();
 
-      // set stream response
+      // 设置流式响应
       if (stream) {
         res.setHeader("Content-Type", "text/event-stream");
         res.setHeader("Cache-Control", "no-cache");
         res.setHeader("Connection", "keep-alive");
       }
 
-      // set abort handler
+      // 设置中止处理器
       const handleAbort = () => {
         const controller = abortControllerMap.get(chatId);
         if (controller) {
@@ -173,7 +278,7 @@ export function compatibleRouter() {
       req.on("aborted", handleAbort);
       res.on("close", handleAbort);
 
-      logger.debug(`[${chatId}][chat/completions] Start chat`);
+      logger.debug(`[${chatId}][chat/completions] Start chat with ${images.length > 0 ? 'multimodal' : 'text'} input`);
 
       try {
         const { result, tokenUsage } = await handleProcessQuery(
@@ -211,7 +316,7 @@ export function compatibleRouter() {
         );
 
         if (stream) {
-          // send end response
+          // 发送结束响应
           const endResponse: ChatCompletionResponse = {
             id: `chatcmpl-${chatId}`,
             object: "chat.completion.chunk",
@@ -231,7 +336,7 @@ export function compatibleRouter() {
           res.write(`data: ${JSON.stringify(endResponse)}\n\n`);
           res.end();
         } else {
-          // send full response
+          // 发送完整响应
           res.json({
             id: `chatcmpl-${chatId}`,
             object: "chat.completion",
@@ -264,6 +369,7 @@ export function compatibleRouter() {
         res.off("close", handleAbort);
       }
     } catch (error: any) {
+      logger.error(`[chat/completions] Error: ${error.message}`);
       res.status(500).json({
         success: false,
         message: error.message,
