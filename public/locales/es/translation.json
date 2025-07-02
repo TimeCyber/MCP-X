@@ -35,7 +35,9 @@
     "save": "Guardar",
     "toolCalls": "🛠 Resultado de la llamada a la herramienta {{name}}",
     "unsupportTools": "{{model}} no admite llamadas a herramientas",
-    "dragFiles": "Arrastra archivos aquí para agregar a la conversación"
+    "dragFiles": "Arrastra archivos aquí para agregar a la conversación",
+    "code": "Código",
+    "preview": "Vista previa"
   },
   "welcome": {
     "title": "Bienvenido a MCP-X",

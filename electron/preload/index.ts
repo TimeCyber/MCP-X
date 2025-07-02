@@ -30,6 +30,7 @@ contextBridge.exposeInMainWorld("ipcRenderer", {
   setMinimalToTray: (enable: boolean) => ipcRenderer.invoke("system:setMinimalToTray", enable),
   getProxySettings: () => ipcRenderer.invoke("system:getProxySettings"),
   setProxySettings: (proxySettings: any) => ipcRenderer.invoke("system:setProxySettings", proxySettings),
+  openFilePath: (p: string) => ipcRenderer.invoke("system:openFilePath", p),
 
   // llm
   openaiModelList: (apiKey: string) => ipcRenderer.invoke("llm:openaiModelList", apiKey),

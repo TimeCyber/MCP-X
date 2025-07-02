@@ -343,14 +343,8 @@ export async function verifyModelWithConfig(config: InterfaceModelConfig, signal
   delete configuration.configuration
 
   const _formData = await prepareModelConfig(config, config.modelProvider)
-
-  // if (config.modelProvider === "openai") {
-  //   configuration.baseURL = "https://openai.mcp-x.com/v1";
-  // } else if (config.modelProvider === "google_genai") {
-  //   configuration.baseURL = "https://googleapi.mcp-x.com";
-  //   configuration.model = "gemini-2.0-flash";
-  // }
-
+  
+  // bedrock 相关逻辑，必须保留
   if (modelProvider === "bedrock") {
     _formData.apiKey = (_formData as any).accessKeyId || (_formData as any).credentials.accessKeyId
     if (!((_formData as any).credentials)) {
@@ -362,6 +356,69 @@ export async function verifyModelWithConfig(config: InterfaceModelConfig, signal
     }
   }
 
+  // 判断是否为通义千问系列（只要 model 以 qwen 开头即可）
+  let enableThinking: boolean | undefined = undefined;
+  const modelName = (config.model || configuration.model || "").toLowerCase();
+  if (modelName.startsWith("qwen")) {
+    const isStream = (config as any).stream === true || (configuration as any).stream === true;
+    enableThinking = isStream ? true : false;
+  }
+
+  // 为不同厂商使用正确的 LangChain provider 类型
+  function getLangChainProvider(modelProvider: string): string {
+    // 根据模型提供商返回对应的 LangChain provider 名称
+    switch (modelProvider) {
+      case 'qwen':
+      case 'deepseek':
+      case 'moonshot':
+        // 这些国产厂商都使用 OpenAI 兼容接口
+        return "openai";
+      case 'openai':
+        return "openai";
+      case 'anthropic':
+        return "anthropic";
+      case 'azure_openai':
+        return "azure_openai";
+      case 'cohere':
+        return "cohere";
+      case 'google-vertexai':
+        return "google-vertexai";
+      case 'google-genai':
+        return "google-genai";
+      case 'ollama':
+        return "ollama";
+      case 'together':
+        return "together";
+      case 'fireworks':
+        return "fireworks";
+      case 'mistralai':
+        return "mistralai";
+      case 'groq':
+        return "groq";
+      case 'bedrock':
+        return "bedrock";
+      default:
+        // 默认使用 openai，因为大多数厂商都兼容 OpenAI 接口
+        return "openai";
+    }
+  }
+
+  const langchainProvider = getLangChainProvider(modelProvider);
+
+  // 构造请求体
+  const modelSettings: any = {
+    ..._formData,
+    modelProvider: langchainProvider,
+    configuration: {
+      ...configuration,
+      modelProvider: langchainProvider,
+    },
+  };
+  if (enableThinking !== undefined) {
+    modelSettings.enable_thinking = enableThinking;
+    modelSettings.configuration.enable_thinking = enableThinking;
+  }
+
   return await fetchWithProxy("/api/modelVerify", {
     signal,
     method: "POST",
@@ -369,12 +426,8 @@ export async function verifyModelWithConfig(config: InterfaceModelConfig, signal
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      provider: modelProvider,
-      modelSettings: {
-        ..._formData,
-        modelProvider,
-        configuration,
-      },
+      provider: langchainProvider,
+      modelSettings,
     }),
   }).then(res => res.json())
 }

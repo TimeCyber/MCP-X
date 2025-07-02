@@ -990,3 +990,12 @@
   margin: 0.5em 0;
   color: var(--text-weak);
 }
+
+.file-link {
+  color: #ffffff;
+  text-decoration: underline;
+  &:hover,
+  &:visited {
+    color: #ffffff;
+  }
+}

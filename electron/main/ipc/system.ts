@@ -62,4 +62,8 @@ export function ipcSystemHandler(win: BrowserWindow) {
     setProxy(proxySettings)
     return proxySettings
   })
+
+  ipcMain.handle("system:openFilePath", (event, filePath: string) => {
+    return shell.openPath(filePath)
+  })
 }

@@ -97,6 +97,14 @@ export default function ModelsProvider({
   }, [multiModelConfigList])
 
   const fetchListOptions = async (multiModelConfig: MultiModelConfig, fields: Record<string, FieldDefinition>) => {
+    console.log("fetchListOptions called with:", { multiModelConfig, fields });
+    
+    // 确保 multiModelConfig 和 fields 不为空
+    if (!multiModelConfig || !fields) {
+      console.error("fetchListOptions: multiModelConfig or fields is null/undefined");
+      throw new Error("Invalid configuration");
+    }
+    
     const localListOptions = localStorage.getItem("modelVerify")
     const allVerifiedList = localListOptions ? JSON.parse(localListOptions) : {}
     const verifyList = allVerifiedList[multiModelConfig.apiKey || multiModelConfig.baseURL]
@@ -111,7 +119,7 @@ export default function ModelsProvider({
         _customModelList.forEach((option: string) => {
           newListOptions.push({
             name: option,
-            checked: multiModelConfig.models.includes(option),
+            checked: (multiModelConfig.models || []).includes(option),
             verifyStatus:  getVerifyStatus(verifyList?.[option]) ?? "unVerified",
             isCustom: true
           })
@@ -124,24 +132,32 @@ export default function ModelsProvider({
       let options: string[] = []
       for (const [key, field] of Object.entries(fields)) {
         if (field.type === "list" && field.listCallback && field.listDependencies) {
-          const deps = field.listDependencies.reduce((acc, dep) => ({
-            ...acc,
-            [dep]: multiModelConfig[dep as keyof MultiModelConfig] || (multiModelConfig as any).credentials?.[dep] || ""
-          }), {})
-
+          const deps = field.listDependencies.reduce((acc, dep) => {
+            const value = multiModelConfig[dep as keyof MultiModelConfig] || 
+                         (multiModelConfig as any).credentials?.[dep] || 
+                         ""
+            return {
+              ...acc,
+              [dep]: value
+            }
+          }, {})
+          
+          console.log("Calling listCallback with deps:", deps);
           options = await field.listCallback!(deps)
+          console.log("listCallback returned:", options);
         }
       }
 
       options.forEach((option: string) => {
         newListOptions.push({
           name: option,
-          checked: multiModelConfig.models.includes(option),
+          checked: (multiModelConfig.models || []).includes(option),
           verifyStatus: getVerifyStatus(verifyList?.[option]) ?? "unVerified",
           isCustom: false
         })
       })
     } catch (error) {
+      console.error("fetchListOptions error:", error);
       // if listCallback failed and custom model list is empty, throw error
       if(!customModelListText) {
         throw error
@@ -152,6 +168,8 @@ export default function ModelsProvider({
         throw error
       }
     }
+    
+    console.log("fetchListOptions returning:", newListOptions);
     return newListOptions
   }
 

@@ -10,10 +10,12 @@ import {
 import { Client } from "@modelcontextprotocol/sdk/client/index.js";
 import { ModelManager } from "./models/index.js";
 import { imageToBase64 } from "./utils/image.js";
+import { parseFileContent } from "./utils/fileContentParser.js";
 import logger from "./utils/logger.js";
 import { iQueryInput, iStreamMessage, ModelSettings } from "./utils/types.js";
 import { openAIConvertToGeminiTools } from "./utils/toolHandler.js";
 import { ToolDefinition } from "@langchain/core/language_models/base";
+import path from "path";
 
 // Map to store abort controllers
 export const abortControllerMap = new Map<string, AbortController>();
@@ -110,9 +112,11 @@ export async function handleProcessQuery(
         if (input.documents && input.documents.length > 0) {
           for (const documentPath of input.documents) {
             const localPath = `${documentPath}`;
+            // 解析文件内容
+            const fileText = await parseFileContent(localPath);
             content.push({
               type: "text",
-              text: `![Document](${localPath})`,
+              text: `### 文件 ${path.basename(localPath)} 内容摘要：\n${fileText}`,
             });
           }
         }

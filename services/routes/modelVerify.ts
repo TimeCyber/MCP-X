@@ -94,11 +94,16 @@ class ModelVerificationService {
     const modelName = settings.model;
     const baseUrl = settings.configuration?.baseURL || settings.baseURL || "";
 
-    const model = await initChatModel(modelName, {
+    // 拍平 configuration 参数到顶层，避免 enable_thinking 丢失
+    const flatSettings = {
       ...settings,
+      ...(settings.configuration || {}),
       baseUrl,
       max_tokens: 100,
-    });
+    };
+    delete flatSettings.configuration;
+
+    const model = await initChatModel(modelName, flatSettings);
 
     const modelResult: ModelVerificationResult = {
       modelName,

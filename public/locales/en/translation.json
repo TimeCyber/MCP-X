@@ -30,7 +30,9 @@
     "save": "Save",
     "toolCalls": "🛠 {{name}} Tool Call Result",
     "unsupportTools": "{{model}} does not support Tool Calls",
-    "dragFiles": "Drop files here to add to chat"
+    "dragFiles": "Drop files here to add to chat",
+    "code": "Code",
+    "preview": "Preview"
   },
   "welcome": {
     "title": "Welcome to MCP-X",

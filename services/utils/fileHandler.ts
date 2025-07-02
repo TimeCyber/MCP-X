@@ -9,7 +9,13 @@ const PROJECT_ROOT = envPath.data
 const OFFLINE_MODE = true
 
 export const SUPPORTED_IMAGE_EXTENSIONS = [".jpg", ".jpeg", ".png", ".gif", ".webp"];
-export const SUPPORTED_DOCUMENT_EXTENSIONS = [".pdf", ".docx", ".txt", ".rtf", ".odt", ".html", ".csv", ".epub"];
+export const SUPPORTED_DOCUMENT_EXTENSIONS = [
+  ".pdf", ".doc", ".docx", // Word
+  ".txt", ".rtf", ".odt", ".html",
+  ".csv", // CSV
+  ".xls", ".xlsx", ".xlsm", ".xltx", ".xlsb", // Excel 家族
+  ".epub"
+].map(e => e.toLowerCase());
 
 export function multerDestination(
   req: Request,
@@ -56,7 +62,7 @@ export async function handleUploadFiles({ files, filepaths }: { files: Express.M
       file.filename = newFileName; // Update filename
     }
 
-    const ext = path.extname(file.filename).toLowerCase();
+    const ext = path.extname(file.filename).toLowerCase().trim();
     if (SUPPORTED_IMAGE_EXTENSIONS.includes(ext)) {
       // local mode support custom PROJECT_ROOT
       if (OFFLINE_MODE) images.push(path.join(PROJECT_ROOT, "uploads", file.filename));
@@ -71,7 +77,7 @@ export async function handleUploadFiles({ files, filepaths }: { files: Express.M
   }
 
   for (const filepath of filepaths) {
-    const ext = path.extname(filepath).toLowerCase();
+    const ext = path.extname(filepath).toLowerCase().trim();
     if (SUPPORTED_IMAGE_EXTENSIONS.includes(ext)) {
       images.push(filepath);
     } else {//if (SUPPORTED_DOCUMENT_EXTENSIONS.includes(ext)) {

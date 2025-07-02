@@ -1,4 +1,3 @@
-
 import { useAtom } from "jotai"
 import React, { useEffect, useMemo, useRef, useState } from "react"
 import { useTranslation } from "react-i18next"
@@ -80,9 +79,18 @@ const ModelPopup = ({
     try {
       if(!multiModelConfig)
         return
+      
+      // 安全检查：确保 defaultInterface 中存在对应的 provider 定义
+      const fields = defaultInterface[multiModelConfig.name]
+      if (!fields) {
+        console.error(`No field definition found for provider: ${multiModelConfig.name}`);
+        console.log("Available providers:", Object.keys(defaultInterface));
+        throw new Error(`配置错误：未找到 ${multiModelConfig.name} 的字段定义`);
+      }
+      
       setListOptions([])
       setIsFetching(true)
-      let options = await fetchListOptions(multiModelConfig, defaultInterface[multiModelConfig.name])
+      let options = await fetchListOptions(multiModelConfig, fields)
       options = options.map(option => ({
         ...option,
         checked: _defaultModel ? option.name === _defaultModel : multiModelConfig.models.includes(option.name),

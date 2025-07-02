@@ -2,18 +2,21 @@ import { InterfaceModelConfig, InterfaceModelConfigMap, ModelConfig, ModelConfig
 import { InterfaceProvider, ModelProvider } from "../atoms/interfaceState"
 
 export const formatData = (data: InterfaceModelConfig|ModelConfig): MultiModelConfig => {
-  const { modelProvider, model, apiKey, baseURL, active, topP, temperature, ...extra } = convertConfigToInterfaceModel(data)
+  const convertedData = convertConfigToInterfaceModel(data)
+  const { modelProvider, model, apiKey, baseURL, active, topP, temperature, ...extra } = convertedData
+  
+  // 确保所有必需字段都有默认值
   return {
     ...extra,
     name: modelProvider,
-    apiKey,
-    baseURL,
+    apiKey: apiKey || "",
+    baseURL: baseURL || "",
     active: active ?? false,
     checked: false,
     models: model ? [model] : [],
     topP: topP ?? 0,
     temperature: temperature ?? 0,
-    model,
+    model: model || null,
   }
 }
 
@@ -65,7 +68,9 @@ export const compressData = (data: MultiModelConfig, index: number) => {
 
 export function transformModelProvider(provider: InterfaceProvider): ModelProvider {
   switch (provider) {
-    case "openai_compatible":
+    case "deepseek":
+    case "qwen":
+    case "moonshot":
       return "openai"
     case "google_genai":
       return "google-genai"
@@ -76,22 +81,13 @@ export function transformModelProvider(provider: InterfaceProvider): ModelProvid
 
 export function convertConfigToInterfaceModel(model: InterfaceModelConfig|ModelConfig): InterfaceModelConfig {
   switch (model.modelProvider) {
-    case "openai":
-      if (model.baseURL) {
-        return {
-          ...model,
-          modelProvider: "openai_compatible"
-        }
-      }
-
-      break
     case "google-genai":
       return {
         ...model,
         modelProvider: "google_genai"
       }
+    default:
+      return model as InterfaceModelConfig
   }
-
-  return model as InterfaceModelConfig
 }
 

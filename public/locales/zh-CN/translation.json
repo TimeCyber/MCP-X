@@ -35,7 +35,9 @@
     "save": "保存",
     "toolCalls": "🛠 调用 {{name}} 工具结果",
     "unsupportTools": "{{model}} 不支持Tool Calls",
-    "dragFiles": "拖放文件到此处以添加到对话"
+    "dragFiles": "拖放文件到此处以添加到对话",
+    "code": "代码",
+    "preview": "预览"
   },
   "welcome": {
     "title": "欢迎使用 MCP-X",
