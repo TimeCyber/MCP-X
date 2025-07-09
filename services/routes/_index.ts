@@ -1,4 +1,5 @@
 import express from "express";
+import { agentRouter } from "./agent.js";
 import { chatRouter } from "./chat.js";
 import { compatibleRouter } from "./compatible.js";
 import { configRouter } from "./config.js";
@@ -40,6 +41,7 @@ export function createRouter() {
   router.use("/api/config", configRouter());
   router.use("/api/modelVerify", modelVerifyRouter());
   router.use("/api/v1", compatibleRouter());
+  router.use("/api/agent", agentRouter());
 
   router.use("/api/chat", chatRouter());
 

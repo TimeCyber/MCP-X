@@ -173,7 +173,7 @@ export class WebServer {
         }
 
         try {
-          const { message, chatId, fingerprint, user_access_token } = req.body;
+          const { message, chatId, fingerprint, user_access_token, agentName } = req.body;
           if (getDatabaseMode() === DatabaseMode.API) {
             if (!fingerprint && !user_access_token) {
               return res.status(400).json({
@@ -195,7 +195,7 @@ export class WebServer {
           const onStream = this.setupSSE(res);
           const queryInput = await this.prepareQueryInput(message, files, req.body.filepaths);
 
-          await this.mcpClient.processQuery(chatId, queryInput, onStream, undefined, fingerprint, user_access_token);
+          await this.mcpClient.processQuery(chatId, queryInput, onStream, undefined, fingerprint, user_access_token, agentName);
 
           res.write("data: [DONE]\n\n");
           res.end();
@@ -251,7 +251,8 @@ export class WebServer {
             onStream,
             nextAIMessage?.messageId,
             fingerprint,
-            user_access_token
+            user_access_token,
+            undefined // edit模式不需要agentName
           );
 
           res.write("data: [DONE]\n\n");
@@ -281,7 +282,7 @@ export class WebServer {
       }
       try {
         const onStream = this.setupSSE(res);
-        await this.mcpClient.processQuery(chatId, "", onStream, messageId, fingerprint, user_access_token);
+        await this.mcpClient.processQuery(chatId, "", onStream, messageId, fingerprint, user_access_token, undefined);
         res.write("data: [DONE]\n\n");
         res.end();
       } catch (error) {

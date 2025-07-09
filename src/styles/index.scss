@@ -15,6 +15,11 @@
 @use "./components/Select";
 @use "./components/DropDown";
 @use "./components/Keymap";
+@use "./components/ModelSelect";
+@use "./components/AgentSelect";
+@use "./components/AgentStatusIndicator";
+@use "./components/AgentSidebar";
+@use "./components/AgentChatPanel";
 @use "./pages/Welcome";
 @use "./pages/Chat";
 @use "./pages/Setup";
@@ -22,6 +27,7 @@
 @use "./overlay/Tools";
 @use "./overlay/Model";
 @use "./overlay/System";
+@use "./components/SideNav";
 
 * {
   box-sizing: border-box;
@@ -59,6 +65,7 @@ body {
   display: flex;
   flex: 1;
   position: relative;
+  // 留空，由flex布局自动适配侧边栏宽度
 }
 
 .main-container {

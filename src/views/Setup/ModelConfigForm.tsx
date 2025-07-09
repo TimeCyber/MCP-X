@@ -99,10 +99,15 @@ const ModelConfigForm: React.FC<ModelConfigFormProps> = ({
     setIsVerified(false)
   }
 
+  // 判断是否为 OpenAI 兼容实现的提供商
+  const isOpenAICompatibleProvider = (p: InterfaceProvider) => (
+    p === "deepseek" || p === "qwen" || p === "moonshot"
+  )
+
   const verifyModel = async () => {
     try {
       setIsVerifying(true)
-      if (provider === "openai_compatible"||provider === "openai") {
+      if (isOpenAICompatibleProvider(provider) || provider === "openai") {
         formData.modelProvider = "openai"
       }
       
@@ -128,7 +133,7 @@ const ModelConfigForm: React.FC<ModelConfigFormProps> = ({
           })
         }
       } else {
-        // 检查是否是“无费用”错误
+        // 检查是否是"无费用"错误
         if (data.error && /429|quota|费用|余额|insufficient/i.test(data.error)) {
           showToast({
             message: "API Key 没有费用或额度，请充值后再试！",
@@ -194,7 +199,7 @@ const ModelConfigForm: React.FC<ModelConfigFormProps> = ({
       }
     })
 
-    if (provider === 'openai_compatible' && !formData.baseURL) {
+    if (isOpenAICompatibleProvider(provider) && !formData.baseURL) {
       newErrors.baseURL = t("setup.required")
     }
 
@@ -240,7 +245,7 @@ const ModelConfigForm: React.FC<ModelConfigFormProps> = ({
             <option key={p} value={p}>{PROVIDER_LABELS[p]}</option>
           ))}
         </select>
-        {provider === 'openai_compatible' && (
+        {isOpenAICompatibleProvider(provider) && (
           <div className="quick-url-buttons">
             <button 
               type="button" 
@@ -294,7 +299,7 @@ const ModelConfigForm: React.FC<ModelConfigFormProps> = ({
               ))}
             </select>
           ) : (
-            <div className={key === 'baseURL' && provider === 'openai_compatible' ? 'base-url-input-container' : ''}>
+            <div className={key === 'baseURL' && isOpenAICompatibleProvider(provider) ? 'base-url-input-container' : ''}>
               <Input
                 type={"text"}
                 value={formData[key as keyof ModelConfig] as string || ""}
@@ -349,7 +354,7 @@ const ModelConfigForm: React.FC<ModelConfigFormProps> = ({
                       获取AWS密钥
                     </button>
                   )} */}
-                  {provider === 'openai_compatible' && formData.baseURL?.includes('api.deepseek.com') && (
+                  {isOpenAICompatibleProvider(provider) && formData.baseURL?.includes('api.deepseek.com') && (
                     <button
                       type="button"
                       className="get-key-btn"
@@ -358,7 +363,7 @@ const ModelConfigForm: React.FC<ModelConfigFormProps> = ({
                       获取深度求索密钥
                     </button>
                   )}
-                  {provider === 'openai_compatible' && formData.baseURL?.includes('dashscope.aliyuncs.com') && (
+                  {isOpenAICompatibleProvider(provider) && formData.baseURL?.includes('dashscope.aliyuncs.com') && (
                     <button
                       type="button"
                       className="get-key-btn"
@@ -367,7 +372,7 @@ const ModelConfigForm: React.FC<ModelConfigFormProps> = ({
                       获取通义千问密钥
                     </button>
                   )}
-                  {provider === 'openai_compatible' && formData.baseURL?.includes('api.moonshot.cn') && (
+                  {isOpenAICompatibleProvider(provider) && formData.baseURL?.includes('api.moonshot.cn') && (
                     <button
                       type="button"
                       className="get-key-btn"

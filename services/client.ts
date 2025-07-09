@@ -1,6 +1,7 @@
 import { BaseMessage, SystemMessage } from "@langchain/core/messages";
 import { randomUUID } from "crypto";
 import * as readline from "node:readline";
+import axios from "axios";
 import {
   checkChatExists,
   createChat,
@@ -29,6 +30,53 @@ export class MCPClient {
     this.config = config;
   }
 
+  // 同步智能体状态的方法
+  private async syncAgentState() {
+    try {
+      // 尝试从多个可能的端口获取智能体状态
+      const possiblePorts = [process.env.PORT || 4321, 4321, 3000];
+      let response = null;
+      
+      for (const port of possiblePorts) {
+        try {
+          const url = `http://localhost:${port}/api/agent/current/active`;
+          response = await axios.get(url, { timeout: 1000 });
+          break; // 成功则跳出循环
+        } catch (err) {
+          // 尝试下一个端口
+          continue;
+        }
+      }
+      
+      if (response && response.status === 200 && response.data) {
+        const data = response.data;
+        if (data.success && data.activeAgent) {
+          // 设置到PromptManager
+          PromptManager.getInstance().setAgent({
+            name: data.activeAgent.name,
+            systemRole: data.activeAgent.systemRole,
+            systemPromote: data.activeAgent.systemPromote,
+            openSay: data.activeAgent.openSay
+          });
+          logger.debug(`[Agent] Synced active agent: ${data.activeAgent.name}`);
+        } else {
+          // 没有激活的智能体，清除当前设置
+          PromptManager.getInstance().clearAgent();
+          logger.debug(`[Agent] No active agent, cleared agent state`);
+        }
+        // 标记同步完成
+        PromptManager.getInstance().markAgentSynced();
+      } else {
+        logger.debug(`[Agent] Agent API not available or no active agent`);
+        PromptManager.getInstance().clearAgent();
+        PromptManager.getInstance().markAgentSynced();
+      }
+    } catch (error: any) {
+      logger.debug(`[Agent] Agent sync not available: ${error.message}`);
+      // 发生错误时不影响正常对话流程，保持现有智能体状态
+    }
+  }
+
   public async init() {
     // Initialize Model Manager
     await ModelManager.getInstance(this.config?.modelConfigPath).initializeModel();
@@ -45,7 +93,8 @@ export class MCPClient {
     onStream?: (text: string) => void,
     regenerateMessageId?: string,
     fingerprint?: string,
-    user_access_token?: string
+    user_access_token?: string,
+    agentName?: string
   ) {
     let startTime = new Date();
     let chat_id = chatId || randomUUID();
@@ -53,6 +102,11 @@ export class MCPClient {
     let history: BaseMessage[] = [];
     let title = "New Chat";
     let titlePromise: Promise<string> | undefined;
+
+    // 在每次对话开始时同步智能体状态（带缓存）
+    if (PromptManager.getInstance().needsAgentSync()) {
+      await this.syncAgentState();
+    }
 
     const systemPrompt = PromptManager.getInstance().getPrompt("system");
     if (systemPrompt) {
@@ -136,7 +190,7 @@ export class MCPClient {
       // double check the chat exists and create to database if necessary
       const isChatExists = await checkChatExists(chat_id);
       if (!isChatExists) {
-        await createChat(chat_id, title || "New Chat", {
+        await createChat(chat_id, title || "New Chat", agentName, {
           fingerprint: fingerprint,
           user_access_token: user_access_token,
         });
@@ -273,7 +327,7 @@ export class MCPCliClient extends MCPClient {
           }
         };
 
-        await this.processQuery(chatId, input, onStream);
+        await this.processQuery(chatId, input, onStream, undefined, undefined, undefined, undefined);
         console.log("\n");
       } catch (error: any) {
         console.error("\nError processing query:", error.message);

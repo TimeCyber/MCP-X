@@ -87,6 +87,7 @@
         display: flex;
         flex-direction: column;
         gap: 8px;
+        width: 100%; // 让容器宽度占满父元素，保证input-actions能左右分布
 
         textarea {
           width: 100%;
@@ -146,6 +147,7 @@
       .input-actions {
         display: flex;
         justify-content: space-between;
+        align-items: center;
         gap: 10px;
         width: 100%;
 
@@ -153,6 +155,7 @@
           display: flex;
           align-items: center;
           gap: 4px;
+          flex: 0 0 auto; // 防止左侧按钮被压缩
         }
 
         button {
@@ -200,9 +203,9 @@
         .tools-container {
           display: flex;
           align-items: center;
-          justify-content: center;
           gap: 4px;
-          width: fit-content;
+          flex: 1; // 占据剩余的全部空间
+          justify-content: flex-end; // 内容靠右对齐
         }
 
         .tools-btn {
@@ -219,30 +222,32 @@
           background: transparent;
           border: none;
         }
-      }
 
-      .tools-container {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 4px;
-        width: fit-content;
-        flex-direction: row;
-      }
+        .send-btn {
+          background: none;
+          border: none;
+          cursor: pointer;
+          height: 38px;
+          width: 38px;
+          padding: 5px;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
 
-      .tools-btn {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        width: fit-content;
-        height: 38px;
-        line-height: 1;
-        padding: 4px 7px;
-        border-radius: 8px;
-        font-size: 1em;
-        cursor: pointer;
-        background: transparent;
-        border: none;
+          &:hover {
+            background: var(--bg-btn-hover);
+          }
+
+          &:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+          }
+
+          svg {
+            fill: var(--stroke-extremestrong);
+          }
+        }
       }
     }
   }

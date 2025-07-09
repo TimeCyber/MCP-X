@@ -3,18 +3,12 @@
 .outlet-container {
   > .app-header {
     position: absolute;
-    left: 0;
-    width: 100%;
-    transition: width $transition-normal ease, left $transition-normal ease;
+    width: calc(100% - $sidebar-width);
+    transition: left $transition-normal ease, width $transition-normal ease;
 
-    &.sidebar-visible {
-      width: calc(100% + $sidebar-width);
-      left: -$sidebar-width;
-
-      @media (max-width: $breakpoint-m) {
-        width: 100%;
-        left: 0;
-      }
+    @media (max-width: $breakpoint-m) {
+      left: 0;
+      width: 100%;
     }
   }
 }
@@ -26,14 +20,9 @@
     border-color: rgba(255, 255, 255, 0.1);
   }
 
-  &.sidebar-visible {
-    .menu-container {
-      position: static;
-    }
-  }
-
   .header-content {
-    margin: 0 auto;
+    margin-left: 0;
+    margin-right: auto;
     padding: 0 $page-h-padding;
     display: flex;
     align-items: center;
@@ -51,6 +40,13 @@
         align-items: center;
         gap: 16px;
         white-space: nowrap;
+        flex-wrap: nowrap; // 修改为 nowrap
+        
+        // 为智能体选择器和模型选择器提供基础样式
+        .agent-select,
+        .model-select {
+          flex-shrink: 0;
+        }
       }
     }
 

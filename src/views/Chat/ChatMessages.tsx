@@ -8,7 +8,7 @@ export interface Message {
   text: string
   isSent: boolean
   timestamp: number
-  files?: File[]
+  files?: (File | string)[]
   isError?: boolean
 }
 

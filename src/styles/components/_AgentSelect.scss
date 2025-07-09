@@ -1,0 +1,198 @@
+@use "./Select" as *;
+@use "./ModelSelect" as *;
+
+// 优化后的智能体选择器样式，使其与模型选择器保持一致
+
+.agent-select {
+  position: relative;
+  height: 40px;
+  display: flex;
+  align-items: center;
+
+  // 触发按钮
+  .agent-select-trigger {
+    @extend .select-button;
+    width: 240px; // 与模型选择器宽度保持一致
+    height: 40px;
+    padding: 0 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+
+    .agent-display {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      overflow: hidden;
+
+      .avatar-placeholder,
+      img {
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        flex-shrink: 0;
+        object-fit: cover;
+      }
+
+      .agent-info {
+        display: flex;
+        flex-direction: column;
+        max-width: 150px;
+        overflow: hidden;
+
+        .agent-name {
+          font-size: 13px;
+          font-weight: 600;
+          color: var(--text);
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          overflow: hidden;
+        }
+
+        .agent-status {
+          font-size: 11px;
+          color: var(--text-weak);
+        }
+      }
+    }
+
+    .dropdown-arrow {
+      transition: transform 0.2s ease;
+
+      &.rotate {
+        transform: rotateX(180deg);
+      }
+    }
+  }
+
+  // 下拉面板
+  .agent-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 320px;
+    max-height: 80vh;
+    margin-top: 4px;
+    background: var(--bg);
+    border: 1px solid var(--border-weak);
+    border-radius: 8px;
+    box-shadow: var(--shadow-modal);
+    overflow: hidden;
+    z-index: 1000;
+
+    display: flex;
+    flex-direction: column;
+
+    .dropdown-header {
+      padding: 8px 12px;
+      border-bottom: 1px solid var(--border-weak);
+
+      .search-box {
+        position: relative;
+        display: flex;
+        align-items: center;
+
+        .search-input {
+          width: 100%;
+          height: 32px;
+          border: 1px solid var(--border-weak);
+          border-radius: 6px;
+          padding: 0 10px 0 28px;
+          font-size: 13px;
+          background: var(--bg);
+          color: var(--text);
+          outline: none;
+        }
+
+        .search-icon {
+          position: absolute;
+          left: 8px;
+          font-size: 14px;
+          color: var(--text-weak);
+          pointer-events: none;
+        }
+      }
+    }
+
+    .dropdown-content {
+      flex: 1;
+      overflow-y: auto;
+
+      .agent-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 16px;
+        cursor: pointer;
+        border-bottom: 1px solid var(--border-weak);
+        transition: background 0.15s ease;
+
+        &:hover {
+          background: var(--bg-op-dark-ultraweak);
+        }
+
+        &.active {
+          background: var(--bg-op-dark-weak);
+        }
+
+        .agent-avatar {
+          width: 48px;
+          height: 48px;
+          border-radius: 8px;
+          overflow: hidden;
+          flex-shrink: 0;
+          background: var(--bg-op-dark-ultraweak);
+
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+        }
+
+        .agent-info {
+          flex: 1;
+          min-width: 0;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+
+          .agent-name {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text);
+            line-height: 1.2;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+          }
+
+          .agent-description {
+            font-size: 12px;
+            color: var(--text-weak);
+            line-height: 1.2;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+          }
+        }
+
+        .agent-extra {
+          flex-shrink: 0;
+          font-size: 11px;
+          color: var(--text-weak);
+          display: flex;
+          align-items: center;
+          gap: 4px;
+
+          svg {
+            width: 14px;
+            height: 14px;
+            fill: currentColor;
+          }
+        }
+      }
+    }
+  }
+} 

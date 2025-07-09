@@ -1,7 +1,9 @@
 @use "../variables" as *;
 
 .history-sidebar {
-  width: 0;
+  // 固定侧边栏宽度并默认展示
+  width: $sidebar-width; // 桌面端固定宽度
+  border-right: 1px solid var(--border-weak);
   max-height: 100vh;
   overflow: hidden;
   transition: width $transition-normal ease, transform $transition-normal ease;
@@ -9,12 +11,15 @@
   display: flex;
   flex-direction: column;
   background: var(--bg);
+  border-right: 1px solid var(--border-weak);
   z-index: $z-overlay+1;
 
   > * {
     white-space: nowrap;
   }
 
+  // 在移动端（窄屏）仍通过 .visible 控制显隐
+  // 移动端抽屉逻辑
   &.visible {
     width: $sidebar-width;
     border-right: 1px solid var(--border-weak);
@@ -25,9 +30,11 @@
     left: 0;
     top: 0;
     bottom: 0;
+    width: 0; // 移动端默认隐藏
     transform: translateX(-100%);
 
     &.visible {
+      width: $sidebar-width;
       transform: translateX(0);
     }
   }
@@ -35,22 +42,20 @@
   .history-list {
     flex: 1;
     overflow-y: auto;
-    padding: 0 $page-h-padding;
+    padding: 0 0;
 
     @include scrollbar;
   }
 
   .history-item {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
     padding: 12px;
-    border-radius: 8px;
     cursor: pointer;
-    margin-bottom: 8px;
 
     &:hover {
-      background: var(--bg-op-dark-ultraweak);
+      background: var(--bg-op-dark-extremeweak);
 
       .delete-btn {
         opacity: 1;
@@ -58,25 +63,43 @@
     }
 
     &.active {
-      background: rgba(var(--bg-pri-blue), 0.1);
+      background: var(--bg-op-dark-ultraweak);
     }
 
-    .history-content {
+    .history-main {
       flex: 1;
       min-width: 0;
       margin-right: 8px;
 
+      .history-header-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 4px;
+      }
+
       .history-title {
         font-weight: 500;
-        margin-bottom: 4px;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
+        flex: 1;
+        margin-right: 8px;
       }
 
-      .history-date {
+      .history-time {
         font-size: 12px;
         color: var(--text-weak);
+        white-space: nowrap;
+      }
+
+      .history-last-message {
+        font-size: 13px;
+        color: var(--text-weak);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin-top: 2px;
       }
     }
 
@@ -127,7 +150,7 @@
 
   .sidebar-footer {
     margin-top: auto;
-    padding: 16px;
+    padding: 8px 16px; // 减少padding
     border-top: 1px solid var(--border-weak);
 
     .update-progress-container {
@@ -188,6 +211,7 @@
       align-items: center;
       justify-content: space-between;
       outline: var(--border-weak) 1px solid;
+      margin-bottom: 0; // 移除底部margin
 
       & > div {
         display: flex;
@@ -273,7 +297,7 @@
     gap: 12px;
 
     button {
-      padding: 8px 16px;
+      padding: 0px;
       border-radius: 6px;
       border: none;
       cursor: pointer;

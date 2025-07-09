@@ -1,0 +1,94 @@
+.agent-chat-panel {
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+  padding: 24px;
+  height: calc(100vh - var(--header-height, 60px));
+  overflow-y: auto;
+
+  .conversation {
+    flex: 2;
+    background: var(--bg-secondary, #fafafa);
+    border-radius: 8px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+
+    .conversation-header {
+      margin-bottom: 16px;
+    }
+
+    .chat-messages-container {
+      flex: 1;
+      overflow-y: auto;
+      margin-bottom: 12px;
+    }
+
+    .agent-name {
+      margin: 0;
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .question-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 12px 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+
+      li {
+        background: var(--bg-tertiary, #f0f0f0);
+        border: 1px solid var(--border-weak, #ddd);
+        border-radius: 6px;
+        padding: 6px 10px;
+        cursor: pointer;
+        font-size: 0.9rem;
+
+        &:hover {
+          background: var(--bg-op-dark-ultraweak);
+        }
+      }
+    }
+  }
+
+  // 隐藏对话区的向下滚动按钮
+  .scroll-to-bottom-btn {
+    display: none;
+  }
+
+  .role-info {
+    flex: 1;
+    background: var(--bg-tertiary, #f5f5f5);
+    border-radius: 8px;
+    padding: 24px;
+    overflow-y: auto;
+
+    h3 {
+      margin-top: 0;
+      font-size: 1rem;
+    }
+
+    .role-text {
+      white-space: pre-wrap;
+      font-family: var(--font-mono, monospace);
+      font-size: 0.9rem;
+    }
+  }
+
+  &.placeholder {
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+    color: #888;
+  }
+}
+
+// 当在agent导航页面时，需要额外的顶部padding避免与header重叠
+.agent-nav-active .agent-chat-panel {
+  // 顶部多预留 header 高度，避免与 app-header 重叠
+  padding: calc(var(--header-height, 60px) + 24px) 24px 24px 24px;
+  height: calc(100vh - var(--header-height, 60px) - 24px);
+} 

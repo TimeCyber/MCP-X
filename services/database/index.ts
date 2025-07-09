@@ -29,7 +29,7 @@ interface DatabaseOperations {
     chatId: string,
     options?: DatabaseOptions
   ): Promise<{ chat: typeof schema.chats.$inferSelect; messages: (typeof schema.messages.$inferSelect)[] } | null>;
-  createChat(chatId: string, title: string, options?: DatabaseOptions): Promise<typeof schema.chats.$inferSelect>;
+  createChat(chatId: string, title: string, agentName?: string, options?: DatabaseOptions): Promise<typeof schema.chats.$inferSelect>;
   createMessage(data: NewMessage, options?: DatabaseOptions): Promise<typeof schema.messages.$inferSelect>;
   checkChatExists(chatId: string, options?: DatabaseOptions): Promise<boolean>;
   deleteChat(chatId: string, options?: DatabaseOptions): Promise<void>;
@@ -60,8 +60,24 @@ class DirectDatabaseAccess implements DatabaseOperations {
   }
 
   async getAllChats(_options?: DatabaseOptions) {
-    const chats = await this.db.query.chats.findMany();
-    return chats.reverse();
+    const allChats = await this.db.query.chats.findMany();
+    
+    // 为每个聊天获取最后一条消息
+    const chatsWithDetails = await Promise.all(
+      allChats.map(async (chat) => {
+        const lastMessage = await this.db.query.messages.findFirst({
+          where: eq(messages.chatId, chat.id),
+          orderBy: (messages, { desc }) => [desc(messages.id)]
+        });
+        
+        return {
+          ...chat,
+          lastMessage: lastMessage?.content || null
+        };
+      })
+    );
+    
+    return chatsWithDetails.reverse();
   }
 
   async getChatWithMessages(chatId: string, _options?: DatabaseOptions) {
@@ -78,10 +94,10 @@ class DirectDatabaseAccess implements DatabaseOperations {
     return { chat, messages: history };
   }
 
-  async createChat(chatId: string, title: string, _options?: DatabaseOptions) {
+  async createChat(chatId: string, title: string, agentName?: string, _options?: DatabaseOptions) {
     const [chat] = await this.db
       .insert(chats)
-      .values({ id: chatId, title, createdAt: new Date().toISOString() })
+      .values({ id: chatId, title, agentName, createdAt: new Date().toISOString() })
       .returning();
     return chat;
   }
@@ -315,7 +331,7 @@ class ApiDatabaseAccess implements DatabaseOperations {
     return { chat, messages };
   }
 
-  async createChat(chatId: string, title: string, options?: DatabaseOptions) {
+  async createChat(chatId: string, title: string, agentName?: string, options?: DatabaseOptions) {
     const { fingerprint = "funmula" } = options || {};
     const response = await this.axiosInstance.post(
       "/session",
@@ -323,6 +339,7 @@ class ApiDatabaseAccess implements DatabaseOperations {
         id: chatId,
         mcp_session_id: chatId,
         title,
+        agentName,
         fingerprint,
       },
       {
@@ -450,8 +467,8 @@ export const initDatabase = (mode: DatabaseMode, config: { dbPath?: string; apiU
 export const getAllChats = (options?: DatabaseOptions) => databaseOperations.getAllChats(options);
 export const getChatWithMessages = (chatId: string, options?: DatabaseOptions) =>
   databaseOperations.getChatWithMessages(chatId, options);
-export const createChat = (chatId: string, title: string, options?: DatabaseOptions) =>
-  databaseOperations.createChat(chatId, title, options);
+export const createChat = (chatId: string, title: string, agentName?: string, options?: DatabaseOptions) =>
+  databaseOperations.createChat(chatId, title, agentName, options);
 export const createMessage = (data: NewMessage, options?: DatabaseOptions) =>
   databaseOperations.createMessage(data, options);
 export const checkChatExists = (chatId: string, options?: DatabaseOptions) =>

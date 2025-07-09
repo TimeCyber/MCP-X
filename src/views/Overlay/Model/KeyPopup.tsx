@@ -244,14 +244,14 @@ const KeyPopup = ({
       
       multiModelConfig = {
         ...formatResult,
-        name: provider,
+      name: provider,
       }
       console.log("multiModelConfig:", multiModelConfig);
     } catch (formatError) {
       console.error("formatData error:", formatError);
       throw formatError;
     }
-    
+
     let _multiModelConfigList = JSON.parse(JSON.stringify(multiModelConfigList))
 
     try {
@@ -401,7 +401,7 @@ const KeyPopup = ({
           paddingRight: 16,
           overflowY: 'auto'
         }}>
-          {PROVIDERS.map(p => (
+            {PROVIDERS.map(p => (
             <div
               key={p}
               style={{
@@ -437,90 +437,90 @@ const KeyPopup = ({
           
           {Object.entries(fields).map(([key, field]) => {
             return (
-              key !== "model" && key !== "customModelId" && (
+          key !== "model" && key !== "customModelId" && (
                 <div key={key} className="models-key-form-group" style={{ marginBottom: 16 }}>
-                  <label className="models-key-field-title">
-                    <>
-                      {(key === "baseURL" && !field.required) ?
-                        <div className="models-key-field-optional">
-                          <CheckBox
-                            checked={showOptional[provider]}
-                            onChange={() => setShowOptional(prev => ({ ...prev, [provider]: !prev[provider] }))}
-                          ></CheckBox>
-                          {`${field.label}${t("models.optional")}`}
-                        </div>
-                        : field.label}
-                      {field.required && <span className="required">*</span>}
-                    </>
-                    <div className="models-key-field-description">{field.description}</div>
-                  </label>
-                  {(showOptional[provider] || key !== "baseURL" || field.required) && (
-                    <div>
-                      <div className="api-key-input-wrapper">
-                        <input
-                          type={field.inputType === "password" ? "password" : "text"}
-                          value={formData[key as keyof ModelConfig] as string || ""}
-                          onChange={e => handleChange(key, e.target.value)}
-                          placeholder={field.placeholder?.toString()}
-                          className={errors[key] ? "error" : ""}
-                          style={{ width: '100%' }}
-                        />
-                        {/* 在API Key输入框旁边添加申请链接按钮 */}
-                        {key === 'apiKey' && (
-                          <button
-                            type="button"
-                            className="api-request-btn"
-                            onClick={handleRequestApiKey}
-                            title={t('models.requestApiKey')}
-                          >
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                              <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z" />
-                            </svg>
-                          </button>
-                        )}
-                      </div>
+              <label className="models-key-field-title">
+                <>
+                  {(key === "baseURL" && !field.required) ?
+                    <div className="models-key-field-optional">
+                      <CheckBox
+                        checked={showOptional[provider]}
+                        onChange={() => setShowOptional(prev => ({ ...prev, [provider]: !prev[provider] }))}
+                      ></CheckBox>
+                      {`${field.label}${t("models.optional")}`}
                     </div>
-                  )}
-                  {errors[key] && <div className="error-message">{errors[key]}</div>}
+                    : field.label}
+                  {field.required && <span className="required">*</span>}
+                </>
+                <div className="models-key-field-description">{field.description}</div>
+              </label>
+              {(showOptional[provider] || key !== "baseURL" || field.required) && (
+                    <div>
+                  <div className="api-key-input-wrapper">
+                    <input
+                          type={field.inputType === "password" ? "password" : "text"}
+                      value={formData[key as keyof ModelConfig] as string || ""}
+                      onChange={e => handleChange(key, e.target.value)}
+                      placeholder={field.placeholder?.toString()}
+                      className={errors[key] ? "error" : ""}
+                          style={{ width: '100%' }}
+                    />
+                    {/* 在API Key输入框旁边添加申请链接按钮 */}
+                    {key === 'apiKey' && (
+                      <button
+                        type="button"
+                        className="api-request-btn"
+                        onClick={handleRequestApiKey}
+                        title={t('models.requestApiKey')}
+                      >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                          <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z" />
+                        </svg>
+                      </button>
+                    )}
+                  </div>
                 </div>
-              )
+              )}
+              {errors[key] && <div className="error-message">{errors[key]}</div>}
+            </div>
+          )
             )
           })}
           
           <div className="models-key-form-group" style={{ marginBottom: 16 }}>
-            <label className="models-key-field-title">
-              <>
-                {`Custom Model ID`}
-                {fields["customModelId"]?.required ?
-                  <span className="required">*</span>
-                  : t("models.optional")}
-              </>
-            </label>
-            <input
-              type={"text"}
-              value={customModelId as string || ""}
-              onChange={e => setCustomModelId(e.target.value)}
-              placeholder={"YOUR_MODEL_ID"}
-              className={errors["customModelId"] ? "error" : ""}
+          <label className="models-key-field-title">
+            <>
+              {`Custom Model ID`}
+              {fields["customModelId"]?.required ?
+                <span className="required">*</span>
+                : t("models.optional")}
+            </>
+          </label>
+          <input
+            type={"text"}
+            value={customModelId as string || ""}
+            onChange={e => setCustomModelId(e.target.value)}
+            placeholder={"YOUR_MODEL_ID"}
+            className={errors["customModelId"] ? "error" : ""}
               style={{ width: '100%' }}
-            />
-            {errors["customModelId"] && <div className="error-message">{errors["customModelId"]}</div>}
-          </div>
-          
-          {verifyError && (
-            <Tooltip content={t("models.copyContent")}>
-              <div onClick={() => handleCopiedError(verifyError)} className="error-message">
-                {verifyError}
-                <svg xmlns="http://www.w3.org/2000/svg" width="18px" height="18px" viewBox="0 0 22 22" fill="transparent">
-                  <path d="M13 20H2V6H10.2498L13 8.80032V20Z" fill="transparent" stroke="currentColor" strokeWidth="2" strokeMiterlimit="10" strokeLinejoin="round" />
-                  <path d="M13 9H10V6L13 9Z" fill="currentColor" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                  <path d="M9 3.5V2H17.2498L20 4.80032V16H16" fill="transparent" stroke="currentColor" strokeWidth="2" strokeMiterlimit="10" strokeLinejoin="round" />
-                  <path d="M20 5H17V2L20 5Z" fill="currentColor" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </div>
-            </Tooltip>
-          )}
+          />
+          {errors["customModelId"] && <div className="error-message">{errors["customModelId"]}</div>}
         </div>
+          
+        {verifyError && (
+          <Tooltip content={t("models.copyContent")}>
+            <div onClick={() => handleCopiedError(verifyError)} className="error-message">
+              {verifyError}
+              <svg xmlns="http://www.w3.org/2000/svg" width="18px" height="18px" viewBox="0 0 22 22" fill="transparent">
+                <path d="M13 20H2V6H10.2498L13 8.80032V20Z" fill="transparent" stroke="currentColor" strokeWidth="2" strokeMiterlimit="10" strokeLinejoin="round" />
+                <path d="M13 9H10V6L13 9Z" fill="currentColor" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M9 3.5V2H17.2498L20 4.80032V16H16" fill="transparent" stroke="currentColor" strokeWidth="2" strokeMiterlimit="10" strokeLinejoin="round" />
+                <path d="M20 5H17V2L20 5Z" fill="currentColor" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </div>
+          </Tooltip>
+        )}
+      </div>
       </div>
       {/* API申请确认对话框 */}
       {showConfirmDialog && (

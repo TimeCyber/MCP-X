@@ -9,6 +9,7 @@ import { showToastAtom } from "../../atoms/toastState"
 import { useTranslation } from "react-i18next"
 import { currentChatIdAtom, isChatStreamingAtom, lastMessageAtom } from "../../atoms/chatState"
 import { safeBase64Encode } from "../../util"
+import AgentStatusIndicator from "../../components/AgentStatusIndicator"
 
 interface ToolCall {
   name: string
@@ -55,7 +56,7 @@ const ChatWindow = () => {
           text: msg.content,
           isSent: msg.role === "user",
           timestamp: new Date(msg.createdAt).getTime(),
-          files: msg.files
+          files: Array.isArray(msg.files) ? msg.files : undefined
         }))
 
         setMessages(convertedMessages)
@@ -411,6 +412,7 @@ const ChatWindow = () => {
     <div className="chat-page">
       <div className="chat-container">
         <div className="chat-window">
+          <AgentStatusIndicator />
           <ChatMessages
             messages={messages}
             isLoading={isChatStreaming}

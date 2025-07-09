@@ -20,8 +20,11 @@
   margin: 0;
   overflow: hidden;
   transition: all 0.3s ease;
-  height: calc(100vh - $header-height);
+  height: calc(100vh - var(--header-height, 60px));
   color: var(--text);
+  display: flex;
+  flex-direction: column;
+  padding: 0; // 确保没有额外的padding
 }
 
 .chat-window {

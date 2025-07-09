@@ -6,6 +6,7 @@ import { useEffect, useState } from "react"
 import { handleGlobalHotkey, loadHotkeyMapAtom } from "./atoms/hotkeyState"
 import { handleWindowResizeAtom } from "./atoms/sidebarState"
 import { systemThemeAtom } from "./atoms/themeState"
+import { useAgentAutoInit } from "./hooks/useAgentInit"
 import Updater from "./updater"
 
 function App() {
@@ -14,6 +15,9 @@ function App() {
   const loadHotkeyMap = useSetAtom(loadHotkeyMapAtom)
   const setSystemTheme = useSetAtom(systemThemeAtom)
   const handleWindowResize = useSetAtom(handleWindowResizeAtom)
+  
+  // 智能体自动初始化
+  useAgentAutoInit()
   // init app
   useEffect(() => {
     // 组件挂载后移除 loading

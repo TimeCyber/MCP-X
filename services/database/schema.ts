@@ -3,6 +3,7 @@ import { integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
 export const chats = sqliteTable("chats", {
   id: text("id").primaryKey(),
   title: text("title").notNull(),
+  agentName: text("agent_name"), // 添加agent名称字段
   createdAt: text("created_at").notNull(),
 });
 

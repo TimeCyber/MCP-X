@@ -178,7 +178,7 @@ const debouncedSave = debounce(async (settings: ProxySettings) => {
 
   return (
     <div className="system-page overlay-page">
-      <button
+      {/* <button
         className="close-btn"
         onClick={onClose}
       >
@@ -186,7 +186,7 @@ const debouncedSave = debounce(async (settings: ProxySettings) => {
           <line x1="18" y1="6" x2="6" y2="18"></line>
           <line x1="6" y1="6" x2="18" y2="18"></line>
         </svg>
-      </button>
+      </button> */}
       <div className="system-container">
         <div className="system-header">
           <div>

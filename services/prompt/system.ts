@@ -1,4 +1,33 @@
-export const systemPrompt = (customRules: string) => {
+interface AgentRole {
+  name?: string;
+  systemRole?: string;
+  systemPromote?: string;
+  openSay?: string;
+}
+
+export const systemPrompt = (customRules: string, agentRole?: AgentRole) => {
+  // 构建智能体角色部分
+  const agentRoleSection = agentRole ? `
+  <Agent_Role_Definition>
+    ACTIVE AGENT: ${agentRole.name || 'Default Assistant'}
+    
+    AGENT_ROLE_CONTEXT:
+    ${agentRole.systemRole || ''}
+    
+    AGENT_SPECIFIC_INSTRUCTIONS:
+    ${agentRole.systemPromote || ''}
+    
+    AGENT_OPENING_GREETING:
+    ${agentRole.openSay || ''}
+    
+    INTEGRATION_NOTICE:
+    - The above agent role definitions take priority over general guidelines when there are conflicts
+    - Maintain the agent's personality and expertise while leveraging MCP tools
+    - Ensure agent-specific behavior is consistent throughout the conversation
+    - If the agent has specific greeting or interaction patterns, follow them naturally
+  </Agent_Role_Definition>
+  ` : '';
+
   return `
 <MCP_X_System_Thinking_Protocol>
   I am an AI Assistant, leveraging the Model Context Protocol (MCP) to utilize various tools and applications.
@@ -10,9 +39,12 @@ export const systemPrompt = (customRules: string) => {
   - Always check and comply with User_Defined_Rules first before applying any other rules or guidelines
 
   I will strictly follow these directives and rules in the following XML tags:
+    - Agent_Role_Definition (if present, takes precedence in role-specific matters)
     - User_Defined_Rules (HIGHEST PRIORITY)
     - Core_Guidelines
     - System_Specific_Rules
+
+  ${agentRoleSection}
 
   <User_Defined_Rules>
     ${customRules}

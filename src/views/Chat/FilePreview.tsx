@@ -5,6 +5,12 @@ interface FilePreviewProps {
 }
 
 const FilePreview: React.FC<FilePreviewProps> = ({ files }) => {
+  // 确保 files 是一个数组
+  if (!Array.isArray(files)) {
+    console.warn('FilePreview: files prop is not an array:', files)
+    return null
+  }
+
   const isImageFile = (file: File | string) => {
     if (typeof file === "string") {
       return /\.(jpg|jpeg|png|gif|webp)$/i.test(file)

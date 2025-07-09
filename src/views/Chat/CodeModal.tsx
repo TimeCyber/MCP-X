@@ -135,7 +135,7 @@ const CodeModal = () => {
                         <path d="M20 11C20 11 16.4669 6 11 6C5.53313 6 2 11 2 11C2 11 5.53203 16 11 16C16.468 16 20 11 20 11Z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round"/>
                         <path d="M11 15.5C13.4853 15.5 15.5 13.4853 15.5 11C15.5 8.51472 13.4853 6.5 11 6.5C8.51472 6.5 6.5 8.51472 6.5 11C6.5 13.4853 8.51472 15.5 11 15.5Z" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round"/>
                       </svg>
-                    </button>
+                      </button>
                   </Tooltip>
                 </div>
                 <Tooltip
@@ -245,7 +245,7 @@ const CodeModal = () => {
                   }}
                 />
               ) : (
-                <CodePreview language={streamingCode?.language || ""} code={code} />
+            <CodePreview language={streamingCode?.language || ""} code={code} />
               )
             )
           )}

@@ -4,6 +4,8 @@ export interface ChatHistory {
   id: string
   title: string
   createdAt: string
+  agentName?: string
+  lastMessage?: string
 }
 
 export const historiesAtom = atom<ChatHistory[]>([])

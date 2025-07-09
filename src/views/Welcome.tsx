@@ -354,64 +354,54 @@ const Welcome = () => {
                   style={{ display: "none" }}
                   onChange={handleFileChange}
                 />
-                <div className="input-actions">
-                  <input
-                    type="file"
-                    ref={fileInputRef}
-                    multiple
-                    accept=".jpg,.jpeg,.png,.webp,.gif,.pdf,.*"
-                    style={{ display: "none" }}
-                    onChange={handleFileChange}
-                  />
-                  <div className="left-actions">
-                    <button
-                      type="button"
-                      className="upload-btn"
-                      onClick={() => fileInputRef.current?.click()}
-                      title={t("chat.uploadFile")}
-                    >
+                <div className="left-actions">
+                  <button
+                    type="button"
+                    className="upload-btn"
+                    onClick={() => fileInputRef.current?.click()}
+                    title={t("chat.uploadFile")}
+                  >
+                    <svg width="24" height="24" viewBox="0 0 24 24">
+                      <path d="M16.5 6v11.5c0 2.21-1.79 4-4 4s-4-1.79-4-4V5c0-1.38 1.12-2.5 2.5-2.5s2.5 1.12 2.5 2.5v10.5c0 .55-.45 1-1 1s-1-.45-1-1V6H10v9.5c0 1.38 1.12 2.5 2.5 2.5s2.5-1.12 2.5-2.5V5c0-2.21-1.79-4-4-4S7 2.79 7 5v12.5c0 3.04 2.46 5.5 5.5 5.5s5.5-2.46 5.5-5.5V6h-1.5z"/>
+                    </svg>
+                  </button>
+                  <button
+                    type="button"
+                    className={`search-btn ${webSearchMode ? 'active' : ''}`}
+                    onClick={() => {
+                      const newMode = !webSearchMode;
+                      setWebSearchMode(newMode);
+                      toggleTavilyMCP(newMode);
+                    }}
+                    title={webSearchMode ? t('chat.webSearchEnabled') : t('chat.webSearch')}
+                  >
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill={webSearchMode ? "var(--text-pri-blue)" : "currentColor"} xmlns="http://www.w3.org/2000/svg">
+                      <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM11 19.93C7.05 19.44 4 16.08 4 12C4 11.38 4.08 10.79 4.21 10.21L9 15V16C9 17.1 9.9 18 11 18V19.93ZM17.9 17.39C17.64 16.58 16.9 16 16 16H15V13C15 12.45 14.55 12 14 12H8V10H10C10.55 10 11 9.55 11 9V7H13C14.1 7 15 6.1 15 5V4.59C17.93 5.78 20 8.65 20 12C20 14.08 19.21 15.97 17.9 17.39Z"/>
+                    </svg>
+                  </button>
+                </div>
+                <div className="tools-container">
+                  <button
+                    className="tools-btn"
+                    onClick={(e) => {
+                      e.preventDefault()
+                      openOverlay("Tools")
+                    }}
+                  >
+                    <svg width="20" height="20" viewBox="0 0 24 24">
+                      <path d="M22.7 19l-9.1-9.1c.9-2.3.4-5-1.5-6.9-2-2-5-2.4-7.4-1.3L9 6 6 9 1.6 4.7C.4 7.1.9 10.1 2.9 12.1c1.9 1.9 4.6 2.4 6.9 1.5l9.1 9.1c.4.4 1 .4 1.4 0l2.3-2.3c.5-.4.5-1.1.1-1.4z"/>
+                    </svg>
+                    {`${tools.length} ${t("chat.tools")}`}
+                  </button>
+                  <Tooltip
+                    content={!hasActiveConfig ? t("chat.noModelAlert") : t("chat.send")}
+                  >
+                    <button type="submit" className="send-btn" disabled={(!message.trim() && uploadedFiles.length === 0) || !hasActiveConfig}>
                       <svg width="24" height="24" viewBox="0 0 24 24">
-                        <path d="M16.5 6v11.5c0 2.21-1.79 4-4 4s-4-1.79-4-4V5c0-1.38 1.12-2.5 2.5-2.5s2.5 1.12 2.5 2.5v10.5c0 .55-.45 1-1 1s-1-.45-1-1V6H10v9.5c0 1.38 1.12 2.5 2.5 2.5s2.5-1.12 2.5-2.5V5c0-2.21-1.79-4-4-4S7 2.79 7 5v12.5c0 3.04 2.46 5.5 5.5 5.5s5.5-2.46 5.5-5.5V6h-1.5z"/>
+                        <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
                       </svg>
                     </button>
-                    <button
-                      type="button"
-                      className={`search-btn ${webSearchMode ? 'active' : ''}`}
-                      onClick={() => {
-                        const newMode = !webSearchMode;
-                        setWebSearchMode(newMode);
-                        toggleTavilyMCP(newMode);
-                      }}
-                      title={webSearchMode ? t('chat.webSearchEnabled') : t('chat.webSearch')}
-                    >
-                      <svg width="24" height="24" viewBox="0 0 24 24" fill={webSearchMode ? "var(--text-pri-blue)" : "currentColor"} xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM11 19.93C7.05 19.44 4 16.08 4 12C4 11.38 4.08 10.79 4.21 10.21L9 15V16C9 17.1 9.9 18 11 18V19.93ZM17.9 17.39C17.64 16.58 16.9 16 16 16H15V13C15 12.45 14.55 12 14 12H8V10H10C10.55 10 11 9.55 11 9V7H13C14.1 7 15 6.1 15 5V4.59C17.93 5.78 20 8.65 20 12C20 14.08 19.21 15.97 17.9 17.39Z"/>
-                      </svg>
-                    </button>
-                  </div>
-                  <div className="tools-container">
-                    <button
-                      className="tools-btn"
-                      onClick={(e) => {
-                        e.preventDefault()
-                        openOverlay("Tools")
-                      }}
-                    >
-                      <svg width="20" height="20" viewBox="0 0 24 24">
-                        <path d="M22.7 19l-9.1-9.1c.9-2.3.4-5-1.5-6.9-2-2-5-2.4-7.4-1.3L9 6 6 9 1.6 4.7C.4 7.1.9 10.1 2.9 12.1c1.9 1.9 4.6 2.4 6.9 1.5l9.1 9.1c.4.4 1 .4 1.4 0l2.3-2.3c.5-.4.5-1.1.1-1.4z"/>
-                      </svg>
-                      {`${tools.length} ${t("chat.tools")}`}
-                    </button>
-                    <Tooltip
-                      content={!hasActiveConfig ? t("chat.noModelAlert") : t("chat.send")}
-                    >
-                      <button type="submit" className="send-btn" disabled={(!message.trim() && uploadedFiles.length === 0) || !hasActiveConfig}>
-                        <svg width="24" height="24" viewBox="0 0 24 24">
-                          <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
-                        </svg>
-                      </button>
-                    </Tooltip>
-                  </div>
+                  </Tooltip>
                 </div>
               </div>
             </div>

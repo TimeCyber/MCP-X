@@ -1,8 +1,15 @@
 @use "../variables" as *;
 
+.system-page {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
 .system-container {
   width: 100%;
-  max-width: 800px;
+  max-width: 1152px;
+  margin: 0 auto;
   min-height: calc(100vh - 85px);
   display: flex;
   flex-direction: column;
@@ -22,6 +29,9 @@
 
 
   .system-content {
+    width: 100%;
+    max-width: 800px;
+    align-self: center;
     margin-bottom: 16px;
     border-radius: 8px;
     overflow: hidden;
