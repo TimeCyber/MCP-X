@@ -46,13 +46,15 @@ class AgentService {
   // 获取智能体列表（支持分页）
   async getAgentListWithPagination(params: PaginationParams): Promise<PaginatedResponse<Agent>> {
     try {
-      const queryParams = new URLSearchParams({
-        page: params.page.toString(),
+      // API期望的参数名是pageNum而不是page
+      const apiParams = new URLSearchParams({
+        pageNum: params.page.toString(), // API期望的参数名是pageNum
         pageSize: params.pageSize.toString(),
+        status: '1',
         ...(params.keyword && { keyword: params.keyword })
       });
 
-      const response = await fetch(`${this.baseUrl}/agent/list?${queryParams}`);
+      const response = await fetch(`${this.baseUrl}/agent/list?${apiParams}`);
       
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -140,42 +142,37 @@ class AgentService {
     }
   }
 
-  // 搜索智能体（支持分页）
-  async searchAgentsWithPagination(params: PaginationParams): Promise<PaginatedResponse<Agent>> {
-    try {
-      // 如果有关键词，使用分页API进行搜索
-      if (params.keyword && params.keyword.trim()) {
-        return await this.getAgentListWithPagination(params);
-      }
-      
-      // 如果没有关键词，直接获取分页列表
-      return await this.getAgentListWithPagination(params);
-    } catch (error) {
-      console.error(`Failed to search agents with pagination:`, error);
-      return {
-        data: [],
-        total: 0,
-        page: params.page,
-        pageSize: params.pageSize,
-        totalPages: 0,
-        hasNextPage: false,
-        hasPreviousPage: false
-      };
-    }
-  }
-
-  // 搜索智能体（兼容性方法，不分页）
+  // 搜索智能体（使用专门的搜索接口）
   async searchAgents(keyword: string): Promise<Agent[]> {
     try {
-      const paginatedResult = await this.searchAgentsWithPagination({
-        page: 1,
-        pageSize: 1000,
-        keyword
-      });
+      if (!keyword || !keyword.trim()) {
+        // 如果没有关键词，返回空数组
+        return [];
+      }
+
+      const response = await fetch(`${this.baseUrl}/agent/search?key=${encodeURIComponent(keyword.trim())}`);
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
       
-      return paginatedResult.data;
+      const data = await response.json();
+      
+      // 适配搜索API的数据结构
+      if (data.success && data.data && Array.isArray(data.data)) {
+        return data.data;
+      }
+      
+      // 如果API返回的格式不是预期的，检查是否有rows字段（兼容列表接口格式）
+      if (data.rows && Array.isArray(data.rows)) {
+        return data.rows;
+      }
+      
+      console.warn('Unexpected search API response structure:', data);
+      return [];
     } catch (error) {
       console.error(`Failed to search agents with keyword "${keyword}":`, error);
+      // 搜索失败时返回空数组
       return [];
     }
   }

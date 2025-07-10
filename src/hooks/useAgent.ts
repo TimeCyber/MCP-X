@@ -81,6 +81,7 @@ export const useAgent = () => {
       updateLoadingState({ 
         isFetchingList: false,
         isLoadingMore: false,
+        isInitialized: true, // 标记为已初始化
         lastFetchTime: Date.now() 
       });
       
@@ -100,7 +101,10 @@ export const useAgent = () => {
   const fetchAgentList = useCallback(async (force = false) => {
     if (paginationMode) {
       // 分页模式：获取第一页数据
-      return await fetchAgentListWithPagination({ page: 1 });
+      const result = await fetchAgentListWithPagination({ page: 1 });
+      // 标记为已初始化
+      updateLoadingState({ isInitialized: true });
+      return result;
     } else {
       // 非分页模式：使用原有逻辑
       if (!force && hasCachedAgents && agentList.length > 0) {
@@ -114,6 +118,7 @@ export const useAgent = () => {
         setAgentList(agents);
         updateLoadingState({ 
           isFetchingList: false, 
+          isInitialized: true, // 标记为已初始化
           lastFetchTime: Date.now() 
         });
         return agents;
@@ -126,34 +131,54 @@ export const useAgent = () => {
         throw error;
       }
     }
-  }, [paginationMode, fetchAgentListWithPagination, agentList, hasCachedAgents, setAgentList, updateLoadingState]);
+  }, [paginationMode, fetchAgentListWithPagination, setAgentList, updateLoadingState]); // 减少依赖项，只保留必要的
 
   // 搜索智能体
   const searchAgents = useCallback(async (keyword: string) => {
     setSearchKeyword(keyword);
     
-    if (paginationMode) {
-      // 分页模式：使用API搜索
+    if (keyword && keyword.trim()) {
+      // 有关键词时使用搜索接口
       try {
-        await fetchAgentListWithPagination({ 
-          page: 1, 
-          keyword: keyword 
+        updateLoadingState({ isFetchingList: true, error: null });
+        
+        const agents = await agentService.searchAgents(keyword);
+        setAgentList(agents);
+        
+        updateLoadingState({ 
+          isFetchingList: false, 
+          isInitialized: true,
+          lastFetchTime: Date.now() 
         });
+        
+        console.log(`🔍 搜索完成: "${keyword}", 找到 ${agents.length} 个结果`);
       } catch (error) {
+        const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+        updateLoadingState({ 
+          isFetchingList: false, 
+          error: errorMessage 
+        });
         console.error('Failed to search agents:', error);
       }
     } else {
-      // 非分页模式：使用本地过滤（通过 filteredAgentListAtom 自动处理）
-      // 如果本地没有数据，先获取所有数据
-      if (agentList.length === 0) {
+      // 没有关键词时恢复原始列表
+      if (paginationMode) {
+        // 分页模式：重新加载第一页
+        try {
+          await fetchAgentListWithPagination({ page: 1 });
+        } catch (error) {
+          console.error('Failed to reload agents after clearing search:', error);
+        }
+      } else {
+        // 非分页模式：重新加载全部数据
         try {
           await fetchAgentList(true);
         } catch (error) {
-          console.error('Failed to fetch agents for search:', error);
+          console.error('Failed to reload agents after clearing search:', error);
         }
       }
     }
-  }, [paginationMode, fetchAgentListWithPagination, setSearchKeyword, agentList.length, fetchAgentList]);
+  }, [paginationMode, setSearchKeyword, setAgentList, updateLoadingState, fetchAgentListWithPagination, fetchAgentList]);
 
   // 跳转到指定页面
   const goToPage = useCallback(async (page: number) => {
@@ -295,6 +320,9 @@ export const useAgent = () => {
     const newMode = !paginationMode;
     setPaginationMode(newMode);
     
+    // 重置初始化状态，确保切换模式后重新加载数据
+    updateLoadingState({ isInitialized: false });
+    
     // 切换模式后重新加载数据
     try {
       if (newMode) {
@@ -307,7 +335,7 @@ export const useAgent = () => {
     } catch (error) {
       console.error('Failed to reload data after mode switch:', error);
     }
-  }, [paginationMode, setPaginationMode, fetchAgentListWithPagination, fetchAgentList]);
+  }, [paginationMode, setPaginationMode, fetchAgentListWithPagination, fetchAgentList, updateLoadingState]);
 
   // 清除错误状态
   const clearError = useCallback(() => {
@@ -319,18 +347,29 @@ export const useAgent = () => {
     setSearchKeyword("");
     
     if (paginationMode) {
+      // 分页模式：重新加载第一页数据（不带搜索关键词）
       try {
-        await fetchAgentListWithPagination({ page: 1, keyword: "" });
+        await fetchAgentListWithPagination({ page: 1 });
       } catch (error) {
         console.error('Failed to clear search:', error);
       }
+    } else {
+      // 非分页模式：重新加载全部数据
+      try {
+        await fetchAgentList(true);
+      } catch (error) {
+        console.error('Failed to reload agents after clearing search:', error);
+      }
     }
-  }, [paginationMode, setSearchKeyword, fetchAgentListWithPagination]);
+  }, [paginationMode, setSearchKeyword, fetchAgentListWithPagination, fetchAgentList]);
 
   // 清除缓存并刷新
   const clearCacheAndRefresh = useCallback(async () => {
     try {
       await agentService.clearCache();
+      // 重置初始化状态，确保重新加载数据
+      updateLoadingState({ isInitialized: false });
+      
       if (paginationMode) {
         await fetchAgentListWithPagination({ page: 1 });
       } else {
@@ -340,7 +379,7 @@ export const useAgent = () => {
       console.error('Failed to clear cache and refresh:', error);
       throw error;
     }
-  }, [paginationMode, fetchAgentListWithPagination, fetchAgentList]);
+  }, [paginationMode, fetchAgentListWithPagination, fetchAgentList, updateLoadingState]);
 
   const updateAgent = useCallback(async (agentToUpdate: Partial<Agent> & { id: number }) => {
     updateLoadingState({ isFetchingDetail: true, error: null });

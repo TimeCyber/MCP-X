@@ -54,6 +54,7 @@ export interface AgentLoadingState {
   isActivating: boolean;
   isDeactivating: boolean;
   isLoadingMore: boolean; // 加载更多数据
+  isInitialized: boolean; // 是否已经初始化过数据
   error: string | null;
   lastFetchTime: number | null;
 }
@@ -90,6 +91,7 @@ export const agentLoadingStateAtom = atom<AgentLoadingState>({
   isActivating: false,
   isDeactivating: false,
   isLoadingMore: false,
+  isInitialized: false,
   error: null,
   lastFetchTime: null,
 });
