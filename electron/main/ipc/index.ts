@@ -9,6 +9,9 @@ import { ipcMenuHandler } from "./menu"
 import { ipcMain, dialog, shell } from "electron"
 import path from "path"
 
+// 声明外部变量（由main/index.ts定义）
+declare let rendererReady: boolean
+
 export function ipcHandler(win: BrowserWindow) {
   ipcEnvHandler(win)
   ipcSystemHandler(win)
@@ -33,5 +36,13 @@ export function ipcHandler(win: BrowserWindow) {
     if (url.startsWith('https://') || url.startsWith('http://')) {
       shell.openExternal(url)
     }
+  })
+  
+  // 处理渲染进程准备状态
+  ipcMain.on('renderer-ready', () => {
+    console.log('Renderer process is ready for deeplink handling')
+    // 这里需要通过某种方式设置全局状态
+    // 由于TypeScript限制，我们使用global对象
+    ;(global as any).rendererReady = true
   })
 }

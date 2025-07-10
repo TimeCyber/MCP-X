@@ -412,7 +412,7 @@ const ChatWindow = () => {
     <div className="chat-page">
       <div className="chat-container">
         <div className="chat-window">
-          <AgentStatusIndicator />
+          {/* <AgentStatusIndicator /> */}
           <ChatMessages
             messages={messages}
             isLoading={isChatStreaming}

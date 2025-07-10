@@ -45,6 +45,83 @@ if (os.release().startsWith("6.1"))
 if (process.platform === "win32")
   app.setAppUserModelId(app.getName())
 
+// 注册自定义协议
+const PROTOCOL_NAME = 'mcp-x'
+if (process.defaultApp) {
+  // 开发环境下的特殊处理
+  if (process.argv.length >= 2) {
+    app.setAsDefaultProtocolClient(PROTOCOL_NAME, process.execPath, [path.resolve(process.argv[1])])
+  }
+} else {
+  // 生产环境
+  app.setAsDefaultProtocolClient(PROTOCOL_NAME)
+}
+
+// 渲染进程准备状态（使用global对象共享）
+;(global as any).rendererReady = false
+
+// URL处理函数
+function handleDeepLink(url: string) {
+  console.log('=== MAIN PROCESS DEEPLINK ===')
+  console.log('Deep link received:', url)
+  console.log('Renderer ready:', (global as any).rendererReady)
+  
+  if (!url || !url.startsWith(`${PROTOCOL_NAME}://`)) {
+    console.log('Invalid URL format, ignoring')
+    return
+  }
+
+  try {
+    const urlObj = new URL(url)
+    const pathname = urlObj.pathname
+    
+    // 解析 mcp-x://agent/{id} 格式的URL
+    if (pathname.startsWith('/agent/')) {
+      const agentId = pathname.split('/agent/')[1]
+      if (agentId && win) {
+        console.log('Extracted agent ID:', agentId)
+        
+        // 如果渲染进程还没有准备好，等待或者延迟发送
+        if (!(global as any).rendererReady) {
+          console.log('Renderer not ready, delaying deeplink...')
+          // 等待渲染进程准备好，最多等待10秒
+          let retries = 0
+          const maxRetries = 20 // 10秒
+          const checkAndSend = () => {
+            if ((global as any).rendererReady || retries >= maxRetries) {
+              console.log('Sending deeplink to renderer (ready:', (global as any).rendererReady, 'retries:', retries, ')')
+              win?.webContents.send('open-agent-detail', agentId)
+            } else {
+              retries++
+              setTimeout(checkAndSend, 500)
+            }
+          }
+          checkAndSend()
+        } else {
+          console.log('Sending deeplink to renderer immediately')
+          // 发送IPC消息到渲染进程
+          win.webContents.send('open-agent-detail', agentId)
+        }
+      }
+    }
+  } catch (error) {
+    console.error('Failed to parse deep link URL:', error)
+  }
+  console.log('=== MAIN PROCESS DEEPLINK END ===')
+}
+
+// 获取启动时的URL参数（Windows/Linux）
+function getStartupUrl(): string | null {
+  // 在开发环境下，URL参数可能在不同位置
+  const args = process.argv
+  for (let i = 0; i < args.length; i++) {
+    if (args[i].startsWith(`${PROTOCOL_NAME}://`)) {
+      return args[i]
+    }
+  }
+  return null
+}
+
 if (!app.requestSingleInstanceLock()) {
   app.quit()
   process.exit(0)
@@ -85,6 +162,17 @@ async function onReady() {
   initMCPClient()
   initProtocol()
   createWindow()
+  
+  // 处理启动时的URL参数
+  const startupUrl = getStartupUrl()
+  if (startupUrl) {
+    // 延迟处理，确保窗口已创建和加载完成
+    setTimeout(() => {
+      if (win && win.webContents) {
+        handleDeepLink(startupUrl)
+      }
+    }, 2000) // 增加延迟时间，确保应用完全加载
+  }
 }
 
 async function createWindow() {
@@ -105,6 +193,9 @@ async function createWindow() {
       // contextIsolation: false,
     },
   })
+
+  // 移除默认菜单
+  win.setMenu(null)
 
   // resolve cors
   win.webContents.session.webRequest.onBeforeSendHeaders(
@@ -130,7 +221,6 @@ async function createWindow() {
     // Open devTool if the app is not packaged
     win.webContents.openDevTools()
   } else {
-    win.setMenu(null)
     win.loadFile(indexHtml)
   }
 
@@ -188,13 +278,48 @@ app.on("window-all-closed", async () => {
   }
 })
 
-app.on("second-instance", () => {
+app.on("second-instance", (event, commandLine, workingDirectory) => {
+  console.log('=== SECOND INSTANCE EVENT ===')
+  console.log('Command line:', commandLine)
+  console.log('Working directory:', workingDirectory)
+  
+  // 处理已运行实例的情况
   if (win) {
-    // Focus on the main window if the user tried to open another
-    if (win.isMinimized())
-      win.restore()
-
+    // 聚焦到现有窗口
+    if (win.isMinimized()) win.restore()
     win.focus()
+    
+    // 查找命令行参数中的URL
+    const url = commandLine.find(arg => arg.startsWith(`${PROTOCOL_NAME}://`))
+    console.log('Found URL in command line:', url)
+    if (url) {
+      handleDeepLink(url)
+    } else {
+      console.log('No deeplink URL found in command line arguments')
+    }
+  }
+  console.log('=== SECOND INSTANCE EVENT END ===')
+})
+
+// macOS 专用的 URL 处理
+app.on('open-url', (event, url) => {
+  event.preventDefault()
+  console.log('macOS open-url event:', url)
+  
+  if (win) {
+    // 应用已运行，聚焦窗口并处理URL
+    if (win.isMinimized()) win.restore()
+    win.focus()
+    handleDeepLink(url)
+  } else {
+    // 应用未运行，先创建窗口，然后处理URL
+    createWindow().then(() => {
+      setTimeout(() => {
+        if (win && win.webContents) {
+          handleDeepLink(url)
+        }
+      }, 2000) // 增加延迟时间，确保应用完全加载
+    })
   }
 })
 

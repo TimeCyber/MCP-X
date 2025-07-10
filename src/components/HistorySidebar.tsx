@@ -175,7 +175,7 @@ const HistorySidebar = ({ onNewChat }: Props) => {
     // 先设置导航状态为chat，然后延迟导航确保状态更新
     setNavSection("chat")
     setTimeout(() => {
-      navigate(`/chat/${chatId}`)
+    navigate(`/chat/${chatId}`)
     }, 0)
   }, [navigate, setCurrentChatId, closeAllOverlays, setNavSection])
 
@@ -185,11 +185,11 @@ const HistorySidebar = ({ onNewChat }: Props) => {
     // 先设置导航状态为chat，然后延迟导航确保状态更新
     setNavSection("chat")
     setTimeout(() => {
-      if (onNewChat) {
-        onNewChat()
-      } else {
-        navigate("/")
-      }
+    if (onNewChat) {
+      onNewChat()
+    } else {
+      navigate("/")
+    }
     }, 0)
   }
 
@@ -246,7 +246,7 @@ const HistorySidebar = ({ onNewChat }: Props) => {
                     {chat.lastMessage}
                   </div>
                 )}
-                </div>
+              </div>
               <button
                 className="delete-btn"
                 onClick={(e) => confirmDelete(e, chat.id)}

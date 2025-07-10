@@ -146,7 +146,6 @@
 
       .input-actions {
         display: flex;
-        justify-content: space-between;
         align-items: center;
         gap: 10px;
         width: 100%;
@@ -156,6 +155,19 @@
           align-items: center;
           gap: 4px;
           flex: 0 0 auto; // 防止左侧按钮被压缩
+        }
+        
+        .right-actions {
+          display: flex;
+          align-items: center;
+          gap: 4px;
+          margin-left: auto;
+        }
+
+        .tools-container {
+          display: flex;
+          align-items: center;
+          gap: 4px;
         }
 
         button {
@@ -198,14 +210,6 @@
               display: none;
             }
           }
-        }
-
-        .tools-container {
-          display: flex;
-          align-items: center;
-          gap: 4px;
-          flex: 1; // 占据剩余的全部空间
-          justify-content: flex-end; // 内容靠右对齐
         }
 
         .tools-btn {

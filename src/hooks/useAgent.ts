@@ -2,10 +2,12 @@ import { useAtom, useAtomValue, useSetAtom } from "jotai";
 import { useCallback, useEffect } from "react";
 import {
   agentListAtom,
+  agentPaginationAtom,
   activeAgentAtom,
   agentConfigAtom,
   agentLoadingStateAtom,
   agentSearchKeywordAtom,
+  agentPaginationModeAtom,
   filteredAgentListAtom,
   selectedAgentAtom,
   hasCachedAgentsAtom,
@@ -13,16 +15,19 @@ import {
   Agent,
   ActiveAgent,
   AgentConfig,
+  PaginationInfo,
 } from "../atoms/agentState";
-import { agentService } from "../services/agentService";
+import { agentService, PaginationParams } from "../services/agentService";
 
 // 智能体操作Hook
 export const useAgent = () => {
   const [agentList, setAgentList] = useAtom(agentListAtom);
+  const [pagination, setPagination] = useAtom(agentPaginationAtom);
   const [activeAgent, setActiveAgent] = useAtom(activeAgentAtom);
   const [agentConfig, setAgentConfig] = useAtom(agentConfigAtom);
   const [loadingState, setLoadingState] = useAtom(agentLoadingStateAtom);
   const [searchKeyword, setSearchKeyword] = useAtom(agentSearchKeywordAtom);
+  const [paginationMode, setPaginationMode] = useAtom(agentPaginationModeAtom);
   
   const filteredAgents = useAtomValue(filteredAgentListAtom);
   const selectedAgent = useAtomValue(selectedAgentAtom);
@@ -34,67 +39,169 @@ export const useAgent = () => {
     setLoadingState(prev => ({ ...prev, ...updates }));
   }, [setLoadingState]);
 
-  // 获取智能体列表
-  const fetchAgentList = useCallback(async (force = false) => {
-    // 如果有缓存且不强制刷新，则跳过
-    if (!force && hasCachedAgents && agentList.length > 0) {
-      return agentList;
-    }
+  // 更新分页信息的辅助函数
+  const updatePagination = useCallback((newPagination: Partial<PaginationInfo>) => {
+    setPagination(prev => ({ ...prev, ...newPagination }));
+  }, [setPagination]);
 
-    updateLoadingState({ isFetchingList: true, error: null });
+  // 获取分页智能体列表
+  const fetchAgentListWithPagination = useCallback(async (params?: Partial<PaginationParams>, append = false) => {
+    const currentParams: PaginationParams = {
+      page: params?.page || pagination.currentPage,
+      pageSize: params?.pageSize || pagination.pageSize,
+      keyword: params?.keyword !== undefined ? params.keyword : searchKeyword,
+    };
+
+    updateLoadingState({ 
+      isFetchingList: !append, 
+      isLoadingMore: append,
+      error: null 
+    });
     
     try {
-      const agents = await agentService.getAgentList();
-      setAgentList(agents);
+      const result = await agentService.getAgentListWithPagination(currentParams);
+      
+      // 更新智能体列表
+      if (append) {
+        setAgentList(prev => [...prev, ...result.data]);
+      } else {
+        setAgentList(result.data);
+      }
+      
+      // 更新分页信息
+      updatePagination({
+        currentPage: result.page,
+        pageSize: result.pageSize,
+        total: result.total,
+        totalPages: result.totalPages,
+        hasNextPage: result.hasNextPage,
+        hasPreviousPage: result.hasPreviousPage,
+      });
+      
       updateLoadingState({ 
-        isFetchingList: false, 
+        isFetchingList: false,
+        isLoadingMore: false,
         lastFetchTime: Date.now() 
       });
-      return agents;
+      
+      return result;
     } catch (error) {
       const errorMessage = error instanceof Error ? error.message : 'Unknown error';
       updateLoadingState({ 
-        isFetchingList: false, 
+        isFetchingList: false,
+        isLoadingMore: false,
         error: errorMessage 
       });
       throw error;
     }
-  }, [agentList, hasCachedAgents, setAgentList, updateLoadingState]);
+  }, [pagination, searchKeyword, setAgentList, updateLoadingState, updatePagination]);
+
+  // 获取智能体列表（兼容性方法）
+  const fetchAgentList = useCallback(async (force = false) => {
+    if (paginationMode) {
+      // 分页模式：获取第一页数据
+      return await fetchAgentListWithPagination({ page: 1 });
+    } else {
+      // 非分页模式：使用原有逻辑
+      if (!force && hasCachedAgents && agentList.length > 0) {
+        return agentList;
+      }
+
+      updateLoadingState({ isFetchingList: true, error: null });
+      
+      try {
+        const agents = await agentService.getAgentList();
+        setAgentList(agents);
+        updateLoadingState({ 
+          isFetchingList: false, 
+          lastFetchTime: Date.now() 
+        });
+        return agents;
+      } catch (error) {
+        const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+        updateLoadingState({ 
+          isFetchingList: false, 
+          error: errorMessage 
+        });
+        throw error;
+      }
+    }
+  }, [paginationMode, fetchAgentListWithPagination, agentList, hasCachedAgents, setAgentList, updateLoadingState]);
 
   // 搜索智能体
   const searchAgents = useCallback(async (keyword: string) => {
-    if (!keyword.trim()) {
-      setSearchKeyword("");
-      return agentList;
-    }
-
     setSearchKeyword(keyword);
     
-    // 如果本地有数据，直接使用本地过滤
-    if (agentList.length > 0) {
-      return filteredAgents;
+    if (paginationMode) {
+      // 分页模式：使用API搜索
+      try {
+        await fetchAgentListWithPagination({ 
+          page: 1, 
+          keyword: keyword 
+        });
+      } catch (error) {
+        console.error('Failed to search agents:', error);
+      }
+    } else {
+      // 非分页模式：使用本地过滤（通过 filteredAgentListAtom 自动处理）
+      // 如果本地没有数据，先获取所有数据
+      if (agentList.length === 0) {
+        try {
+          await fetchAgentList(true);
+        } catch (error) {
+          console.error('Failed to fetch agents for search:', error);
+        }
+      }
     }
+  }, [paginationMode, fetchAgentListWithPagination, setSearchKeyword, agentList.length, fetchAgentList]);
 
-    // 否则调用API搜索
-    updateLoadingState({ isFetchingList: true, error: null });
+  // 跳转到指定页面
+  const goToPage = useCallback(async (page: number) => {
+    if (!paginationMode || page < 1 || page > pagination.totalPages) return;
     
     try {
-      const agents = await agentService.searchAgents(keyword);
-      setAgentList(agents);
-      updateLoadingState({ 
-        isFetchingList: false, 
-        lastFetchTime: Date.now() 
-      });
-      return agents;
+      await fetchAgentListWithPagination({ page });
     } catch (error) {
-      const errorMessage = error instanceof Error ? error.message : 'Unknown error';
-      updateLoadingState({ 
-        isFetchingList: false, 
-        error: errorMessage 
-      });
-      throw error;
+      console.error('Failed to go to page:', page, error);
     }
-  }, [agentList, filteredAgents, setSearchKeyword, setAgentList, updateLoadingState]);
+  }, [paginationMode, pagination.totalPages, fetchAgentListWithPagination]);
+
+  // 加载下一页（追加模式）
+  const loadMoreAgents = useCallback(async () => {
+    if (!paginationMode || !pagination.hasNextPage || loadingState.isLoadingMore) return;
+    
+    try {
+      await fetchAgentListWithPagination({ page: pagination.currentPage + 1 }, true);
+    } catch (error) {
+      console.error('Failed to load more agents:', error);
+    }
+  }, [paginationMode, pagination.hasNextPage, pagination.currentPage, loadingState.isLoadingMore, fetchAgentListWithPagination]);
+
+  // 刷新当前页
+  const refreshCurrentPage = useCallback(async () => {
+    if (!paginationMode) {
+      return await fetchAgentList(true);
+    }
+    
+    try {
+      await fetchAgentListWithPagination({ page: pagination.currentPage });
+    } catch (error) {
+      console.error('Failed to refresh current page:', error);
+    }
+  }, [paginationMode, pagination.currentPage, fetchAgentList, fetchAgentListWithPagination]);
+
+  // 设置分页大小
+  const setPageSize = useCallback(async (pageSize: number) => {
+    if (!paginationMode || pageSize < 1) return;
+    
+    updatePagination({ pageSize });
+    
+    try {
+      await fetchAgentListWithPagination({ page: 1, pageSize });
+    } catch (error) {
+      console.error('Failed to update page size:', error);
+    }
+  }, [paginationMode, updatePagination, fetchAgentListWithPagination]);
 
   // 选择智能体
   const selectAgent = useCallback((agentId: number | null) => {
@@ -183,26 +290,76 @@ export const useAgent = () => {
     setAgentConfig(prev => ({ ...prev, ...updates }));
   }, [setAgentConfig]);
 
+  // 切换分页模式
+  const togglePaginationMode = useCallback(async () => {
+    const newMode = !paginationMode;
+    setPaginationMode(newMode);
+    
+    // 切换模式后重新加载数据
+    try {
+      if (newMode) {
+        // 切换到分页模式
+        await fetchAgentListWithPagination({ page: 1 });
+      } else {
+        // 切换到非分页模式
+        await fetchAgentList(true);
+      }
+    } catch (error) {
+      console.error('Failed to reload data after mode switch:', error);
+    }
+  }, [paginationMode, setPaginationMode, fetchAgentListWithPagination, fetchAgentList]);
+
   // 清除错误状态
   const clearError = useCallback(() => {
     updateLoadingState({ error: null });
   }, [updateLoadingState]);
 
   // 重置搜索
-  const clearSearch = useCallback(() => {
+  const clearSearch = useCallback(async () => {
     setSearchKeyword("");
-  }, [setSearchKeyword]);
+    
+    if (paginationMode) {
+      try {
+        await fetchAgentListWithPagination({ page: 1, keyword: "" });
+      } catch (error) {
+        console.error('Failed to clear search:', error);
+      }
+    }
+  }, [paginationMode, setSearchKeyword, fetchAgentListWithPagination]);
 
   // 清除缓存并刷新
   const clearCacheAndRefresh = useCallback(async () => {
     try {
       await agentService.clearCache();
-      await fetchAgentList(true);
+      if (paginationMode) {
+        await fetchAgentListWithPagination({ page: 1 });
+      } else {
+        await fetchAgentList(true);
+      }
     } catch (error) {
       console.error('Failed to clear cache and refresh:', error);
       throw error;
     }
-  }, [fetchAgentList]);
+  }, [paginationMode, fetchAgentListWithPagination, fetchAgentList]);
+
+  const updateAgent = useCallback(async (agentToUpdate: Partial<Agent> & { id: number }) => {
+    updateLoadingState({ isFetchingDetail: true, error: null });
+    try {
+      const updatedAgent = await agentService.updateAgent(agentToUpdate as Agent);
+      setAgentList(prev => 
+        prev.map(agent => (agent.id === updatedAgent.id ? updatedAgent : agent))
+      );
+      updateLoadingState({ isFetchingDetail: false });
+      return updatedAgent;
+    } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+      updateLoadingState({ 
+        isFetchingDetail: false, 
+        error: errorMessage 
+      });
+      throw error;
+    }
+  }, [setAgentList, updateLoadingState]);
 
   return {
     // 状态
@@ -215,9 +372,12 @@ export const useAgent = () => {
     searchKeyword,
     hasCachedAgents,
     agentStats,
+    pagination,
+    paginationMode,
     
     // 操作
     fetchAgentList,
+    fetchAgentListWithPagination,
     searchAgents,
     selectAgent,
     activateAgent,
@@ -227,6 +387,14 @@ export const useAgent = () => {
     clearError,
     clearSearch,
     clearCacheAndRefresh,
+    updateAgent,
+    
+    // 分页操作
+    goToPage,
+    loadMoreAgents,
+    refreshCurrentPage,
+    setPageSize,
+    togglePaginationMode,
   };
 };
 
@@ -237,6 +405,8 @@ export const useAgentState = () => {
   const selectedAgent = useAtomValue(selectedAgentAtom);
   const agentStats = useAtomValue(agentStatsAtom);
   const loadingState = useAtomValue(agentLoadingStateAtom);
+  const pagination = useAtomValue(agentPaginationAtom);
+  const paginationMode = useAtomValue(agentPaginationModeAtom);
 
   return {
     agentList,
@@ -244,5 +414,12 @@ export const useAgentState = () => {
     selectedAgent,
     agentStats,
     loadingState,
+    pagination,
+    paginationMode,
   };
+};
+
+export const useAgentUpdater = () => {
+  const { updateAgent } = useAgent();
+  return { updateAgent };
 }; 

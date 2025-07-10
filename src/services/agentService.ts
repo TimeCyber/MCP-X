@@ -8,6 +8,24 @@ interface ApiResponse<T> {
   fromCache?: boolean;
 }
 
+// 分页参数
+export interface PaginationParams {
+  page: number;
+  pageSize: number;
+  keyword?: string;
+}
+
+// 分页响应
+export interface PaginatedResponse<T> {
+  data: T[];
+  total: number;
+  page: number;
+  pageSize: number;
+  totalPages: number;
+  hasNextPage: boolean;
+  hasPreviousPage: boolean;
+}
+
 // 智能体搜索结果
 interface AgentSearchResponse {
   success: boolean;
@@ -25,10 +43,16 @@ class AgentService {
     this.baseUrl = 'https://mcp-x.com/prod-api/web/mcp';
   }
 
-  // 获取智能体列表
-  async getAgentList(): Promise<Agent[]> {
+  // 获取智能体列表（支持分页）
+  async getAgentListWithPagination(params: PaginationParams): Promise<PaginatedResponse<Agent>> {
     try {
-      const response = await fetch(`${this.baseUrl}/agent/list`);
+      const queryParams = new URLSearchParams({
+        page: params.page.toString(),
+        pageSize: params.pageSize.toString(),
+        ...(params.keyword && { keyword: params.keyword })
+      });
+
+      const response = await fetch(`${this.baseUrl}/agent/list?${queryParams}`);
       
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -38,15 +62,57 @@ class AgentService {
       
       // 适配远程API的数据结构: {total: number, rows: Agent[]}
       if (data.rows && Array.isArray(data.rows)) {
-        return data.rows;
+        const total = data.total || data.rows.length;
+        const totalPages = Math.ceil(total / params.pageSize);
+        
+        return {
+          data: data.rows,
+          total,
+          page: params.page,
+          pageSize: params.pageSize,
+          totalPages,
+          hasNextPage: params.page < totalPages,
+          hasPreviousPage: params.page > 1
+        };
       }
       
-      // 如果数据结构不匹配，返回空数组
+      // 如果数据结构不匹配，返回空的分页结果
       console.warn('Unexpected API response structure:', data);
-      return [];
+      return {
+        data: [],
+        total: 0,
+        page: params.page,
+        pageSize: params.pageSize,
+        totalPages: 0,
+        hasNextPage: false,
+        hasPreviousPage: false
+      };
+    } catch (error) {
+      console.warn('Agent service not available, returning empty paginated result:', error);
+      // 当智能体服务不可用时返回空的分页结果
+      return {
+        data: [],
+        total: 0,
+        page: params.page,
+        pageSize: params.pageSize,
+        totalPages: 0,
+        hasNextPage: false,
+        hasPreviousPage: false
+      };
+    }
+  }
+
+  // 获取智能体列表（兼容性方法，不分页）
+  async getAgentList(): Promise<Agent[]> {
+    try {
+      const paginatedResult = await this.getAgentListWithPagination({
+        page: 1,
+        pageSize: 1000 // 获取足够多的数据来保持兼容性
+      });
+      
+      return paginatedResult.data;
     } catch (error) {
       console.warn('Agent service not available, returning empty list:', error);
-      // 当智能体服务不可用时返回空列表，而不是抛出错误
       return [];
     }
   }
@@ -74,23 +140,40 @@ class AgentService {
     }
   }
 
-  // 搜索智能体（使用前端本地搜索）
-  async searchAgents(keyword: string): Promise<Agent[]> {
+  // 搜索智能体（支持分页）
+  async searchAgentsWithPagination(params: PaginationParams): Promise<PaginatedResponse<Agent>> {
     try {
-      // 获取所有智能体，然后在前端进行搜索
-      const allAgents = await this.getAgentList();
-      
-      if (!keyword.trim()) {
-        return allAgents;
+      // 如果有关键词，使用分页API进行搜索
+      if (params.keyword && params.keyword.trim()) {
+        return await this.getAgentListWithPagination(params);
       }
       
-      const lowerKeyword = keyword.toLowerCase();
-      return allAgents.filter(agent => 
-        agent.name.toLowerCase().includes(lowerKeyword) ||
-        agent.description.toLowerCase().includes(lowerKeyword) ||
-        (agent.tags && agent.tags.toLowerCase().includes(lowerKeyword)) ||
-        (agent.author && agent.author.toLowerCase().includes(lowerKeyword))
-      );
+      // 如果没有关键词，直接获取分页列表
+      return await this.getAgentListWithPagination(params);
+    } catch (error) {
+      console.error(`Failed to search agents with pagination:`, error);
+      return {
+        data: [],
+        total: 0,
+        page: params.page,
+        pageSize: params.pageSize,
+        totalPages: 0,
+        hasNextPage: false,
+        hasPreviousPage: false
+      };
+    }
+  }
+
+  // 搜索智能体（兼容性方法，不分页）
+  async searchAgents(keyword: string): Promise<Agent[]> {
+    try {
+      const paginatedResult = await this.searchAgentsWithPagination({
+        page: 1,
+        pageSize: 1000,
+        keyword
+      });
+      
+      return paginatedResult.data;
     } catch (error) {
       console.error(`Failed to search agents with keyword "${keyword}":`, error);
       return [];
@@ -104,37 +187,36 @@ class AgentService {
     activated: boolean; 
     greeting?: string; 
   }> {
-    // 从已加载的智能体列表中找到对应的智能体
-    const allAgents = await this.getAgentList();
-    const targetAgent = allAgents.find(agent => agent.id === id);
-    
-    if (!targetAgent) {
-      throw new Error(`智能体 ID ${id} 不存在`);
-    }
-
-    // 将激活状态同步到后端
+    // 先尝试从详情接口获取完整信息
     try {
-      const response = await fetch(`/api/agent/activate/${targetAgent.id}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
+      const targetAgent = await this.getAgentDetail(id);
+      
+      // 将激活状态同步到后端
+      try {
+        const response = await fetch(`/api/agent/activate/${targetAgent.id}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          }
+        });
+
+        if (!response.ok) {
+          console.warn('Failed to sync agent to backend, but local state will be maintained');
         }
-      });
-
-      if (!response.ok) {
-        console.warn('Failed to sync agent to backend, but local state will be maintained');
+      } catch (error) {
+        console.warn('Backend sync failed, maintaining local state only:', error);
       }
-    } catch (error) {
-      console.warn('Backend sync failed, maintaining local state only:', error);
-    }
 
-    // 返回本地激活状态，包含智能体的欢迎信息
-    return {
-      id: targetAgent.id,
-      name: targetAgent.name,
-      activated: true,
-      greeting: targetAgent.openSay || `你好！我是 ${targetAgent.name}，${targetAgent.description}`
-    };
+      // 返回本地激活状态，包含智能体的欢迎信息
+      return {
+        id: targetAgent.id,
+        name: targetAgent.name,
+        activated: true,
+        greeting: targetAgent.openSay || `你好！我是 ${targetAgent.name}，${targetAgent.description}`
+      };
+    } catch (error) {
+      throw new Error(`智能体 ID ${id} 不存在或无法加载详情`);
+    }
   }
 
   // 获取当前激活的智能体（本地状态管理）
@@ -161,6 +243,30 @@ class AgentService {
       }
     } catch (error) {
       console.warn('Backend deactivation sync failed, clearing local state only:', error);
+    }
+  }
+
+  // 更新智能体
+  async updateAgent(agent: Agent): Promise<Agent> {
+    try {
+      const response = await fetch(`/api/agent/${agent.id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(agent),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({ message: 'Update failed with non-JSON response' }));
+        throw new Error(errorData.message || `HTTP error! status: ${response.status}`);
+      }
+
+      const updatedAgent = await response.json();
+      return updatedAgent.data || updatedAgent; // 兼容不同返回格式
+    } catch (error) {
+      console.error(`Failed to update agent ${agent.id}:`, error);
+      throw error;
     }
   }
 

@@ -5,6 +5,12 @@
   "copyright": "Copyright © 2025 TimeCyber",
   "asar": true,
   "artifactName": "${productName}-${version}-${os}-${arch}.${ext}",
+  "protocols": [
+    {
+      "name": "MCP-X Protocol",
+      "schemes": ["mcp-x"]
+    }
+  ],
   "publish": [
     {
       "provider": "github",
@@ -43,6 +49,12 @@
     "entitlements": "resources/mac/entitlements.mac.plist",
     "entitlementsInherit": "resources/mac/entitlements.mac.plist",
     "darkModeSupport": true,
+    "protocols": [
+      {
+        "name": "MCP-X Protocol",
+        "schemes": ["mcp-x"]
+      }
+    ],
     "extendInfo": {
       "NSMicrophoneUsageDescription": "Microphone access may be used by MCPX plugins, such as Jitsi video conferencing.",
       "NSCameraUsageDescription": "Camera access may be used by MCPX plugins, such as Jitsi video conferencing.",
@@ -53,7 +65,13 @@
       "com.apple.security.cs.allow-unsigned-executable-memory": true,
       "com.apple.security.cs.allow-dyld-environment-variables": true,
       "com.apple.security.temporary-exception.files.absolute-path.read-write": true,
-      "com.apple.security.temporary-exception.files.home-relative-path.read-write": true
+      "com.apple.security.temporary-exception.files.home-relative-path.read-write": true,
+      "CFBundleURLTypes": [
+        {
+          "CFBundleURLName": "MCP-X Protocol",
+          "CFBundleURLSchemes": ["mcp-x"]
+        }
+      ]
     },
     "signIgnore": [
       "node_modules/sharp"
@@ -88,6 +106,12 @@
         ]
       }
     ],
+    "protocols": [
+      {
+        "name": "MCP-X Protocol",
+        "schemes": ["mcp-x"]
+      }
+    ],
     "extraResources": [
       {
         "from": "bin/node/win-x64/",
@@ -117,7 +141,13 @@
   "linux": {
     "target": ["AppImage"],
     "asarUnpack": ["**/*.node"],
-    "executableName": "mcpx"
+    "executableName": "mcpx",
+    "protocols": [
+      {
+        "name": "MCP-X Protocol",
+        "schemes": ["mcp-x"]
+      }
+    ]
   },
   "nsis": {
     "oneClick": false,

@@ -37,12 +37,23 @@ export interface AgentConfig {
   cacheExpiration: number;
 }
 
+// 分页信息
+export interface PaginationInfo {
+  currentPage: number;
+  pageSize: number;
+  total: number;
+  totalPages: number;
+  hasNextPage: boolean;
+  hasPreviousPage: boolean;
+}
+
 // 智能体加载状态
 export interface AgentLoadingState {
   isFetchingList: boolean;
   isFetchingDetail: boolean;
   isActivating: boolean;
   isDeactivating: boolean;
+  isLoadingMore: boolean; // 加载更多数据
   error: string | null;
   lastFetchTime: number | null;
 }
@@ -50,6 +61,16 @@ export interface AgentLoadingState {
 // 原子定义
 // 智能体列表
 export const agentListAtom = atom<Agent[]>([]);
+
+// 分页信息
+export const agentPaginationAtom = atom<PaginationInfo>({
+  currentPage: 1,
+  pageSize: 20,
+  total: 0,
+  totalPages: 0,
+  hasNextPage: false,
+  hasPreviousPage: false,
+});
 
 // 当前激活的智能体
 export const activeAgentAtom = atom<ActiveAgent | null>(null);
@@ -68,6 +89,7 @@ export const agentLoadingStateAtom = atom<AgentLoadingState>({
   isFetchingDetail: false,
   isActivating: false,
   isDeactivating: false,
+  isLoadingMore: false,
   error: null,
   lastFetchTime: null,
 });
@@ -75,11 +97,21 @@ export const agentLoadingStateAtom = atom<AgentLoadingState>({
 // 智能体搜索关键词
 export const agentSearchKeywordAtom = atom<string>("");
 
+// 是否启用分页模式
+export const agentPaginationModeAtom = atomWithStorage<boolean>("mcpx-agent-pagination-mode", true);
+
 // 过滤后的智能体列表（根据搜索关键词）
 export const filteredAgentListAtom = atom((get) => {
   const agents = get(agentListAtom);
   const keyword = get(agentSearchKeywordAtom);
+  const paginationMode = get(agentPaginationModeAtom);
   
+  // 如果启用分页模式，直接返回当前列表（搜索通过API完成）
+  if (paginationMode) {
+    return agents;
+  }
+  
+  // 如果是非分页模式，使用前端过滤
   if (!keyword.trim()) {
     return agents;
   }
@@ -124,9 +156,11 @@ export const hasCachedAgentsAtom = atom((get) => {
 export const agentStatsAtom = atom((get) => {
   const agents = get(agentListAtom);
   const activeAgent = get(activeAgentAtom);
+  const pagination = get(agentPaginationAtom);
   
   return {
-    totalAgents: agents.length,
+    totalAgents: pagination.total || agents.length,
+    currentPageAgents: agents.length,
     hasActiveAgent: !!activeAgent,
     activeAgentName: activeAgent?.name || null,
   };

@@ -3,6 +3,7 @@ import Layout from "./views/Layout"
 import Chat from "./views/Chat"
 import Welcome from "./views/Welcome"
 import Setup from "./views/Setup"
+import AgentChatPanel from "./views/AgentChatPanel"
 
 export const router = createHashRouter([
   {
@@ -20,6 +21,10 @@ export const router = createHashRouter([
       {
         path: "chat/:chatId",
         element: <Chat />
+      },
+      {
+        path: "agent/:agentId",
+        element: <AgentChatPanel />
       },
       {
         path: "setup",

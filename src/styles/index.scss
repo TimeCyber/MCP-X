@@ -59,13 +59,15 @@ body {
 .app-content {
   display: flex;
   flex: 1;
+  min-height: 0; // 修复flex在缩小情况下布局溢出的问题
 }
 
 .outlet-container {
   display: flex;
+  flex-direction: column; // 改为垂直布局
   flex: 1;
   position: relative;
-  // 留空，由flex布局自动适配侧边栏宽度
+  min-width: 0; // 修复flex在缩小情况下布局溢出的问题
 }
 
 .main-container {

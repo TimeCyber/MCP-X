@@ -380,7 +380,7 @@ const Welcome = () => {
                     </svg>
                   </button>
                 </div>
-                <div className="tools-container">
+                <div className="right-actions">
                   <button
                     className="tools-btn"
                     onClick={(e) => {
@@ -461,8 +461,63 @@ const Welcome = () => {
           ))}
         </div>
       </div>
+
+      {/* 在Welcome组件中添加Deep Linking测试区域 */}
+      {/* <DeepLinkingTestSection /> */}
     </div>
   )
 }
 
 export default React.memo(Welcome)
+
+// 在Welcome组件中添加Deep Linking测试区域
+const DeepLinkingTestSection = () => {
+  const testLinks = [
+    { id: 1, name: "智能体 #1" },
+    { id: 2, name: "智能体 #2" },
+    { id: 123, name: "智能体 #123" },
+  ]
+
+  const handleTestLink = (agentId: number) => {
+    const url = `mcp-x://agent/${agentId}`
+    navigator.clipboard.writeText(url).then(() => {
+      alert(`Deep Link已复制到剪贴板: ${url}\n\n你可以在浏览器或其他应用中粘贴这个链接来测试Deep Linking功能。`)
+    }).catch(() => {
+      alert(`测试链接: ${url}`)
+    })
+  }
+
+  return (
+    <div style={{ 
+      marginTop: '2rem', 
+      padding: '1rem', 
+      border: '1px solid #ddd', 
+      borderRadius: '8px',
+      backgroundColor: '#f9f9f9'
+    }}>
+      <h3>Deep Linking 测试</h3>
+      <p>点击下面的按钮复制Deep Link，然后在外部应用中打开：</p>
+      <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
+        {testLinks.map(link => (
+          <button
+            key={link.id}
+            onClick={() => handleTestLink(link.id)}
+            style={{
+              padding: '0.5rem 1rem',
+              backgroundColor: '#007acc',
+              color: 'white',
+              border: 'none',
+              borderRadius: '4px',
+              cursor: 'pointer'
+            }}
+          >
+            {link.name}
+          </button>
+        ))}
+      </div>
+      <p style={{ fontSize: '0.9rem', color: '#666', marginTop: '0.5rem' }}>
+        注意：Deep Linking功能需要应用完全启动后才能正常工作。
+      </p>
+    </div>
+  )
+}
