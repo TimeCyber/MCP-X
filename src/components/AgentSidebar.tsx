@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef, useCallback } from "react"
 import { useAgent } from "../hooks/useAgent"
 import "../styles/components/_AgentSidebar.scss"
+import { useTranslation } from "react-i18next"
 
 const AgentSidebar: React.FC = () => {
   const { 
@@ -24,45 +25,68 @@ const AgentSidebar: React.FC = () => {
   const lastLoadTimeRef = useRef(0) // 防抖时间戳
   const searchInputRef = useRef<HTMLInputElement>(null) // 搜索框引用
   const prevIsFetchingList = useRef(loadingState.isFetchingList)
+  const searchTriggeredRef = useRef(false) // 标记搜索是否由本组件触发
+  const [isComposing, setIsComposing] = useState(false) // 使用state代替ref来跟踪IME状态
+  const { t } = useTranslation()
 
-  // 当搜索加载状态变化时，强制重新聚焦
+  // 当由搜索/清空操作引发的加载完成时，强制重新聚焦
   useEffect(() => {
-    // 检查加载状态是否从 true 变为 false
-    if (prevIsFetchingList.current && !loadingState.isFetchingList && searchKeyword) {
+    // 检查加载状态是否从 true 变为 false，并且是搜索操作触发的
+    if (prevIsFetchingList.current && !loadingState.isFetchingList && searchTriggeredRef.current) {
       searchInputRef.current?.focus()
-      console.log('🎯 搜索完成，强制重新聚焦')
+      console.log('🎯 搜索/清空完成，强制重新聚焦')
+      searchTriggeredRef.current = false // 重置标记，避免影响其他操作
     }
     // 更新上一次的加载状态
     prevIsFetchingList.current = loadingState.isFetchingList
-  }, [loadingState.isFetchingList, searchKeyword])
+  }, [loadingState.isFetchingList])
 
-  // 本地搜索状态，用于控制输入框，避免失去焦点
+  // 本地搜索状态，用于控制输入框
   const [localSearchKeyword, setLocalSearchKeyword] = useState(searchKeyword)
+
+  // 防抖搜索效果
+  useEffect(() => {
+    // 如果正在使用输入法组合，则不触发搜索
+    if (isComposing) {
+      return
+    }
+
+    const handler = setTimeout(() => {
+      // 只有当本地关键词和全局关键词不同时才触发搜索
+      if (localSearchKeyword !== searchKeyword) {
+        console.log('🔍 防抖搜索触发:', localSearchKeyword)
+        searchTriggeredRef.current = true // 标记本次加载由搜索框触发
+        searchAgents(localSearchKeyword)
+      }
+    }, 500) // 500ms延迟
+
+    return () => {
+      clearTimeout(handler)
+    }
+  }, [localSearchKeyword, searchAgents, searchKeyword, isComposing])
 
   // 同步外部搜索关键词到本地状态
   useEffect(() => {
     setLocalSearchKeyword(searchKeyword)
   }, [searchKeyword])
 
-  // 处理搜索输入变化（仅更新本地状态，不触发搜索）
+  // 处理搜索输入变化（仅更新本地状态）
   const handleSearchChange = useCallback((value: string) => {
     setLocalSearchKeyword(value)
   }, [])
 
-  // 处理Enter键搜索和Escape键清空搜索
-  const handleSearchKeyDown = useCallback(async (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') {
+  // 处理Escape键清空搜索
+  const handleSearchKeyDown = useCallback((e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Escape') {
       e.preventDefault()
-      const keyword = localSearchKeyword.trim()
-      console.log('🔍 Enter键搜索触发:', keyword)
-      await searchAgents(keyword)
-    } else if (e.key === 'Escape') {
-      e.preventDefault()
-      console.log('🧹 Escape键清空搜索')
-      setLocalSearchKeyword('')
-      await clearSearch()
+      // 如果框内有内容，则清空
+      if (localSearchKeyword) {
+        console.log('🧹 Escape键清空搜索')
+        searchTriggeredRef.current = true // 标记本次加载由清空操作触发
+        setLocalSearchKeyword('')
+      }
     }
-  }, [localSearchKeyword, searchAgents, clearSearch])
+  }, [localSearchKeyword])
 
   // 只在组件挂载后聚焦到搜索框
   useEffect(() => {
@@ -211,21 +235,23 @@ const AgentSidebar: React.FC = () => {
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
           <input
             type="text"
-            placeholder="Search Agents..."
+            placeholder={t("sidebar.searchAgents")}
             value={localSearchKeyword}
             onChange={e => handleSearchChange(e.target.value)}
             onKeyDown={handleSearchKeyDown}
             className="search-input"
             disabled={loadingState.isFetchingList}
             ref={searchInputRef}
+            onCompositionStart={() => setIsComposing(true)}
+            onCompositionEnd={() => setIsComposing(false)}
           />
           {localSearchKeyword && (
             <button 
               className="clear-search-btn" 
               onClick={() => {
+                console.log('🧹 点击按钮清空搜索')
+                searchTriggeredRef.current = true // 标记本次加载由清空操作触发
                 setLocalSearchKeyword('')
-                clearSearch()
-                searchInputRef.current?.focus()
               }}
               title="清空搜索 (Esc)"
             >
@@ -237,7 +263,9 @@ const AgentSidebar: React.FC = () => {
 
       <div className="agent-list" ref={agentListRef} tabIndex={0}>
         {loadingState.isFetchingList && filteredAgents.length === 0 ? (
-          <div className="loading-message">正在加载智能体...</div>
+          <div className="loading-indicator initial-load">
+            <div className="spinner" />
+          </div>
         ) : filteredAgents.length === 0 ? (
           <div className="empty-message">暂无智能体</div>
         ) : (
@@ -283,7 +311,9 @@ const AgentSidebar: React.FC = () => {
                 {paginationMode && pagination.hasNextPage && (
                   <div className="load-more-indicator">
                     {(loadingState.isLoadingMore || isLoadingMoreRef.current) ? (
-                      <div className="loading-spinner">正在加载更多...</div>
+                      <div className="loading-indicator">
+                        <div className="spinner" />
+                      </div>
                     ) : (
                       <div className="scroll-hint">向下滚动加载更多 (第{pagination.currentPage}/{pagination.totalPages}页)</div>
                     )}

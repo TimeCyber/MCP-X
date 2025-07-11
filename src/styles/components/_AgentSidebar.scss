@@ -306,7 +306,7 @@
 
     // 底部padding
     .list-bottom-padding {
-      height: 20px;
+      height: 4px;
     }
 
     // 搜索结果统计信息
@@ -358,5 +358,27 @@
         }
       }
     }
+  }
+
+  .loading-indicator {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+
+    .spinner {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      border: 3px solid var(--border-color, #e0e0e0);
+      border-top-color: var(--primary-color, #3498db);
+      animation: agent-sidebar-spinner-spin 1s linear infinite;
+    }
+  }
+}
+
+@keyframes agent-sidebar-spinner-spin {
+  to {
+    transform: rotate(360deg);
   }
 } 

@@ -68,6 +68,7 @@ body {
   flex: 1;
   position: relative;
   min-width: 0; // 修复flex在缩小情况下布局溢出的问题
+  padding-bottom: 0 !important;
 }
 
 .main-container {

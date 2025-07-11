@@ -1,5 +1,5 @@
 .side-nav {
-  width: 60px;
+  width: 70px;
   background: var(--bg);
   border-right: 1px solid var(--border-weak);
   display: flex;
@@ -10,35 +10,63 @@
   .nav-group.top {
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 8px;
   }
 
   .nav-group.bottom {
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 8px;
     margin-top: auto;
   }
 
   .nav-btn {
-    width: 40px;
-    height: 40px;
+    width: 60px;
+    height: 56px;
     border: none;
     background: transparent;
-    border-radius: 6px;
+    border-radius: 8px;
     cursor: pointer;
-    font-size: 20px;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    color: var(--text);
+    color: var(--text-weak);
+    transition: all 0.2s ease;
+    padding: 4px 2px;
+    gap: 2px;
+
+    .nav-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      
+      svg {
+        width: 20px;
+        height: 20px;
+        flex-shrink: 0;
+      }
+    }
+
+    .nav-label {
+      font-size: 10px;
+      font-weight: 500;
+      line-height: 1;
+      text-align: center;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 100%;
+    }
 
     &:hover {
       background: var(--bg-op-dark-ultraweak);
+      color: var(--text);
     }
 
     &.active {
       background: var(--bg-op-dark-weak);
+      color: var(--text-pri-blue);
     }
   }
 } 

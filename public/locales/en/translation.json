@@ -68,7 +68,8 @@
     "settings": "Model Settings",
     "update": "Update available",
     "models": "Model Settings",
-    "system": "System Settings"
+    "system": "System Settings",
+    "searchAgents": "Search Agents..."
   },
   "tools": {
     "title": "Tools Management(MCP)",
@@ -231,6 +232,7 @@
       "chat-input_upload-file": "Upload File",
       "chat-input_focus": "Focus Input",
       "chat-input_paste-last-message": "Paste Last Message",
+      "chat-message_copy-last": "Copy Last Message",
       "chat_delete": "Delete Chat",
       "global_new-chat": "New Chat",
       "global_toggle-sidebar": "Toggle Sidebar",

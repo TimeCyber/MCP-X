@@ -79,7 +79,7 @@
   overflow-y: auto;
   padding: 15px 15px 0;
   margin-bottom: 0;
-  padding-bottom: 85px;
+  padding-bottom: 20px;
 
   &::-webkit-scrollbar {
     width: 6px;
@@ -146,7 +146,7 @@
   border: 1px solid var(--border-weak);
   border-radius: 12px;
   position: relative;
-  bottom: 20px;
+  bottom: 10px;
   z-index: 1;
   background: var(--bg);
   color: var(--text);
@@ -207,7 +207,8 @@
       outline: none;
       resize: none;
       line-height: 20px;
-      max-height: 120px;
+      min-height: 80px;
+      max-height: 220px;
       overflow-y: auto;
       background: var(--bg);
       color: var(--text);

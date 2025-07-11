@@ -89,7 +89,8 @@
     "settings": "模型设置",
     "update": "新版本升级",
     "models": "模型设置",
-    "system": "系统设置"
+    "system": "系统设置",
+    "searchAgents": "搜索智能体"
   },
   "tools": {
     "title": "工具管理(MCP)",
@@ -254,7 +255,7 @@
       "chat-input_upload-file": "上传文件",
       "chat-input_focus": "输入窗口获得焦点",
       "chat-input_paste-last-message": "粘贴最后一条的回应文字",
-      "chat_message_copy-last": "复制最后一条回应",
+      "chat-message_copy-last": "复制最后一条回应",
       "chat_delete": "删除对话",
       "global_new-chat": "开始新对话",
       "global_toggle-sidebar": "显示/隐藏侧边栏",

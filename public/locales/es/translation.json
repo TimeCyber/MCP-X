@@ -67,7 +67,8 @@
     "settings": "Configuración del Modelo",
     "update": "Actualización disponible",
     "models": "Configuración del Modelo",
-    "system": "Configuración del Sistema"
+    "system": "Configuración del Sistema",
+    "searchAgents": "Buscar Agentes"
   },
   "tools": {
     "title": "Gestión de Herramientas (MCP)",
@@ -228,7 +229,7 @@
       "chat-input_upload-file": "Subir Archivo",
       "chat-input_focus": "Enfocar Entrada",
       "chat-input_paste-last-message": "Pegar Último Mensaje",
-      "chat_message_copy-last": "Copiar Última Respuesta",
+      "chat-message_copy-last": "Copiar Última Respuesta",
       "chat_delete": "Eliminar Chat",
       "global_new-chat": "Nuevo Chat",
       "global_toggle-sidebar": "Alternar Barra Lateral",

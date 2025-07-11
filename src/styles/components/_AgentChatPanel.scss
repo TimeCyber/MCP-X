@@ -1,8 +1,13 @@
+// 强制重置父容器的padding，以消除底部空白
+.outlet-container {
+  padding: 0 !important;
+}
+
 .agent-chat-panel {
   display: flex;
   flex-direction: row;
   gap: 24px;
-  padding: 24px;
+  padding: 24px 24px 0px;
   height: calc(100vh - var(--header-height, 60px));
   overflow-y: auto;
 
@@ -15,7 +20,7 @@
     flex-direction: column;
 
     .conversation-header {
-      margin-bottom: 16px;
+      margin-bottom: 0px;
     }
 
     .chat-messages-container {
@@ -34,7 +39,7 @@
     .question-list {
       list-style: none;
       padding: 0;
-      margin: 0 0 12px 0;
+      margin: 0;
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
@@ -51,6 +56,10 @@
           background: var(--bg-op-dark-ultraweak);
         }
       }
+    }
+
+    .chat-messages {
+      padding-top: 0;
     }
   }
 
@@ -89,6 +98,6 @@
 // 当在agent导航页面时，需要额外的顶部padding避免与header重叠
 .agent-nav-active .agent-chat-panel {
   // 顶部多预留 header 高度，避免与 app-header 重叠
-  padding: calc(var(--header-height, 60px) + 24px) 24px 24px 24px;
-  height: calc(100vh - var(--header-height, 60px) - 24px);
+  padding: calc(var(--header-height, 60px) + 24px) 24px 0px 24px;
+  height: calc(100vh - var(--header-height, 20px));
 } 

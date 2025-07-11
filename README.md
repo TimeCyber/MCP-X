@@ -14,6 +14,45 @@ MCP-X is an open-source MCP Host Desktop Application that seamlessly integrates 
 
 ![MCP-X Demo](./docs/MCP-XAI.gif)
 
+## Use Cases 🎯
+
+### AI-Powered Content Analysis
+MCP-X excels at analyzing and understanding various types of content through its powerful AI agents. Here's an example of food content analysis:
+
+![Food Analysis Example](./docs/food-analysis-example.png)
+
+**Key Features Demonstrated:**
+- 🍽️ **Food Content Analysis**: Detailed breakdown of dishes, ingredients, and nutritional information
+- 🎯 **Targeted Recommendations**: Personalized suggestions based on user preferences
+- 📊 **Structured Output**: Well-organized information with clear categorization
+- 💬 **Interactive Chat**: Natural conversation flow with comprehensive responses
+
+**Perfect for:**
+- Food bloggers and content creators
+- Nutritionists and health professionals
+- Restaurant owners and chefs
+- Anyone interested in food analysis and recommendations
+
+This showcases how MCP-X can transform simple queries into detailed, actionable insights across various domains.
+
+## What's New
+
+We've just rolled out two major updates to improve your experience:
+
+### 🚀 Introducing the AI Agent System
+MCP-X is now a full-fledged AI agent platform.
+- **New Agent Sidebar**: Discover, manage, and search for specialized AI agents.
+- **One-Click Talk**: Instantly talk to any agent for your current task.
+- **Agent Profiles**: See what each agent can do, with details on their skills and example uses.
+- **Organized for You**: Agents are sorted into categories like content creation, data analysis, and programming.
+
+### 🎨 A Fresh New Look
+We've redesigned the app to be cleaner and more intuitive.
+- **New Side Navigation**: A permanent sidebar gives you quick access to Chat, Agents, Tools, Models, and System settings.
+- **Clearer Icons**: Navigation icons now have text labels so you know exactly where you're going.
+- **Consistent Design**: We've unified the color scheme and layout for a more polished feel.
+
+This update also includes a move to a more professional icon set (`react-icons`) and various under-the-hood CSS and component optimizations for better performance.
 
 ## Features 🎯
 
