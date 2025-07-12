@@ -32,7 +32,6 @@
     "drizzle/**/*",
     "prebuilt/**/*"
   ],
-  "afterSign": "./scripts/notarizer.js",
   "mac": {
     "target": [
       {
