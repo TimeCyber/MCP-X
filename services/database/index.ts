@@ -103,8 +103,8 @@ class DirectDatabaseAccess implements DatabaseOperations {
   }
 
   async createMessage(data: NewMessage, _options?: DatabaseOptions) {
-    return await this.db.transaction(async (tx) => {
-      const chatExists = await tx.query.chats.findFirst({
+    return this.db.transaction((tx) => {
+      const chatExists = tx.query.chats.findFirst({
         where: eq(chats.id, data.chatId),
       });
 
@@ -112,7 +112,7 @@ class DirectDatabaseAccess implements DatabaseOperations {
         throw new Error(`Chat ${data.chatId} does not exist`);
       }
 
-      const [message] = await tx.insert(messages).values(data).returning();
+      const message = tx.insert(messages).values(data).returning().get();
       return message;
     });
   }
