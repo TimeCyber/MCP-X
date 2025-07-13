@@ -8,7 +8,6 @@ import { compareFilesAndReplace, isPortInUse, npmInstall } from "./util.js"
 import { SystemCommandManager } from "../../services/syscmd/index.js"
 import { MCPServerManager } from "../../services/mcpServer/index.js"
 import { scriptsDir, configDir, appDir, DEF_MCP_SERVER_CONFIG } from "./constant.js"
-import { logger } from "../../utils/logger.js"
 
 export let client: Promise<MCPClient> | null = null
 async function initClient(): Promise<MCPClient> {
@@ -74,42 +73,11 @@ async function getFreePort(): Promise<number> {
 
 export let port = Promise.resolve(0)
 async function initService(): Promise<number> {
-  const maxRetries = 3;
-  const retryDelay = 2000;
-  
-  for (let retry = 0; retry <= maxRetries; retry++) {
-    try {
-      const _client = await client!
-      await _client.init().catch(error => {
-        logger.error(`Failed to initialize MCP client: ${error instanceof Error ? error.message : String(error)}`);
-        throw error;
-      });
-      
-      const server = new WebServer(_client)
-      const freePort = await getFreePort();
-      
-      if (freePort === 0) {
-        throw new Error("No available ports found for web server");
-      }
-      
-      const actualPort = await server.start(freePort);
-      logger.info(`Web server started successfully on port ${actualPort}`);
-      return actualPort;
-    } catch (error) {
-      const errorMessage = error instanceof Error ? error.message : String(error);
-      logger.error(`Service initialization attempt ${retry + 1}/${maxRetries + 1} failed: ${errorMessage}`);
-      
-      if (retry < maxRetries) {
-        logger.info(`Retrying service initialization in ${retryDelay}ms...`);
-        await new Promise(resolve => setTimeout(resolve, retryDelay));
-      } else {
-        logger.error(`Service initialization failed after ${maxRetries + 1} attempts`);
-        throw error;
-      }
-    }
-  }
-  
-  throw new Error("Service initialization failed");
+  const _client = await client!
+  await _client.init().catch(console.error)
+  const server = new WebServer(_client)
+  await server.start(await getFreePort())
+  return server.port!
 }
 
 export async function initMCPClient() {

@@ -33,43 +33,18 @@ export class MCPClient {
   // 同步智能体状态的方法
   private async syncAgentState() {
     try {
-      // 添加重试限制，避免无限循环
-      const maxRetries = 3;
-      const retryDelay = 1000; // 1秒延迟
-      
       // 尝试从多个可能的端口获取智能体状态
       const possiblePorts = [process.env.PORT || 4321, 4321, 3000];
       let response = null;
       
-      for (let retry = 0; retry < maxRetries; retry++) {
-        for (const port of possiblePorts) {
-          try {
-            const url = `http://localhost:${port}/api/agent/current/active`;
-            response = await axios.get(url, { 
-              timeout: 2000, // 减少超时时间
-              headers: {
-                'Cache-Control': 'no-cache' // 避免缓存问题
-              }
-            });
-            if (response && response.status === 200) {
-              break; // 成功则跳出循环
-            }
-          } catch (err) {
-            // 记录错误但不抛出，继续尝试下一个端口
-            logger.debug(`[Agent] Failed to connect to port ${port}: ${err instanceof Error ? err.message : String(err)}`);
-            continue;
-          }
-        }
-        
-        // 如果成功获取响应，跳出重试循环
-        if (response && response.status === 200) {
-          break;
-        }
-        
-        // 如果还有重试次数，等待后继续
-        if (retry < maxRetries - 1) {
-          logger.debug(`[Agent] Retry ${retry + 1}/${maxRetries} after ${retryDelay}ms`);
-          await new Promise(resolve => setTimeout(resolve, retryDelay));
+      for (const port of possiblePorts) {
+        try {
+          const url = `http://localhost:${port}/api/agent/current/active`;
+          response = await axios.get(url, { timeout: 1000 });
+          break; // 成功则跳出循环
+        } catch (err) {
+          // 尝试下一个端口
+          continue;
         }
       }
       
@@ -92,15 +67,13 @@ export class MCPClient {
         // 标记同步完成
         PromptManager.getInstance().markAgentSynced();
       } else {
-        logger.debug(`[Agent] Agent API not available or no active agent after ${maxRetries} retries`);
+        logger.debug(`[Agent] Agent API not available or no active agent`);
         PromptManager.getInstance().clearAgent();
         PromptManager.getInstance().markAgentSynced();
       }
     } catch (error: any) {
-      logger.debug(`[Agent] Agent sync failed after all retries: ${error.message}`);
+      logger.debug(`[Agent] Agent sync not available: ${error.message}`);
       // 发生错误时不影响正常对话流程，保持现有智能体状态
-      PromptManager.getInstance().clearAgent();
-      PromptManager.getInstance().markAgentSynced();
     }
   }
 

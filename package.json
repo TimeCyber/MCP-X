@@ -16,8 +16,6 @@
   "scripts": {
     "dev": "vite --config vite.config.ts",
     "dev:electron": "vite --config vite.config.electron.ts",
-    "dev:electron:fix": "bash scripts/start-with-network-fix.sh",
-    "dev:electron:fix:win": "scripts\\start-with-network-fix.bat",
     "lint": "eslint .",
     "preview": "vite preview",
     "build": "tsc -b && vite build",

@@ -65,45 +65,27 @@ export class MCPServerManager implements IMCPServerManager {
       return { ...acc, ...config.mcpServers[serverName].env };
     }, {});
 
-    // 添加重试限制，避免无限重试
-    const maxRetries = 2;
-    const retryDelay = 2000; // 2秒延迟
+    // async connect all servers
+    const connectionResults = await Promise.allSettled(
+      enabledServers.map((serverName) =>
+        this.connectSingleServer(serverName, config.mcpServers[serverName], allEnabledSpecificEnv)
+      )
+    );
 
-    // async connect all servers with retry logic
-    for (const serverName of enabledServers) {
-      let lastError: unknown = null;
-      
-      for (let retry = 0; retry <= maxRetries; retry++) {
-        try {
-          const result = await this.connectSingleServer(serverName, config.mcpServers[serverName], allEnabledSpecificEnv);
-          if (result.success) {
-            logger.info(`Successfully connected to server: ${serverName}`);
-            break; // 成功则跳出重试循环
-          } else {
-            lastError = result.error;
-            if (retry < maxRetries) {
-              logger.warn(`Failed to connect to server ${serverName}, retry ${retry + 1}/${maxRetries} after ${retryDelay}ms`);
-              await new Promise(resolve => setTimeout(resolve, retryDelay));
-            }
-          }
-        } catch (error) {
-          lastError = error;
-          if (retry < maxRetries) {
-            logger.warn(`Error connecting to server ${serverName}, retry ${retry + 1}/${maxRetries} after ${retryDelay}ms: ${error instanceof Error ? error.message : String(error)}`);
-            await new Promise(resolve => setTimeout(resolve, retryDelay));
-          }
-        }
-      }
-      
-      // 如果所有重试都失败了，记录错误
-      if (lastError) {
-        logger.error(`Failed to connect to server ${serverName} after ${maxRetries + 1} attempts: ${lastError instanceof Error ? lastError.message : String(lastError)}`);
+    // collect error
+    connectionResults.forEach((result) => {
+      if (result.status === "rejected") {
         errorArray.push({
-          serverName,
-          error: lastError,
+          serverName: "unknown",
+          error: result.reason,
+        });
+      } else if (!result.value.success) {
+        errorArray.push({
+          serverName: result.value.serverName,
+          error: result.value.error,
         });
       }
-    }
+    });
 
     logger.info("Connect all MCP servers completed");
     logger.info("All available tools:");

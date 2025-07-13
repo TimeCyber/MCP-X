@@ -52,19 +52,3 @@ export const DEF_MCP_SERVER_CONFIG = {
     }
   }
 }
-
-// 添加网络服务配置
-export const NETWORK_CONFIG = {
-  // 禁用自动重试，避免无限循环
-  DISABLE_AUTO_RETRY: process.env.DISABLE_AUTO_RETRY === "true" || false,
-  // 最大重试次数
-  MAX_RETRY_ATTEMPTS: parseInt(process.env.MAX_RETRY_ATTEMPTS || "3"),
-  // 重试延迟（毫秒）
-  RETRY_DELAY_MS: parseInt(process.env.RETRY_DELAY_MS || "2000"),
-  // 网络请求超时时间（毫秒）
-  REQUEST_TIMEOUT_MS: parseInt(process.env.REQUEST_TIMEOUT_MS || "5000"),
-  // 禁用智能体同步
-  DISABLE_AGENT_SYNC: process.env.DISABLE_AGENT_SYNC === "true" || false,
-  // 禁用MCP服务器自动重连
-  DISABLE_MCP_AUTO_RECONNECT: process.env.DISABLE_MCP_AUTO_RECONNECT === "true" || false,
-}
