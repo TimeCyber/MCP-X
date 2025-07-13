@@ -384,8 +384,14 @@ export class WebServer {
 
   start(port: number = 4321): Promise<number> {
     return new Promise((resolve, reject) => {
+      // 添加超时处理
+      const timeout = setTimeout(() => {
+        reject(new Error(`Server startup timeout after 10 seconds on port ${port}`));
+      }, 10000);
+
       const server = this.app
         .listen(port, () => {
+          clearTimeout(timeout);
           const address = server.address();
           const actualPort = typeof address === "object" && address ? address.port : port;
           logger.info(`Web server running at http://localhost:${actualPort}`);
@@ -393,7 +399,14 @@ export class WebServer {
           resolve(actualPort);
         })
         .on("error", (err) => {
-          reject(err);
+          clearTimeout(timeout);
+          if (err.code === 'EADDRINUSE') {
+            logger.error(`Port ${port} is already in use. Please try a different port.`);
+            reject(new Error(`Port ${port} is already in use. Please try a different port.`));
+          } else {
+            logger.error(`Failed to start web server on port ${port}: ${err.message}`);
+            reject(err);
+          }
         });
     });
   }

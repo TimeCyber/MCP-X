@@ -132,46 +132,66 @@ const preload = path.join(__dirname, "../preload/index.mjs")
 const indexHtml = path.join(RENDERER_DIST, "index.html")
 
 async function onReady() {
-  if (process.platform === "win32") {
-    binDirList.forEach(modifyPath)
-  } else if (process.platform === "darwin") {
-    if (!process.env.PATH) {
-      process.env.PATH = await getDarwinSystemPath().catch(() => "")
-    }
-
-    darwinPathList.forEach(modifyPath)
-  }
-
-  // 初始化代理设置
-  const proxySettings = store.get("proxy") as ProxySettings
-  console.log("从store获取的代理设置:", JSON.stringify(proxySettings))
-  initProxy(proxySettings)
-
-  //   // 在electron/main/index.ts中，应用启动时设置
-  if (proxySettings && proxySettings.type === "system") {
-    // 获取系统代理
-    const proxyInfo = await session.defaultSession.resolveProxy("https://api.openai.com");
-    if (proxyInfo.startsWith("PROXY ")) {
-      const proxyUrl = "http://" + proxyInfo.substring(6).trim();
-      process.env.HTTP_PROXY = proxyUrl;
-      process.env.HTTPS_PROXY = proxyUrl;
-      console.log("已设置Node.js环境代理变量:", proxyUrl);
-    }
-  }
-
-  initMCPClient()
-  initProtocol()
-  createWindow()
-  
-  // 处理启动时的URL参数
-  const startupUrl = getStartupUrl()
-  if (startupUrl) {
-    // 延迟处理，确保窗口已创建和加载完成
-    setTimeout(() => {
-      if (win && win.webContents) {
-        handleDeepLink(startupUrl)
+  try {
+    if (process.platform === "win32") {
+      binDirList.forEach(modifyPath)
+    } else if (process.platform === "darwin") {
+      if (!process.env.PATH) {
+        process.env.PATH = await getDarwinSystemPath().catch(() => "")
       }
-    }, 2000) // 增加延迟时间，确保应用完全加载
+
+      darwinPathList.forEach(modifyPath)
+    }
+
+    // 初始化代理设置
+    const proxySettings = store.get("proxy") as ProxySettings
+    console.log("从store获取的代理设置:", JSON.stringify(proxySettings))
+    initProxy(proxySettings)
+
+    //   // 在electron/main/index.ts中，应用启动时设置
+    if (proxySettings && proxySettings.type === "system") {
+      // 获取系统代理
+      const proxyInfo = await session.defaultSession.resolveProxy("https://api.openai.com");
+      if (proxyInfo.startsWith("PROXY ")) {
+        const proxyUrl = "http://" + proxyInfo.substring(6).trim();
+        process.env.HTTP_PROXY = proxyUrl;
+        process.env.HTTPS_PROXY = proxyUrl;
+        console.log("已设置Node.js环境代理变量:", proxyUrl);
+      }
+    }
+
+    // 初始化MCP客户端和服务
+    console.log("正在初始化MCP客户端...");
+    await initMCPClient();
+    console.log("MCP客户端初始化完成");
+    
+    initProtocol()
+    createWindow()
+    
+    // 处理启动时的URL参数
+    const startupUrl = getStartupUrl()
+    if (startupUrl) {
+      // 延迟处理，确保窗口已创建和加载完成
+      setTimeout(() => {
+        if (win && win.webContents) {
+          handleDeepLink(startupUrl)
+        }
+      }, 2000) // 增加延迟时间，确保应用完全加载
+    }
+  } catch (error) {
+    console.error("应用启动失败:", error);
+    // 即使服务初始化失败，也要创建窗口让用户看到错误信息
+    createWindow();
+    
+    // 显示错误对话框
+    if (win) {
+      win.webContents.once('did-finish-load', () => {
+        win?.webContents.send('app-error', {
+          message: '应用启动失败',
+          error: error instanceof Error ? error.message : String(error)
+        });
+      });
+    }
   }
 }
 

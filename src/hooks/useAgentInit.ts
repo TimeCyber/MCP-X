@@ -12,34 +12,56 @@ export const useAgentInit = () => {
   // 初始化智能体状态
   const initializeAgents = useCallback(async () => {
     try {
-      // 并行获取智能体列表和当前激活的智能体
-      const [agentList, activeAgent] = await Promise.allSettled([
-        agentService.getAgentList(),
-        agentService.getCurrentActiveAgent(),
-      ]);
+      // 添加重试限制
+      const maxRetries = 2;
+      const retryDelay = 1000;
+      
+      for (let retry = 0; retry <= maxRetries; retry++) {
+        try {
+          // 并行获取智能体列表和当前激活的智能体
+          const [agentList, activeAgent] = await Promise.allSettled([
+            agentService.getAgentList(),
+            agentService.getCurrentActiveAgent(),
+          ]);
 
-      // 处理智能体列表
-      if (agentList.status === 'fulfilled') {
-        setAgentList(agentList.value);
-        setLoadingState(prev => ({
-          ...prev,
-          lastFetchTime: Date.now(),
-        }));
-      } else {
-        console.warn('Failed to load agent list:', agentList.reason);
-        // 不阻塞应用启动，设置空列表
-        setAgentList([]);
+          // 处理智能体列表
+          if (agentList.status === 'fulfilled') {
+            setAgentList(agentList.value);
+            setLoadingState(prev => ({
+              ...prev,
+              lastFetchTime: Date.now(),
+            }));
+          } else {
+            console.warn('Failed to load agent list:', agentList.reason);
+            // 不阻塞应用启动，设置空列表
+            setAgentList([]);
+          }
+
+          // 处理激活的智能体
+          if (activeAgent.status === 'fulfilled') {
+            setActiveAgent(activeAgent.value);
+          } else {
+            console.warn('Failed to load active agent:', activeAgent.reason);
+            // 确保没有激活的智能体状态
+            setActiveAgent(null);
+          }
+
+          // 如果成功，跳出重试循环
+          break;
+        } catch (error) {
+          console.error(`Agent initialization attempt ${retry + 1}/${maxRetries + 1} failed:`, error);
+          
+          if (retry < maxRetries) {
+            console.log(`Retrying agent initialization in ${retryDelay}ms...`);
+            await new Promise(resolve => setTimeout(resolve, retryDelay));
+          } else {
+            // 最后一次重试失败，设置默认状态
+            console.error('Agent initialization failed after all retries');
+            setAgentList([]);
+            setActiveAgent(null);
+          }
+        }
       }
-
-      // 处理激活的智能体
-      if (activeAgent.status === 'fulfilled') {
-        setActiveAgent(activeAgent.value);
-      } else {
-        console.warn('Failed to load active agent:', activeAgent.reason);
-        // 确保没有激活的智能体状态
-        setActiveAgent(null);
-      }
-
     } catch (error) {
       console.error('Failed to initialize agents:', error);
       // 即使失败也要设置初始状态
