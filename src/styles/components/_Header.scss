@@ -23,29 +23,32 @@
   .header-content {
     margin-left: 0;
     margin-right: auto;
-    padding: 0 $page-h-padding;
+    padding: 0 $page-h-padding 0 0;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 16px;
+    justify-content: flex-start;
+    gap: 0;
     margin-top: 5px;
 
     .left-side {
       display: flex;
+      justify-content: flex-start;
       align-items: center;
       gap: 16px;
+      width: 100%;
+      padding-left: 0;
 
       .menu-container {
         display: flex;
         align-items: center;
         gap: 16px;
         white-space: nowrap;
-        flex-wrap: nowrap; // 修改为 nowrap
+        flex-wrap: nowrap;
         
         // 为智能体选择器和模型选择器提供基础样式
-        .agent-select,
         .model-select {
           flex-shrink: 0;
+          margin-left: 0;
         }
       }
     }
@@ -53,6 +56,8 @@
     .right-side {
       display: flex;
       align-items: center;
+      margin-left: auto;
+      padding-right: 0;
     }
   }
 
