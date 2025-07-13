@@ -2,18 +2,6 @@
 
 $select-button-width: 475px;
 
-.sidebar-visible {
-  .model-select {
-    left: $sidebar-width;
-    width: calc(100% - 36px - 16px - $sidebar-width);
-
-    @media (max-width: $breakpoint-m) {
-      left: 0;
-      width: calc(100% - 36px - 16px);
-    }
-  }
-}
-
 .model-select {
   display: flex;
   align-items: center;
