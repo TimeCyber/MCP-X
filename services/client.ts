@@ -103,16 +103,6 @@ export class MCPClient {
     let title = "New Chat";
     let titlePromise: Promise<string> | undefined;
 
-    // 在每次对话开始时同步智能体状态（带缓存）
-    if (PromptManager.getInstance().needsAgentSync()) {
-      await this.syncAgentState();
-    }
-
-    const systemPrompt = PromptManager.getInstance().getPrompt("system");
-    if (systemPrompt) {
-      history.push(new SystemMessage(systemPrompt));
-    }
-
     // we use the user input text to generate title
     // TODO: will fix the issue when only file
     const userInput = typeof input === "string" ? input : input.text;
@@ -135,6 +125,14 @@ export class MCPClient {
       if (userInput) {
         titlePromise = ModelManager.getInstance().generateTitle(userInput);
       }
+    }
+
+    // 始终在最前面添加当前的系统提示词（确保智能体信息是最新的）
+    const systemPrompt = PromptManager.getInstance().getPrompt("system");
+    if (systemPrompt) {
+      // 移除历史中可能存在的旧系统消息，确保只有一个最新的系统消息
+      history = history.filter(msg => msg._getType() !== "system");
+      history.unshift(new SystemMessage(systemPrompt));
     }
 
     logger.debug(`[${chat_id}] Query pre-processing time: ${new Date().getTime() - startTime.getTime()}ms`);

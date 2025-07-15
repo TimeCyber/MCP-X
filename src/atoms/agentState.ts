@@ -146,19 +146,19 @@ export const selectedAgentAtom = atom<Agent | null>((get) => {
   // 如果主列表中没有，尝试从已使用的智能体列表中查找
   const usedAgent = usedAgents.find(agent => agent.id === config.selectedAgentId);
   if (usedAgent) {
-    // 将 UsedAgent 转换为 Agent 格式
+    // 将 UsedAgent 转换为 Agent 格式，现在UsedAgent包含了完整的系统信息
     return {
       id: usedAgent.id,
       name: usedAgent.name,
       avatar: usedAgent.avatar,
       description: usedAgent.description,
-      systemRole: '', // 这些字段在 UsedAgent 中不存在，设为默认值
-      systemPromote: '',
-      openSay: '',
-      questions: '',
-      author: '',
+      systemRole: usedAgent.systemRole,
+      systemPromote: usedAgent.systemPromote,
+      openSay: usedAgent.openSay,
+      questions: usedAgent.questions,
+      author: '', // 这些字段在 UsedAgent 中不存在，保持为空
       tags: '',
-      usageCount: 0,
+      usageCount: usedAgent.usageCount,
       likeCount: 0,
       starCount: 0,
       viewCount: 0,
@@ -203,6 +203,10 @@ export interface UsedAgent {
   name: string;
   avatar: string;
   description: string;
+  systemRole: string;
+  systemPromote: string;
+  openSay: string;
+  questions: string;
   lastUsedAt: string;
   usageCount: number;
 }
@@ -234,6 +238,10 @@ export const addUsedAgentAtom = atom(
       name: agent.name,
       avatar: agent.avatar,
       description: agent.description,
+      systemRole: agent.systemRole,
+      systemPromote: agent.systemPromote,
+      openSay: agent.openSay,
+      questions: agent.questions,
       lastUsedAt: new Date().toISOString(),
       usageCount: existingIndex >= 0 ? usedAgents[existingIndex].usageCount + 1 : 1
     };

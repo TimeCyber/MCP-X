@@ -19,7 +19,7 @@ const getAgentIdFromHash = (): string | null => {
 const AgentChatPanel: React.FC = () => {
   const { agentId: routerAgentId } = useParams<{ agentId: string }>()
   const { agentList, selectedAgent } = useAgentState()
-  const { fetchAgentList, selectAgent } = useAgent()
+  const { fetchAgentList, selectAgent, activateAgent } = useAgent()
   const { updateAgent } = useAgentUpdater()
   const setAddUsedAgent = useSetAtom(addUsedAgentAtom)
 
@@ -259,8 +259,16 @@ const AgentChatPanel: React.FC = () => {
     }
   }, [])
 
-  const onSend = useCallback((text: string, files?: FileList) => {
+  const onSend = useCallback(async (text: string, files?: FileList) => {
     if (!selectedAgent || isSending) return
+
+    // 在发送消息前，先强制激活当前选中的智能体，确保后端状态同步
+    try {
+      await activateAgent(selectedAgent.id);
+    } catch (error) {
+      console.error("Failed to activate agent before sending message:", error);
+      // 可选择性地向用户显示错误提示
+    }
 
     const userMsg: Message = {
       id: `${currentId.current++}`,
@@ -290,7 +298,7 @@ const AgentChatPanel: React.FC = () => {
     if (files) Array.from(files).forEach(f => formData.append("files", f))
 
     handlePost(formData, "formData", "/api/chat")
-  }, [selectedAgent, isSending, handlePost])
+  }, [selectedAgent, isSending, handlePost, activateAgent, setAddUsedAgent])
 
   // 如果没有选中的Agent，显示加载或提示信息
   if (!selectedAgent) {

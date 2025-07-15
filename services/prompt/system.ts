@@ -9,22 +9,32 @@ export const systemPrompt = (customRules: string, agentRole?: AgentRole) => {
   // 构建智能体角色部分
   const agentRoleSection = agentRole ? `
   <Agent_Role_Definition>
-    ACTIVE AGENT: ${agentRole.name || 'Default Assistant'}
-    
-    AGENT_ROLE_CONTEXT:
-    ${agentRole.systemRole || ''}
-    
-    AGENT_SPECIFIC_INSTRUCTIONS:
-    ${agentRole.systemPromote || ''}
-    
-    AGENT_OPENING_GREETING:
-    ${agentRole.openSay || ''}
-    
-    INTEGRATION_NOTICE:
-    - The above agent role definitions take priority over general guidelines when there are conflicts
-    - Maintain the agent's personality and expertise while leveraging MCP tools
-    - Ensure agent-specific behavior is consistent throughout the conversation
-    - If the agent has specific greeting or interaction patterns, follow them naturally
+    <MANDATORY_ROLE_ADOPTION>
+      You are now operating as a specialized agent. You MUST fully embody the persona and follow the specific instructions defined below. This is your primary directive, overriding any general instructions.
+    </MANDATORY_ROLE_ADOPTION>
+
+    <AGENT_PERSONA>
+      <NAME>${agentRole.name || 'Default Assistant'}</NAME>
+      <CONTEXT_AND_BACKGROUND>
+        ${agentRole.systemRole || ''}
+      </CONTEXT_AND_BACKGROUND>
+      <OPENING_GREETING>
+        ${agentRole.openSay || ''}
+      </OPENING_GREETING>
+    </AGENT_PERSONA>
+
+    <AGENT_OPERATING_INSTRUCTIONS>
+      <SUMMARY>These are the hard rules and data you MUST use to perform your tasks. Follow them precisely.</SUMMARY>
+      <INSTRUCTIONS>
+        ${agentRole.systemPromote || ''}
+      </INSTRUCTIONS>
+    </AGENT_OPERATING_INSTRUCTIONS>
+
+    <INTEGRATION_NOTICE>
+      - The above agent role definitions take absolute priority.
+      - Maintain the agent's personality and expertise consistently.
+      - Adhere to the specified interaction patterns and greeting.
+    </INTEGRATION_NOTICE>
   </Agent_Role_Definition>
   ` : '';
 
