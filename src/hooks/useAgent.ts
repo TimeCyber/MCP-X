@@ -12,10 +12,17 @@ import {
   selectedAgentAtom,
   hasCachedAgentsAtom,
   agentStatsAtom,
+  usedAgentsAtom,
+  sortedUsedAgentsAtom,
+  isAgentUsedAtom,
+  addUsedAgentAtom,
+  removeUsedAgentAtom,
+  clearUsedAgentsAtom,
   Agent,
   ActiveAgent,
   AgentConfig,
   PaginationInfo,
+  UsedAgent,
 } from "../atoms/agentState";
 import { agentService, PaginationParams } from "../services/agentService";
 
@@ -33,11 +40,29 @@ export const useAgent = () => {
   const selectedAgent = useAtomValue(selectedAgentAtom);
   const hasCachedAgents = useAtomValue(hasCachedAgentsAtom);
   const agentStats = useAtomValue(agentStatsAtom);
+  
+  // 已使用过的智能体相关状态
+  const [usedAgents, setUsedAgents] = useAtom(usedAgentsAtom);
+  const sortedUsedAgents = useAtomValue(sortedUsedAgentsAtom);
+  const isAgentUsed = useAtomValue(isAgentUsedAtom);
+  const setAddUsedAgent = useSetAtom(addUsedAgentAtom);
+  const setRemoveUsedAgent = useSetAtom(removeUsedAgentAtom);
+  const setClearUsedAgents = useSetAtom(clearUsedAgentsAtom);
 
   // 更新加载状态的辅助函数
   const updateLoadingState = useCallback((updates: Partial<typeof loadingState>) => {
     setLoadingState(prev => ({ ...prev, ...updates }));
   }, [setLoadingState]);
+
+  // 删除单个已使用的智能体
+  const removeUsedAgent = useCallback((agentId: number) => {
+    setRemoveUsedAgent(agentId);
+  }, [setRemoveUsedAgent]);
+
+  // 清空所有已使用的智能体
+  const clearAllUsedAgents = useCallback(() => {
+    setClearUsedAgents();
+  }, [setClearUsedAgents]);
 
   // 更新分页信息的辅助函数
   const updatePagination = useCallback((newPagination: Partial<PaginationInfo>) => {
@@ -254,10 +279,36 @@ export const useAgent = () => {
       };
 
       // 尝试从本地列表获取完整信息
-      const fullAgent = agentList.find(agent => agent.id === result.id);
+      let fullAgent = agentList.find(agent => agent.id === result.id);
+      
+      // 如果主列表中没有找到，尝试从已使用的智能体列表中获取
+      if (!fullAgent) {
+        const usedAgent = usedAgents.find(agent => agent.id === result.id);
+        if (usedAgent) {
+          fullAgent = {
+            id: usedAgent.id,
+            name: usedAgent.name,
+            avatar: usedAgent.avatar,
+            description: usedAgent.description,
+            systemRole: '',
+            systemPromote: '',
+            openSay: '',
+            questions: '',
+            author: '',
+            tags: '',
+            usageCount: 0,
+            likeCount: 0,
+            starCount: 0,
+            viewCount: 0,
+          };
+        }
+      }
+
       if (fullAgent) {
         newActiveAgent.avatar = fullAgent.avatar;
         newActiveAgent.description = fullAgent.description;
+        // 记录智能体使用
+        setAddUsedAgent(fullAgent);
       }
 
       setActiveAgent(newActiveAgent);
@@ -277,7 +328,7 @@ export const useAgent = () => {
       });
       throw error;
     }
-  }, [agentList, agentConfig.autoActivateOnSelect, selectAgent, setActiveAgent, updateLoadingState]);
+  }, [agentList, usedAgents, agentConfig.autoActivateOnSelect, selectAgent, setActiveAgent, setAddUsedAgent, updateLoadingState]);
 
   // 停用智能体
   const deactivateAgent = useCallback(async () => {
@@ -414,6 +465,11 @@ export const useAgent = () => {
     pagination,
     paginationMode,
     
+    // 已使用智能体相关状态
+    usedAgents,
+    sortedUsedAgents,
+    isAgentUsed,
+    
     // 操作
     fetchAgentList,
     fetchAgentListWithPagination,
@@ -427,6 +483,8 @@ export const useAgent = () => {
     clearSearch,
     clearCacheAndRefresh,
     updateAgent,
+    removeUsedAgent,
+    clearAllUsedAgents,
     
     // 分页操作
     goToPage,

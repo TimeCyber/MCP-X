@@ -10,6 +10,7 @@ $select-button-width: 475px;
   width: calc(100% - 60px);
   height: 40px;
   position: absolute;
+  padding-left: 20px;
   left: 0;
   transition: left $transition-normal ease, width $transition-normal ease;
 

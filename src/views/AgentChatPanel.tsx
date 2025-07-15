@@ -5,6 +5,8 @@ import ChatMessages, { Message } from "./Chat/ChatMessages"
 import ChatInput from "./Chat/ChatInput"
 import "../styles/components/_AgentChatPanel.scss"
 import { useAgentUpdater } from "../hooks/useAgent"
+import { useSetAtom } from "jotai"
+import { addUsedAgentAtom } from "../atoms/agentState"
 
 // 从URL hash中提取agentId的函数
 const getAgentIdFromHash = (): string | null => {
@@ -19,6 +21,7 @@ const AgentChatPanel: React.FC = () => {
   const { agentList, selectedAgent } = useAgentState()
   const { fetchAgentList, selectAgent } = useAgent()
   const { updateAgent } = useAgentUpdater()
+  const setAddUsedAgent = useSetAtom(addUsedAgentAtom)
 
   // 调试信息
   useEffect(() => {
@@ -276,6 +279,9 @@ const AgentChatPanel: React.FC = () => {
 
     setMessages(prev => [...prev, userMsg, aiPlaceholder])
     setIsSending(true)
+
+    // 记录智能体使用
+    setAddUsedAgent(selectedAgent)
 
     const formData = new FormData()
     if (text) formData.append("message", text)

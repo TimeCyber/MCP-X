@@ -99,5 +99,5 @@
 .agent-nav-active .agent-chat-panel {
   // 顶部多预留 header 高度，避免与 app-header 重叠
   padding: calc(var(--header-height, 60px) + 24px) 24px 0px 24px;
-  height: calc(100vh - var(--header-height, 20px));
+  height: calc(100vh - var(--header-height, 50px));
 } 

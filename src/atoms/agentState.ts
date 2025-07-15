@@ -130,13 +130,42 @@ export const filteredAgentListAtom = atom((get) => {
 // 当前选中的智能体详情
 export const selectedAgentAtom = atom<Agent | null>((get) => {
   const agents = get(agentListAtom);
+  const usedAgents = get(usedAgentsAtom);
   const config = get(agentConfigAtom);
   
   if (!config.selectedAgentId) {
     return null;
   }
   
-  return agents.find(agent => agent.id === config.selectedAgentId) || null;
+  // 首先尝试从主列表中查找
+  const agentFromList = agents.find(agent => agent.id === config.selectedAgentId);
+  if (agentFromList) {
+    return agentFromList;
+  }
+  
+  // 如果主列表中没有，尝试从已使用的智能体列表中查找
+  const usedAgent = usedAgents.find(agent => agent.id === config.selectedAgentId);
+  if (usedAgent) {
+    // 将 UsedAgent 转换为 Agent 格式
+    return {
+      id: usedAgent.id,
+      name: usedAgent.name,
+      avatar: usedAgent.avatar,
+      description: usedAgent.description,
+      systemRole: '', // 这些字段在 UsedAgent 中不存在，设为默认值
+      systemPromote: '',
+      openSay: '',
+      questions: '',
+      author: '',
+      tags: '',
+      usageCount: 0,
+      likeCount: 0,
+      starCount: 0,
+      viewCount: 0,
+    };
+  }
+  
+  return null;
 });
 
 // 是否有缓存的智能体数据
@@ -167,3 +196,74 @@ export const agentStatsAtom = atom((get) => {
     activeAgentName: activeAgent?.name || null,
   };
 }); 
+
+// 已使用过的智能体记录
+export interface UsedAgent {
+  id: number;
+  name: string;
+  avatar: string;
+  description: string;
+  lastUsedAt: string;
+  usageCount: number;
+}
+
+// 本地存储的已使用智能体列表
+export const usedAgentsAtom = atomWithStorage<UsedAgent[]>('mcpx-used-agents', []);
+
+// 计算的已使用智能体列表（按最后使用时间排序）
+export const sortedUsedAgentsAtom = atom((get) => {
+  const usedAgents = get(usedAgentsAtom);
+  return usedAgents.sort((a, b) => new Date(b.lastUsedAt).getTime() - new Date(a.lastUsedAt).getTime());
+});
+
+// 检查某个智能体是否已被使用过
+export const isAgentUsedAtom = atom((get) => (agentId: number) => {
+  const usedAgents = get(usedAgentsAtom);
+  return usedAgents.some(agent => agent.id === agentId);
+});
+
+// 添加或更新已使用智能体的原子操作
+export const addUsedAgentAtom = atom(
+  null,
+  (get, set, agent: Agent) => {
+    const usedAgents = get(usedAgentsAtom);
+    const existingIndex = usedAgents.findIndex(used => used.id === agent.id);
+    
+    const usedAgent: UsedAgent = {
+      id: agent.id,
+      name: agent.name,
+      avatar: agent.avatar,
+      description: agent.description,
+      lastUsedAt: new Date().toISOString(),
+      usageCount: existingIndex >= 0 ? usedAgents[existingIndex].usageCount + 1 : 1
+    };
+    
+    if (existingIndex >= 0) {
+      // 更新已存在的记录
+      const newUsedAgents = [...usedAgents];
+      newUsedAgents[existingIndex] = usedAgent;
+      set(usedAgentsAtom, newUsedAgents);
+    } else {
+      // 添加新记录
+      set(usedAgentsAtom, [...usedAgents, usedAgent]);
+    }
+  }
+);
+
+// 删除已使用智能体的原子操作
+export const removeUsedAgentAtom = atom(
+  null,
+  (get, set, agentId: number) => {
+    const usedAgents = get(usedAgentsAtom);
+    const filteredAgents = usedAgents.filter(agent => agent.id !== agentId);
+    set(usedAgentsAtom, filteredAgents);
+  }
+);
+
+// 清空所有已使用智能体的原子操作
+export const clearUsedAgentsAtom = atom(
+  null,
+  (get, set) => {
+    set(usedAgentsAtom, []);
+  }
+);

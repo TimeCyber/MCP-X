@@ -47,7 +47,9 @@
     "hardenedRuntime": true,
     "gatekeeperAssess": false,
     "entitlements": "resources/mac/entitlements.mac.plist",
-    "entitlementsInherit": "resources/mac/entitlements.mac.plist",
+    "entitlementsInherit": "resources/mac/entitlements.mac.inherit.plist",
+    "identity": "Developer ID Application: TimeCyber (TEAM_ID)",
+    "type": "distribution",
     "darkModeSupport": true,
     "protocols": [
       {
