@@ -42,6 +42,9 @@ const AgentChatPanel: React.FC = () => {
   // 编辑模式状态
   const [isEditing, setIsEditing] = useState(false)
   const [editedRole, setEditedRole] = useState("")
+  
+  // 角色设定区域缩进状态
+  const [isRoleInfoCollapsed, setIsRoleInfoCollapsed] = useState(false)
 
   // 聊天相关状态
   const [messages, setMessages] = useState<Message[]>([])
@@ -83,7 +86,8 @@ const AgentChatPanel: React.FC = () => {
       console.log('当前智能体ID:', selectedAgent.id)
       console.log('智能体名称:', selectedAgent.name)
       
-      chatIdRef.current = null // 新对话
+      // 为每个智能体生成固定的chatId，确保同一智能体的对话都在同一个会话中
+      chatIdRef.current = `agent-${selectedAgent.id}`
       setEditedRole(selectedAgent.systemPromote) // 初始化编辑内容
       
       // 立即清空当前显示的消息，确保不显示其他智能体的历史
@@ -124,8 +128,16 @@ const AgentChatPanel: React.FC = () => {
         lastSavedMessages.current = [...agentMessages]
         lastSavedAgentId.current = selectedAgent.id
         console.log('恢复历史记录，消息数量:', agentMessages.length)
+        
+        // 如果有用户消息，自动缩进角色设定区域
+        const userMessages = agentMessages.filter(msg => msg.isSent)
+        if (userMessages.length > 0) {
+          setIsRoleInfoCollapsed(true)
+        } else {
+          setIsRoleInfoCollapsed(false)
+        }
       } else {
-        // 如果没有历史记录，显示开场白
+        // 如果没有历史记录，显示开场白，重置缩进状态
         currentId.current = 0
         const greeting: Message = {
           id: `${currentId.current++}`,
@@ -137,14 +149,19 @@ const AgentChatPanel: React.FC = () => {
         // 更新保存记录
         lastSavedMessages.current = [greeting]
         lastSavedAgentId.current = selectedAgent.id
+        // 重置缩进状态
+        setIsRoleInfoCollapsed(false)
         console.log('显示开场白')
       }
+      console.log('使用chatId:', chatIdRef.current)
       console.log('==================')
     } else {
       // 如果没有选中的智能体，清空对话
       setMessages([])
       lastSavedMessages.current = []
       lastSavedAgentId.current = null
+      chatIdRef.current = null
+      setIsRoleInfoCollapsed(false)
     }
   }, [selectedAgent?.id]) // 只依赖智能体ID的变化
 
@@ -158,7 +175,18 @@ const AgentChatPanel: React.FC = () => {
       isSent: msg.isSent 
     })))
     console.log('========================')
-  }, [messages])
+    
+    // 当有用户发送的消息时（超过开场白），自动缩进角色设定区域
+    // 只在当前智能体没有历史记录时才自动缩进
+    const userMessages = messages.filter(msg => msg.isSent)
+    if (userMessages.length > 0 && !isRoleInfoCollapsed && selectedAgent) {
+      // 检查是否是新发送的消息（不是从历史记录恢复的）
+      const savedMessages = getAgentChatHistory(selectedAgent.id)
+      if (savedMessages.length === 0 || userMessages.length > savedMessages.filter(msg => msg.isSent).length) {
+        setIsRoleInfoCollapsed(true)
+      }
+    }
+  }, [messages, isRoleInfoCollapsed, selectedAgent, getAgentChatHistory])
 
   // 当消息发生变化时，保存到全局状态（仅在有实际变化时）
   useEffect(() => {
@@ -462,41 +490,67 @@ const AgentChatPanel: React.FC = () => {
       <div className="conversation">
         <div className="conversation-header">
           <h2 className="agent-name">{selectedAgent.name}</h2>
-          {questions.length > 0 && (
-            <ul className="question-list">
-              {questions.map((q, idx) => (
-                <li key={idx} onClick={() => onSend(q.trim())}>{q.trim()}</li>
-              ))}
-            </ul>
-          )}
         </div>
         <ChatMessages messages={messages} isLoading={isSending} onRetry={() => {}} onEdit={() => {}} />
         <ChatInput onSendMessage={onSend} disabled={isSending} onAbort={onAbort} />
       </div>
-      <div className="role-info">
+      <div className={`role-info ${isRoleInfoCollapsed ? 'collapsed' : ''}`}>
         <div className="role-info-header">
-          <h3>角色设定</h3>
-          {!isEditing && (
-             <button onClick={handleEdit} className="edit-btn">
-               <svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentColor" d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83l3.75 3.75l1.83-1.83z"/></svg>
+          <h3 className={`${isRoleInfoCollapsed}`}>角色设定</h3>
+          <div className="role-info-buttons">
+            {!isEditing && (
+              <button onClick={handleEdit} className="edit-btn" title="编辑角色设定">
+                <svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentColor" d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83l3.75 3.75l1.83-1.83z"/></svg>
+              </button>
+            )}
+            <button 
+              onClick={() => setIsRoleInfoCollapsed(!isRoleInfoCollapsed)} 
+              className="collapse-btn"
+              title={isRoleInfoCollapsed ? "展开角色设定" : "收起角色设定"}
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                {isRoleInfoCollapsed ? (
+                  // 展开图标 (向左箭头)
+                  <path d="M15 18l-6-6 6-6"/>
+                ) : (
+                  // 收起图标 (向右箭头)
+                  <path d="M9 18l6-6-6-6"/>
+                )}
+              </svg>
             </button>
-          )}
-        </div>
-        {isEditing ? (
-          <div className="role-edit-mode">
-            <textarea
-              className="role-textarea"
-              value={editedRole}
-              onChange={(e) => setEditedRole(e.target.value)}
-              rows={10}
-            />
-            <div className="edit-actions">
-              <button onClick={handleCancel} className="cancel-btn">取消</button>
-              <button onClick={handleSave} className="save-btn">保存</button>
-            </div>
           </div>
-        ) : (
-          <pre className="role-text">{selectedAgent.systemPromote}</pre>
+        </div>
+        {!isRoleInfoCollapsed && (
+          <>
+            {isEditing ? (
+              <div className="role-edit-mode">
+                <textarea
+                  className="role-textarea"
+                  value={editedRole}
+                  onChange={(e) => setEditedRole(e.target.value)}
+                  rows={10}
+                />
+                <div className="edit-actions">
+                  <button onClick={handleCancel} className="cancel-btn">取消</button>
+                  <button onClick={handleSave} className="save-btn">保存</button>
+                </div>
+              </div>
+            ) : (
+              <>
+                <pre className="role-text">{selectedAgent.systemPromote}</pre>
+                {questions.length > 0 && (
+                  <div className="question-section">
+                    <h4>初始问题</h4>
+                    <ul className="question-list">
+                      {questions.map((q, idx) => (
+                        <li key={idx} onClick={() => onSend(q.trim())}>{q.trim()}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </>
+            )}
+          </>
         )}
       </div>
     </div>
