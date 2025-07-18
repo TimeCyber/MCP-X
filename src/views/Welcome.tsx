@@ -12,6 +12,7 @@ import Textarea from "../components/WrappedTextarea"
 import Tooltip from "../components/Tooltip"
 import { loadToolsAtom, toolsAtom } from "../atoms/toolState"
 import { showToastAtom } from "../atoms/toastState"
+import { navSectionAtom } from "../atoms/navState"
 
 // 为window添加ipcRenderer类型声明
 declare global {
@@ -51,6 +52,7 @@ const Welcome = () => {
   const [isDragging, setIsDragging] = useState(false)
   const [webSearchMode, setWebSearchMode] = useState(false)
   const showToast = useSetAtom(showToastAtom)
+  const setNavSection = useSetAtom(navSectionAtom)
 
   useEffect(() => {
     document.title = t("header.title")
@@ -386,6 +388,7 @@ const Welcome = () => {
                     onClick={(e) => {
                       e.preventDefault()
                       openOverlay("Tools")
+                      setNavSection("tools")
                     }}
                   >
                     <svg width="20" height="20" viewBox="0 0 24 24">

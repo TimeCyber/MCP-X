@@ -6,8 +6,8 @@
 .agent-chat-panel {
   display: flex;
   flex-direction: row;
-  gap: 24px;
-  padding: 24px 24px 0px;
+  gap: 12px;
+  padding: 12px;
   height: calc(100vh - var(--header-height, 60px));
   overflow-y: auto;
 
@@ -15,7 +15,7 @@
     flex: 2;
     background: var(--bg-secondary, #fafafa);
     border-radius: 8px;
-    padding: 24px;
+    padding: 12px;
     display: flex;
     flex-direction: column;
 
@@ -98,6 +98,6 @@
 // 当在agent导航页面时，需要额外的顶部padding避免与header重叠
 .agent-nav-active .agent-chat-panel {
   // 顶部多预留 header 高度，避免与 app-header 重叠
-  padding: calc(var(--header-height, 60px) + 24px) 24px 0px 24px;
-  height: calc(100vh - var(--header-height, 50px));
+  padding: calc(var(--header-height, 60px)) 0px 0px 12px;
+  height: calc(100vh - var(--header-height, 10px));
 } 

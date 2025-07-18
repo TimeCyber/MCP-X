@@ -37,6 +37,11 @@
       width: 100vw;
     }
 
+    &.sidenav-only {
+      left: 70px;
+      width: calc(100vw - 70px);
+    }
+
     > div {
       width: 100%;
       height: 100%;

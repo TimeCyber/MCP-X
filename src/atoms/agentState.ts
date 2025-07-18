@@ -275,3 +275,58 @@ export const clearUsedAgentsAtom = atom(
     set(usedAgentsAtom, []);
   }
 );
+
+// 智能体对话历史记录
+export interface AgentMessage {
+  id: string;
+  text: string;
+  isSent: boolean;
+  timestamp: number;
+  files?: (File | string)[];
+  isError?: boolean;
+}
+
+export interface AgentChatHistory {
+  agentId: number;
+  messages: AgentMessage[];
+  lastUpdated: string;
+}
+
+// 智能体对话历史存储（按智能体ID分组）
+export const agentChatHistoryAtom = atomWithStorage<Record<number, AgentChatHistory>>('mcpx-agent-chat-history', {});
+
+// 获取特定智能体的对话历史
+export const getAgentChatHistoryAtom = atom(
+  (get) => (agentId: number) => {
+    const histories = get(agentChatHistoryAtom);
+    return histories[agentId]?.messages || [];
+  }
+);
+
+// 保存特定智能体的对话历史
+export const saveAgentChatHistoryAtom = atom(
+  null,
+  (get, set, agentId: number, messages: AgentMessage[]) => {
+    const histories = get(agentChatHistoryAtom);
+    const newHistories = {
+      ...histories,
+      [agentId]: {
+        agentId,
+        messages,
+        lastUpdated: new Date().toISOString()
+      }
+    };
+    set(agentChatHistoryAtom, newHistories);
+  }
+);
+
+// 清除特定智能体的对话历史
+export const clearAgentChatHistoryAtom = atom(
+  null,
+  (get, set, agentId: number) => {
+    const histories = get(agentChatHistoryAtom);
+    const newHistories = { ...histories };
+    delete newHistories[agentId];
+    set(agentChatHistoryAtom, newHistories);
+  }
+);

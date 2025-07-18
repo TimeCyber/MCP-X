@@ -194,14 +194,17 @@ const HistorySidebar = ({ onNewChat }: Props) => {
   }
 
   const handleTools = () => {
+    setNavSection("tools")
     openOverlay("Tools")
   }
 
   const handleModels = () => {
+    setNavSection("model")
     openOverlay("Model")
   }
 
   const handleSystem = () => {
+    setNavSection("system")
     openOverlay("System")
   }
 
