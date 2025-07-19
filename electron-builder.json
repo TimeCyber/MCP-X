@@ -43,8 +43,8 @@
         "arch": ["arm64", "x64"]
       }
     ],
-    "hardenedRuntime": true,
-    "gatekeeperAssess": false,
+    "hardenedRuntime": false,
+    "gatekeeperAssess": true,
     "entitlements": "resources/mac/entitlements.mac.plist",
     "entitlementsInherit": "resources/mac/entitlements.mac.plist",
     "darkModeSupport": true,
