@@ -334,7 +334,11 @@ export function agentRouter() {
         message: `Agent '${agent.name}' activated successfully`
       });
     } catch (error: any) {
-      logger.error(`Failed to activate agent ${req.params.id}: ${error.message}`);
+      // 激活失败时，清除当前智能体状态，防止使用残留的旧状态
+      const promptManager = PromptManager.getInstance();
+      promptManager.clearAgent();
+      
+      logger.error(`Failed to activate agent ${req.params.id}: ${error.message}. Agent state has been cleared.`);
       res.status(500).json({
         success: false,
         message: `Failed to activate agent: ${error.message}`

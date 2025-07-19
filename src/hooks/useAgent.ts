@@ -12,10 +12,17 @@ import {
   selectedAgentAtom,
   hasCachedAgentsAtom,
   agentStatsAtom,
+  usedAgentsAtom,
+  sortedUsedAgentsAtom,
+  isAgentUsedAtom,
+  addUsedAgentAtom,
+  removeUsedAgentAtom,
+  clearUsedAgentsAtom,
   Agent,
   ActiveAgent,
   AgentConfig,
   PaginationInfo,
+  UsedAgent,
 } from "../atoms/agentState";
 import { agentService, PaginationParams } from "../services/agentService";
 
@@ -33,11 +40,29 @@ export const useAgent = () => {
   const selectedAgent = useAtomValue(selectedAgentAtom);
   const hasCachedAgents = useAtomValue(hasCachedAgentsAtom);
   const agentStats = useAtomValue(agentStatsAtom);
+  
+  // 已使用过的智能体相关状态
+  const [usedAgents, setUsedAgents] = useAtom(usedAgentsAtom);
+  const sortedUsedAgents = useAtomValue(sortedUsedAgentsAtom);
+  const isAgentUsed = useAtomValue(isAgentUsedAtom);
+  const setAddUsedAgent = useSetAtom(addUsedAgentAtom);
+  const setRemoveUsedAgent = useSetAtom(removeUsedAgentAtom);
+  const setClearUsedAgents = useSetAtom(clearUsedAgentsAtom);
 
   // 更新加载状态的辅助函数
   const updateLoadingState = useCallback((updates: Partial<typeof loadingState>) => {
     setLoadingState(prev => ({ ...prev, ...updates }));
   }, [setLoadingState]);
+
+  // 删除单个已使用的智能体
+  const removeUsedAgent = useCallback((agentId: number) => {
+    setRemoveUsedAgent(agentId);
+  }, [setRemoveUsedAgent]);
+
+  // 清空所有已使用的智能体
+  const clearAllUsedAgents = useCallback(() => {
+    setClearUsedAgents();
+  }, [setClearUsedAgents]);
 
   // 更新分页信息的辅助函数
   const updatePagination = useCallback((newPagination: Partial<PaginationInfo>) => {
@@ -254,10 +279,36 @@ export const useAgent = () => {
       };
 
       // 尝试从本地列表获取完整信息
-      const fullAgent = agentList.find(agent => agent.id === result.id);
+      let fullAgent = agentList.find(agent => agent.id === result.id);
+      
+      // 如果主列表中没有找到，尝试从已使用的智能体列表中获取
+      if (!fullAgent) {
+        const usedAgent = usedAgents.find(agent => agent.id === result.id);
+        if (usedAgent) {
+          fullAgent = {
+            id: usedAgent.id,
+            name: usedAgent.name,
+            avatar: usedAgent.avatar,
+            description: usedAgent.description,
+            systemRole: '',
+            systemPromote: '',
+            openSay: '',
+            questions: '',
+            author: '',
+            tags: '',
+            usageCount: 0,
+            likeCount: 0,
+            starCount: 0,
+            viewCount: 0,
+          };
+        }
+      }
+
       if (fullAgent) {
         newActiveAgent.avatar = fullAgent.avatar;
         newActiveAgent.description = fullAgent.description;
+        // 记录智能体使用
+        setAddUsedAgent(fullAgent);
       }
 
       setActiveAgent(newActiveAgent);
@@ -277,7 +328,7 @@ export const useAgent = () => {
       });
       throw error;
     }
-  }, [agentList, agentConfig.autoActivateOnSelect, selectAgent, setActiveAgent, updateLoadingState]);
+  }, [agentList, usedAgents, agentConfig.autoActivateOnSelect, selectAgent, setActiveAgent, setAddUsedAgent, updateLoadingState]);
 
   // 停用智能体
   const deactivateAgent = useCallback(async () => {
@@ -400,6 +451,67 @@ export const useAgent = () => {
     }
   }, [setAgentList, updateLoadingState]);
 
+  // 确保选中的智能体有完整的详细信息
+  const ensureSelectedAgentDetails = useCallback(async (agentId: number) => {
+    if (!agentId) return;
+
+    // 检查当前选中的 agent 是否信息完整
+    const agent = agentList.find(a => a.id === agentId) || usedAgents.find(a => a.id === agentId);
+    
+    // 关键修复：只要 systemPromote 为空，就认为信息不完整，强制重新获取
+    const hasCompleteInfo = agent && agent.systemPromote;
+
+    if (hasCompleteInfo) {
+      console.log(`[Agent] Agent ${agentId} has complete info, skipping fetch.`);
+      // 如果信息完整，确保 selectedAgentAtom 也被正确设置
+      if (selectedAgent?.id !== agentId || !selectedAgent.systemPromote) {
+        selectAgent(agentId);
+      }
+      return;
+    }
+
+    console.log(`[Agent] Agent ${agentId} info is incomplete, fetching details...`);
+    updateLoadingState({ isFetchingDetail: true, error: null });
+
+    try {
+      const detailedAgent = await agentService.getAgentDetail(agentId);
+      // 使用获取到的最新、最全的信息更新状态
+      setAgentList(prev => {
+        const index = prev.findIndex(a => a.id === agentId);
+        if (index > -1) {
+          const newList = [...prev];
+          newList[index] = detailedAgent;
+          return newList;
+        }
+        // 如果主列表中不存在，可能来自“最近使用”，但我们仍然更新主列表作为数据源
+        return [...prev, detailedAgent];
+      });
+
+      // 更新 “最近使用” 列表中的信息
+      setUsedAgents(prev => {
+         const index = prev.findIndex(a => a.id === agentId);
+         if (index > -1) {
+           const newUsedList = [...prev];
+           newUsedList[index] = { ...newUsedList[index], ...detailedAgent };
+           return newUsedList;
+         }
+         return prev;
+      });
+
+      // 确保 selectedAgentAtom 也被设置为最新的完整信息
+      selectAgent(agentId);
+
+    } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+      updateLoadingState({ isFetchingDetail: false, error: errorMessage });
+      console.error(`[Agent] Failed to fetch details for agent ${agentId}:`, error);
+      // 可选择性地抛出错误，以便调用方处理
+      throw error;
+    } finally {
+      updateLoadingState({ isFetchingDetail: false });
+    }
+  }, [agentList, usedAgents, selectedAgent, selectAgent, agentService, updateLoadingState, setAgentList, setUsedAgents]);
+
   return {
     // 状态
     agentList,
@@ -414,6 +526,11 @@ export const useAgent = () => {
     pagination,
     paginationMode,
     
+    // 已使用智能体相关状态
+    usedAgents,
+    sortedUsedAgents,
+    isAgentUsed,
+    
     // 操作
     fetchAgentList,
     fetchAgentListWithPagination,
@@ -427,6 +544,9 @@ export const useAgent = () => {
     clearSearch,
     clearCacheAndRefresh,
     updateAgent,
+    removeUsedAgent,
+    clearAllUsedAgents,
+    ensureSelectedAgentDetails,
     
     // 分页操作
     goToPage,

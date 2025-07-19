@@ -7,9 +7,10 @@ $select-button-width: 475px;
   align-items: center;
   justify-content: flex-start;
   gap: 10px;
-  width: calc(100% - 60px);
+  width: calc(100% - 150px);
   height: 40px;
   position: absolute;
+  padding-left: 20px;
   left: 0;
   transition: left $transition-normal ease, width $transition-normal ease;
 

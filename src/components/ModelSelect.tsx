@@ -9,6 +9,7 @@ import { openOverlayAtom } from "../atoms/layerState"
 import { showToastAtom } from "../atoms/toastState"
 import Tooltip from "./Tooltip"
 import { systemThemeAtom, userThemeAtom } from "../atoms/themeState"
+import { navSectionAtom } from "../atoms/navState"
 
 function optionMask(model: string) {
   if (model.length <= 55) {
@@ -47,6 +48,7 @@ const ModelSelect = () => {
   const systemTheme = useAtomValue(systemThemeAtom)
   const userTheme = useAtomValue(userThemeAtom)
   const modelList = useAtomValue(enabledModelsIdsAtom)
+  const setNavSection = useSetAtom(navSectionAtom)
 
   useEffect(() => {
     setModel(config?.activeProvider ?? "")
@@ -114,7 +116,11 @@ const ModelSelect = () => {
       >
         <button
           className="model-select-add-btn"
-          onClick={() => openOverlay("Model")}
+          onClick={() => {
+              openOverlay("Model")
+              setNavSection("model")
+            }
+          }
         >
           <svg width="20px" height="20px" viewBox="0 0 20 20">
             <g id="surface1">

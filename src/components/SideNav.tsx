@@ -1,7 +1,8 @@
 import React from "react";
-import { useAtom } from "jotai";
+import { useAtom, useSetAtom } from "jotai";
 import { IconContext } from "react-icons";
 import { navSectionAtom, NavSection } from "../atoms/navState";
+import { closeAllOverlaysAtom } from "../atoms/layerState";
 import {
   AiOutlineMessage,
   AiFillMessage,
@@ -27,6 +28,15 @@ const bottomIcons = [
 
 const SideNav: React.FC = () => {
   const [active, setActive] = useAtom(navSectionAtom);
+  const closeAllOverlays = useSetAtom(closeAllOverlaysAtom);
+
+  const handleNavClick = (navId: NavSection) => {
+    // 如果点击的是chat或agent，关闭所有overlay
+    if (navId === "chat" || navId === "agent") {
+      closeAllOverlays();
+    }
+    setActive(navId);
+  };
 
   return (
     <IconContext.Provider value={{ style: { strokeWidth: "1.5" } }}>
@@ -37,7 +47,7 @@ const SideNav: React.FC = () => {
               key={item.id}
               className={`nav-btn ${active === item.id ? "active" : ""}`}
               title={item.title}
-              onClick={() => setActive(item.id as NavSection)}
+              onClick={() => handleNavClick(item.id as NavSection)}
             >
               <div className="nav-icon">
                 {active === item.id ? item.activeIcon : item.icon}
@@ -52,7 +62,7 @@ const SideNav: React.FC = () => {
               key={item.id}
               className={`nav-btn ${active === item.id ? "active" : ""}`}
               title={item.title}
-              onClick={() => setActive(item.id as NavSection)}
+              onClick={() => handleNavClick(item.id as NavSection)}
             >
               <div className="nav-icon">
                 {active === item.id ? item.activeIcon : item.icon}

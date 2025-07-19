@@ -4,7 +4,7 @@
   // 固定侧边栏宽度并默认展示
   width: $sidebar-width; // 桌面端固定宽度
   border-right: 1px solid var(--border-weak);
-  max-height: 100vh;
+  max-height: 99vh;
   overflow: hidden;
   transition: width $transition-normal ease, transform $transition-normal ease;
   z-index: $z-sidebar;
