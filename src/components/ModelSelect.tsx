@@ -29,6 +29,7 @@ const getProviderByModel = (model: { provider: string, name: string }) => {
   if (name.includes("gemini")) return "google_genai"
   if (name.includes("bedrock")) return "bedrock"
   if (name.includes("anthropic")) return "anthropic"
+  
 
   // 如果根据name无法判断，再根据provider字段
   const provider = model.provider?.replace("-", "_")
@@ -84,7 +85,8 @@ const ModelSelect = () => {
       setModel(_model)
     }
   }
-
+// src={PROVIDER_ICONS[multiModelConfig.name as InterfaceProvider]}
+//{PROVIDER_ICONS[getProviderByModel(model) as keyof typeof PROVIDER_ICONS]?.replace('img://', '/image/')}
   return (
     <div className="model-select">
       <Select
@@ -94,9 +96,16 @@ const ModelSelect = () => {
           label: (
               <div className="model-select-label" key={model.key}>
               <img
-                src={PROVIDER_ICONS[getProviderByModel(model) as keyof typeof PROVIDER_ICONS]?.replace('img://', '/image/')}
+                src={PROVIDER_ICONS[getProviderByModel(model) as keyof typeof PROVIDER_ICONS]?.replace('img://', '/resources/image/')}
                 alt={model.provider}
                 className={`model-select-label-icon ${isProviderIconNoFilter(model.provider) ? "no-filter" : ""}`}
+                onError={(e) => {
+                  // 如果直接路径失败，尝试使用 img:// 协议
+                  const target = e.target as HTMLImageElement;
+                  if (!target.src.startsWith('img://')) {
+                    target.src = PROVIDER_ICONS[getProviderByModel(model) as keyof typeof PROVIDER_ICONS] || '';
+                  }
+                }}
               />
               <span className="model-select-label-text">
                 {optionMask(model.name)}
