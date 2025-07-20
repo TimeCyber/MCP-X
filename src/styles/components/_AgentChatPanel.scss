@@ -151,6 +151,9 @@
       font-family: var(--font-mono, monospace);
       font-size: 0.9rem;
       margin: 0;
+      max-height: 44vh;
+      overflow-y: auto;
+      
     }
 
     .question-section {
