@@ -47,7 +47,7 @@
     "gatekeeperAssess": true,
     "entitlements": "resources/mac/entitlements.mac.plist",
     "entitlementsInherit": "resources/mac/entitlements.mac.inherit.plist",
-    "identity": "Developer ID Application: TimeCyber (TEAM_ID)",
+    "identity": "TimeCyber (TEAM_ID)",
     "type": "distribution",
     "darkModeSupport": true,
     "protocols": [
@@ -180,6 +180,8 @@
   ],
   "dmg": {
     "writeUpdateInfo": false,
-    "title": "MCPX-${version}"
+    "title": "MCPX-${version}",
+    "sign": false,
+    "format": "ULFO"
   }
 }

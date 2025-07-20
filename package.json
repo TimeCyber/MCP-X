@@ -146,7 +146,7 @@
     "@types/tar": "^6.1.13",
     "@types/unzipper": "^0.10.11",
     "@vitejs/plugin-react": "^4.4.1",
-    "electron": "^33.4.11",
+    "electron": "^37.2.3",
     "electron-builder": "^25.1.8",
     "electron-store": "^10.0.1",
     "eslint": "^9.17.0",
