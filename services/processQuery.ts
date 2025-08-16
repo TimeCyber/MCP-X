@@ -16,6 +16,8 @@ import { iQueryInput, iStreamMessage, ModelSettings } from "./utils/types.js";
 import { openAIConvertToGeminiTools } from "./utils/toolHandler.js";
 import { ToolDefinition } from "@langchain/core/language_models/base";
 import path from "path";
+import { KnowledgeBase } from "./knowledgeBase.js";
+import { getNextAIMessage } from "./database/index.js";
 
 // Map to store abort controllers
 export const abortControllerMap = new Map<string, AbortController>();

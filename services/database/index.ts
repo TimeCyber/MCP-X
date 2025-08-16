@@ -36,6 +36,8 @@ interface DatabaseOperations {
   deleteMessagesAfter(chatId: string, messageId: string, options?: DatabaseOptions): Promise<void>;
   updateMessageContent(messageId: string, data: iQueryInput, options?: DatabaseOptions): Promise<typeof schema.messages.$inferSelect>;
   getNextAIMessage(chatId: string, messageId: string): Promise<typeof schema.messages.$inferSelect>;
+  createKnowledgeDocument(data: { id: string, filename: string, content: string, embeddingId: string, createdAt: string }): Promise<any>;
+  getKnowledgeDocuments(): Promise<any[]>;
 }
 
 // direct database access implementation
@@ -204,6 +206,14 @@ class DirectDatabaseAccess implements DatabaseOperations {
 
     return nextMessage;
   };
+
+  async createKnowledgeDocument(data: { id: string, filename: string, content: string, embeddingId: string, createdAt: string }) {
+    return this.db.insert(schema.knowledge_documents).values(data).returning().get();
+  }
+
+  async getKnowledgeDocuments() {
+    return this.db.select().from(schema.knowledge_documents).all();
+  }
 }
 
 // API access implementation
@@ -437,6 +447,40 @@ class ApiDatabaseAccess implements DatabaseOperations {
     });
     return response.data;
   }
+
+  async createKnowledgeDocument(data: { id: string, filename: string, content: string, embeddingId: string, createdAt: string }) {
+    const { fingerprint = "funmula" } = {};
+    const response = await this.axiosInstance.post(
+      "/knowledge_document",
+      {
+        ...data,
+        fingerprint,
+      },
+      {
+        headers: await this.getHeaders(),
+      }
+    );
+    const resBody = response.data;
+    if (!resBody.result) {
+      throw new Error("Failed to create knowledge document - " + resBody.message);
+    }
+    return resBody.data;
+  }
+
+  async getKnowledgeDocuments() {
+    const { fingerprint = "funmula" } = {};
+    const response = await this.axiosInstance.get(
+      "/knowledge_document",
+      {
+        headers: await this.getHeaders(),
+      }
+    );
+    const resBody = response.data;
+    if (!resBody.result) {
+      throw new Error("Failed to get knowledge documents - " + resBody.message);
+    }
+    return resBody.data;
+  }
 }
 // Database access mode
 export enum DatabaseMode {
@@ -482,3 +526,4 @@ export const getNextAIMessage = (chatId: string, messageId: string) =>
   databaseOperations.getNextAIMessage(chatId, messageId);
 export const getDatabaseMode = () => databaseOperations.MODE;
 export const getDB = () => databaseOperations.db;
+export const createKnowledgeDocument = (data) => databaseOperations.createKnowledgeDocument(data);
