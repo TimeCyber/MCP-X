@@ -146,7 +146,7 @@
     "@types/semver": "^7.5.8",
     "@types/tar": "^6.1.13",
     "@types/unzipper": "^0.10.11",
-    "@vitejs/plugin-react": "^4.4.1",
+    "@vitejs/plugin-react": "^5.0.2",
     "electron": "^37.2.3",
     "electron-builder": "^25.1.8",
     "electron-store": "^10.0.1",
