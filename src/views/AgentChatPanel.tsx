@@ -483,7 +483,19 @@ const AgentChatPanel: React.FC = () => {
     return <div className="agent-chat-panel placeholder">请选择左侧智能体查看详情</div>
   }
 
-  const questions: string[] = selectedAgent.questions ? selectedAgent.questions.split(/[|,，;；。\n\r]+/).filter(Boolean).slice(0, 4) : []
+  const questions: string[] = selectedAgent?.questions ? selectedAgent.questions.split(/[|,，;；。\n\r]+/).filter(Boolean).slice(0, 4) : []
+
+  // 如果没有选中的智能体，显示选择提示
+  if (!selectedAgent) {
+    return (
+      <div className="agent-chat-panel">
+        <div className="no-agent-selected">
+          <h3>请从左侧选择一个智能体开始对话</h3>
+          <p>您可以在智能体侧边栏中选择已有的智能体，或创建新的智能体。</p>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div className="agent-chat-panel">

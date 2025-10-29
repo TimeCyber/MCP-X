@@ -1,0 +1,277 @@
+.knowledge-search-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 10vh;
+  z-index: 1000;
+  backdrop-filter: blur(4px);
+
+  .knowledge-search {
+    background: var(--background-color);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    width: 90%;
+    max-width: 600px;
+    max-height: 70vh;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+
+    .knowledge-search-header {
+      display: flex;
+      align-items: center;
+      padding: 16px;
+      border-bottom: 1px solid var(--border-color);
+      background: var(--background-secondary);
+
+      .search-input-wrapper {
+        flex: 1;
+        position: relative;
+        display: flex;
+        align-items: center;
+
+        .search-icon {
+          position: absolute;
+          left: 12px;
+          color: var(--text-secondary);
+          z-index: 1;
+        }
+
+        .search-input {
+          width: 100%;
+          padding: 10px 12px 10px 40px;
+          border: 1px solid var(--border-color);
+          border-radius: 8px;
+          background: var(--background-color);
+          color: var(--text-color);
+          font-size: 16px;
+
+          &:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+          }
+
+          &::placeholder {
+            color: var(--text-secondary);
+          }
+        }
+      }
+
+      .close-btn {
+        margin-left: 12px;
+        padding: 8px;
+        background: none;
+        border: none;
+        color: var(--text-secondary);
+        cursor: pointer;
+        border-radius: 6px;
+        transition: all 0.2s;
+
+        &:hover {
+          background: var(--background-color);
+          color: var(--text-color);
+        }
+      }
+    }
+
+    .knowledge-search-results {
+      flex: 1;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+
+      .loading-state {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 40px;
+        color: var(--text-secondary);
+        gap: 12px;
+
+        .loading-spinner {
+          width: 20px;
+          height: 20px;
+          border: 2px solid var(--border-color);
+          border-top: 2px solid var(--primary-color);
+          border-radius: 50%;
+          animation: spin 1s linear infinite;
+        }
+      }
+
+      .empty-state {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 40px;
+        color: var(--text-secondary);
+
+        .empty-icon {
+          font-size: 32px;
+          margin-bottom: 12px;
+          opacity: 0.6;
+        }
+
+        .empty-text {
+          text-align: center;
+          line-height: 1.5;
+        }
+      }
+
+      .documents-list {
+        flex: 1;
+        overflow-y: auto;
+        padding: 8px;
+
+        .document-item {
+          padding: 12px 16px;
+          border-radius: 8px;
+          cursor: pointer;
+          transition: all 0.2s;
+          border: 1px solid transparent;
+          margin-bottom: 4px;
+
+          &:hover,
+          &.selected {
+            background: var(--primary-color-light);
+            border-color: var(--primary-color);
+          }
+
+          .document-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 8px;
+
+            .document-name {
+              font-weight: 600;
+              color: var(--text-color);
+              word-break: break-word;
+              flex: 1;
+              margin-right: 12px;
+
+              .highlight {
+                background: #ffeb3b;
+                color: #000;
+                padding: 1px 2px;
+                border-radius: 2px;
+              }
+            }
+
+            .document-meta {
+              display: flex;
+              gap: 8px;
+              font-size: 11px;
+              color: var(--text-secondary);
+              white-space: nowrap;
+
+              .file-type {
+                background: var(--primary-color);
+                color: white;
+                padding: 2px 6px;
+                border-radius: 4px;
+                font-weight: 500;
+              }
+            }
+          }
+
+          .document-preview {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.4;
+            word-break: break-word;
+
+            .highlight {
+              background: #ffeb3b;
+              color: #000;
+              padding: 1px 2px;
+              border-radius: 2px;
+            }
+          }
+        }
+      }
+    }
+
+    .knowledge-search-footer {
+      padding: 12px 16px;
+      border-top: 1px solid var(--border-color);
+      background: var(--background-secondary);
+
+      .keyboard-hints {
+        display: flex;
+        gap: 16px;
+        font-size: 12px;
+        color: var(--text-secondary);
+
+        span {
+          display: flex;
+          align-items: center;
+          gap: 4px;
+        }
+
+        kbd {
+          background: var(--background-color);
+          border: 1px solid var(--border-color);
+          border-radius: 4px;
+          padding: 2px 6px;
+          font-family: inherit;
+          font-size: 11px;
+          color: var(--text-color);
+        }
+      }
+    }
+  }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+// 响应式设计
+@media (max-width: 768px) {
+  .knowledge-search-overlay {
+    padding: 20px;
+    padding-top: 5vh;
+
+    .knowledge-search {
+      width: 100%;
+      max-height: 80vh;
+
+      .knowledge-search-header {
+        padding: 12px;
+
+        .search-input-wrapper .search-input {
+          font-size: 16px; // 防止iOS缩放
+        }
+      }
+
+      .knowledge-search-results .documents-list .document-item {
+        padding: 10px 12px;
+
+        .document-header {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 4px;
+
+          .document-meta {
+            order: -1;
+          }
+        }
+      }
+
+      .knowledge-search-footer .keyboard-hints {
+        gap: 12px;
+        font-size: 11px;
+      }
+    }
+  }
+}

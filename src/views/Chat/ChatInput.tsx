@@ -7,6 +7,7 @@ import { lastMessageAtom } from "../../atoms/chatState"
 import { useAtomValue, useSetAtom } from "jotai"
 import { activeConfigAtom, currentModelSupportToolsAtom, isConfigActiveAtom } from "../../atoms/configState"
 import { showToastAtom } from "../../atoms/toastState"
+import KnowledgeSearch from "../../components/KnowledgeSearch"
 
 interface Props {
   onSendMessage?: (message: string, files?: FileList) => void
@@ -41,6 +42,7 @@ const ChatInput: React.FC<Props> = ({ onSendMessage, disabled, onAbort }) => {
   const activeConfig = useAtomValue(activeConfigAtom)
   const [isDragging, setIsDragging] = useState(false)
   const [webSearchMode, setWebSearchMode] = useState(false)
+  const [showKnowledgeSearch, setShowKnowledgeSearch] = useState(false)
   const showToast = useSetAtom(showToastAtom)
 
   const formatFileSize = useCallback((bytes: number): string => {
@@ -162,6 +164,30 @@ const ChatInput: React.FC<Props> = ({ onSendMessage, disabled, onAbort }) => {
     if (lastMessage) {
       setMessage(m => m + lastMessage)
     }
+  })
+
+  // 处理知识库文档选择
+  const handleKnowledgeDocumentSelect = useCallback((document: any) => {
+    const insertText = `\n\n参考文档：${document.filename}\n---\n${document.content}\n---\n\n`;
+    const currentMessage = textareaRef.current?.value || "";
+    const newMessage = currentMessage + insertText;
+    setMessage(newMessage);
+    setShowKnowledgeSearch(false);
+    
+    // 聚焦到文本框
+    setTimeout(() => {
+      textareaRef.current?.focus();
+    }, 100);
+    
+    showToast({
+      message: t('chat.knowledgeSelected', { filename: document.filename }),
+      type: "success"
+    });
+  }, [showToast]);
+
+  // 快捷键打开知识库搜索
+  useHotkeyEvent("chat-input:knowledge-search", () => {
+    setShowKnowledgeSearch(true);
   })
 
   useEffect(() => {
@@ -473,6 +499,17 @@ const ChatInput: React.FC<Props> = ({ onSendMessage, disabled, onAbort }) => {
                 <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM11 19.93C7.05 19.44 4 16.08 4 12C4 11.38 4.08 10.79 4.21 10.21L9 15V16C9 17.1 9.9 18 11 18V19.93ZM17.9 17.39C17.64 16.58 16.9 16 16 16H15V13C15 12.45 14.55 12 14 12H8V10H10C10.55 10 11 9.55 11 9V7H13C14.1 7 15 6.1 15 5V4.59C17.93 5.78 20 8.65 20 12C20 14.08 19.21 15.97 17.9 17.39Z"/>
               </svg>
             </button>
+            <button
+              type="button"
+              className="knowledge-btn"
+              onClick={() => setShowKnowledgeSearch(true)}
+              title={t('chat.knowledgeSearch')}
+            >
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M21 5c-1.11-.35-2.33-.5-3.5-.5-1.95 0-4.05.4-5.5 1.5-1.45-1.1-3.55-1.5-5.5-1.5S2.45 4.9 1 6v14.65c0 .25.25.5.5.5.1 0 .15-.05.25-.05C3.1 20.45 5.05 20 6.5 20c1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.3 4.75 1.05.1.05.15.05.25.05.25 0 .5-.25.5-.5V6c-.6-.45-1.25-.75-2-1zm0 13.5c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V8c1.35-.85 3.8-1.5 5.5-1.5 1.2 0 2.4.15 3.5.5v11.5z"/>
+                <path d="M17.5 10.5c.88 0 1.73.09 2.5.26V9.24c-.79-.15-1.64-.24-2.5-.24-1.7 0-3.24.29-4.5.83v1.66c1.13-.64 2.7-.99 4.5-.99zM13 12.49v1.66c1.13-.64 2.7-.99 4.5-.99.88 0 1.73.09 2.5.26V11.9c-.79-.15-1.64-.24-2.5-.24-1.7 0-3.24.29-4.5.83zM17.5 14.33c-1.7 0-3.24.29-4.5.83v1.66c1.13-.64 2.7-.99 4.5-.99.88 0 1.73.09 2.5.26v-1.52c-.79-.15-1.64-.24-2.5-.24z"/>
+              </svg>
+            </button>
           </div>
           {(disabled && !isAborting) ? (
             <Tooltip type="controls" content={<>{t("chat.abort")}<span className="key">Esc</span></>}>
@@ -534,6 +571,14 @@ const ChatInput: React.FC<Props> = ({ onSendMessage, disabled, onAbort }) => {
           </div>
         )}
       </footer>
+      
+      {/* 知识库搜索组件 */}
+      {showKnowledgeSearch && (
+        <KnowledgeSearch
+          onSelectDocument={handleKnowledgeDocumentSelect}
+          onClose={() => setShowKnowledgeSearch(false)}
+        />
+      )}
     </div>
   )
 }

@@ -261,6 +261,23 @@
           display: none;
         }
       }
+
+      &.knowledge-btn {
+        position: relative;
+        
+        svg {
+          position: relative;
+          fill: var(--stroke-extremestrong);
+        }
+        
+        &:hover {
+          background: var(--bg-btn-hover);
+          
+          svg {
+            fill: var(--primary-color);
+          }
+        }
+      }
       
       &:hover {
         background: var(--bg-btn-hover);

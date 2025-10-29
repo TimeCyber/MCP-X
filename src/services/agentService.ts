@@ -40,7 +40,7 @@ class AgentService {
 
   constructor() {
     // 使用远程智能体API
-    this.baseUrl = 'https://mcp-x.com/prod-api/web/mcp';
+    this.baseUrl = 'https://mcp-x.com/prod-api/web';
   }
 
   // 获取智能体列表（支持分页）

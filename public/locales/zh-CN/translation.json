@@ -15,6 +15,8 @@
     "webSearchDisabled": "网络搜索已禁用",
     "tavilyNotFound": "未找到Tavily搜索服务",
     "toggleWebSearchFailed": "切换网络搜索失败",
+    "knowledgeSearch": "引用知识库",
+    "knowledgeSelected": "已引用文档：{{filename}}",
     "send": "发送",
     "untitledChat": "未命名对话",
     "deleteChat": "删除对话",
@@ -244,6 +246,33 @@
     "autoDownload": "自动下载更新",
     "autoLaunch": "开机自动启动MCP-X",
     "minimalToTray": "最小化到系统托盘"
+  },
+  "knowledge": {
+    "title": "知识库管理",
+    "search": "搜索文档...",
+    "upload": "上传文件",
+    "uploading": "上传中...",
+    "delete": "删除文档",
+    "confirmDelete": "确定要删除这个文档吗？",
+    "deleteSuccess": "文档删除成功",
+    "deleteFailed": "文档删除失败",
+    "uploadSuccess": "文件上传成功",
+    "uploadFailed": "文件上传失败",
+    "loadFailed": "加载知识库失败",
+    "noDocuments": "暂无文档",
+    "noResults": "没有找到匹配的文档",
+    "selectDocument": "选择一个文档来预览内容",
+    "documentCount": "文档列表 ({{count}})",
+    "createdAt": "创建于",
+    "fileType": "类型",
+    "fileSize": "大小",
+    "updateTime": "更新时间",
+    "searchPlaceholder": "搜索知识库文档...",
+    "keyboardHints": {
+      "navigate": "导航",
+      "select": "选择",
+      "close": "关闭"
+    }
   },
   "toast": {
     "copiedToClipboard": "已复制到剪贴板"

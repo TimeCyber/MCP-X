@@ -37,10 +37,18 @@ This showcases how MCP-X can transform simple queries into detailed, actionable 
 
 ## What's New
 
-We've just rolled out two major updates to improve your experience:
+We've just rolled out major updates to improve your experience:
 
-### 🚀 Introducing the AI Agent System
-MCP-X is now a full-fledged AI agent platform.
+### 📚 Brand New Knowledge Base Feature (v0.1.0)
+MCP-X now supports powerful knowledge base management!
+- **Knowledge Management**: Upload, view, search, and delete knowledge documents (supports txt, md, json, csv, xml, html formats)
+- **Smart Search**: Full-text search by filename and content with highlighted matching results
+- **Chat References**: One-click reference to knowledge base documents in chat, AI can answer based on your knowledge base content
+- **Document Preview**: Real-time document content preview with file metadata display
+- **Responsive Design**: Perfect adaptation for desktop and mobile devices
+
+### 🚀 AI Agent System
+MCP-X as a full-fledged AI agent platform.
 - **New Agent Sidebar**: Discover, manage, and search for specialized AI agents.
 - **One-Click Talk**: Instantly talk to any agent for your current task.
 - **Agent Profiles**: See what each agent can do, with details on their skills and example uses.
@@ -48,7 +56,7 @@ MCP-X is now a full-fledged AI agent platform.
 
 ### 🎨 A Fresh New Look
 We've redesigned the app to be cleaner and more intuitive.
-- **New Side Navigation**: A permanent sidebar gives you quick access to Chat, Agents, Tools, Models, and System settings.
+- **New Side Navigation**: A permanent sidebar gives you quick access to Chat, Agents, Knowledge Base, Tools, Models, and System settings.
 - **Clearer Icons**: Navigation icons now have text labels so you know exactly where you're going.
 - **Consistent Design**: We've unified the color scheme and layout for a more polished feel.
 
@@ -58,7 +66,9 @@ This update also includes a move to a more professional icon set (`react-icons`)
 
 - 🌐 **Universal LLM Support**: Compatible with ChatGPT, Anthropic, Ollama and OpenAI-compatible models
 - 💻 **Cross-Platform**: Available for Windows, MacOS, and Linux
+- 📚 **Knowledge Base Management**: Upload, search, and reference knowledge documents, let AI answer based on your materials
 - 🔄 **Model Context Protocol**: Enabling seamless MCP AI agent integration on both stdio and SSE mode
+- 🤖 **AI Agent System**: Rich professional AI agents covering various domain-specific needs
 - 🌍 **Multi-Language Support**: Traditional Chinese, Simplified Chinese, English, Spanish with more coming soon
 - ⚙️ **Advanced API Management**: Multiple API keys and model switching support
 - 💡 **Custom Instructions**: Personalized system prompts for tailored AI behavior
@@ -159,6 +169,17 @@ brew install yt-dlp
 ```bash
 pip install yt-dlp
 ```
+
+## Usage Guide 📖
+
+### How to use Knowledge Base:
+
+1. **Add Documents**: Click "Knowledge Base" in sidebar → Upload supported file formats (txt, md, json, csv, xml, html)
+2. **Search Documents**: Use search box in knowledge base page, supports search by filename and content
+3. **Reference Documents**: Click knowledge base button (📚) in chat → Search and select document → Auto-insert reference  
+4. **Manage Documents**: Preview, delete documents, view detailed information and metadata
+
+For more details, see [CHANGELOG.md](CHANGELOG.md).
 
 ## Build 🛠️
 

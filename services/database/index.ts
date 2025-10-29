@@ -6,7 +6,7 @@ import { BetterSQLite3Database, drizzle } from "drizzle-orm/better-sqlite3";
 import jwt from "jsonwebtoken";
 import logger from "../utils/logger.js";
 import * as schema from "./schema.js";
-import { chats, messages, type NewMessage } from "./schema.js";
+import { chats, messages, knowledge_documents, type NewMessage, type KnowledgeDocument, type NewKnowledgeDocument } from "./schema.js";
 
 // 定義通用的請求選項介面
 interface DatabaseOptions {
@@ -36,8 +36,11 @@ interface DatabaseOperations {
   deleteMessagesAfter(chatId: string, messageId: string, options?: DatabaseOptions): Promise<void>;
   updateMessageContent(messageId: string, data: iQueryInput, options?: DatabaseOptions): Promise<typeof schema.messages.$inferSelect>;
   getNextAIMessage(chatId: string, messageId: string): Promise<typeof schema.messages.$inferSelect>;
-  createKnowledgeDocument(data: { id: string, filename: string, content: string, embeddingId: string, createdAt: string }): Promise<any>;
-  getKnowledgeDocuments(): Promise<any[]>;
+  getKnowledgeDocuments(): Promise<KnowledgeDocument[]>;
+  createKnowledgeDocument(document: NewKnowledgeDocument): Promise<KnowledgeDocument>;
+  updateKnowledgeDocument(id: string, updates: Partial<NewKnowledgeDocument>): Promise<KnowledgeDocument | null>;
+  deleteKnowledgeDocument(id: string): Promise<boolean>;
+  getKnowledgeDocumentById(id: string): Promise<KnowledgeDocument | null>;
 }
 
 // direct database access implementation
@@ -49,12 +52,44 @@ class DirectDatabaseAccess implements DatabaseOperations {
       const sqlite = new Database(dbPath || "data/database.sqlite");
       this.db = drizzle(sqlite, { schema: schema });
 
+      // 确保所有表都存在
+      sqlite.exec(`
+        CREATE TABLE IF NOT EXISTS chats (
+          id TEXT PRIMARY KEY NOT NULL,
+          title TEXT NOT NULL,
+          agent_name TEXT,
+          created_at TEXT NOT NULL
+        );
+        
+        CREATE TABLE IF NOT EXISTS messages (
+          id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+          content TEXT NOT NULL,
+          role TEXT NOT NULL,
+          chat_id TEXT NOT NULL,
+          message_id TEXT NOT NULL,
+          created_at TEXT NOT NULL,
+          files TEXT NOT NULL
+        );
+        
+        CREATE TABLE IF NOT EXISTS knowledge_documents (
+          id TEXT PRIMARY KEY NOT NULL,
+          filename TEXT NOT NULL,
+          content TEXT,
+          file_type TEXT NOT NULL DEFAULT 'txt',
+          file_size INTEGER,
+          embedding_id TEXT,
+          created_at TEXT NOT NULL,
+          updated_at TEXT NOT NULL
+        );
+      `);
+
       // Create index after drizzle initialization
-      // sqlite.exec(`
-      //   CREATE INDEX IF NOT EXISTS message_chat_id_idx
-      //     ON messages(chat_id)
-      //   `);
-      logger.info("Database initialized");
+      sqlite.exec(`
+        CREATE INDEX IF NOT EXISTS message_chat_id_idx
+          ON messages(chat_id);
+      `);
+      
+      logger.info("Database initialized with all tables");
     } catch (error) {
       logger.error("Error initializing database:", error);
       throw error;
@@ -207,12 +242,37 @@ class DirectDatabaseAccess implements DatabaseOperations {
     return nextMessage;
   };
 
-  async createKnowledgeDocument(data: { id: string, filename: string, content: string, embeddingId: string, createdAt: string }) {
-    return this.db.insert(schema.knowledge_documents).values(data).returning().get();
+  async getKnowledgeDocuments(): Promise<KnowledgeDocument[]> {
+    return this.db.select().from(knowledge_documents).all();
   }
 
-  async getKnowledgeDocuments() {
-    return this.db.select().from(schema.knowledge_documents).all();
+  async createKnowledgeDocument(document: NewKnowledgeDocument): Promise<KnowledgeDocument> {
+    const result = await this.db.insert(knowledge_documents).values(document).returning();
+    return result[0];
+  }
+
+  async updateKnowledgeDocument(id: string, updates: Partial<NewKnowledgeDocument>): Promise<KnowledgeDocument | null> {
+    const result = await this.db
+      .update(knowledge_documents)
+      .set(updates)
+      .where(eq(knowledge_documents.id, id))
+      .returning();
+    return result[0] || null;
+  }
+
+  async deleteKnowledgeDocument(id: string): Promise<boolean> {
+    const result = await this.db
+      .delete(knowledge_documents)
+      .where(eq(knowledge_documents.id, id));
+    return result.changes > 0;
+  }
+
+  async getKnowledgeDocumentById(id: string): Promise<KnowledgeDocument | null> {
+    const result = await this.db
+      .select()
+      .from(knowledge_documents)
+      .where(eq(knowledge_documents.id, id));
+    return result[0] || null;
   }
 }
 
@@ -448,12 +508,27 @@ class ApiDatabaseAccess implements DatabaseOperations {
     return response.data;
   }
 
-  async createKnowledgeDocument(data: { id: string, filename: string, content: string, embeddingId: string, createdAt: string }) {
+  async getKnowledgeDocuments(): Promise<KnowledgeDocument[]> {
+    const { fingerprint = "funmula" } = {};
+    const response = await this.axiosInstance.get(
+      "/knowledge_document",
+      {
+        headers: await this.getHeaders(),
+      }
+    );
+    const resBody = response.data;
+    if (!resBody.result) {
+      throw new Error("Failed to get knowledge documents - " + resBody.message);
+    }
+    return resBody.data;
+  }
+
+  async createKnowledgeDocument(document: NewKnowledgeDocument): Promise<KnowledgeDocument> {
     const { fingerprint = "funmula" } = {};
     const response = await this.axiosInstance.post(
       "/knowledge_document",
       {
-        ...data,
+        ...document,
         fingerprint,
       },
       {
@@ -467,17 +542,51 @@ class ApiDatabaseAccess implements DatabaseOperations {
     return resBody.data;
   }
 
-  async getKnowledgeDocuments() {
+  async updateKnowledgeDocument(id: string, updates: Partial<NewKnowledgeDocument>): Promise<KnowledgeDocument | null> {
     const { fingerprint = "funmula" } = {};
-    const response = await this.axiosInstance.get(
-      "/knowledge_document",
+    const response = await this.axiosInstance.put(
+      `/knowledge_document/${id}`,
+      {
+        ...updates,
+        fingerprint,
+      },
       {
         headers: await this.getHeaders(),
       }
     );
     const resBody = response.data;
     if (!resBody.result) {
-      throw new Error("Failed to get knowledge documents - " + resBody.message);
+      throw new Error("Failed to update knowledge document - " + resBody.message);
+    }
+    return resBody.data;
+  }
+
+  async deleteKnowledgeDocument(id: string): Promise<boolean> {
+    const { fingerprint = "funmula" } = {};
+    const response = await this.axiosInstance.delete(
+      `/knowledge_document/${id}`,
+      {
+        headers: await this.getHeaders(),
+      }
+    );
+    const resBody = response.data;
+    if (!resBody.result) {
+      throw new Error("Failed to delete knowledge document - " + resBody.message);
+    }
+    return true;
+  }
+
+  async getKnowledgeDocumentById(id: string): Promise<KnowledgeDocument | null> {
+    const { fingerprint = "funmula" } = {};
+    const response = await this.axiosInstance.get(
+      `/knowledge_document/${id}`,
+      {
+        headers: await this.getHeaders(),
+      }
+    );
+    const resBody = response.data;
+    if (!resBody.result) {
+      return null;
     }
     return resBody.data;
   }
@@ -509,21 +618,20 @@ export const initDatabase = (mode: DatabaseMode, config: { dbPath?: string; apiU
 
 // Export all database operations
 export const getAllChats = (options?: DatabaseOptions) => databaseOperations.getAllChats(options);
-export const getChatWithMessages = (chatId: string, options?: DatabaseOptions) =>
-  databaseOperations.getChatWithMessages(chatId, options);
-export const createChat = (chatId: string, title: string, agentName?: string, options?: DatabaseOptions) =>
-  databaseOperations.createChat(chatId, title, agentName, options);
-export const createMessage = (data: NewMessage, options?: DatabaseOptions) =>
-  databaseOperations.createMessage(data, options);
-export const checkChatExists = (chatId: string, options?: DatabaseOptions) =>
-  databaseOperations.checkChatExists(chatId, options);
+export const getChatWithMessages = (chatId: string, options?: DatabaseOptions) => databaseOperations.getChatWithMessages(chatId, options);
+export const createChat = (chatId: string, title: string, agentName?: string, options?: DatabaseOptions) => databaseOperations.createChat(chatId, title, agentName, options);
+export const createMessage = (data: NewMessage, options?: DatabaseOptions) => databaseOperations.createMessage(data, options);
+export const checkChatExists = (chatId: string, options?: DatabaseOptions) => databaseOperations.checkChatExists(chatId, options);
 export const deleteChat = (chatId: string, options?: DatabaseOptions) => databaseOperations.deleteChat(chatId, options);
-export const deleteMessagesAfter = (chatId: string, messageId: string, options?: DatabaseOptions) =>
-  databaseOperations.deleteMessagesAfter(chatId, messageId, options);
-export const updateMessageContent = (messageId: string, data: iQueryInput, options?: DatabaseOptions) =>
-  databaseOperations.updateMessageContent(messageId, data, options);
-export const getNextAIMessage = (chatId: string, messageId: string) =>
-  databaseOperations.getNextAIMessage(chatId, messageId);
+export const deleteMessagesAfter = (chatId: string, messageId: string, options?: DatabaseOptions) => databaseOperations.deleteMessagesAfter(chatId, messageId, options);
+export const updateMessageContent = (messageId: string, data: iQueryInput, options?: DatabaseOptions) => databaseOperations.updateMessageContent(messageId, data, options);
+export const getNextAIMessage = (chatId: string, messageId: string) => databaseOperations.getNextAIMessage(chatId, messageId);
+
+// Knowledge base operations
+export const getKnowledgeDocuments = () => databaseOperations.getKnowledgeDocuments();
+export const createKnowledgeDocument = (document: NewKnowledgeDocument) => databaseOperations.createKnowledgeDocument(document);
+export const updateKnowledgeDocument = (id: string, updates: Partial<NewKnowledgeDocument>) => databaseOperations.updateKnowledgeDocument(id, updates);
+export const deleteKnowledgeDocument = (id: string) => databaseOperations.deleteKnowledgeDocument(id);
+export const getKnowledgeDocumentById = (id: string) => databaseOperations.getKnowledgeDocumentById(id);
 export const getDatabaseMode = () => databaseOperations.MODE;
 export const getDB = () => databaseOperations.db;
-export const createKnowledgeDocument = (data) => databaseOperations.createKnowledgeDocument(data);

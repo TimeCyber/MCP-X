@@ -1,5 +1,6 @@
 import React from "react";
 import { useAtom, useSetAtom } from "jotai";
+import { useNavigate } from "react-router-dom";
 import { IconContext } from "react-icons";
 import { navSectionAtom, NavSection } from "../atoms/navState";
 import { closeAllOverlaysAtom } from "../atoms/layerState";
@@ -8,6 +9,8 @@ import {
   AiFillMessage,
   AiOutlineRobot,
   AiFillRobot,
+  AiOutlineBook,
+  AiFillBook,
   AiOutlineTool,
   AiFillTool,
   AiOutlineBarChart,
@@ -17,7 +20,8 @@ import {
 
 const topIcons = [
   { id: "chat", title: "对话", label: "对话", icon: <AiOutlineMessage />, activeIcon: <AiFillMessage /> },
-  { id: "agent", title: "智能体", label: "智能体", icon: <AiOutlineRobot />, activeIcon: <AiFillRobot /> }
+  { id: "agent", title: "智能体", label: "智能体", icon: <AiOutlineRobot />, activeIcon: <AiFillRobot /> },
+  { id: "knowledge", title: "知识库", label: "知识库", icon: <AiOutlineBook />, activeIcon: <AiFillBook /> }
 ];
 
 const bottomIcons = [
@@ -29,13 +33,27 @@ const bottomIcons = [
 const SideNav: React.FC = () => {
   const [active, setActive] = useAtom(navSectionAtom);
   const closeAllOverlays = useSetAtom(closeAllOverlaysAtom);
+  const navigate = useNavigate();
 
   const handleNavClick = (navId: NavSection) => {
-    // 如果点击的是chat或agent，关闭所有overlay
-    if (navId === "chat" || navId === "agent") {
-      closeAllOverlays();
+    try {
+      // 如果点击的是chat、agent或knowledge，关闭所有overlay
+      if (navId === "chat" || navId === "agent" || navId === "knowledge") {
+        closeAllOverlays();
+      }
+      setActive(navId);
+      
+      // 导航到对应页面
+      if (navId === "chat") {
+        navigate("/chat");
+      } else if (navId === "agent") {
+        navigate("/agent");
+      } else if (navId === "knowledge") {
+        navigate("/knowledge");
+      }
+    } catch (error) {
+      console.error("Navigation error:", error);
     }
-    setActive(navId);
   };
 
   return (

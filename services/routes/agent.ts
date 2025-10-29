@@ -97,7 +97,7 @@ export function agentRouter() {
       }
 
       // 从远程API获取
-      const response = await fetch("https://mcp-x.com/prod-api/web/mcp/agent/list");
+      const response = await fetch("https://mcp-x.com/prod-api/web/agent/list");
       
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -156,7 +156,7 @@ export function agentRouter() {
       }
 
       // 从远程API获取
-      const response = await fetch(`https://mcp-x.com/prod-api/web/mcp/agent/detail/${agentId}`);
+      const response = await fetch(`https://mcp-x.com/prod-api/web/agent/detail/${agentId}`);
       
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -215,7 +215,7 @@ export function agentRouter() {
       // 如果缓存为空，先获取列表
       if (!cache.isCacheValid() || cache.getAgentList().length === 0) {
         try {
-          const response = await fetch("https://mcp-x.com/prod-api/web/mcp/agent/list");
+          const response = await fetch("https://mcp-x.com/prod-api/web/agent/list");
           const apiData: AgentListApiResponse = await response.json();
           
           if (apiData.code === 200) {
@@ -293,7 +293,7 @@ export function agentRouter() {
       
       if (!agent) {
         // 从远程API获取
-        const response = await fetch(`https://mcp-x.com/prod-api/web/mcp/agent/detail/${agentId}`);
+        const response = await fetch(`https://mcp-x.com/prod-api/web/agent/detail/${agentId}`);
         
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);

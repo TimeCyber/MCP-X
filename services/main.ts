@@ -3,6 +3,7 @@ import { MCPCliClient } from "./client.js";
 import logger from "./utils/logger.js";
 import { DatabaseMode, initDatabase } from "./database/index.js";
 import { SystemCommandManager } from "./syscmd/index.js";
+import { vectorDB } from "./vectorDB/index.js";
 
 dotenv.config();
 
@@ -24,6 +25,15 @@ async function main() {
   logger.info(`[Server Start Info]--------------------------------`);
 
   try {
+    // 初始化向量数据库
+    logger.info("正在初始化向量数据库...");
+    try {
+      await vectorDB.initialize();
+      logger.info("向量数据库初始化成功");
+    } catch (error) {
+      logger.warn("向量数据库初始化失败，将使用基本模式:", error);
+    }
+
     const systemCommandManager = SystemCommandManager.getInstance();
     systemCommandManager.initialize({
       node: process.execPath,

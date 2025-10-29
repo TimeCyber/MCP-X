@@ -5,12 +5,13 @@ import { compatibleRouter } from "./compatible.js";
 import { configRouter } from "./config.js";
 import { modelVerifyRouter } from "./modelVerify.js";
 import { toolsRouter } from "./tools.js";
+import knowledgeRouter from "./knowledge.js";
 
 const OFFLINE_MODE = true
 
 // middleware: restrict access to API methods in ONLINE_MODE
 const onlineModeRestriction = (req: express.Request, res: express.Response, next: express.NextFunction) => {
-  const restrictedPaths = ["/tools", "/config", "/modelVerify"];
+  const restrictedPaths = ["/tools", "/config", "/modelVerify", "/knowledge"];
 
   if (!OFFLINE_MODE && req.method !== "GET" && restrictedPaths.some((path) => req.path.startsWith(path))) {
     res.status(403).json({
@@ -44,6 +45,7 @@ export function createRouter() {
   router.use("/api/agent", agentRouter());
 
   router.use("/api/chat", chatRouter());
+  router.use("/api/knowledge", knowledgeRouter);
 
   return router;
 }

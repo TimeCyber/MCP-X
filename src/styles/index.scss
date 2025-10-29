@@ -20,9 +20,11 @@
 @use "./components/AgentStatusIndicator";
 @use "./components/AgentSidebar";
 @use "./components/AgentChatPanel";
+@use "./components/KnowledgeSearch";
 @use "./pages/Welcome";
 @use "./pages/Chat";
 @use "./pages/Setup";
+@use "./pages/Knowledge";
 @use "./overlay/Overlay";
 @use "./overlay/Tools";
 @use "./overlay/Model";

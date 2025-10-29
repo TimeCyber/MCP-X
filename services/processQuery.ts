@@ -18,6 +18,8 @@ import { ToolDefinition } from "@langchain/core/language_models/base";
 import path from "path";
 import { KnowledgeBase } from "./knowledgeBase.js";
 import { getNextAIMessage } from "./database/index.js";
+import { knowledgeRetrieval } from "./knowledgeRetrieval/index.js";
+import { vectorDB } from "./vectorDB/index.js";
 
 // Map to store abort controllers
 export const abortControllerMap = new Map<string, AbortController>();
@@ -80,15 +82,42 @@ export async function handleProcessQuery(
 
     // if retry, then input is empty
     if (input) {
+      let userMessage = '';
+      
       if (typeof input === "string") {
-        messages.push(new HumanMessage(input));
+        userMessage = input;
+      } else {
+        userMessage = input.text || '';
+      }
+      
+      // 智能知识库检索
+      let knowledgeContext = '';
+      if (userMessage) {
+        try {
+          // 检查是否需要使用知识库
+          const shouldUseKB = await knowledgeRetrieval.shouldUseKnowledgeBase(userMessage);
+          if (shouldUseKB) {
+            knowledgeContext = await knowledgeRetrieval.generateContextForChat(userMessage);
+            if (knowledgeContext) {
+              logger.info(`为用户消息添加知识库上下文: ${knowledgeContext.length} 字符`);
+            }
+          }
+        } catch (error) {
+          logger.warn('知识库检索失败，继续正常对话:', error);
+        }
+      }
+      
+      if (typeof input === "string") {
+        const finalMessage = knowledgeContext ? `${knowledgeContext}用户问题: ${input}` : input;
+        messages.push(new HumanMessage(finalMessage));
       } else {
         // Handle input with images
         const content: MessageContentComplex[] = [];
 
-        // Add text content if exists
+        // Add text content if exists (with knowledge context)
         if (input.text) {
-          content.push({ type: "text", text: input.text });
+          const finalText = knowledgeContext ? `${knowledgeContext}用户问题: ${input.text}` : input.text;
+          content.push({ type: "text", text: finalText });
         }
 
         // Add image content if exists

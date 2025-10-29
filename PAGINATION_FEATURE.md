@@ -103,7 +103,7 @@ interface PaginatedResponse<T> {
 
 后端API需要支持以下查询参数：
 ```
-GET /web/mcp/agent/list?page=1&pageSize=20&keyword=搜索词
+GET /web/agent/list?page=1&pageSize=20&keyword=搜索词
 ```
 
 响应格式：

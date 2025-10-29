@@ -2,7 +2,7 @@ import React from "react"
 import { Outlet, useLocation } from "react-router-dom"
 import HistorySidebar from "../components/HistorySidebar"
 import Header from "../components/Header"
-import { useAtom, useAtomValue } from "jotai"
+import { useAtom, useAtomValue, useSetAtom } from "jotai"
 import { isConfigNotInitializedAtom } from "../atoms/configState"
 import GlobalToast from "../components/GlobalToast"
 import { themeAtom, systemThemeAtom } from "../atoms/themeState"
@@ -24,15 +24,21 @@ const Layout = () => {
   const [systemTheme] = useAtom(systemThemeAtom)
   const location = useLocation()
 
-  // 调试：监听nav状态变化
+  const setNavSection = useSetAtom(navSectionAtom)
+  
+  // 根据路由自动设置导航状态
   React.useEffect(() => {
-    console.log('=== LAYOUT NAV DEBUG ===')
-    console.log('Current nav section:', nav)
-    console.log('Current location:', location.pathname)
-    console.log('isConfigNotInitialized:', isConfigNotInitialized)
-    console.log('Will render in outlet:', nav === "agent" && location.pathname.startsWith("/agent") ? "Outlet (Agent route)" : nav || "Outlet")
-    console.log('========================')
-  }, [nav, isConfigNotInitialized, location.pathname])
+    if (location.pathname.startsWith("/knowledge")) {
+      setNavSection("knowledge");
+    } else if (location.pathname.startsWith("/agent")) {
+      setNavSection("agent");
+    } else if (location.pathname.startsWith("/chat")) {
+      setNavSection("chat");
+    } else if (location.pathname === "/") {
+      // 默认首页重定向到聊天页面
+      setNavSection("chat");
+    }
+  }, [location.pathname, setNavSection])
 
   return (
     <div className="app-container" data-theme={theme === "system" ? systemTheme : theme}>
@@ -45,14 +51,18 @@ const Layout = () => {
               return <AgentSidebar />;
             case "chat":
               return <HistorySidebar />;
+            case "knowledge":
+              return null; // 知识库不需要侧边栏
             default:
               return null;
           }
         })()}
         <div className={`outlet-container ${nav === "agent" ? "agent-nav-active" : ""}`}>
-          {!isConfigNotInitialized && <Header showHelpButton showModelSelect showAgentSelect />}
+          {!isConfigNotInitialized && <Header showHelpButton showModelSelect={nav !== "knowledge"} showAgentSelect />}
           {(() => {
             switch (nav) {
+              case "chat":
+                return <Outlet />; // 聊天页面由React Router处理
               case "agent":
                 // 如果是agent页面的路由，让React Router处理
                 if (location.pathname.startsWith("/agent")) {
@@ -60,6 +70,8 @@ const Layout = () => {
                 }
                 // 否则渲染默认的AgentChatPanel（向后兼容）
                 return <AgentChatPanel />;
+              case "knowledge":
+                return <Outlet />; // 知识库页面由React Router处理
               case "model":
                 return <ModelsOverlay />;
               case "tools":
