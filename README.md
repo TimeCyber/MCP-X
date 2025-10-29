@@ -16,8 +16,8 @@ MCP-X is an open-source MCP Host Desktop Application that seamlessly integrates 
 
 ## Use Cases 🎯
 
-### AI-Powered Content Analysis
-MCP-X excels at analyzing and understanding various types of content through its powerful AI agents. Here's an example of food content analysis:
+### AI Agent
+MCP-X good at agent and understanding various types of content through its powerful AI agents. Here's an example of food content agent:
 
 ![Food Analysis Example](./docs/food-analysis-example.png)
 
