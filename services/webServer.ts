@@ -19,6 +19,7 @@ import { handleUploadFiles } from "./utils/fileHandler.js";
 import logger from "./utils/logger.js";
 import { iQueryInput, iStreamMessage, ModelSettings } from "./utils/types.js";
 import envPaths from "env-paths";
+import { KnowledgeBase } from "./knowledgeBase.js";
 
 interface FileProcessingResult {
   images: string[];
@@ -379,6 +380,23 @@ export class WebServer {
           message: (error as Error).message,
         });
       }
+    });
+
+    this.app.post("/api/knowledge/upload", this.upload, async (req, res) => {
+      const kb = new KnowledgeBase();
+      const files = req.files as Express.Multer.File[];
+      for (const file of files) {
+        const content = await fs.readFile(file.path, "utf-8");
+        await kb.addDocument(file.originalname, content);
+      }
+      res.json({ success: true });
+    });
+
+    this.app.post("/api/knowledge/query", async (req, res) => {
+      const kb = new KnowledgeBase();
+      const { query } = req.body;
+      const results = await kb.query(query);
+      res.json(results);
     });
   }
 

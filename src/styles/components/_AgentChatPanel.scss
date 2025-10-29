@@ -6,8 +6,8 @@
 .agent-chat-panel {
   display: flex;
   flex-direction: row;
-  gap: 24px;
-  padding: 24px 24px 0px;
+  gap: 12px;
+  padding: 12px;
   height: calc(100vh - var(--header-height, 60px));
   overflow-y: auto;
 
@@ -15,7 +15,7 @@
     flex: 2;
     background: var(--bg-secondary, #fafafa);
     border-radius: 8px;
-    padding: 24px;
+    padding: 12px;
     display: flex;
     flex-direction: column;
 
@@ -74,16 +74,171 @@
     border-radius: 8px;
     padding: 24px;
     overflow-y: auto;
+    transition: all 0.3s ease;
 
-    h3 {
-      margin-top: 0;
-      font-size: 1rem;
+    &.collapsed {
+      flex: 0 0 40px; // 收起时只显示标题区域
+      min-width: 40px;
+      padding: 12px 8px;
+
+      .role-info-header {
+        margin-bottom: 0;
+
+        h3 {
+          display: none; // 隐藏标题文字
+        }
+
+        .edit-btn {
+          display: none; // 隐藏编辑按钮
+        }
+
+        .role-info-buttons {
+          justify-content: center; // 缩进按钮居中显示
+        }
+      }
+    }
+
+    .role-info-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+
+      h3 {
+        margin: 0;
+        font-size: 1rem;
+      }
+
+      .role-info-buttons {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+      }
+
+      .edit-btn, .collapse-btn {
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 4px;
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--text-secondary, #666);
+        transition: all 0.2s ease;
+
+        &:hover {
+          background: var(--bg-op-dark-weak, rgba(0, 0, 0, 0.1));
+          color: var(--text-primary, #333);
+        }
+
+        svg {
+          width: 16px;
+          height: 16px;
+        }
+      }
+
+      .collapse-btn {
+        &:hover {
+          background: var(--bg-op-primary-weak, rgba(59, 130, 246, 0.1));
+          color: var(--color-primary, #3b82f6);
+        }
+      }
     }
 
     .role-text {
       white-space: pre-wrap;
       font-family: var(--font-mono, monospace);
       font-size: 0.9rem;
+      margin: 0;
+      max-height: 44vh;
+      overflow-y: auto;
+      
+    }
+
+    .question-section {
+      margin-top: 20px;
+      
+      h4 {
+        margin: 0 0 12px 0;
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: var(--text-secondary, #666);
+      }
+
+      .question-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+
+        li {
+          background: var(--bg-primary, #fff);
+          border: 1px solid var(--border-weak, #ddd);
+          border-radius: 6px;
+          padding: 8px 12px;
+          cursor: pointer;
+          font-size: 0.85rem;
+          line-height: 1.4;
+          transition: all 0.2s ease;
+
+          &:hover {
+            background: var(--bg-op-primary-weak, rgba(59, 130, 246, 0.05));
+            border-color: var(--color-primary, #3b82f6);
+            color: var(--color-primary, #3b82f6);
+          }
+        }
+      }
+    }
+
+    .role-edit-mode {
+      .role-textarea {
+        width: 100%;
+        min-height: 200px;
+        padding: 12px;
+        border: 1px solid var(--border-weak, #ddd);
+        border-radius: 6px;
+        font-family: var(--font-mono, monospace);
+        font-size: 0.9rem;
+        resize: vertical;
+        background: var(--bg-primary, #fff);
+      }
+
+      .edit-actions {
+        display: flex;
+        gap: 8px;
+        justify-content: flex-end;
+        margin-top: 12px;
+
+        button {
+          padding: 6px 12px;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+          font-size: 0.9rem;
+          transition: all 0.2s ease;
+
+          &.cancel-btn {
+            background: var(--bg-secondary, #f5f5f5);
+            color: var(--text-secondary, #666);
+
+            &:hover {
+              background: var(--bg-op-dark-weak, rgba(0, 0, 0, 0.1));
+            }
+          }
+
+          &.save-btn {
+            background: var(--color-primary, #3b82f6);
+            color: white;
+
+            &:hover {
+              background: var(--color-primary-dark, #2563eb);
+            }
+          }
+        }
+      }
     }
   }
 
@@ -98,6 +253,6 @@
 // 当在agent导航页面时，需要额外的顶部padding避免与header重叠
 .agent-nav-active .agent-chat-panel {
   // 顶部多预留 header 高度，避免与 app-header 重叠
-  padding: calc(var(--header-height, 60px) + 24px) 24px 0px 24px;
-  height: calc(100vh - var(--header-height, 20px));
+  padding: calc(var(--header-height, 60px)) 0px 0px 12px;
+  height: calc(100vh - var(--header-height, 10px));
 } 

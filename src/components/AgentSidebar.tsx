@@ -17,7 +17,12 @@ const AgentSidebar: React.FC = () => {
     paginationMode,
     loadingState,
     loadMoreAgents,
-    clearSearch
+    clearSearch,
+    // 已使用过的智能体
+    sortedUsedAgents,
+    isAgentUsed,
+    removeUsedAgent,
+    clearAllUsedAgents
   } = useAgent()
 
   const agentListRef = useRef<HTMLDivElement>(null)
@@ -261,7 +266,85 @@ const AgentSidebar: React.FC = () => {
         </div>
       </div>
 
+      {/* 这是一个包含两个列表的滚动容器 */}
       <div className="agent-list" ref={agentListRef} tabIndex={0}>
+
+        {/* 已使用过的智能体列表 */}
+        {!searchKeyword && sortedUsedAgents.length > 0 && (
+          <div className="used-agents-section">
+            <div className="section-header">
+              <span className="section-title">最近使用</span>
+              <div className="section-actions">
+                <span className="section-count">{sortedUsedAgents.length}</span>
+                <button 
+                  className="clear-all-btn"
+                  onClick={() => clearAllUsedAgents()}
+                  title="清空所有已使用的智能体"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="3,6 5,6 21,6"></polyline><path d="m19,6v14a2,2 0 0,1 -2,2H7a2,2 0 0,1 -2,-2V6m3,0V4a2,2 0 0,1 2,-2h4a2,2 0 0,1 2,2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>
+                </button>
+              </div>
+            </div>
+            <div className="used-agents-list">
+              {sortedUsedAgents.slice(0, 5).map((usedAgent) => (
+                <div
+                  key={`used-${usedAgent.id}`}
+                  className={`agent-item ${selectedAgent?.id === usedAgent.id ? 'active' : ''}`}
+                >
+                  <div 
+                    className="agent-content"
+                    onClick={() => selectAgent(usedAgent.id)}
+                    onDoubleClick={() => activateAgent(usedAgent.id)}
+                    title={`${usedAgent.name}\n${usedAgent.description || ''}`}
+                  >
+                    <div className="agent-avatar">
+                      {usedAgent.avatar ? (
+                        <img 
+                          src={getAvatarUrl(usedAgent.avatar)} 
+                          alt={usedAgent.name}
+                          onError={(e) => {
+                            const target = e.currentTarget as HTMLImageElement
+                            const fallback = target.nextElementSibling as HTMLElement
+                            target.style.display = 'none'
+                            if (fallback) fallback.style.display = 'flex'
+                          }}
+                        />
+                      ) : null}
+                      <span style={{ display: usedAgent.avatar ? 'none' : 'flex' }}>
+                        {usedAgent.name.charAt(0).toUpperCase()}
+                      </span>
+                    </div>
+                    <div className="agent-info">
+                      <div className="agent-name">{usedAgent.name}</div>
+                      <div className="agent-description">{usedAgent.description || ''}</div>
+                    </div>
+                  </div>
+                  <button 
+                    className="remove-agent-btn"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      removeUsedAgent(usedAgent.id);
+                    }}
+                    title="从最近使用中移除"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                  </button>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* 所有智能体标题 */}
+        {!searchKeyword && (
+          <div className="section-header all-agents-header">
+            <span className="section-title">所有智能体</span>
+            {filteredAgents.length > 0 && (
+              <span className="section-count">{filteredAgents.length}</span>
+            )}
+          </div>
+        )}
+        
         {loadingState.isFetchingList && filteredAgents.length === 0 ? (
           <div className="loading-indicator initial-load">
             <div className="spinner" />

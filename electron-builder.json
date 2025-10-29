@@ -32,7 +32,6 @@
     "drizzle/**/*",
     "prebuilt/**/*"
   ],
-  "afterSign": "./scripts/notarizer.js",
   "mac": {
     "target": [
       {
@@ -44,10 +43,12 @@
         "arch": ["arm64", "x64"]
       }
     ],
-    "hardenedRuntime": true,
-    "gatekeeperAssess": false,
+    "hardenedRuntime": false,
+    "gatekeeperAssess": true,
     "entitlements": "resources/mac/entitlements.mac.plist",
-    "entitlementsInherit": "resources/mac/entitlements.mac.plist",
+    "entitlementsInherit": "resources/mac/entitlements.mac.inherit.plist",
+    "identity": "TimeCyber (TEAM_ID)",
+    "type": "distribution",
     "darkModeSupport": true,
     "protocols": [
       {
@@ -179,6 +180,8 @@
   ],
   "dmg": {
     "writeUpdateInfo": false,
-    "title": "MCPX-${version}"
+    "title": "MCPX-${version}",
+    "sign": false,
+    "format": "ULFO"
   }
 }

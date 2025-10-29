@@ -9,6 +9,7 @@ import { openOverlayAtom } from "../atoms/layerState"
 import { showToastAtom } from "../atoms/toastState"
 import Tooltip from "./Tooltip"
 import { systemThemeAtom, userThemeAtom } from "../atoms/themeState"
+import { navSectionAtom } from "../atoms/navState"
 
 function optionMask(model: string) {
   if (model.length <= 55) {
@@ -28,6 +29,7 @@ const getProviderByModel = (model: { provider: string, name: string }) => {
   if (name.includes("gemini")) return "google_genai"
   if (name.includes("bedrock")) return "bedrock"
   if (name.includes("anthropic")) return "anthropic"
+  
 
   // 如果根据name无法判断，再根据provider字段
   const provider = model.provider?.replace("-", "_")
@@ -47,6 +49,7 @@ const ModelSelect = () => {
   const systemTheme = useAtomValue(systemThemeAtom)
   const userTheme = useAtomValue(userThemeAtom)
   const modelList = useAtomValue(enabledModelsIdsAtom)
+  const setNavSection = useSetAtom(navSectionAtom)
 
   useEffect(() => {
     setModel(config?.activeProvider ?? "")
@@ -82,7 +85,8 @@ const ModelSelect = () => {
       setModel(_model)
     }
   }
-
+// src={PROVIDER_ICONS[multiModelConfig.name as InterfaceProvider]}
+//{PROVIDER_ICONS[getProviderByModel(model) as keyof typeof PROVIDER_ICONS]?.replace('img://', '/image/')}
   return (
     <div className="model-select">
       <Select
@@ -92,9 +96,16 @@ const ModelSelect = () => {
           label: (
               <div className="model-select-label" key={model.key}>
               <img
-                src={PROVIDER_ICONS[getProviderByModel(model) as keyof typeof PROVIDER_ICONS]?.replace('img://', '/image/')}
+                src={PROVIDER_ICONS[getProviderByModel(model) as keyof typeof PROVIDER_ICONS]?.replace('img://', '/resources/image/')}
                 alt={model.provider}
                 className={`model-select-label-icon ${isProviderIconNoFilter(model.provider) ? "no-filter" : ""}`}
+                onError={(e) => {
+                  // 如果直接路径失败，尝试使用 img:// 协议
+                  const target = e.target as HTMLImageElement;
+                  if (!target.src.startsWith('img://')) {
+                    target.src = PROVIDER_ICONS[getProviderByModel(model) as keyof typeof PROVIDER_ICONS] || '';
+                  }
+                }}
               />
               <span className="model-select-label-text">
                 {optionMask(model.name)}
@@ -114,7 +125,11 @@ const ModelSelect = () => {
       >
         <button
           className="model-select-add-btn"
-          onClick={() => openOverlay("Model")}
+          onClick={() => {
+              openOverlay("Model")
+              setNavSection("model")
+            }
+          }
         >
           <svg width="20px" height="20px" viewBox="0 0 20 20">
             <g id="surface1">

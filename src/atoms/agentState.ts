@@ -130,13 +130,42 @@ export const filteredAgentListAtom = atom((get) => {
 // 当前选中的智能体详情
 export const selectedAgentAtom = atom<Agent | null>((get) => {
   const agents = get(agentListAtom);
+  const usedAgents = get(usedAgentsAtom);
   const config = get(agentConfigAtom);
   
   if (!config.selectedAgentId) {
     return null;
   }
   
-  return agents.find(agent => agent.id === config.selectedAgentId) || null;
+  // 首先尝试从主列表中查找
+  const agentFromList = agents.find(agent => agent.id === config.selectedAgentId);
+  if (agentFromList) {
+    return agentFromList;
+  }
+  
+  // 如果主列表中没有，尝试从已使用的智能体列表中查找
+  const usedAgent = usedAgents.find(agent => agent.id === config.selectedAgentId);
+  if (usedAgent) {
+    // 将 UsedAgent 转换为 Agent 格式，现在UsedAgent包含了完整的系统信息
+    return {
+      id: usedAgent.id,
+      name: usedAgent.name,
+      avatar: usedAgent.avatar,
+      description: usedAgent.description,
+      systemRole: usedAgent.systemRole,
+      systemPromote: usedAgent.systemPromote,
+      openSay: usedAgent.openSay,
+      questions: usedAgent.questions,
+      author: '', // 这些字段在 UsedAgent 中不存在，保持为空
+      tags: '',
+      usageCount: usedAgent.usageCount,
+      likeCount: 0,
+      starCount: 0,
+      viewCount: 0,
+    };
+  }
+  
+  return null;
 });
 
 // 是否有缓存的智能体数据
@@ -167,3 +196,137 @@ export const agentStatsAtom = atom((get) => {
     activeAgentName: activeAgent?.name || null,
   };
 }); 
+
+// 已使用过的智能体记录
+export interface UsedAgent {
+  id: number;
+  name: string;
+  avatar: string;
+  description: string;
+  systemRole: string;
+  systemPromote: string;
+  openSay: string;
+  questions: string;
+  lastUsedAt: string;
+  usageCount: number;
+}
+
+// 本地存储的已使用智能体列表
+export const usedAgentsAtom = atomWithStorage<UsedAgent[]>('mcpx-used-agents', []);
+
+// 计算的已使用智能体列表（按最后使用时间排序）
+export const sortedUsedAgentsAtom = atom((get) => {
+  const usedAgents = get(usedAgentsAtom);
+  return usedAgents.sort((a, b) => new Date(b.lastUsedAt).getTime() - new Date(a.lastUsedAt).getTime());
+});
+
+// 检查某个智能体是否已被使用过
+export const isAgentUsedAtom = atom((get) => (agentId: number) => {
+  const usedAgents = get(usedAgentsAtom);
+  return usedAgents.some(agent => agent.id === agentId);
+});
+
+// 添加或更新已使用智能体的原子操作
+export const addUsedAgentAtom = atom(
+  null,
+  (get, set, agent: Agent) => {
+    const usedAgents = get(usedAgentsAtom);
+    const existingIndex = usedAgents.findIndex(used => used.id === agent.id);
+    
+    const usedAgent: UsedAgent = {
+      id: agent.id,
+      name: agent.name,
+      avatar: agent.avatar,
+      description: agent.description,
+      systemRole: agent.systemRole,
+      systemPromote: agent.systemPromote,
+      openSay: agent.openSay,
+      questions: agent.questions,
+      lastUsedAt: new Date().toISOString(),
+      usageCount: existingIndex >= 0 ? usedAgents[existingIndex].usageCount + 1 : 1
+    };
+    
+    if (existingIndex >= 0) {
+      // 更新已存在的记录
+      const newUsedAgents = [...usedAgents];
+      newUsedAgents[existingIndex] = usedAgent;
+      set(usedAgentsAtom, newUsedAgents);
+    } else {
+      // 添加新记录
+      set(usedAgentsAtom, [...usedAgents, usedAgent]);
+    }
+  }
+);
+
+// 删除已使用智能体的原子操作
+export const removeUsedAgentAtom = atom(
+  null,
+  (get, set, agentId: number) => {
+    const usedAgents = get(usedAgentsAtom);
+    const filteredAgents = usedAgents.filter(agent => agent.id !== agentId);
+    set(usedAgentsAtom, filteredAgents);
+  }
+);
+
+// 清空所有已使用智能体的原子操作
+export const clearUsedAgentsAtom = atom(
+  null,
+  (get, set) => {
+    set(usedAgentsAtom, []);
+  }
+);
+
+// 智能体对话历史记录
+export interface AgentMessage {
+  id: string;
+  text: string;
+  isSent: boolean;
+  timestamp: number;
+  files?: (File | string)[];
+  isError?: boolean;
+}
+
+export interface AgentChatHistory {
+  agentId: number;
+  messages: AgentMessage[];
+  lastUpdated: string;
+}
+
+// 智能体对话历史存储（按智能体ID分组）
+export const agentChatHistoryAtom = atomWithStorage<Record<number, AgentChatHistory>>('mcpx-agent-chat-history', {});
+
+// 获取特定智能体的对话历史
+export const getAgentChatHistoryAtom = atom(
+  (get) => (agentId: number) => {
+    const histories = get(agentChatHistoryAtom);
+    return histories[agentId]?.messages || [];
+  }
+);
+
+// 保存特定智能体的对话历史
+export const saveAgentChatHistoryAtom = atom(
+  null,
+  (get, set, agentId: number, messages: AgentMessage[]) => {
+    const histories = get(agentChatHistoryAtom);
+    const newHistories = {
+      ...histories,
+      [agentId]: {
+        agentId,
+        messages,
+        lastUpdated: new Date().toISOString()
+      }
+    };
+    set(agentChatHistoryAtom, newHistories);
+  }
+);
+
+// 清除特定智能体的对话历史
+export const clearAgentChatHistoryAtom = atom(
+  null,
+  (get, set, agentId: number) => {
+    const histories = get(agentChatHistoryAtom);
+    const newHistories = { ...histories };
+    delete newHistories[agentId];
+    set(agentChatHistoryAtom, newHistories);
+  }
+);

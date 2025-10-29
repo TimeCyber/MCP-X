@@ -164,3 +164,121 @@ electron/
 
 services/            # Backend services
 ```
+
+# macOS 打包说明
+
+## 代码签名和公证要求
+
+在 macOS 上打包应用时，需要进行代码签名和公证以避免应用被标记为禁用。
+
+### 环境变量设置
+
+打包前需要设置以下环境变量：
+
+```bash
+export APPLETEAMID="你的Apple开发者团队ID"
+export APPLEID="你的Apple ID"
+export APPLEIDPASS="你的Apple ID应用专用密码"
+```
+
+### 获取必要信息
+
+1. **Apple 开发者团队 ID**：
+   - 登录 [Apple Developer](https://developer.apple.com/)
+   - 在 Membership 页面查看 Team ID
+
+2. **应用专用密码**：
+   - 登录 [Apple ID 管理页面](https://appleid.apple.com/)
+   - 在"登录和安全"部分生成应用专用密码
+
+### 打包命令
+
+```bash
+# 设置环境变量
+export APPLETEAMID="你的团队ID"
+export APPLEID="你的Apple ID"
+export APPLEIDPASS="你的应用专用密码"
+
+# 打包
+npm run build:mac
+```
+
+### 用户临时使用未签名应用的方法
+
+如果应用显示禁用标识，用户可以通过以下方法临时使用：
+
+#### 方法一：右键打开（推荐）
+1. 右键点击应用图标
+2. 选择"打开"
+3. 在警告对话框中点击"打开"
+
+#### 方法二：系统偏好设置
+1. 打开"系统偏好设置" → "安全性与隐私"
+2. 在"通用"选项卡中找到被阻止的应用
+3. 点击"仍要打开"按钮
+
+#### 方法三：终端命令
+```bash
+# 移除隔离属性
+sudo xattr -r -d com.apple.quarantine /Applications/MCP-X.app
+
+# 或者临时禁用 Gatekeeper（不推荐）
+sudo spctl --master-disable
+```
+
+#### 方法四：开发者模式（macOS 13+）
+1. 打开"系统偏好设置" → "隐私与安全性"
+2. 向下滚动找到"开发者工具"
+3. 启用"允许来自任何来源的应用程序"
+
+### 本地打包脚本
+
+为了简化本地打包流程，可以使用提供的脚本：
+
+```bash
+# 给脚本执行权限
+chmod +x scripts/build-mac-local.sh
+
+# 运行打包脚本
+./scripts/build-mac-local.sh
+```
+
+### 证书安装步骤
+
+1. **获取开发者证书**：
+   - 登录 [Apple Developer](https://developer.apple.com/)
+   - 创建 "Developer ID Application" 证书
+   - 下载 `.p12` 证书文件
+
+2. **安装证书**：
+   - 双击 `.p12` 文件
+   - 输入密码并安装到"登录"钥匙串
+   - 在钥匙串访问中确认证书已安装
+
+3. **验证证书**：
+   ```bash
+   security find-identity -v -p codesigning
+   ```
+
+### 常见问题
+
+1. **"Mac不支持此类应用程序"错误**：
+   - 原因：缺少有效的代码签名证书
+   - 解决：安装 Apple 开发者证书并正确配置
+
+2. **应用显示禁用标识**：
+   - 检查环境变量是否正确设置
+   - 确认 Apple 开发者账号有效
+   - 检查公证过程是否成功
+
+3. **权限问题**：
+   - 某些权限可能被 Apple 标记为危险
+   - 建议只保留必要的权限
+
+4. **Gatekeeper 问题**：
+   - 可以临时设置 `"gatekeeperAssess": false`
+   - 但建议通过正确的签名和公证来解决
+
+5. **证书过期**：
+   - 开发者证书有效期为1年
+   - 需要定期更新证书

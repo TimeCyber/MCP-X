@@ -252,7 +252,7 @@ const Message = ({ messageId, text, isSent, files, isError, isLoading, onRetry, 
           }
         }}
       >
-        {_text.replaceAll("file://", "https://localfile").replaceAll("</think>\n\n", "\n\n</think>\n\n")}
+        {_text.replace(/file:\/\//g, "https://localfile").replace(/<\/think>\n\n/g, "\n\n</think>\n\n")}
       </ReactMarkdown>
     )
   }, [content, text, isSent, isLoading])

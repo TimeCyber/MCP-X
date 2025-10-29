@@ -54,12 +54,14 @@ body {
   display: flex;
   flex-direction: column;
   color: var(--text);
+  overflow: hidden;
 }
 
 .app-content {
   display: flex;
   flex: 1;
   min-height: 0; // 修复flex在缩小情况下布局溢出的问题
+  overflow: hidden;
 }
 
 .outlet-container {
@@ -69,6 +71,7 @@ body {
   position: relative;
   min-width: 0; // 修复flex在缩小情况下布局溢出的问题
   padding-bottom: 0 !important;
+  overflow: hidden;
 }
 
 .main-container {
