@@ -403,7 +403,7 @@ export class WebServer {
   start(port: number = 4321): Promise<number> {
     return new Promise((resolve, reject) => {
       const server = this.app
-        .listen(port, () => {
+        .listen(port, '127.0.0.1', () => {
           const address = server.address();
           const actualPort = typeof address === "object" && address ? address.port : port;
           logger.info(`Web server running at http://localhost:${actualPort}`);
